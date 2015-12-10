@@ -1,0 +1,33 @@
+{
+  "node": true,
+  "curly": false,
+  "evil": true,
+  "sub": true,
+  "loopfunc": true,
+  "undef": true,
+  "indent": 2,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  "latedef": true,
+  "laxbreak": true,
+  "laxcomma": true,
+  "nonew": true,
+  "newcap": false,
+  "trailing": true,
+  "strict": true,
+  "maxdepth": 4,
+  "bitwise": true,
+  "noarg": true,
+  "unused": "vars",
+  "esnext": true,
+  "maxlen": 120,
+  "globals": {
+    "describe": false,
+    "it": false,
+    "beforeEach": false,
+    "before": false,
+    "xit": false,
+    require: false
+  }
+}

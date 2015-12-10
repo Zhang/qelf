@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "bin/server",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "aws-sdk": "2.1.49",
+    "co": "4.6.0",
+    "joi": "6.6.1",
+    "kcors": "1.0.1",
+    "koa": "1.0.0",
+    "koa-bodyparser": "2.0.1",
+    "koa-logger": "1.3.0",
+    "koa-mount": "1.3.0",
+    "koa-passport": "1.2.0",
+    "koa-route": "^2.4.2",
+    "koa-router": "5.1.2",
+    "koa-session-mongo": "1.0.1",
+    "koa-session-store": "1.1.1",
+    "lodash": "3.10.1",
+    "mongodb": "1.4.39",
+    "monk": "1.0.1",
+    "passport-local": "1.0.0",
+    "semver": "5.0.1",
+    "uuid": "2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "2.3.0",
+    "nodemon": "1.4.1",
+    "supertest": "1.1.0"
+  }
+}
