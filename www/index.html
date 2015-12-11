@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <!-- HOLY SHIT THIS ISN'T SECURE -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *;"> -->
     <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
+    <!--
+        NOTE: USING GRUNT HTMLBUILD TO GENERATE INDEX.HTML. ALL JS AND CSS FILES IN STYPES/ and SCRIPTS/ ARE ADDED AUTOMATICALLY,
+        BOWER COMPONENTS MUST BE SPECIFIED IN THE ROOT GRUNTFILE
     -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    <!-- cordova script (this will be a 404 during development) -->
+    <link type="text/css" rel="stylesheet" href="styles/styles.css" />
+
+    <!-- cordova js needs to be here, and above the other script files ionic stuff -->
     <script src="cordova.js"></script>
+    <script type="text/javascript" src="bower_components/ionic/js/ionic.bundle.js"></script>
+    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="scripts/ENV_VARS.js"></script>
+    <script type="text/javascript" src="scripts/api.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/constants.js"></script>
+    <script type="text/javascript" src="scripts/landingPage/landingPage.js"></script>
+    <script type="text/javascript" src="scripts/landingPage/signup.js"></script>
+</head>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/services.js"></script>
-  </head>
-  <body ng-app="starter">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
+<body ng-app="sheen">
     <ion-nav-view></ion-nav-view>
-  </body>
+</body>
+
 </html>

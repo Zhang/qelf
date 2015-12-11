@@ -4,26 +4,24 @@ var _ = require('lodash');
 var path = require('path');
 var cordovaCli = require('cordova');
 var spawn = process.platform === 'win32' ? require('win-spawn') : require('child_process').spawn;
-var isBrowser = process.env.BROWSER;
+//var isBrowser = process.env.BROWSER;
 
 //10.0.2.2 is an ip reserved by android emulator to connect to local servers
-var LOCAL_HOST_ADDRESS = isBrowser ? 'http://127.0.0.1:3000/' : 'http://10.0.2.2:3000/';
+//var LOCAL_HOST_ADDRESS = isBrowser ? 'http://127.0.0.1:3000/' : 'http://10.0.2.2:3000/';
+var LOCAL_HOST_ADDRESS = 'http://127.0.0.1:3000/';
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
-  grunt.loadNpmTasks('grunt-html-build');
-  grunt.loadNpmTasks('grunt-contrib-less');
-
   // Define the configuration for all the tasks
   grunt.initConfig({
-    bowerPath: '<%= yeoman.app %>/bower_components',
+    bowerPath: 'bower_components',
     // Project settings
     yeoman: {
       // configurable paths
-      app: 'app',
+      client: 'client',
       scripts: 'scripts',
       styles: 'styles',
-      images: 'images',
+      assets: 'assets',
       test: 'test',
       dist: 'www'
     },
@@ -36,8 +34,8 @@ module.exports = function (grunt) {
       options: {
         space: '  ',
         wrap: '"use strict";\n\n {%= __ngModule %}',
-        name: 'config',
-        dest: '<%= yeoman.app %>/<%= yeoman.scripts %>/configuration.js'
+        name: 'ENV_VARS',
+        dest: '<%= yeoman.client %>/<%= yeoman.scripts %>/ENV_VARS.js'
       },
       development: {
         constants: {
@@ -56,24 +54,23 @@ module.exports = function (grunt) {
         }
       }
     },
-
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['htmlbuild:dist', 'newer:copy:app']
+        tasks: ['htmlbuild:dist', 'newer:copy:bower']
       },
       html: {
-        files: ['<%= yeoman.app %>/**/*.html'],
+        files: ['<%= yeoman.client %>/**/*.html'],
         tasks: ['htmlbuild:dist', 'newer:copy:app']
       },
       js: {
-        files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'],
+        files: ['<%= yeoman.client %>/<%= yeoman.scripts %>/**/*.js'],
         tasks: ['htmlbuild:dist', 'newer:copy:app']
       },
       less: {
-        files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.less'],
-        tasks: ['less:build', 'newer:copy:styles', 'newer:copy:tmp']
+        files: ['<%= yeoman.client %>/<%= yeoman.styles %>/**/*.less'],
+        tasks: ['less:build', 'newer:copy:styles']
       },
       gruntfile: {
         files: ['Gruntfile.js'],
@@ -89,7 +86,7 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'
+        '<%= yeoman.client %>/<%= yeoman.scripts %>/**/*.js'
       ],
       test: {
         options: {
@@ -133,30 +130,25 @@ module.exports = function (grunt) {
 
     htmlbuild: {
       dist: {
-        src: '<%= yeoman.app %>/index.html',
+        src: '<%= yeoman.client %>/index.html',
         dest: 'www/',
         options: {
           beautify: true,
           replace: false,
           relative: false,
-          removeRoot: '<%= yeoman.app %>/',
+          removeRoot: '<%= yeoman.client %>/',
           scripts: {
-            bower: [
-              '<%= bowerPath %>/ionic/release/js/ionic.bundle.js',
-              '<%= bowerPath %>/angular-resource/angular-resource.js',
-              '<%= bowerPath %>/collide/collide.js',
-              '<%= bowerPath %>/ionic-ion-tinder-cards/ionic.tdcards.js',
-              '<%= bowerPath %>/lodash/lodash.js',
-              '<%= bowerPath %>/ngCordova/dist/ng-cordova.js'
+            app: [
+              '<%= yeoman.client %>/<%= yeoman.scripts %>/**/*.js'
             ],
-            app: ['<%= yeoman.app %>/scripts/**/*.js']
+            bower: [
+              '<%= bowerPath %>/ionic/js/ionic.bundle.js',
+              '<%= bowerPath %>/angular-cookies/angular-cookies.min.js'
+            ]
           },
           styles: {
-            app: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.css'],
-            bower: [
-              '<%= bowerPath %>/ionic/release/css/ionic.css',
-              '<%= bowerPath %>/ionic-ion-tinder-cards/ionic.tdcards.css'
-            ],
+            app: ['<%= yeoman.client %>/<%= yeoman.styles %>/**/*.css'],
+            bower: ['<%= bowerPath %>/ionic/release/css/ionic.css'],
           }
         }
       }
@@ -168,110 +160,62 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>',
+          cwd: '<%= yeoman.client %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.assets %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
             '*.html',
             '<%= yeoman.styles %>/**/*.html',
-            'fonts/*'
+            'assets/fonts/*',
+            '<%= bowerPath %>/**/*.{js,html,css}'
           ]
         }, {
           expand: true,
-          cwd: '.temp/<%= yeoman.images %>',
-          dest: '<%= yeoman.dist %>/<%= yeoman.images %>',
+          cwd: '.temp/<%= yeoman.assets %>',
+          dest: '<%= yeoman.dist %>/<%= yeoman.assets %>',
           src: ['generated/*']
         }]
       },
       styles: {
         expand: true,
-        cwd: '<%= yeoman.app %>/<%= yeoman.styles %>',
-        dest: '.temp/<%= yeoman.styles %>/',
+        cwd: '<%= yeoman.client %>/<%= yeoman.styles %>/',
+        dest: '<%= yeoman.dist %>/',
         src: 'styles.css'
       },
       fonts: {
         expand: true,
         cwd: 'app/bower_components/ionic/release/fonts/',
-        dest: '<%= yeoman.app %>/fonts/',
+        dest: '<%= yeoman.client %>/<%= yeoman.assets %>/fonts/',
         src: '*'
-      },
-      vendor: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/vendor',
-        dest: '.temp/<%= yeoman.styles %>/',
-        src: '{,*/}*.css'
       },
       app: {
         expand: true,
-        cwd: '<%= yeoman.app %>',
+        cwd: '<%= yeoman.client %>',
         dest: '<%= yeoman.dist %>/',
         src: [
-          '**/*',
-          '!**/*.(less,css)',
+          '<%= yeoman.scripts %>/**/*.js',
+          '**/*.{css,js,html}'
         ]
       },
-      tmp: {
+      bower: {
         expand: true,
-        cwd: '.temp',
+        cwd: '<%= bowerPath %>',
         dest: '<%= yeoman.dist %>/',
-        src: '**/*'
+        src: [
+          '**/*.{js,html}'
+        ]
       }
     },
 
     less: {
       build: {
         files: {
-          '<%= yeoman.app %>/styles/styles.css': '<%= yeoman.app %>/styles/app.less'
+          '<%= yeoman.client %>/styles/styles.css': '<%= yeoman.client %>/styles/app.less'
         },
         options: {
           cleancss: true,
           strictMath: true
         }
-      }
-    },
-
-    // Test settings
-    // These will override any config options in karma.conf.js if you create it.
-    karma: {
-      options: {
-        basePath: '',
-        frameworks: ['mocha', 'chai'],
-        files: [
-          '<%= yeoman.app %>/bower_components/angular/angular.js',
-          '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
-          '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
-          '<%= yeoman.app %>/bower_components/angular-sanitize/angular-sanitize.js',
-          '<%= yeoman.app %>/bower_components/angular-ui-router/release/angular-ui-router.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
-          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
-          '<%= yeoman.test %>/mock/**/*.js',
-          '<%= yeoman.test %>/spec/**/*.js'
-        ],
-        autoWatch: false,
-        reporters: ['dots', 'coverage'],
-        port: 8080,
-        singleRun: false,
-        preprocessors: {
-          // Update this if you change the yeoman config path
-          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js': ['coverage']
-        },
-        coverageReporter: {
-          reporters: [
-            { type: 'html', dir: 'coverage/' },
-            { type: 'text-summary' }
-          ]
-        }
-      },
-      unit: {
-        // Change this to 'Chrome', 'Firefox', etc. Note that you will need
-        // to install a karma launcher plugin for browsers other than Chrome.
-        browsers: ['PhantomJS'],
-        background: true
-      },
-      continuous: {
-        browsers: ['PhantomJS'],
-        singleRun: true,
       }
     },
 

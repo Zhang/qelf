@@ -19,8 +19,8 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false,
     "cordova": false,
-    "require": false
+    "require": false,
+    "angular": false
   }
 }

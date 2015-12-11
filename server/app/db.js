@@ -30,7 +30,7 @@ function* validateMongoVersion(db) {
 }
 
 module.exports = (function() {
-  const db = monk('localhost/votelly', {
+  const db = monk('localhost/sheen', {
     w: 1,
     j: true,
     native_parser: true,

@@ -28,7 +28,24 @@
     "android"
   ],
   "dependencies": {
-    "lodash": "^3.10.1",
-    "q": "^1.4.1"
+    "cordova-common": "1.0.0",
+    "grunt": "0.4.5",
+    "ionic": "1.7.11",
+    "jquery": "2.1.4",
+    "lodash": "3.10.1",
+    "npm": "3.5.1",
+    "q": "1.4.1",
+    "semver": "5.1.0",
+    "shelljs": "0.5.3"
+  },
+  "devDependencies": {
+    "grunt-contrib-copy": "0.8.2",
+    "grunt-contrib-less": "1.1.0",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-html-build": "git+https://github.com/Zhang/grunt-html-build#90b91aa0bf99c7e91a7e5f00681bf2ef2ccf25b7",
+    "grunt-newer": "1.1.1",
+    "grunt-ng-constant": "1.1.0",
+    "jshint-stylish": "2.1.0",
+    "load-grunt-tasks": "3.3.0"
   }
 }

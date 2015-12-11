@@ -1,0 +1,21 @@
+.placeholder-color(@color) {
+  ::-webkit-input-placeholder {
+    color: @color;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: @color;
+  }
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: @color;
+  }
+
+  :-ms-input-placeholder {
+    color: @color;
+  }
+}
+
+.list-box-shadow() {
+  -webkit-box-shadow: -1px 1px .5px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: -1px 1px .5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 1px .5px 0px rgba(0, 0, 0, 0.1);
+}

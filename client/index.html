@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <!-- HOLY SHIT THIS ISN'T SECURE -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *;"> -->
+    <title></title>
+
+    <!--
+        NOTE: USING GRUNT HTMLBUILD TO GENERATE INDEX.HTML. ALL JS AND CSS FILES IN STYPES/ and SCRIPTS/ ARE ADDED AUTOMATICALLY,
+        BOWER COMPONENTS MUST BE SPECIFIED IN THE ROOT GRUNTFILE
+    -->
+
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- build:style bower --><!-- /build -->
+    <!-- build:style app --><!-- /build -->
+
+    <!-- cordova js needs to be here, and above the other script files ionic stuff -->
+    <script src="cordova.js"></script>
+    <!-- build:script bower --><!-- /build -->
+    <!-- build:script app --><!-- /build -->
+  </head>
+
+  <body ng-app="sheen">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

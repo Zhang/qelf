@@ -1,0 +1,71 @@
+div.landing-container {
+  border-top: 1px solid transparent;
+}
+div.list.landing {
+  background-color: #5EB343;
+  position: relative;
+}
+h2.title {
+  color: white;
+  text-align: center;
+}
+button.login {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 30px;
+}
+div.login-block {
+  margin-top: 140px;
+}
+div.login-block ::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+div.login-block :-moz-placeholder {
+  /* Firefox 18- */
+  color: rgba(255, 255, 255, 0.5);
+}
+div.login-block ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgba(255, 255, 255, 0.5);
+}
+div.login-block :-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+div.login-block input {
+  color: white;
+}
+div.login-block input,
+div.login-block button.login {
+  width: 65%;
+  margin: 0 auto;
+  border: none;
+}
+.transparent-inputs input {
+  background-color: transparent;
+}
+input.block {
+  display: block;
+}
+div.button-group {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  padding: 30px;
+  color: white;
+}
+@font-face {
+  font-family: 'ShopBuddy';
+  src: url('../assets/fonts/Header.ttf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'typeFont';
+  src: url('../assets/fonts/typeFont.ttf');
+  font-weight: 400;
+}
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  height: 100%;
+}
