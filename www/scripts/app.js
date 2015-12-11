@@ -1,23 +1,25 @@
 'use strict';
 
 (function() {
-  var app = angular.module('sheen', [
+  var module = angular.module('sheen', [
     'ionic',
     'ngCookies',
     'ui.router',
     'ENV_VARS',
-    'sheen.states',
-    'sheen.api',
-    'landingPage',
-    'signup'
+    'states',
+    'api',
+    'login',
+    'signup',
+    'frame',
+    'voting'
   ]);
 
-  app.config(function($compileProvider, $httpProvider) {
+  module.config(function($compileProvider, $httpProvider) {
      $httpProvider.defaults.withCredentials = true;
      $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   });
 
-  app.run(function($ionicPlatform, $state) {
+  module.run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -26,6 +28,5 @@
         cordova.plugins.Keyboard.disableScroll(true);
       }
     });
-    $state.go('landingPage');
   });
 })();

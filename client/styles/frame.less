@@ -1,0 +1,21 @@
+@navbar-height: 45px;
+div.frame-container {
+  height: 100%;
+  .view-container {
+    height: calc(100% ~"-" @navbar-height);
+  }
+}
+
+div.navbar-container {
+  height: @navbar-height;
+  background-color: @primary;
+  div.title-container {
+    height: 100%;
+  }
+  .title {
+    font-size: @font-xlarge;
+    color: white;
+    margin: 0;
+    display: inline-block;
+  }
+}

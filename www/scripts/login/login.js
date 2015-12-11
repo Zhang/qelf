@@ -1,18 +1,18 @@
 'use strict';
 
 (function() {
-  var app = angular.module('landingPage', []);
-  app.config(function($stateProvider, STATE) {
+  var module = angular.module('login', []);
+  module.config(function($stateProvider, STATE) {
     $stateProvider
 
-    .state(STATE.landingPage, {
+    .state(STATE.login, {
       url: '/login',
-      templateUrl: 'scripts/landingPage/landingPage.html',
-      controller: 'LandingController'
+      templateUrl: 'scripts/login/login.html',
+      controller: 'Login'
     });
   });
 
-  app.controller('LandingController', function($scope, $state, SessionAPI, STATE) {
+  module.controller('Login', function($scope, $state, SessionAPI, STATE) {
     $scope.login = function(email, password) {
       SessionAPI.login(email, password).then(function resolve() {
         alert('logged in');

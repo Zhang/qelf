@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-
 const bodyParser = require('koa-bodyparser');
 const koa = require('koa');
 const route = require('koa-route');
@@ -12,16 +8,11 @@ const logger = require('koa-logger');
 const cors = require('kcors');
 const authentication = require('./lib/authentication');
 
-/**
- * App instance.
- */
-
 const app = koa();
 
 /**
  * Global middleware.
  */
-
 app.use(bodyParser({
   formLimit: '10mb'
 }));
@@ -30,6 +21,7 @@ app.use(cors({
 }));
 app.use(logger());
 authentication.initialize(app);
+
 /**
  * Routes.
  */

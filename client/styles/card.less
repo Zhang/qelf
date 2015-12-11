@@ -1,0 +1,27 @@
+@card-height: 475px;
+@card-width: 300px;
+@card-container-padding: 20px;
+
+div.voting-container {
+  padding: 30px 0;
+}
+
+div.votes {
+  width: calc(@card-width ~"+" 2 * @card-container-padding);
+  height: @card-height;
+  position: relative;
+  margin: 0 auto;
+  padding: @card-container-padding;
+}
+
+div.card {
+  height: @card-height;
+  width: @card-width;
+  background-color: blue;
+  position: absolute;
+  padding: 10px;
+  .card-content {
+    background-color: white;
+    height: 100%;
+  }
+}

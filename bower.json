@@ -5,6 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.2.0"
   },
   "dependencies": {
-    "angular-cookies": "1.4.8"
+    "angular-cookies": "1.4.8",
+    "collide": "git+https://github.com/Zhang/collide#11d0e83095aa35f906bf7b07268f412fc6016832",
+    "lodash": "3.10.1"
   }
 }

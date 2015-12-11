@@ -7,6 +7,6 @@
     login: 'login',
     signup: 'signup',
     frame: 'frame',
-    voting: 'voting'
+    voting: 'frame.voting'
   });
 })();

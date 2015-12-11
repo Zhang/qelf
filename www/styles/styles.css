@@ -1,5 +1,5 @@
 div.landing-container {
-  border-top: 1px solid transparent;
+  border: 1px solid transparent;
 }
 div.list.landing {
   background-color: #5EB343;
@@ -51,6 +51,46 @@ div.button-group {
   text-align: center;
   padding: 30px;
   color: white;
+}
+div.frame-container {
+  height: 100%;
+}
+div.frame-container .view-container {
+  height: calc(100% - 45px);
+}
+div.navbar-container {
+  height: 45px;
+  background-color: #5EB343;
+}
+div.navbar-container div.title-container {
+  height: 100%;
+}
+div.navbar-container .title {
+  font-size: 24px;
+  color: white;
+  margin: 0;
+  display: inline-block;
+}
+div.voting-container {
+  padding: 30px 0;
+}
+div.votes {
+  width: calc(300px + 2 * 20px);
+  height: 475px;
+  position: relative;
+  margin: 0 auto;
+  padding: 20px;
+}
+div.card {
+  height: 475px;
+  width: 300px;
+  background-color: blue;
+  position: absolute;
+  padding: 10px;
+}
+div.card .card-content {
+  background-color: white;
+  height: 100%;
 }
 @font-face {
   font-family: 'ShopBuddy';

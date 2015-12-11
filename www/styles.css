@@ -52,6 +52,12 @@ div.button-group {
   padding: 30px;
   color: white;
 }
+div.frame-container {
+  height: 100%;
+}
+div.navbar-container {
+  height: 60px;
+}
 @font-face {
   font-family: 'ShopBuddy';
   src: url('../assets/fonts/Header.ttf');

@@ -60,6 +60,10 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['htmlbuild:dist', 'newer:copy:bower']
       },
+      assets: {
+        files: ['<%= yeoman.client %>/<%= yeoman.assets %>/**/*'],
+        tasks: ['htmlbuild:dist', 'newer:copy:assets']
+      },
       html: {
         files: ['<%= yeoman.client %>/**/*.html'],
         tasks: ['htmlbuild:dist', 'newer:copy:app']
@@ -70,7 +74,7 @@ module.exports = function (grunt) {
       },
       less: {
         files: ['<%= yeoman.client %>/<%= yeoman.styles %>/**/*.less'],
-        tasks: ['less:build', 'newer:copy:styles']
+        tasks: ['less:build', 'newer:copy:app']
       },
       gruntfile: {
         files: ['Gruntfile.js'],
@@ -143,7 +147,9 @@ module.exports = function (grunt) {
             ],
             bower: [
               '<%= bowerPath %>/ionic/js/ionic.bundle.js',
-              '<%= bowerPath %>/angular-cookies/angular-cookies.min.js'
+              '<%= bowerPath %>/angular-cookies/angular-cookies.min.js',
+              '<%= bowerPath %>/collide/dist/collide.js',
+              '<%= bowerPath %>/lodash/lodash.min.js'
             ]
           },
           styles: {
@@ -156,25 +162,11 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.client %>',
-          dest: '<%= yeoman.dist %>',
-          src: [
-            '<%= yeoman.assets %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
-            '*.html',
-            '<%= yeoman.styles %>/**/*.html',
-            'assets/fonts/*',
-            '<%= bowerPath %>/**/*.{js,html,css}'
-          ]
-        }, {
-          expand: true,
-          cwd: '.temp/<%= yeoman.assets %>',
-          dest: '<%= yeoman.dist %>/<%= yeoman.assets %>',
-          src: ['generated/*']
-        }]
+      assets: {
+        expand: true,
+        cwd: '<%= yeoman.client %>/<%= yeoman.assets %>/',
+        dest: '<%= yeoman.dist %>/',
+        src: '**/*.{png,jpg,jpeg,gif,webp,svg,ttf,eot,woff}'
       },
       styles: {
         expand: true,
@@ -182,28 +174,17 @@ module.exports = function (grunt) {
         dest: '<%= yeoman.dist %>/',
         src: 'styles.css'
       },
-      fonts: {
-        expand: true,
-        cwd: 'app/bower_components/ionic/release/fonts/',
-        dest: '<%= yeoman.client %>/<%= yeoman.assets %>/fonts/',
-        src: '*'
-      },
       app: {
         expand: true,
         cwd: '<%= yeoman.client %>',
         dest: '<%= yeoman.dist %>/',
-        src: [
-          '<%= yeoman.scripts %>/**/*.js',
-          '**/*.{css,js,html}'
-        ]
+        src: '**/*.{css,js,html}'
       },
       bower: {
         expand: true,
         cwd: '<%= bowerPath %>',
-        dest: '<%= yeoman.dist %>/',
-        src: [
-          '**/*.{js,html}'
-        ]
+        dest: '<%= yeoman.dist %>/bower_components',
+        src: '**/*.{js,html,css}'
       }
     },
 

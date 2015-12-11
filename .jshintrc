@@ -21,6 +21,9 @@
   "globals": {
     "cordova": false,
     "require": false,
-    "angular": false
+    "angular": false,
+    "ionic": false,
+    "_": false,
+    "collide": false
   }
 }

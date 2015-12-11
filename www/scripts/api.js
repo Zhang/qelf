@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  var module = angular.module('sheen.api', []);
+  var module = angular.module('api', []);
   module.service('HttpHelper', function($http, ENV) {
     return {
       post: function(url, json) {
@@ -20,6 +20,17 @@
       },
       get: function(id) {
         return HttpHelper.get('account/' + encodeURIComponent(id));
+      }
+    };
+  });
+
+  module.service('SessionAPI', function(HttpHelper) {
+    return {
+      login: function(username, password) {
+        return HttpHelper.post('login', { username: username, password: password });
+      },
+      logout: function() {
+        return HttpHelper.post('logout');
       }
     };
   });
