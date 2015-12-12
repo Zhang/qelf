@@ -195,27 +195,28 @@
       }
     });
   });
+
   module.directive('card', function($timeout, SwipeableCard, transformUtils) {
     return {
       restrict: 'E',
       templateUrl: 'scripts/voting/card.html',
       transclude: true,
       replace: true,
-      scope: {},
+      scope: {
+        contestants: '='
+      },
       compile: function() {
-        // A simple non-linear fade function for the text on each card
         var fadeFn = function(t) {
-          // Speed up time to ramp up quickly
+          // A simple non-linear fade function for the text on each card
           t = Math.min(1, t * 2);
 
           // This is a simple cubic bezier curve.
-          // http://cubic-bezier.com/#.11,.67,.41,.99
-          var c1 = 0.11,
-              c2 = 0.67,
-              c3 = 0.41,
-              c4 = 0.99;
+          var c4 = 0.11,
+              c3 = 0.67,
+              c2 = 0.41,
+              c1 = 0.99;
 
-          return Math.pow((1 - t), 3)*c1 + 3*Math.pow((1 -  t), 2)*t*c2 + 3*(1 - t)*t*t*c3 + Math.pow(t, 3)*c4;
+          return Math.pow((1 - t), 3) * c1 + 3 * Math.pow((1 -  t), 2) * t * c2 + 3 * (1 - t) * t * t * c3 + Math.pow(t, 3) * c4;
         };
 
         return function($scope, $element) {
@@ -224,11 +225,11 @@
           $scope.RIGHT_CLASS = 'vote-right';
           var leftText = el.querySelector('.' + $scope.LEFT_CLASS);
           var rightText = el.querySelector('.' + $scope.RIGHT_CLASS);
-          rightText.style.opacity = 0;
-          leftText.style.opacity = 0;
+          rightText.style.opacity = 1;
+          leftText.style.opacity = 1;
 
           // Force hardware acceleration for animation - better performance on first touch
-          el.style.transform = el.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
+          transformUtils.translateDefault(el);
 
           // Instantiate our card view
           var swipeableCard = new SwipeableCard({
@@ -239,11 +240,11 @@
               var self = this;
               $timeout(function() {
                 if (amt < 0) {
-                  if (self.leftText) self.leftText.style.opacity = fadeFn(-amt);
-                  if (self.rightText) self.rightText.style.opacity = 0;
+                  if (self.leftText) self.rightText.style.opacity = fadeFn(-amt);
+                  if (self.rightText) self.leftText.style.opacity = 1;
                 } else {
-                  if (self.leftText) self.leftText.style.opacity = 0;
-                  if (self.rightText) self.rightText.style.opacity = fadeFn(amt);
+                  if (self.leftText) self.rightText.style.opacity = 1;
+                  if (self.rightText) self.leftText.style.opacity = fadeFn(amt);
                 }
                 //$scope.onPartialSwipe({amt: amt});
               });
@@ -273,11 +274,12 @@
             },
             onSnapBack: function(startX, startY, startRotation) {
               var self = this;
+              var ANIMATION_TIME = 500;
               collide.animation({
                 // 'linear|ease|ease-in|ease-out|ease-in-out|cubic-bezer(x1,y1,x2,y2)',
                 // or function(t, duration),
                 // or a dynamics configuration (see below)
-                duration: 500,
+                duration: ANIMATION_TIME,
                 percent: 0,
                 reverse: false
               })
@@ -295,13 +297,24 @@
               })
               .start();
               $timeout(function() {
-                if (self.leftText) self.leftText.style.opacity = 0;
-                if (self.rightText) self.rightText.style.opacity = 0;
-              });
+                if (self.leftText) self.leftText.style.opacity = 1;
+                if (self.rightText) self.rightText.style.opacity = 1;
+              }, ANIMATION_TIME / 10);
             }
           });
           $scope.$parent.swipeCard = swipeableCard;
         };
+      }
+    };
+  });
+
+  module.directive('contestant', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'scripts/voting/contestant.html',
+      transclude: true,
+      scope: {
+        contestant: '='
       }
     };
   });

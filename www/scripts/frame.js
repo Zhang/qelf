@@ -18,5 +18,13 @@
     });
   });
 
-  module.controller('Frame', function() {});
+  module.controller('Frame', function($scope, $state, STATE) {
+    $scope.goTo = function(state) {
+      if (STATE[state]) {
+        $state.go(STATE[state]);
+      } else {
+        console.log('invalid state: ', state);
+      }
+    };
+  });
 })();

@@ -11,7 +11,9 @@
     'login',
     'signup',
     'frame',
-    'voting'
+    'voting',
+    'profile',
+    'feedback'
   ]);
 
   module.config(function($compileProvider, $httpProvider) {

@@ -16,5 +16,7 @@
     });
   });
 
-  module.controller('Voting', function() {});
+  module.controller('Voting', function() {
+    contestants = [{img: ''}]
+  });
 })();

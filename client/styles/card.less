@@ -17,11 +17,70 @@ div.votes {
 div.card {
   height: @card-height;
   width: @card-width;
-  background-color: blue;
+  background-color: white;
   position: absolute;
+  border: 1px solid @border-gray;
   padding: 10px;
   .card-content {
-    background-color: white;
+    background-color: @secondary-color;
     height: 100%;
+
+    @card-header-height: 50px;
+
+    .card-main {
+      @profile-padding: 2px;
+      .profile-transitioner {
+        padding: 0 @profile-padding;
+        width: calc(50% ~"-" @profile-padding * 2);
+        display: inline-block;
+      }
+      .profile-container {
+        width: 100%;
+        overflow: hidden;
+      }
+      .profile-picture {
+        padding: 3px;
+        background-color: white;
+        height: 150px;
+
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .profile-description {
+        height: 90px;
+        padding: 5px;
+        .name {
+          text-align: center;
+        }
+        .social-description {
+          padding: 10px 0;
+          .location, .friends {
+            display: inline-block;
+            width: 50%;
+          }
+        }
+      }
+    }
+
+    .card-header {
+      height: @card-header-height;
+      justify-content: center;
+      display: flex;
+      font-size: @font-large;
+      font-weight: bold;
+      color: white;
+      align-items: center;
+    }
+    .card-comment {
+      margin: 10px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      height: 123px;
+      background-color: white;
+      color: @secondary-font-color;
+    }
   }
 }

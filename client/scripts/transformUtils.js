@@ -26,6 +26,9 @@
     })();
 
     return {
+      translateDefault: function(el) {
+        el.style.transform = el.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
+      },
       translate3d: function translate3d(el, x, y) {
         el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + x + 'px,' + y + 'px, 0)';
       },

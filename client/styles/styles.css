@@ -2,7 +2,7 @@ div.landing-container {
   border: 1px solid transparent;
 }
 div.list.landing {
-  background-color: #5EB343;
+  background-color: #fe4365;
   position: relative;
 }
 h2.title {
@@ -56,20 +56,34 @@ div.frame-container {
   height: 100%;
 }
 div.frame-container .view-container {
-  height: calc(100% - 45px);
+  height: calc(100% - 55px);
 }
 div.navbar-container {
-  height: 45px;
-  background-color: #5EB343;
+  height: 55px;
+  background-color: #fe4365;
 }
 div.navbar-container div.title-container {
   height: 100%;
+  display: inline-block;
 }
 div.navbar-container .title {
-  font-size: 24px;
+  font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
+  font-size: 42px;
   color: white;
   margin: 0;
+}
+div.navbar-container .navigation {
   display: inline-block;
+  float: right;
+  height: 100%;
+  padding: 0 5px;
+}
+div.navbar-container .navigation .nav {
+  padding: 17px 5px;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
 }
 div.voting-container {
   padding: 30px 0;
@@ -84,26 +98,80 @@ div.votes {
 div.card {
   height: 475px;
   width: 300px;
-  background-color: blue;
+  background-color: white;
   position: absolute;
+  border: 1px solid #d3d3d3;
   padding: 10px;
 }
 div.card .card-content {
-  background-color: white;
+  background-color: #f9cdad;
   height: 100%;
 }
+div.card .card-content .card-main .profile-transitioner {
+  padding: 0 2px;
+  width: calc(50% - 2px * 2);
+  display: inline-block;
+}
+div.card .card-content .card-main .profile-container {
+  width: 100%;
+  overflow: hidden;
+}
+div.card .card-content .card-main .profile-picture {
+  padding: 3px;
+  background-color: white;
+  height: 150px;
+}
+div.card .card-content .card-main .profile-picture img {
+  height: 100%;
+  width: 100%;
+}
+div.card .card-content .card-main .profile-description {
+  height: 90px;
+  padding: 5px;
+}
+div.card .card-content .card-main .profile-description .name {
+  text-align: center;
+}
+div.card .card-content .card-main .profile-description .social-description {
+  padding: 10px 0;
+}
+div.card .card-content .card-main .profile-description .social-description .location,
+div.card .card-content .card-main .profile-description .social-description .friends {
+  display: inline-block;
+  width: 50%;
+}
+div.card .card-content .card-header {
+  height: 50px;
+  justify-content: center;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  align-items: center;
+}
+div.card .card-content .card-comment {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  height: 123px;
+  background-color: white;
+  color: #83af9b;
+}
 @font-face {
-  font-family: 'ShopBuddy';
+  font-family: 'header-font';
   src: url('../assets/fonts/Header.ttf');
   font-weight: 400;
 }
 @font-face {
-  font-family: 'typeFont';
+  font-family: 'primary-font';
   src: url('../assets/fonts/typeFont.ttf');
   font-weight: 400;
 }
 html {
   height: 100%;
+  font-family: 'primary-font', 'Helvetica', 'Arial', 'sans-serif';
+  color: #5D5D5D;
 }
 body {
   margin: 0;

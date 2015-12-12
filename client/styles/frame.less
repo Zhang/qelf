@@ -1,4 +1,4 @@
-@navbar-height: 45px;
+@navbar-height: 55px;
 div.frame-container {
   height: 100%;
   .view-container {
@@ -8,14 +8,28 @@ div.frame-container {
 
 div.navbar-container {
   height: @navbar-height;
-  background-color: @primary;
+  background-color: @primary-color;
   div.title-container {
     height: 100%;
+    display: inline-block;
   }
   .title {
-    font-size: @font-xlarge;
+    font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
+    font-size: @font-icon-size;
     color: white;
     margin: 0;
+  }
+  .navigation {
     display: inline-block;
+    float: right;
+    height: 100%;
+    padding: 0 5px;
+    .nav {
+      padding: 17px 5px;
+      display: inline-block;
+      font-size: @font-large;
+      font-weight: bold;
+      color: white;
+    }
   }
 }
