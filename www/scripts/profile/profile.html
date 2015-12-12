@@ -1,3 +1,18 @@
-<div>
-  SCOTT
+<div class="profile-container">
+  <div gridster="gridsterOpts">
+    <ul>
+      <li
+        gridster-item="trait"
+        ng-repeat="trait in traits"
+        row="trait.row"
+        col="trait.column"
+        size-x="trait.sizeX"
+        size-y="trait.sizeY"
+        class="trait-card"
+      >
+        Scott
+      </li>
+    </ul>
+  </div>
+  <div class="main-card"><div>
 </div>

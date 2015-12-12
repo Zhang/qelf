@@ -147,14 +147,20 @@ module.exports = function (grunt) {
             ],
             bower: [
               '<%= bowerPath %>/ionic/js/ionic.bundle.js',
+              '<%= bowerPath %>/jquery/dist/jquery.min.js',
               '<%= bowerPath %>/angular-cookies/angular-cookies.min.js',
               '<%= bowerPath %>/collide/dist/collide.js',
-              '<%= bowerPath %>/lodash/lodash.min.js'
+              '<%= bowerPath %>/lodash/lodash.min.js',
+              '<%= bowerPath %>/javascript-detect-element-resize/jquery.resize.js',
+              '<%= bowerPath %>/angular-gridster/dist/angular-gridster.min.js'
             ]
           },
           styles: {
             app: ['<%= yeoman.client %>/<%= yeoman.styles %>/**/*.css', '<%= yeoman.client %>/<%= yeoman.assets %>/**/*.css'],
-            bower: ['<%= bowerPath %>/ionic/release/css/ionic.css'],
+            bower: [
+              '<%= bowerPath %>/ionic/release/css/ionic.css',
+              '<%= bowerPath %>/angular-gridster/dist/angular-gridster.min.css',
+            ],
           }
         }
       }

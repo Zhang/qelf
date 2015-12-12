@@ -27,17 +27,17 @@ div.card {
     @card-header-height: 50px;
 
     .card-main {
-      @profile-padding: 2px;
-      .profile-transitioner {
-        padding: 0 @profile-padding;
-        width: calc(50% ~"-" @profile-padding * 2);
+      @candidate-padding: 2px;
+      .candidate-transitioner {
+        padding: 0 @candidate-padding;
+        width: calc(50% ~"-" @candidate-padding * 2);
         display: inline-block;
       }
-      .profile-container {
+      .candidate-container {
         width: 100%;
         overflow: hidden;
       }
-      .profile-picture {
+      .candidate-picture {
         padding: 3px;
         background-color: white;
         height: 150px;
@@ -47,10 +47,10 @@ div.card {
           width: 100%;
         }
       }
-      .profile-description {
-        @profile-height: 90px;
+      .candidate-description {
+        @candidate-height: 90px;
         @name-height: 20px;
-        height: @profile-height;
+        height: @candidate-height;
         padding: 5px;
         .name, .feedback-name {
           text-align: center;

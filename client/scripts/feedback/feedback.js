@@ -14,8 +14,8 @@
 
   module.controller('Feedback', function($scope, FeedbackAPI) {
     $scope.feedbacks = [{
-      contestants: [
-        { img: 'assets/tdown.png',
+      contestants: [{
+          img: 'assets/tdown.png',
           name: 'Please don\'t contact me about this feedback'
         },
         {

@@ -111,52 +111,52 @@ div.card .card-content {
   background-color: #f9cdad;
   height: 100%;
 }
-div.card .card-content .card-main .profile-transitioner {
+div.card .card-content .card-main .candidate-transitioner {
   padding: 0 2px;
   width: calc(50% - 2px * 2);
   display: inline-block;
 }
-div.card .card-content .card-main .profile-container {
+div.card .card-content .card-main .candidate-container {
   width: 100%;
   overflow: hidden;
 }
-div.card .card-content .card-main .profile-picture {
+div.card .card-content .card-main .candidate-picture {
   padding: 3px;
   background-color: white;
   height: 150px;
 }
-div.card .card-content .card-main .profile-picture img {
+div.card .card-content .card-main .candidate-picture img {
   height: 100%;
   width: 100%;
 }
-div.card .card-content .card-main .profile-description {
+div.card .card-content .card-main .candidate-description {
   height: 90px;
   padding: 5px;
 }
-div.card .card-content .card-main .profile-description .name,
-div.card .card-content .card-main .profile-description .feedback-name {
+div.card .card-content .card-main .candidate-description .name,
+div.card .card-content .card-main .candidate-description .feedback-name {
   text-align: center;
 }
-div.card .card-content .card-main .profile-description .name {
+div.card .card-content .card-main .candidate-description .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 20px;
 }
-div.card .card-content .card-main .profile-description .social-description {
+div.card .card-content .card-main .candidate-description .social-description {
   padding: 5px 0;
   height: calc(90px - 5px * 2 - 20px);
   display: flex;
   align-items: center;
 }
-div.card .card-content .card-main .profile-description .social-description .friends {
+div.card .card-content .card-main .candidate-description .social-description .friends {
   width: 35%;
 }
-div.card .card-content .card-main .profile-description .social-description .location {
+div.card .card-content .card-main .candidate-description .social-description .location {
   width: 65%;
 }
-div.card .card-content .card-main .profile-description .social-description .location,
-div.card .card-content .card-main .profile-description .social-description .friends {
+div.card .card-content .card-main .candidate-description .social-description .location,
+div.card .card-content .card-main .candidate-description .social-description .friends {
   display: inline-block;
   max-height: 100%;
   text-align: center;
@@ -193,6 +193,13 @@ div.card .card-content .feedback-input-container .feedback-input {
 div.card .card-content .feedback-input-container .feedback-input:focus {
   outline: 0;
   resize: none;
+}
+.profile-container {
+  padding: 20px 5px;
+  height: 80%;
+}
+.trait-card {
+  background-color: #d3d3d3;
 }
 @font-face {
   font-family: 'header-font';

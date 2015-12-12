@@ -246,11 +246,11 @@
               var self = this;
               $timeout(function() {
                 if (amt < 0) {
-                  if (self.leftText) self.rightText.style.opacity = fadeFn(-amt);
-                  if (self.rightText) self.leftText.style.opacity = 1;
+                  self.leftText.style.opacity = 1;
+                  self.rightText.style.opacity = fadeFn(-amt);
                 } else {
-                  if (self.leftText) self.rightText.style.opacity = 1;
-                  if (self.rightText) self.leftText.style.opacity = fadeFn(amt);
+                  self.rightText.style.opacity = 1;
+                  self.leftText.style.opacity = fadeFn(amt);
                 }
                 //$scope.onPartialSwipe({amt: amt});
               });

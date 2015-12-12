@@ -1,8 +1,8 @@
-<div class="profile-container">
-  <div class="profile-picture">
+<div class="candidate-container">
+  <div class="candidate-picture">
     <img ng-src="{{contestant.img}}">
   </div>
-  <div ng-if="!isFeedback" class="profile-description">
+  <div ng-if="!isFeedback" class="candidate-description">
     <div class="name" ng-bind="contestant.name"></div>
     <div class="social-description">
       <span class="friends">
@@ -11,7 +11,7 @@
       ><span class="location" ng-bind="contestant.location"></span>
     </div>
   </div>
-  <div ng-if="isFeedback" class="profile-description">
+  <div ng-if="isFeedback" class="candidate-description">
     <div class="feedback-name" ng-bind="contestant.name"></div>
   </div>
 </div>
