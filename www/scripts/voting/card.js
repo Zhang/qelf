@@ -205,7 +205,9 @@
       scope: {
         contestants: '=',
         isFeedback: '=',
-        trait: '='
+        trait: '=',
+        onRight: '&?',
+        onLeft: '&?'
       },
       compile: function() {
         var fadeFn = function(t) {
@@ -233,7 +235,9 @@
           // Force hardware acceleration for animation - better performance on first touch
           transformUtils.translateDefault(el);
 
-          // Instantiate our card view
+          $scope.feedback = {
+            text: ''
+          };
           var swipeableCard = new SwipeableCard({
             el: el,
             leftText: leftText,
@@ -251,22 +255,19 @@
                 //$scope.onPartialSwipe({amt: amt});
               });
             },
-            onSwipeRight: function() {
+            onTransitionOut: function(amt) {
               $timeout(function() {
-                console.log('onSwipeRight');
-                //$scope.onSwipeRight();
-              });
-            },
-            onSwipeLeft: function() {
-              $timeout(function() {
-                console.log('onSwipeLeft');
-                //$scope.onSwipeLeft();
-              });
-            },
-            onTransitionOut: function() {
-              $timeout(function() {
-                console.log('transitionOut');
-                //$scope.onTransitionOut({amt: amt});
+                if (amt < 0) {
+                  $scope.onRight({
+                    feedbackText: $scope.feedback.text,
+                    canContact: false
+                  });
+                } else {
+                  $scope.onLeft({
+                    feedbackText: $scope.feedback.text,
+                    canContact: true
+                  });
+                }
               });
             },
             onDestroy: function() {

@@ -14,7 +14,7 @@
     </div>
     <div class="card-comment">
       <div ng-if="!isFeedback">This is something you vote on</div>
-      <div class="feedback-input-container" ng-if="isFeedback"><textarea class="feedback-input"></textarea></div>
+      <div class="feedback-input-container" ng-if="isFeedback"><textarea ng-model="feedback.text" class="feedback-input"></textarea></div>
     </div>
   </div>
 </div>

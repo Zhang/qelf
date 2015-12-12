@@ -48,19 +48,36 @@ div.card {
         }
       }
       .profile-description {
-        height: 90px;
+        @profile-height: 90px;
+        @name-height: 20px;
+        height: @profile-height;
         padding: 5px;
         .name, .feedback-name {
           text-align: center;
         }
         .name {
           .ellipsis-overflow();
+          height: @name-height;
         }
         .social-description {
-          padding: 10px 0;
+          @social-padding-height: 5px;
+          padding: @social-padding-height 0;
+          height: calc(90px ~"-" @social-padding-height * 2 ~"-" @name-height);
+          display: flex;
+          align-items: center;
+
+          .friends {
+            width: 35%;
+          }
+          .location {
+            width: 65%;
+          }
           .location, .friends {
             display: inline-block;
-            width: 50%;
+            max-height: 100%;
+            text-align: center;
+            font-size: @font-smaller;
+            overflow: hidden;
           }
         }
       }

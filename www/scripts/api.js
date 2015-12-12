@@ -34,4 +34,12 @@
       }
     };
   });
+
+  module.service('FeedbackAPI', function(HttpHelper) {
+    return {
+      create: function(feedbackText, canContact) {
+        return HttpHelper.post('feedback', { canContact: canContact, feedbackText: feedbackText });
+      }
+    };
+  });
 })();

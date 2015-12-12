@@ -27,6 +27,7 @@ authentication.initialize(app);
  */
 app.use(mount('/login', require('./login')));
 app.use(mount('/account', require('./controllers/account')));
+app.use(mount('/feedback', require('./controllers/feedback')));
 app.use(route.post('/logout', function *() {
   this.session = null;
   this.body = null;

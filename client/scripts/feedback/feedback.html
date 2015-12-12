@@ -1,5 +1,12 @@
 <div class="voting-container">
   <div class="votes">
-    <card trait="trait" is-feedback="true" contestants="contestants"></card>
+    <card
+      ng-repeat="feedback in feedbacks"
+      on-left="swipe(feedbackText, canContact)"
+      on-right="swipe(feedbackText, canContact)"
+      trait="feedback.trait"
+      is-feedback="true"
+      contestants="feedback.contestants">
+    </card>
   </div>
 </div>
