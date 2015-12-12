@@ -7,7 +7,6 @@ div.voting-container {
 }
 
 div.votes {
-  width: calc(@card-width ~"+" 2 * @card-container-padding);
   height: @card-height;
   position: relative;
   margin: 0 auto;
@@ -51,8 +50,11 @@ div.card {
       .profile-description {
         height: 90px;
         padding: 5px;
-        .name {
+        .name, .feedback-name {
           text-align: center;
+        }
+        .name {
+          .ellipsis-overflow();
         }
         .social-description {
           padding: 10px 0;
@@ -81,6 +83,19 @@ div.card {
       height: 123px;
       background-color: white;
       color: @secondary-font-color;
+    }
+    .feedback-input-container {
+      height: 100%;
+      width: 100%;
+      .feedback-input {
+        height: 100%;
+        width: 100%;
+        border: 0;
+        &:focus {
+          outline: 0;
+          resize: none;
+        }
+      }
     }
   }
 }

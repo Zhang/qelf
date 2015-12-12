@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         tasks: ['htmlbuild:dist', 'newer:copy:bower']
       },
       assets: {
-        files: ['<%= yeoman.client %>/<%= yeoman.assets %>/**/*'],
+        files: ['<%= yeoman.client %>/<%= yeoman.assets %>/**/*.{png,jpg,jpeg,gif,webp,svg,ttf,eot,woff}'],
         tasks: ['htmlbuild:dist', 'newer:copy:assets']
       },
       html: {
@@ -153,7 +153,7 @@ module.exports = function (grunt) {
             ]
           },
           styles: {
-            app: ['<%= yeoman.client %>/<%= yeoman.styles %>/**/*.css'],
+            app: ['<%= yeoman.client %>/<%= yeoman.styles %>/**/*.css', '<%= yeoman.client %>/<%= yeoman.assets %>/**/*.css'],
             bower: ['<%= bowerPath %>/ionic/release/css/ionic.css'],
           }
         }
@@ -165,7 +165,7 @@ module.exports = function (grunt) {
       assets: {
         expand: true,
         cwd: '<%= yeoman.client %>/<%= yeoman.assets %>/',
-        dest: '<%= yeoman.dist %>/',
+        dest: '<%= yeoman.dist %>/assets',
         src: '**/*.{png,jpg,jpeg,gif,webp,svg,ttf,eot,woff}'
       },
       styles: {

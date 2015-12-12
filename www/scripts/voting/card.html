@@ -1,19 +1,20 @@
 <div class="card">
   <div class="card-content">
-    <div class="card-header">
+    <div class="card-header" ng-bind="trait.title">
       HEADER
     </div>
     <div class="card-main">
       <div class="card-profiles">
         <span class="vote-left profile-transitioner">
-          <profile profile="contestant[0]"></profile>
+          <contestant is-feedback="isFeedback" contestant="contestants[0]"></contestant>
         </span
         ><span class="vote-right profile-transitioner">
-          <profile profile="contestants[1]"></profile>
+          <contestant is-feedback="isFeedback" contestant="contestants[1]"></contestant>
         </span>
     </div>
     <div class="card-comment">
-      This is something you vote on
+      <div ng-if="!isFeedback">This is something you vote on</div>
+      <div class="feedback-input-container" ng-if="isFeedback"><textarea class="feedback-input"></textarea></div>
     </div>
   </div>
 </div>

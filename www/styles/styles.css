@@ -1,3 +1,8 @@
+.ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 div.landing-container {
   border: 1px solid transparent;
 }
@@ -89,7 +94,6 @@ div.voting-container {
   padding: 30px 0;
 }
 div.votes {
-  width: calc(300px + 2 * 20px);
   height: 475px;
   position: relative;
   margin: 0 auto;
@@ -129,8 +133,14 @@ div.card .card-content .card-main .profile-description {
   height: 90px;
   padding: 5px;
 }
-div.card .card-content .card-main .profile-description .name {
+div.card .card-content .card-main .profile-description .name,
+div.card .card-content .card-main .profile-description .feedback-name {
   text-align: center;
+}
+div.card .card-content .card-main .profile-description .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 div.card .card-content .card-main .profile-description .social-description {
   padding: 10px 0;
@@ -157,6 +167,19 @@ div.card .card-content .card-comment {
   height: 123px;
   background-color: white;
   color: #83af9b;
+}
+div.card .card-content .feedback-input-container {
+  height: 100%;
+  width: 100%;
+}
+div.card .card-content .feedback-input-container .feedback-input {
+  height: 100%;
+  width: 100%;
+  border: 0;
+}
+div.card .card-content .feedback-input-container .feedback-input:focus {
+  outline: 0;
+  resize: none;
 }
 @font-face {
   font-family: 'header-font';

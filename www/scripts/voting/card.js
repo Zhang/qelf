@@ -203,7 +203,9 @@
       transclude: true,
       replace: true,
       scope: {
-        contestants: '='
+        contestants: '=',
+        isFeedback: '=',
+        trait: '='
       },
       compile: function() {
         var fadeFn = function(t) {
@@ -314,7 +316,8 @@
       templateUrl: 'scripts/voting/contestant.html',
       transclude: true,
       scope: {
-        contestant: '='
+        contestant: '=',
+        isFeedback: '='
       }
     };
   });
