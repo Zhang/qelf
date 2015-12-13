@@ -20,7 +20,9 @@
     $scope.trait = {
       title: 'Trustworthiness'
     };
-
+    $scope.swipe = function(dir) {
+      console.log(dir);
+    };
     $scope.contestants = [
       {
         name: 'This is scott',

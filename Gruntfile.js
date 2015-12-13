@@ -268,9 +268,10 @@ module.exports = function (grunt) {
     'clean',
     'ngconstant:development',
     'less:build',
+    'htmlbuild:dist',
     'newer:copy:app',
-    'newer:copy:tmp',
-    'htmlbuild:dist'
+    'newer:copy:bower',
+    'newer:copy:assets'
   ]);
 
 
