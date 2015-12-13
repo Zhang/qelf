@@ -3,6 +3,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.background-picture {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
 div.landing-container {
   border: 1px solid transparent;
 }
@@ -61,7 +68,11 @@ div.frame-container {
   height: 100%;
 }
 div.frame-container .view-container {
-  height: calc(100% - 55px);
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  height: calc(100% - 55px - 1px * 2);
+  max-height: calc(100% - 55px - 1px * 2);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 div.navbar-container {
   height: 55px;
@@ -201,6 +212,20 @@ div.card .card-content .feedback-input-container .feedback-input:focus {
 }
 .trait-card {
   background-color: #d3d3d3;
+}
+.main-trait-card {
+  background-color: #f9cdad;
+}
+.profile-picture-container {
+  height: 80%;
+}
+.profile-picture-container .profile-picture {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url("https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/12108274_10101564644192315_7334749882900604967_n.jpg?oh=e0fee8c71ce074b2ba8180193ae610bb&oe=56E3A4FB");
 }
 @font-face {
   font-family: 'header-font';

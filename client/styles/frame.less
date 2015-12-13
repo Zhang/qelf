@@ -2,7 +2,13 @@
 div.frame-container {
   height: 100%;
   .view-container {
-    height: calc(100% ~"-" @navbar-height);
+    @border-height: 1px;
+    border-top: @border-height solid transparent;
+    border-bottom: @border-height solid transparent;
+    @view-height: calc(100% ~"-" @navbar-height ~"-" @border-height * 2);
+    height: @view-height;
+    max-height: @view-height;
+    background-color: @view-background-color;
   }
 }
 
