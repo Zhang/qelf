@@ -195,8 +195,9 @@ div.card .card-content .feedback-input-container .feedback-input:focus {
   resize: none;
 }
 .profile-container {
-  padding: 20px 5px;
-  height: 80%;
+  margin: 20px 5px;
+  height: 85vh;
+  overflow: scroll;
 }
 .trait-card {
   background-color: #d3d3d3;
