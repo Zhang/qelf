@@ -18,10 +18,6 @@
         alert('You did it!!');
       }, function reject() {
         alert('You failed to do it!');
-        // $ionicPopup.alert({
-        //   title: 'Invalid Email',
-        //   template: 'Seems like someone is already using that email address, and you cannot claim it'
-        // });
       });
     };
   });

@@ -15,8 +15,8 @@
 
   module.service('AccountAPI', function(HttpHelper) {
     return {
-      create: function(username, password) {
-        return HttpHelper.post('account', { username: username, password: password });
+      create: function(email, password) {
+        return HttpHelper.post('account', { email: email, password: password });
       },
       get: function(id) {
         return HttpHelper.get('account/' + encodeURIComponent(id));

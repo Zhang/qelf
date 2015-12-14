@@ -100,21 +100,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Empties folders to start fresh
-    clean: {
-      dist: {
-        files: [{
-          dot: true,
-          src: [
-            '.temp',
-            '<%= yeoman.dist %>/*',
-            '!<%= yeoman.dist %>/.git*'
-          ]
-        }]
-      },
-      server: '.temp'
-    },
-
     htmlmin: {
       dist: {
         options: {
@@ -217,8 +202,17 @@ module.exports = function (grunt) {
           dest: '.temp/concat/<%= yeoman.scripts %>'
         }]
       }
-    }
+    },
 
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
+        },
+        src: ['server/test/**/*.js']
+      }
+    }
   });
 
   // Register tasks for all Cordova commands
@@ -247,25 +241,15 @@ module.exports = function (grunt) {
     });
   });
 
-  // Wrap ionic-cli commands
-  grunt.registerTask('ionic', function() {
-    var done = this.async();
-    var script = path.resolve('./node_modules/ionic/bin/', 'ionic');
-    var flags = process.argv.splice(3);
-    var child = spawn(script, this.args.concat(flags), { stdio: 'inherit' });
-    child.on('close', function (code) {
-      code = code ? false : true;
-      done(code);
-    });
+  grunt.registerTask('test', function() {
+    if (process.env.NODE_ENV === 'test') {
+      grunt.task.run('mochaTest:test');
+    } else {
+      console.log('please run tests with NODE_ENV=test');
+    }
   });
 
-  grunt.registerTask('test', [
-    'clean',
-    'karma:unit:start',
-  ]);
-
   grunt.registerTask('init', [
-    'clean',
     'ngconstant:development',
     'less:build',
     'htmlbuild:dist',
@@ -276,17 +260,12 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('compress', [
-    'clean',
     'ngconstant:production',
     'concat',
     'ngAnnotate',
     'copy:dist',
     'uglify',
     'htmlmin'
-  ]);
-
-  grunt.registerTask('coverage', [
-    'karma:continuous',
   ]);
 
   grunt.registerTask('default', [

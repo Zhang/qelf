@@ -20,6 +20,7 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(new LocalStrategy(function (email, password, done) {
+  console.log('AWHEWAHE', email, password);
   co(function* () {
     const account = yield accountModel.getByEmail(email);
     console.log(account);
@@ -58,6 +59,7 @@ module.exports = {
     const self = this;
     return passport.authenticate('local', function* (err, user) {
       if (err) throw err;
+      console.log(user);
       if (user === false) {
         throw new Error('Authentication error');
       } else {

@@ -4,6 +4,7 @@ const monk = require('monk');
 const semver = require('semver');
 const util = require('util');
 const q = require('q');
+const uuid = require('uuid');
 
 function* validateMongoVersion(db) {
   const EXPECTED_MONGO_VERSION = '3.0.x';
@@ -30,13 +31,27 @@ function* validateMongoVersion(db) {
 }
 
 module.exports = (function() {
-  const db = monk('localhost/sheen', {
+  const isTest = process.env.NODE_ENV === 'test';
+
+  var mongoUri = (function() {
+    return isTest ? 'localhost/sheen_test_' + uuid.v4() : 'localhost/sheen';
+  })();
+
+  const db = monk(mongoUri, {
     w: 1,
     j: true,
     native_parser: true,
     poolSize: 25
   });
-
   validateMongoVersion(db.driver);
+
+  if (isTest) {
+    process.on('exit', function() {
+      db.driver.dropDatabase(mongoUri, function(err) {
+        if (err) return console.log(err);
+      });
+    });
+  }
+
   return db;
 })();

@@ -36,16 +36,20 @@
     "npm": "3.5.1",
     "q": "1.4.1",
     "semver": "5.1.0",
-    "shelljs": "0.5.3"
+    "shelljs": "0.5.3",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
+    "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-copy": "0.8.2",
     "grunt-contrib-less": "1.1.0",
     "grunt-contrib-watch": "0.6.1",
     "grunt-html-build": "git+https://github.com/Zhang/grunt-html-build#90b91aa0bf99c7e91a7e5f00681bf2ef2ccf25b7",
+    "grunt-mocha-test": "0.12.7",
     "grunt-newer": "1.1.1",
     "grunt-ng-constant": "1.1.0",
     "jshint-stylish": "2.1.0",
-    "load-grunt-tasks": "3.3.0"
+    "load-grunt-tasks": "3.3.0",
+    "mocha": "^2.3.4"
   }
 }

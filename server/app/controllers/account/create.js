@@ -12,7 +12,7 @@ const authentication = require('../../lib/authentication');
  */
 const create = function* create() {
   const body = this.request.body;
-  const email = body.username;
+  const email = body.email;
   const password = body.password;
 
   yield accountModel.add({
