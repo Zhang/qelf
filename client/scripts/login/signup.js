@@ -8,11 +8,12 @@
     .state(STATE.signup, {
       url: '/signup',
       templateUrl: 'scripts/login/signup.html',
-      controller: 'Signup'
+      controller: 'Signup',
+      cache: false
     });
   });
 
-  module.controller('Signup', function($scope, AccountAPI) {
+  module.controller('Signup', function($scope, AccountAPI, $state, STATE) {
     $scope.signup = function(email, password) {
       AccountAPI.create(email, password).then(function resolve() {
         alert('You did it!!');
@@ -20,5 +21,8 @@
         alert('You failed to do it!');
       });
     };
+    $scope.toLogin = function() {
+      $state.go(STATE.login);
+    }
   });
 })();

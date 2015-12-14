@@ -14,6 +14,7 @@
       url: '',
       templateUrl: 'scripts/frame.html',
       abstract: true,
+      cache: false,
       controller: 'Frame'
     });
   });

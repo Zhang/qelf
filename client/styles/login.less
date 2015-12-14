@@ -1,32 +1,51 @@
-div.landing-container {
-  border: 1px solid transparent;
-}
-div.list.landing {
+div.login-container, div.signup-container {
   background-color: @primary-color;
+  overflow: hidden;
+  height: 100%;
+}
+
+div.list.landing {
   position: relative;
+  margin-top: 150px;
 }
 
 h2.title {
   color: white;
+  font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
   text-align: center;
+  font-size: 42px;
+  margin: 0;
 }
 
 button.login {
-  background-color: @opaque-white-darker;
-  height: 30px;
+  margin-top: 20px;
+  height: 40px;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
 }
 
 div.login-block {
   .placeholder-color(@opaque-white);
-  margin-top: 140px;
   input {
     color: white;
   }
-
+  .login-input-container {
+    margin: 20px auto;
+    width: 225px;
+  }
   input, button.login {
-    width: 65%;
-    margin: 0 auto;
+    width: 100%;
     border: none;
+    font-size: @font-standard;
+    &:focus {
+      outline: none;
+    }
+  }
+  .login-input {
+    margin: 5px auto;
+    border-bottom: 1px solid white;
+    height: 20px;
   }
 }
 
@@ -41,9 +60,12 @@ input.block {
 }
 
 div.button-group {
-  position: relative;
-  bottom: 0;
+  width: 100%;
   text-align: center;
-  padding: 30px;
+  padding: 30px 0;
   color: white;
+}
+.bottom {
+  position: absolute;
+  bottom: 0;
 }

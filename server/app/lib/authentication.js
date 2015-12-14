@@ -56,9 +56,10 @@ module.exports = {
   },
   login: function () {
     const self = this;
-    return passport.authenticate('local', function* (err, user) {
+    return passport.authenticate('local', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {
+        console.log(info);
         throw new Error('Authentication error');
       } else {
         self.status = 201;
