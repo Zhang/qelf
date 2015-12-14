@@ -26,8 +26,8 @@
 
   module.service('SessionAPI', function(HttpHelper) {
     return {
-      login: function(username, password) {
-        return HttpHelper.post('login', { username: username, password: password });
+      login: function(email, password) {
+        return HttpHelper.post('login', { email: email, password: password });
       },
       logout: function() {
         return HttpHelper.post('logout');

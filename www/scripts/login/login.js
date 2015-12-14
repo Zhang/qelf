@@ -6,16 +6,17 @@
     $stateProvider
 
     .state(STATE.login, {
-      url: '/login',
+      url: '/',
       templateUrl: 'scripts/login/login.html',
-      controller: 'Login'
+      controller: 'Login',
+      cache: false
     });
   });
 
   module.controller('Login', function($scope, $state, SessionAPI, STATE) {
     $scope.login = function(email, password) {
       SessionAPI.login(email, password).then(function resolve() {
-        alert('logged in');
+        $state.go(STATE.voting);
       }, function reject() {
         alert('failure');
       });

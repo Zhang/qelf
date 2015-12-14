@@ -1,17 +1,19 @@
-<div class="landing-container">
+<div class="login-container">
   <div class="list landing">
     <div class="transparent-inputs login-block">
       <h2 class="title">Sheen</h2>
-      <input class="block" type="text" placeholder="Robot@gmail.com" ng-model="email">
-      <input class="block" type="password" placeholder="Password" ng-model="password">
-      <button ng-click="login(email, password)" class="login block">
-        Login
-      </button>
+      <form class="login-input-container" ng-submit="login(email, password)">
+        <input class="login-input" type="text" placeholder="Robot@gmail.com" ng-model="email">
+        <input class="login-input" type="password" placeholder="Password" ng-model="password">
+        <button type="submit" class="login block">
+          Login
+        </button>
+      </form>
     </div>
-    <div class="button-group bottom">
-      <a ng-click="toSignup()" class="">
-        Signup
-      </a>
-    </div>
+  </div>
+  <div class="button-group bottom">
+    <a ng-click="toSignup()" class="">
+      Signup
+    </a>
   </div>
 </div>

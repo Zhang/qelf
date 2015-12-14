@@ -16,9 +16,10 @@
     'feedback'
   ]);
 
-  module.config(function($compileProvider, $httpProvider) {
-     $httpProvider.defaults.withCredentials = true;
-     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+  module.config(function($compileProvider, $httpProvider, $urlRouterProvider) {
+    $httpProvider.defaults.withCredentials = true;
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    $urlRouterProvider.otherwise('/');
   });
 
   module.run(function($ionicPlatform) {
