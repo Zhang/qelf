@@ -22,7 +22,6 @@ passport.deserializeUser(function (id, done) {
 passport.use(new LocalStrategy({
   usernameField: 'email'
 }, function (email, password, done) {
-  console.log(arguments);
   co(function* () {
     const account = yield accountModel.getByEmail(email);
     if (account && account.password === password) return done(null, account);
