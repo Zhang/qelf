@@ -1,5 +1,8 @@
 @card-height: 475px;
-@card-width: 300px;
+@card-width: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2);
+@card-width-2: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 4px);
+@card-width-3: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 8px);
+@card-padding: 10px;
 @card-container-padding: 20px;
 
 div.voting-container {
@@ -15,13 +18,13 @@ div.votes {
     z-index: @z-index-top;
   }
   .card:nth-child(2) {
-    width: calc(@card-width ~"-" 2px);
-    margin: 2px 0 0 1px;
+    width: @card-width-2;
+    margin: 3px 0 0 2px;
     z-index: @z-index-middle;
   }
   .card:nth-child(3) {
-    width: calc(@card-width ~"-" 4px);
-    margin: 4px 0 0 2px;
+    width: @card-width-3;
+    margin: 6px 0 0 4px;
     z-index: @z-index-bottom;
   }
 }
@@ -33,7 +36,7 @@ div.card {
   position: absolute;
   border: 1px solid @border-gray;
   border-radius: 3px;
-  padding: 10px;
+  padding: @card-padding;
   .card-content {
     background-color: @secondary-color;
     height: 100%;
