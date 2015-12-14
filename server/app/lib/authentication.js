@@ -19,13 +19,12 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-passport.use(new LocalStrategy(function (email, password, done) {
-  console.log('AWHEWAHE', email, password);
+passport.use(new LocalStrategy({
+  usernameField: 'email'
+}, function (email, password, done) {
   co(function* () {
     const account = yield accountModel.getByEmail(email);
-    console.log(account);
     if (account && account.password === password) return done(null, account);
-
     done(null, false);
   });
 }));
@@ -59,7 +58,6 @@ module.exports = {
     const self = this;
     return passport.authenticate('local', function* (err, user) {
       if (err) throw err;
-      console.log(user);
       if (user === false) {
         throw new Error('Authentication error');
       } else {
