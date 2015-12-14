@@ -32,14 +32,11 @@
     "grunt": "0.4.5",
     "ionic": "1.7.12",
     "jquery": "2.1.4",
-    "koa-session": "^3.3.1",
     "lodash": "3.10.1",
     "npm": "3.5.1",
-    "passport-local": "1.0.0",
     "q": "1.4.1",
     "semver": "5.1.0",
-    "shelljs": "0.5.3",
-    "uuid": "^2.0.1"
+    "shelljs": "0.5.3"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
@@ -52,6 +49,6 @@
     "grunt-ng-constant": "1.1.0",
     "jshint-stylish": "2.1.0",
     "load-grunt-tasks": "3.3.0",
-    "mocha": "^2.3.4"
+    "mocha": "2.3.4"
   }
 }
