@@ -36,7 +36,8 @@
     "npm": "3.5.1",
     "q": "1.4.1",
     "semver": "5.1.0",
-    "shelljs": "0.5.3"
+    "shelljs": "0.5.3",
+    "cordova": "~5.4.1"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
