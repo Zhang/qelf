@@ -179,6 +179,7 @@ div.card .card-content .card-main .candidate-picture img {
   width: 100%;
 }
 div.card .card-content .card-main .candidate-description {
+  color: #CC9FC5;
   height: 90px;
   padding: 5px;
 }

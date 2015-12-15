@@ -17,7 +17,8 @@ const create = function* create() {
 
   yield accountModel.add({
     password: password,
-    email: email
+    email: email,
+    traits: []
   });
 
   yield authentication.login.call(this);

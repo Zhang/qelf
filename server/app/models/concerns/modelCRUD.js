@@ -4,26 +4,34 @@ const Joi = require('joi');
 const uuid = require('uuid');
 const _ = require('lodash');
 
+function validate(obj, schema, collectionName) {
+  const validity = Joi.validate(obj, schema);
+  if (validity.error) {
+    console.log('Invalid ' + collectionName + ' object: ', JSON.stringify(obj));
+    console.log('Error: ', validity.error);
+    throw validity.error;
+  }
+}
+
 module.exports = function(collectionName, collection, schema) {
   return {
     create: function* create(toAdd) {
       const existingId = toAdd.id;
       toAdd.id = existingId || uuid.v4();
 
-      var validity = Joi.validate(toAdd, schema);
-
-      if (validity.error) {
-        console.log('Invalid ' + collectionName + ' object: ', JSON.stringify(toAdd));
-        console.log('Error: ', validity.error);
-        throw validity.error;
-      }
+      validate(toAdd, schema, collectionName);
 
       if (existingId) {
         const existingObj = yield collection.find({id: existingId});
         if (existingObj) throw new Error('attempted to add duplicate object');
       }
 
-      return collection.insert(toAdd);
+      yield collection.insert(toAdd);
+      yield this.insert(toAdd);
+    },
+    addOrUpdate: function* addOrUpdate(obj) {
+      validate(obj, schema, collectionName);
+      yield collection.update({id: obj.id}, obj, {upsert: true});
     },
     get: function get(id) {
       return collection.findOne({id: id});

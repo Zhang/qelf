@@ -9,11 +9,11 @@ const AccountSchema = Joi.object().keys({
   id: Joi.string().required(),
   email: Joi.string().required(),
   password: Joi.string().required(),
+  traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
 });
 
 const modelCRUD = require('./concerns/modelCRUD')('account', collection, AccountSchema);
 const getByEmail = function getByEmail(email) {
-  console.log(email);
   return collection.findOne({email: email});
 };
 
