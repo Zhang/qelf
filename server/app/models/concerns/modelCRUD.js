@@ -27,7 +27,6 @@ module.exports = function(collectionName, collection, schema) {
       }
 
       yield collection.insert(toAdd);
-      yield this.insert(toAdd);
     },
     addOrUpdate: function* addOrUpdate(obj) {
       validate(obj, schema, collectionName);
