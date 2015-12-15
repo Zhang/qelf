@@ -77,7 +77,7 @@
 
       isUnderThreshold: function() {
         //return true;
-        return Math.abs(this.thresholdAmount) < 1;
+        return Math.abs(this.thresholdAmount) < .8;
       },
       /**
        * Fly the card out or animate back into resting position.

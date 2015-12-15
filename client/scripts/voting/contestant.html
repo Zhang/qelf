@@ -3,12 +3,10 @@
     <img ng-src="{{contestant.img}}">
   </div>
   <div ng-if="!isFeedback" class="candidate-description">
-    <div class="name" ng-bind="contestant.name"></div>
+    <div class="name">{{contestant.name}}, 29</div>
     <div class="social-description">
-      <span class="friends">
-        Friends: 0
-      </span
-      ><span class="location" ng-bind="contestant.location"></span>
+      29 Mutual Friends <br>
+      {{contestant.location}}
     </div>
   </div>
   <div ng-if="isFeedback" class="candidate-description">
