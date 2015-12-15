@@ -23,7 +23,7 @@
     "require": false,
     "angular": false,
     "ionic": false,
-    "_": false,
+    "console": false,
     "collide": false
   }
 }

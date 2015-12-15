@@ -15,6 +15,20 @@ function validate(obj, schema, collectionName) {
 
 module.exports = function(collectionName, collection, schema) {
   return {
+    bulkInsert: function* bulkInsert(toAdd) {
+      var toAddWithIds = (function() {
+        return _.map(toAdd, function(v) {
+          v.id = v.id || uuid.v4();
+          return v;
+        });
+      })();
+
+      _.each(toAdd, function(v) {
+        validate(v, schema, collectionName);
+      });
+      yield collection.insert(toAddWithIds);
+      return toAddWithIds;
+    },
     create: function* create(toAdd) {
       const existingId = toAdd.id;
       toAdd.id = existingId || uuid.v4();
@@ -28,9 +42,9 @@ module.exports = function(collectionName, collection, schema) {
 
       yield collection.insert(toAdd);
     },
-    addOrUpdate: function* addOrUpdate(obj) {
+    addOrUpdate: function addOrUpdate(obj) {
       validate(obj, schema, collectionName);
-      yield collection.update({id: obj.id}, obj, {upsert: true});
+      return collection.update({id: obj.id}, obj, {upsert: true});
     },
     get: function get(id) {
       return collection.findOne({id: id});

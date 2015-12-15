@@ -13,5 +13,6 @@ const TraitTemplateSchema = Joi.object().keys({
 const modelCRUD = require('./concerns/modelCRUD')('traitTemplate', collection, TraitTemplateSchema);
 
 module.exports = {
-  addOrUpdate: modelCRUD.addOrUpdate
+  addOrUpdate: modelCRUD.addOrUpdate,
+  get: modelCRUD.get
 };
