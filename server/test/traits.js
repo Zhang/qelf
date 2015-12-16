@@ -5,7 +5,7 @@
  */
 
 const agent = require('supertest').agent;
-const app = require('../app');
+const app = require('./mockApp');
 const http = require('http');
 const uuid = require('uuid');
 const _ = require('lodash');
@@ -25,7 +25,7 @@ describe('/trait', function() {
   });
   beforeEach(function(done) {
     co(function* () {
-      yield testUtils.clearAll();
+      yield testUtils.clearUsers();
       MOCK_USER = yield testUtils.createTestUser();
       done();
     });

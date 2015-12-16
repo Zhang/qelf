@@ -11,7 +11,7 @@ const createAccount = proxyquire('../app/controllers/account/create', {
 });
 
 module.exports = {
-  clearAll: function* () {
+  clearUsers: function* () {
     yield accountModel.clear();
   },
   createTestUser: function* (_facebookId, accessToken) {

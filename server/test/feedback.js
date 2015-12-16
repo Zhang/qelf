@@ -5,7 +5,7 @@
  */
 
 const agent = require('supertest').agent;
-const app = require('../app');
+const app = require('./mockApp');
 const http = require('http');
 /**
  * Tests.
