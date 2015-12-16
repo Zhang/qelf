@@ -20,6 +20,9 @@
       },
       get: function(id) {
         return HttpHelper.get('account/' + encodeURIComponent(id));
+      },
+      getCurrentUser: function() {
+        return HttpHelper.get('account/current');
       }
     };
   });
@@ -39,6 +42,14 @@
     return {
       create: function(feedbackText, canContact) {
         return HttpHelper.post('feedback', { canContact: canContact, feedbackText: feedbackText });
+      }
+    };
+  });
+
+  module.service('TraitAPI', function(HttpHelper) {
+    return {
+      getForUser: function(email) {
+        return HttpHelper.get('trait/query/' + email);
       }
     };
   });

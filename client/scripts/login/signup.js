@@ -23,6 +23,6 @@
     };
     $scope.toLogin = function() {
       $state.go(STATE.login);
-    }
+    };
   });
 })();

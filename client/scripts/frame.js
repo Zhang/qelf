@@ -15,11 +15,18 @@
       templateUrl: 'scripts/frame.html',
       abstract: true,
       cache: false,
-      controller: 'Frame'
+      controller: 'Frame',
+      resolve: {
+        CurrentUser: function(AccountAPI, $rootScope) {
+          return AccountAPI.getCurrentUser().then(function(res) {
+            $rootScope.user = res.data;
+          });
+        }
+      }
     });
   });
 
-  module.controller('Frame', function($scope, $state, STATE) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE) {
     $scope.goTo = function(state) {
       if (STATE[state]) {
         $state.go(STATE[state]);

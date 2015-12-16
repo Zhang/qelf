@@ -4,6 +4,7 @@ const app = require('koa')();
 const router = require('koa-router')();
 
 router.post('/', require('./create'));
+router.get('/current', require('./current'));
 router.get('/:id', require('./get'));
 
 app.use(router.routes());
