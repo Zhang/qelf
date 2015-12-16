@@ -16,11 +16,13 @@ const create = function* create() {
   const DEFAULT_TRAITS = _.map(['trustworthiness', 'scott'], traitModel.newTrait);
 
   const defaultTraits = yield traitModel.addBulk(DEFAULT_TRAITS);
+  const friends = yield accountModel.getFriends(email);
 
   yield accountModel.add({
     password: password,
     email: email,
-    traits: _.map(defaultTraits, 'id')
+    traits: _.map(defaultTraits, 'id'),
+    friends: friends
   });
 
   yield authentication.login.call(this);

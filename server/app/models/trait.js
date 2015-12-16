@@ -24,5 +24,6 @@ const newTrait = function newTrait(templateId) {
 module.exports = {
   add: modelCRUD.create,
   newTrait: newTrait,
-  addBulk: modelCRUD.bulkInsert
+  addBulk: modelCRUD.bulkInsert,
+  query: modelCRUD.query,
 };

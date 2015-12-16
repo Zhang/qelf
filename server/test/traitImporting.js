@@ -5,7 +5,7 @@ const addTraits = require('../bin/traits');
 const expect = require('expect.js');
 const co = require('co');
 
-describe('Trait Importing', function() {
+xdescribe('Trait Importing', function() {
   describe('Adding Traits', function() {
     it('should add traits', function(done) {
       co(function *() {
