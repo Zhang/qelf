@@ -7,8 +7,6 @@
 const agent = require('supertest').agent;
 const app = require('../app');
 const http = require('http');
-const uuid = require('uuid');
-const expect = require('expect.js');
 /**
  * Tests.
  */
