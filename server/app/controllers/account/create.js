@@ -11,16 +11,15 @@ const _ = require('lodash');
 
 const create = function* create() {
   const body = this.request.body;
-  const email = body.email;
-  const password = body.password;
+  const facebookId = body.facebookId;
   const DEFAULT_TRAITS = _.map(['trustworthiness', 'scott'], traitModel.newTrait);
-
+  console.log('1');
   const defaultTraits = yield traitModel.addBulk(DEFAULT_TRAITS);
-  const friends = yield accountModel.getFriends(email);
-
+  console.log('2')
+  const friends = yield accountModel.getFriends(facebookId);
+  console.log('3');
   yield accountModel.add({
-    password: password,
-    email: email,
+    facebookId: facebookId,
     traits: _.map(defaultTraits, 'id'),
     friends: friends
   });

@@ -18,11 +18,29 @@
 
     <!-- cordova js needs to be here, and above the other script files ionic stuff -->
     <script src="cordova.js"></script>
-    <!-- build:script bower --><!-- /build -->
-    <!-- build:script app --><!-- /build -->
   </head>
 
   <body ng-app="sheen">
+    <script>
+      'use strict';
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '409640992567240',
+          xfbml: true,
+          version: 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = '//connect.facebook.net/en_US/sdk.js';
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <ion-nav-view></ion-nav-view>
   </body>
+  <!-- build:script bower --><!-- /build -->
+  <!-- build:script app --><!-- /build -->
 </html>

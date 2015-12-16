@@ -16,7 +16,6 @@ xdescribe('Trait Importing', function() {
             return addedTrait;
           })
           .then(function resolve(res) {
-            console.log(res);
             expect(res.id).to.be.ok();
             expect(res.comparisons).to.have.length(trustworthiness.template.comparisons.length);
             done();

@@ -2,13 +2,9 @@
   <div class="list landing">
     <div class="transparent-inputs login-block">
       <h2 class="title">Sheen</h2>
-      <form class="login-input-container" ng-submit="login(email, password)">
-        <input class="login-input" type="text" placeholder="Robot@gmail.com" ng-model="email">
-        <input class="login-input" type="password" placeholder="Password" ng-model="password">
-        <button type="submit" class="login block">
-          Login
-        </button>
-      </form>
+      <div class="login-input-container">
+        <div ng-click="fbLogin()">Login With Facebook</div>
+      </div>
     </div>
   </div>
   <div class="button-group bottom">

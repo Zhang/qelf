@@ -20,12 +20,13 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(new LocalStrategy({
-  usernameField: 'email'
-}, function (email, password, done) {
+  usernameField: 'facebookId',
+  passwordField: 'facebookId'
+}, function (id, password, done) {
   co(function* () {
-    const account = yield accountModel.getByEmail(email);
-    if (account && account.password === password) return done(null, account);
-    done(null, false);
+    const account = yield accountModel.getByFacebookId(id);
+    //if (account && account.password === password) return done(null, account);
+    done(null, account);
   });
 }));
 

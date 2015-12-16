@@ -32,4 +32,31 @@
       }
     });
   });
+
+  module.factory('FBService', function($q) {
+    return {
+      login: function() {
+        var deferred = $q.defer();
+        FB.login(function(res) {
+          if (res.authResponse) {
+            deferred.resolve(res.authResponse);
+          } else {
+            deferred.reject('not authenticated');
+          }
+        });
+        return deferred.promise;
+      },
+      getLoginStatus: function() {
+        var deferred = $q.defer();
+        FB.getLoginStatus(function(res) {
+          if (res.status === 'connected') {
+            deferred.resolve(res.authResponse);
+          } else {
+            deferred.reject('not connected');
+          }
+        });
+        return deferred.promise;
+      }
+    };
+  });
 })();

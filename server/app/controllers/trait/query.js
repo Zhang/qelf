@@ -6,8 +6,9 @@ const accountModel = require('../../models/account');
  * Find a photo by ID.
  */
 const query = function* query() {
-  const email = this.params.email;
-  const account = yield accountModel.getByEmail(email);
+  const facebookId = this.params.facebookId;
+  const account = yield accountModel.getByFacebookId(facebookId);
+
   if (!account) {
     this.status = 404;
     this.body = 'No user found';

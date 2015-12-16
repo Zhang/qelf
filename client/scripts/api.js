@@ -15,8 +15,8 @@
 
   module.service('AccountAPI', function(HttpHelper) {
     return {
-      create: function(email, password) {
-        return HttpHelper.post('account', { email: email, password: password });
+      create: function(facebookId) {
+        return HttpHelper.post('account', { facebookId: facebookId });
       },
       get: function(id) {
         return HttpHelper.get('account/' + encodeURIComponent(id));
@@ -29,8 +29,8 @@
 
   module.service('SessionAPI', function(HttpHelper) {
     return {
-      login: function(email, password) {
-        return HttpHelper.post('login', { email: email, password: password });
+      login: function(facebookId) {
+        return HttpHelper.post('login', { facebookId: facebookId });
       },
       logout: function() {
         return HttpHelper.post('logout');
@@ -48,8 +48,8 @@
 
   module.service('TraitAPI', function(HttpHelper) {
     return {
-      getForUser: function(email) {
-        return HttpHelper.get('trait/query/' + email);
+      getForUser: function(facebookId) {
+        return HttpHelper.get('trait/query/' + facebookId);
       }
     };
   });

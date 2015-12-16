@@ -12,12 +12,12 @@ const feedbackModel = require('../../models/feedback');
 const create = function* create() {
   const body = this.request.body;
   const text = body.feedbackText;
-  const email = 'scott'; //this.req.user.email
+  const facebookId = body.facebookId;
   const canContact = body.canContact;
 
   yield feedbackModel.add({
     canContact: canContact,
-    email: email,
+    facebookId: facebookId,
     text: text
   });
 

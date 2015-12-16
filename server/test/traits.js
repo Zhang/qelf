@@ -27,15 +27,15 @@ describe('/trait', function() {
       request
         .post('/account')
         .send({
-          email: uuid.v4(),
-          password: 'test'
+          facebookId: uuid.v4()
         })
         .expect(201)
         .end(function(err, res) {
           if (err) throw err;
           MOCK_USER = res.body;
+
           request
-            .get('/trait/query/' + MOCK_USER.email)
+            .get('/trait/query/' + MOCK_USER.facebookId)
             .expect(200)
             .end(function(err, res) {
               if (err) throw err;

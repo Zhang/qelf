@@ -43,4 +43,17 @@
     $scope.mainTrait = { sizeX: 2, sizeY: 2, row: 0, col: 0 };
     $scope.categoryPicker = { sizeX: 2, sizeY: 1, row: 2, col: 0 };
   });
+  module.directive('traitCard', function() {
+    return {
+      scope: {
+        trait: '='
+      },
+      templateUrl: 'scripts/profile/traitCard.html',
+      link: function($scope) {
+        $scope.score = (function getValidScore() {
+          return $scope.trait.total <= 4 ? 'Not Enough Votes' : Math.ceil(($scope.trait.count/$scope.trait.total) * 100) + '%';
+        })();
+      }
+    };
+  });
 })();

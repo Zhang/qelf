@@ -21,27 +21,21 @@ describe('/account', function() {
   });
 
   describe('POST /account', function() {
-    var email = 'test@' + uuid.v4();
+    var facebookId = uuid.v4();
     it('should create a new account and log in', function(done) {
       request
         .post('/account')
-        .send({
-          email: email,
-          password: 'tesst'
-        })
+        .send({ facebookId: facebookId })
         .expect(201)
         .end(function(err, res) {
           if (err) throw err;
-          expect(res.body.email).to.be(email);
+          expect(res.body.facebookId).to.be(facebookId);
           done();
         });
     });
     it('should 500 when missing required fields', function(done) {
       request
         .post('/account')
-        .send({
-          email: 'test'
-        })
         .expect(500, done);
     });
   });

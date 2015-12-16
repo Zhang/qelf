@@ -1,10 +1,24 @@
 .profile-container {
   margin: 20px 5px;
   height: 85vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
-.trait-card {
-  background-color: @border-gray;
+.trait-container {
+  @trait-title-height: 30%;
+  background-color: @secondary-color;
+  height: 100%;
+  .trait-title {
+    height: @trait-title-height;
+    .ellipsis-overflow();
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  .trait-score {
+    height: calc(100% ~"-" @trait-title-height);
+    text-align: center;
+  }
 }
 .main-trait-card {
   background-color: @secondary-color;

@@ -250,10 +250,25 @@ div.card .card-content .feedback-input-container .feedback-input:focus {
 .profile-container {
   margin: 20px 5px;
   height: 85vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
-.trait-card {
-  background-color: #B9B7B7;
+.trait-container {
+  background-color: #E0E0DC;
+  height: 100%;
+}
+.trait-container .trait-title {
+  height: 30%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.trait-container .trait-score {
+  height: calc(100% - 30%);
+  text-align: center;
 }
 .main-trait-card {
   background-color: #E0E0DC;

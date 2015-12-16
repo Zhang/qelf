@@ -11,10 +11,10 @@ const http = require('http');
  * Tests.
  */
 
-describe('/account', function() {
+describe('/feedback', function() {
   let request;
 
-  beforeEach(function() {
+  beforeEach(function () {
     request = agent(http.createServer(app.callback()));
   });
 
@@ -23,7 +23,7 @@ describe('/account', function() {
       request
         .post('/feedback')
         .send({
-          email: 'test',
+          facebookId: 'test',
           feedbackText: 'testFeedback',
           canContact: false
         })

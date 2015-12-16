@@ -13,12 +13,16 @@
     });
   });
 
-  module.controller('Signup', function($scope, AccountAPI, $state, STATE) {
-    $scope.signup = function(email, password) {
-      AccountAPI.create(email, password).then(function resolve() {
-        alert('You did it!!');
-      }, function reject() {
-        alert('You failed to do it!');
+  module.controller('Signup', function($scope, AccountAPI, $state, STATE, FBService) {
+    $scope.signup = function() {
+      FBService.login().then(function resolve(res) {
+        AccountAPI.create(res.userID).then(function resolve() {
+          $state.go(STATE.voting);
+        }, function reject() {
+          alert('failure');
+        });
+      }, function reject(err) {
+        alert(err);
       });
     };
     $scope.toLogin = function() {
