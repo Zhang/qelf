@@ -9,7 +9,6 @@
     'states',
     'api',
     'login',
-    'signup',
     'frame',
     'voting',
     'profile',

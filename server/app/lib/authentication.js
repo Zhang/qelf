@@ -5,7 +5,7 @@ const mongoStore = require('koa-session-mongo');
 const db = require('../db');
 const passport = require('koa-passport');
 const accountModel = require('../models/account');
-const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook-token');
 const co = require('co');
 
 passport.serializeUser(function(user, done) {
@@ -19,12 +19,18 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-passport.use(new LocalStrategy({
-  usernameField: 'facebookId',
-  passwordField: 'facebookId'
-}, function (id, password, done) {
+passport.use(new FacebookStrategy({
+  clientID: '409640992567240', //FACEBOOK_APP_ID
+  clientSecret: '6b4b58114c18d90a2c5f62bb98f595c4', //FACEBOOK_APP_SECRET
+}, function (accessToken, refreshToken, profile, done) {
   co(function* () {
-    const account = yield accountModel.getByFacebookId(id);
+    console.log(accessToken, refreshToken, profile);
+    let account = yield accountModel.getByFacebookId(profile.id);
+    if (account.accessToken !== accessToken) {
+      account = yield accountModel.update(account.id, {
+        accessToken: accessToken
+      });
+    }
     //if (account && account.password === password) return done(null, account);
     done(null, account);
   });
@@ -57,7 +63,7 @@ module.exports = {
   },
   login: function () {
     const self = this;
-    return passport.authenticate('local', function* (err, user, info) {
+    return passport.authenticate('facebook-token', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {
         console.log('Authentication error: ', info);

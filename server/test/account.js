@@ -25,7 +25,10 @@ describe('/account', function() {
     it('should create a new account and log in', function(done) {
       request
         .post('/account')
-        .send({ facebookId: facebookId })
+        .send({
+          facebookId: facebookId,
+          access_token: 'test'
+        })
         .expect(200)
         .end(function(err, res) {
           if (err) throw err;

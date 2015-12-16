@@ -3,13 +3,14 @@
     <div class="transparent-inputs login-block">
       <h2 class="title">Sheen</h2>
       <div class="login-input-container">
-        <div ng-click="fbLogin()">Login With Facebook</div>
+        <div ng-if="!isSignup" ng-click="fbLogin()">Login With Facebook</div>
+        <div ng-if="isSignup" ng-click="signup()">Signup With Facebook</div>
       </div>
     </div>
   </div>
   <div class="button-group bottom">
     <a ng-click="toSignup()" class="">
-      Signup
+      {{ isSignup ? 'Signup' : 'Login' }}
     </a>
   </div>
 </div>

@@ -26,14 +26,15 @@
     "lodash": "3.10.1",
     "mongodb": "1.4.39",
     "monk": "1.0.1",
-    "passport-local": "1.0.0",
-    "q": "^1.4.1",
+    "passport-facebook-token": "3.0.6",
+    "q": "1.4.1",
     "semver": "5.0.1",
     "uuid": "2.0.1"
   },
   "devDependencies": {
     "mocha": "2.3.0",
     "nodemon": "1.4.1",
+    "proxyquire": "^1.7.3",
     "supertest": "1.1.0"
   }
 }

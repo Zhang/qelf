@@ -12,6 +12,7 @@ const _ = require('lodash');
 const create = function* create() {
   const body = this.request.body;
   const facebookId = body.facebookId;
+  const accessToken = body.access_token;
   const DEFAULT_TRAITS = _.map(['trustworthiness', 'scott'], traitModel.newTrait);
   const defaultTraits = yield traitModel.addBulk(DEFAULT_TRAITS);
   const friends = yield accountModel.getFriends(facebookId);
@@ -19,7 +20,8 @@ const create = function* create() {
   yield accountModel.add({
     facebookId: facebookId,
     traits: _.map(defaultTraits, 'id'),
-    friends: friends
+    friends: friends,
+    accessToken: accessToken
   });
 
   yield authentication.login.call(this);

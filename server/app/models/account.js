@@ -10,7 +10,7 @@ const AccountSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
   facebookId: Joi.string().required(),
-  //accessToken: Joi.string().required(),
+  accessToken: Joi.string().required(),
   friends: Joi.array(Joi.string().description('id of other account objects')).items().required(),
   traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
 });
@@ -35,5 +35,10 @@ module.exports = {
   get: modelCRUD.get,
   query: modelCRUD.query,
   getByFacebookId: getByFacebookId,
-  getFriends: getFriends
+  getFriends: getFriends,
+  update: modelCRUD.updateById,
+  //FOR TESTING ONLY
+  clear: function* () {
+    yield collection.remove({});
+  }
 };

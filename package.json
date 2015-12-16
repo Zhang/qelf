@@ -28,6 +28,7 @@
     "android"
   ],
   "dependencies": {
+    "cordova": "~5.4.1",
     "cordova-common": "1.0.0",
     "grunt": "0.4.5",
     "ionic": "1.7.12",
@@ -36,8 +37,7 @@
     "npm": "3.5.1",
     "q": "1.4.1",
     "semver": "5.1.0",
-    "shelljs": "0.5.3",
-    "cordova": "~5.4.1"
+    "shelljs": "0.5.3"
   },
   "devDependencies": {
     "expect.js": "0.3.1",

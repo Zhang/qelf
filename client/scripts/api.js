@@ -15,8 +15,8 @@
 
   module.service('AccountAPI', function(HttpHelper) {
     return {
-      create: function(facebookId) {
-        return HttpHelper.post('account', { facebookId: facebookId });
+      create: function(facebookId, access_token) {
+        return HttpHelper.post('account', { facebookId: facebookId, access_token: access_token });
       },
       get: function(id) {
         return HttpHelper.get('account/' + encodeURIComponent(id));
@@ -29,8 +29,8 @@
 
   module.service('SessionAPI', function(HttpHelper) {
     return {
-      login: function(facebookId) {
-        return HttpHelper.post('login', { facebookId: facebookId });
+      login: function(access_token) {
+        return HttpHelper.post('login', { access_token: access_token });
       },
       logout: function() {
         return HttpHelper.post('logout');
@@ -38,10 +38,10 @@
     };
   });
 
-  module.service('FeedbackAPI', function(HttpHelper) {
+  module.service('FeedbackAPI', function(HttpHelper, $rootScope) {
     return {
       create: function(feedbackText, canContact) {
-        return HttpHelper.post('feedback', { canContact: canContact, feedbackText: feedbackText });
+        return HttpHelper.post('feedback', { facebookId: $rootScope.user.facebookId, canContact: canContact, feedbackText: feedbackText });
       }
     };
   });

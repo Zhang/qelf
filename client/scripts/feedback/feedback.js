@@ -29,8 +29,7 @@
     }];
 
     $scope.swipe = function(feedback, canContact) {
-      console.log(arguments)
-;      if (feedback) {
+      if (feedback) {
         FeedbackAPI.create(feedback, canContact).then(function() {
           console.log('something');
         }, function() {

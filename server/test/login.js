@@ -25,7 +25,10 @@ describe('/login', function() {
     it('should login an existing account', function(done) {
       request
         .post('/account')
-        .send({ facebookId: facebookId })
+        .send({
+          facebookId: facebookId,
+          access_token: 'test'
+        })
         .expect(200)
         .end(function(err) {
           if (err) throw err;
