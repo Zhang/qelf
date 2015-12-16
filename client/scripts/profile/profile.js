@@ -17,7 +17,7 @@
   });
 
   module.controller('Profile', function($scope, TraitAPI, $rootScope) {
-    TraitAPI.getForUser($rootScope.user.email).then(function(res) {
+    TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       $scope.traits = res.data;
     });
     $scope.gridsterOpts = {

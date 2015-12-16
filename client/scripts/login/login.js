@@ -9,20 +9,11 @@
       url: '/',
       templateUrl: 'scripts/login/login.html',
       controller: 'Login',
-      cache: false,
-      resolve: {
-        authResponse: function(FBService) {
-          return FBService.getLoginStatus();
-        }
-      }
+      cache: false
     });
   });
 
-  module.controller('Login', function($scope, $state, SessionAPI, STATE, FBService, authResponse) {
-    if (authResponse.userId) {
-      login(authResponse);
-    }
-
+  module.controller('Login', function($scope, $state, SessionAPI, STATE, FBService) {
     function login(response) {
       SessionAPI.login(response.userID).then(function resolve() {
         $state.go(STATE.voting);
@@ -32,8 +23,10 @@
     }
 
     $scope.fbLogin = function() {
-      FBService.login().then(login, function reject(err) {
-        alert(err);
+      FBService.getLoginStatus().then(login, function() {
+        FBService.login().then(login, function reject(err) {
+          alert(err);
+        });
       });
     };
 

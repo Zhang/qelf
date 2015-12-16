@@ -29,7 +29,7 @@ describe('/trait', function() {
         .send({
           facebookId: uuid.v4()
         })
-        .expect(201)
+        .expect(200)
         .end(function(err, res) {
           if (err) throw err;
           MOCK_USER = res.body;

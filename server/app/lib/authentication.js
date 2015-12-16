@@ -60,10 +60,10 @@ module.exports = {
     return passport.authenticate('local', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {
-        console.log(info);
-        throw new Error('Authentication error');
+        console.log('Authentication error: ', info);
+        self.status = 403;
       } else {
-        self.status = 201;
+        self.status = 200;
         self.body = user;
         yield self.login(user);
       }

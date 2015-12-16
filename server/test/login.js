@@ -13,30 +13,35 @@ const expect = require('expect.js');
  * Tests.
  */
 
-describe('/account', function() {
+describe('/login', function() {
   let request;
 
   beforeEach(function() {
     request = agent(http.createServer(app.callback()));
   });
 
-  describe('POST /account', function() {
+  describe('POST /login', function() {
     var facebookId = uuid.v4();
-    it('should create a new account and log in', function(done) {
+    it('should login an existing account', function(done) {
       request
         .post('/account')
         .send({ facebookId: facebookId })
         .expect(200)
-        .end(function(err, res) {
+        .end(function(err) {
           if (err) throw err;
-          expect(res.body.facebookId).to.be(facebookId);
-          done();
+          request
+            .post('/login')
+            .send({facebookId: facebookId})
+            .expect(200, done);
         });
     });
-    it('should 500 when missing required fields', function(done) {
+    it('should 403 when logging in invalid account', function(done) {
       request
-        .post('/account')
-        .expect(500, done);
+        .post('/login')
+        .send({
+          facebookId: 'invalid'
+        })
+        .expect(403, done);
     });
   });
 });

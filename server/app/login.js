@@ -6,7 +6,10 @@ const authentication = require('./lib/authentication');
 
 router.post('/', function* () {
   const body = this.request.body;
-  if (!body.email || !body.password) throw new Error('Login Error');
+  if (!body.facebookId) {
+    this.status = 403;
+    throw new Error('Login Error');
+  }
   yield authentication.login.call(this);
 });
 
