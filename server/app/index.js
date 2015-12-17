@@ -30,6 +30,7 @@ app.use(mount('/mock/login', require('./mock')));
 app.use(mount('/account', require('./controllers/account')));
 app.use(mount('/trait', require('./controllers/trait')));
 app.use(mount('/feedback', require('./controllers/feedback')));
+app.use(mount('/votes', require('./controllers/votes')));
 app.use(route.post('/logout', function *() {
   this.session = null;
   this.body = null;

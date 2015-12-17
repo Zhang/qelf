@@ -19,6 +19,8 @@ const createAccount = proxyquire('../app/controllers/account/create', {
     }
   })
 });
+const traitModel = require('../app/models/trait');
+const traitTemplateModel = require('../app/models/traitTemplate');
 
 module.exports = {
   clearUsers: function* () {
@@ -40,5 +42,15 @@ module.exports = {
     }
 
     return yield accountModel.getByFacebookId(facebookId);
+  },
+  createTrait: function* (templateId) {
+    var trait = traitModel.newTrait(templateId);
+    return yield traitModel.add(trait);
+  },
+  createTraitTemplate: function(id, comparisons) {
+    traitTemplateModel.addOrUpdate({
+      id: id,
+      comparisons: comparisons
+    });
   }
 };

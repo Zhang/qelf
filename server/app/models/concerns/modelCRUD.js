@@ -44,6 +44,7 @@ module.exports = function(collectionName, collection, schema) {
       }
 
       yield collection.insert(toAdd);
+      return toAdd;
     },
     addOrUpdate: function addOrUpdate(obj) {
       validate(obj, schema, collectionName);

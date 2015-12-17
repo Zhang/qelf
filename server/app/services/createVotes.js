@@ -4,7 +4,6 @@ const voteModel = require('../models/vote');
 const accountModel = require('../models/account');
 const traitTemplateModel = require('../models/traitTemplate');
 const _ = require('lodash');
-//const defaultTraits = require('../../bin/traits');
 
 module.exports = function* (facebookId) {
   const user = yield accountModel.getByFacebookId(facebookId);
@@ -28,6 +27,6 @@ module.exports = function* (facebookId) {
     });
     return total.concat(newVotes);
   }, []);
-  console.log(votes);
+
   yield voteModel.bulkAdd(_.flatten(votes));
 };

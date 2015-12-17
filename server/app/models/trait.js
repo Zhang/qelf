@@ -10,7 +10,7 @@ const TraitSchema = Joi.object().keys({
   id: Joi.string().required(),
   templateId: Joi.string().required(),
   count: Joi.number().required(),
-  total: Joi.number().required()
+  total: Joi.array().required()
 });
 
 const modelCRUD = require('./concerns/modelCRUD')('trait', collection, TraitSchema);
@@ -18,23 +18,32 @@ const newTrait = function newTrait(templateId) {
   return {
     templateId: templateId,
     count: 0,
-    total: 0
+    total: []
   };
 };
 
-const incrementTrait = function(id, incrementCount) {
-  const update = _.defaults(
-    { total: {$inc: 1} },
-    (incrementCount ? {count: {$inc: 1}} : {})
+const incrementTrait = function(id, incrementCount, vote) {
+  const update = _.merge({ $push: {total: vote } },
+    (incrementCount ? {$inc: {count: 1}} : {})
   );
+
   return collection.update({id: id}, update);
 };
 
+const getFromArrByTemplateId = function(traits, templateId) {
+  return collection.findOne({
+    id: {$in: traits},
+    templateId: templateId
+  });
+};
+
 module.exports = {
+  get: modelCRUD.get,
   add: modelCRUD.create,
   update: modelCRUD.update,
   newTrait: newTrait,
   addBulk: modelCRUD.bulkInsert,
   query: modelCRUD.query,
-  incrementTrait: incrementTrait
+  incrementTrait: incrementTrait,
+  getFromArrByTemplateId: getFromArrByTemplateId
 };

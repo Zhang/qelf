@@ -4,7 +4,7 @@ const db = require('../db');
 const collection = db.get('account');
 const Joi = require('joi');
 const facebook = require('../lib/facebook');
-const traitModel = require('./models/trait');
+const traitModel = require('./trait');
 
 const AccountSchema = Joi.object().keys({
   _id: Joi.string(),
@@ -22,13 +22,11 @@ const getByFacebookId = function getByFacebookId(facebookId) {
 };
 const getFriends = facebook.getFriends;
 const getPicture = facebook.getPicture;
-const incrementTraitByTemplateId = function* (fbId, templateId, increment) {
+const incrementTraitByTemplateId = function* (fbId, templateId, increment, vote) {
   const acct = yield getByFacebookId(fbId);
-  const trait = traitModel.query({
-    id: {$in: acct.traits},
-    templateId: templateId
-  });
-  trait.incrementTrait(trait.id, increment);
+  const trait = yield traitModel.getFromArrByTemplateId(acct.traits, templateId);
+
+  yield traitModel.incrementTrait(trait.id, increment, vote);
 };
 
 module.exports = {
