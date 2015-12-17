@@ -56,6 +56,9 @@ module.exports = function(collectionName, collection, schema) {
     updateById: function updateById(id, updateParams) {
       return bulkUpdate([id], updateParams);
     },
+    update: function* update(query, updateParams) {
+      yield collection.update(query, updateParams);
+    },
     query: function query(params) {
       params = params || {};
       const optKeys = ['sort', 'limit', 'offset'];

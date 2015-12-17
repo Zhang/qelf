@@ -24,7 +24,7 @@ module.exports = {
   clearUsers: function* () {
     yield accountModel.clear();
   },
-  createTestUser: function* (_facebookId, accessToken) {
+  createTestUser: function* (_facebookId, accessToken, opts) {
     const facebookId = _facebookId || 'test';
     yield createAccount.call({
       request: {
@@ -34,6 +34,11 @@ module.exports = {
         }
       }
     });
-    return accountModel.getByFacebookId(facebookId);
+
+    if (opts) {
+      yield accountModel.update({facebookId: facebookId}, {$set: opts});
+    }
+
+    return yield accountModel.getByFacebookId(facebookId);
   }
 };

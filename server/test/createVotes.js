@@ -5,21 +5,30 @@ const voteModel = require('../app/models/vote');
 const traitTemplateModel = require('../app/models/traitTemplate');
 const co = require('co');
 const expect = require('expect.js');
+const testUtils = require('./testUtils');
 
 describe('createVotes', function() {
-  var traitTemplate = {
+  let MOCK_USER;
+  const traitTemplate = {
     id: 'test',
     comparisons: ['this is a comparison']
   };
 
-  beforeEach(function() {
-    traitTemplateModel.addOrUpdate(traitTemplate);
+  beforeEach(function(cb) {
+    co(function* () {
+      yield testUtils.clearUsers();
+      yield traitTemplateModel.addOrUpdate(traitTemplate);
+      MOCK_USER = yield testUtils.createTestUser(null, null, {
+        friends: ['1', '2', '3', '4']
+      });
+      cb();
+    });
   });
 
   it('should add votes', function(done) {
-    var TEMPLATE_ID = traitTemplate.id;
+    const TEMPLATE_ID = traitTemplate.id;
     co(function* () {
-      yield createVotes(['1', '2', '3', '4'], TEMPLATE_ID);
+      yield createVotes(MOCK_USER.facebookId);
       const votes = yield voteModel.query({
         traitTemplateId: TEMPLATE_ID
       });

@@ -4,13 +4,15 @@ const voteModel = require('../models/vote');
 const accountModel = require('../models/account');
 const traitTemplateModel = require('../models/traitTemplate');
 const _ = require('lodash');
-const defaultTraits = require('../../bin/traits');
+//const defaultTraits = require('../../bin/traits');
 
 module.exports = function* (facebookId) {
   const user = yield accountModel.getByFacebookId(facebookId);
-  const templates = yield traitTemplateModel.query({
-    id: { $in: _.map(defaultTraits, 'template.id') }
-  });
+  const templates = yield traitTemplateModel.query({});
+
+  if (_.isEmpty(templates)) {
+    throw new Error('missing default traits, please run addTraits');
+  }
 
   var votes = _.reduce(user.friends, function(total, accountId, key, coll) {
     var unmatchedAccountIds = coll.slice(key + 1);
@@ -26,6 +28,6 @@ module.exports = function* (facebookId) {
     });
     return total.concat(newVotes);
   }, []);
-
+  console.log(votes);
   yield voteModel.bulkAdd(_.flatten(votes));
 };

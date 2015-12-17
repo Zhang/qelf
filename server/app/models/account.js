@@ -29,7 +29,8 @@ module.exports = {
   getByFacebookId: getByFacebookId,
   getFriends: getFriends,
   getPicture: getPicture,
-  update: modelCRUD.updateById,
+  updateById: modelCRUD.updateById,
+  update: modelCRUD.update,
   //FOR TESTING ONLY
   clear: function* () {
     yield collection.remove({});

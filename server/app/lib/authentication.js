@@ -27,7 +27,7 @@ passport.use(new FacebookStrategy({
     console.log(accessToken, refreshToken, profile);
     let account = yield accountModel.getByFacebookId(profile.id);
     if (account.accessToken !== accessToken) {
-      account = yield accountModel.update(account.id, {
+      account = yield accountModel.updateById(account.id, {
         accessToken: accessToken
       });
     }
