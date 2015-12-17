@@ -24,7 +24,7 @@ const getFriends = function* getFriends(facebookId, access_token) {
 };
 
 const getPicture = function* getPicture(facebookId, access_token) {
-  const res = yield get(facebookId, access_token, 'picture', {redirect: false});
+  const res = yield get(facebookId, access_token, 'picture', {type: 'large', redirect: false});
   return res.data.url;
 };
 

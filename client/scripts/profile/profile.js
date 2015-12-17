@@ -43,6 +43,7 @@
     };
     $scope.mainTrait = { sizeX: 2, sizeY: 2, row: 0, col: 0 };
     $scope.categoryPicker = { sizeX: 2, sizeY: 1, row: 2, col: 0 };
+    $('#profile-picture').css('background-image', 'url(' + $rootScope.user.profilePicture + ')');
   });
   module.directive('traitCard', function() {
     return {

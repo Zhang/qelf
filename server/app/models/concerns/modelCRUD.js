@@ -14,6 +14,9 @@ function validate(obj, schema, collectionName) {
 }
 
 module.exports = function(collectionName, collection, schema) {
+  function bulkUpdate(ids, updateParams) {
+    return collection.update({id: {$in: ids}}, updateParams, {multi: true});
+  }
   return {
     bulkInsert: function* bulkInsert(toAdd) {
       var toAddWithIds = (function() {
@@ -49,11 +52,9 @@ module.exports = function(collectionName, collection, schema) {
     get: function get(id) {
       return collection.findOne({id: id});
     },
-    bulkUpdate: function bulkUpdate(ids, updateParams) {
-      return collection.update({id: {$in: ids}}, updateParams, {multi: true});
-    },
+    bulkUpdate: bulkUpdate,
     updateById: function updateById(id, updateParams) {
-      return this.bulkUpdate([id], updateParams);
+      return bulkUpdate([id], updateParams);
     },
     query: function query(params) {
       params = params || {};
