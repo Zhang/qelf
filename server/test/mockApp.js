@@ -15,7 +15,17 @@ const mockAuth = {
 const app = proxyquire('../app', {
   './controllers/account': proxyquire('../app/controllers/account', {
     './create': proxyquire('../app/controllers/account/create', {
-      '../../lib/authentication': mockAuth
+      '../../lib/authentication': mockAuth,
+      '../../models/account': proxyquire('../app/models/account', {
+        '../lib/facebook': {
+          getPicture: function* () {
+            return 'test.jpeg';
+          },
+          getFriends: function* () {
+            return [];
+          }
+        }
+      })
     })
   }),
   './login': proxyquire('../app/login', {

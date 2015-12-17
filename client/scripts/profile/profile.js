@@ -20,6 +20,7 @@
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       $scope.traits = res.data;
     });
+
     $scope.gridsterOpts = {
         columns: 3, // the width of the grid, in columns
         floating: true, // whether to automatically float items up so they stack (you can temporarily disable if you are adding unsorted items with ng-repeat)

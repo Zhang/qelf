@@ -14,14 +14,17 @@ const create = function* create() {
   const facebookId = body.facebookId;
   const accessToken = body.access_token;
   const DEFAULT_TRAITS = _.map(['trustworthiness', 'scott'], traitModel.newTrait);
+
   const defaultTraits = yield traitModel.addBulk(DEFAULT_TRAITS);
-  const friends = yield accountModel.getFriends(facebookId);
+  const friends = yield accountModel.getFriends(facebookId, accessToken);
+  const profilePicture = yield accountModel.getPicture(facebookId, accessToken);
 
   yield accountModel.add({
     facebookId: facebookId,
     traits: _.map(defaultTraits, 'id'),
     friends: friends,
-    accessToken: accessToken
+    accessToken: accessToken,
+    profilePicture: profilePicture
   });
 
   yield authentication.login.call(this);

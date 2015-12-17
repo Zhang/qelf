@@ -7,7 +7,17 @@ const createAccount = proxyquire('../app/controllers/account/create', {
     login: function* () {
       this.status = 200;
     }
-  }
+  },
+  '../../models/account': proxyquire('../app/models/account', {
+    '../lib/facebook': {
+      getPicture: function* () {
+        return 'test.jpeg';
+      },
+      getFriends: function* () {
+        return [];
+      }
+    }
+  })
 });
 
 module.exports = {
