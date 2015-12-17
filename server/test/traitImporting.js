@@ -1,29 +1,19 @@
 'use strict';
 
 const trustworthiness = require('../bin/traits/trustworthiness');
-const addTraits = require('../bin/traits');
+const traits = require('../bin/traits');
 const expect = require('expect.js');
 const co = require('co');
 
-xdescribe('Trait Importing', function() {
+describe('Trait Importing', function() {
   describe('Adding Traits', function() {
     it('should add traits', function(done) {
       co(function *() {
-        addTraits(
-          co(function *(err) {
-            expect(err).to.be(undefined);
-            const addedTrait = yield trustworthiness.model.get(trustworthiness.template.id);
-            return addedTrait;
-          })
-          .then(function resolve(res) {
-            expect(res.id).to.be.ok();
-            expect(res.comparisons).to.have.length(trustworthiness.template.comparisons.length);
-            done();
-          }, function reject(err) {
-            console.log(err);
-            throw err;
-          })
-        );
+        traits.addDefault();
+        const addedTrait = yield trustworthiness.model.get(trustworthiness.template.id);
+        expect(addedTrait.id).to.be(trustworthiness.template.id);
+        expect(addedTrait.comparisons).to.have.length(trustworthiness.template.comparisons.length);
+        done();
       });
     });
   });
