@@ -2,9 +2,7 @@
 
 const traitModel = require('../../models/trait');
 const accountModel = require('../../models/account');
-/**
- * Find a photo by ID.
- */
+
 const query = function* query() {
   const facebookId = this.params.facebookId;
   const account = yield accountModel.getByFacebookId(facebookId);

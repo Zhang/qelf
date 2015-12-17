@@ -26,6 +26,7 @@ authentication.initialize(app);
  * Routes.
  */
 app.use(mount('/login', require('./login')));
+app.use(mount('/mock/login', require('./mock')));
 app.use(mount('/account', require('./controllers/account')));
 app.use(mount('/trait', require('./controllers/trait')));
 app.use(mount('/feedback', require('./controllers/feedback')));

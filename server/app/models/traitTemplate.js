@@ -14,5 +14,6 @@ const modelCRUD = require('./concerns/modelCRUD')('traitTemplate', collection, T
 
 module.exports = {
   addOrUpdate: modelCRUD.addOrUpdate,
-  get: modelCRUD.get
+  get: modelCRUD.get,
+  query: modelCRUD.query
 };

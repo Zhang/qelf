@@ -2,26 +2,23 @@
 
 const _ = require('lodash');
 const fs = require('fs');
-const q = require('q');
+const co = require('co');
 
-function getFiles() {
-  var deferred = q.defer();
-  fs.readdir(__dirname, function(err, files) {
-    console.log(err, files);
-    if (err) return deferred.reject(err);
-    deferred.resolve(files);
-  });
-  return deferred.promise;
-}
-
-module.exports = function *() {
-  const files = yield getFiles().then(function(res) {
-    return res;
-  });
-    console.log(files);
-  _.map(files, function *(file) {
+let defaultTraits;
+fs.readdirSync(__dirname, function(err, files) {
+  defaultTraits = _.map(files, function(file) {
     if (file === 'index.js') return;
-    const traitConfig = require('./' + file);
-    const added = yield traitConfig.model.addOrUpdate(traitConfig.template);
+    return require('./' + file);
   });
+});
+
+module.exports = {
+  defaultTraits: defaultTraits,
+  addDefault: function() {
+    _.each(defaultTraits, function(traitConfig) {
+      co(function* () {
+        yield traitConfig.model.addOrUpdate(traitConfig.template);
+      });
+    });
+  }
 };
