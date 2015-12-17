@@ -15,7 +15,7 @@ function validate(obj, schema, collectionName) {
 
 module.exports = function(collectionName, collection, schema) {
   function bulkUpdate(ids, updateParams) {
-    return collection.update({id: {$in: ids}}, updateParams, {multi: true});
+    return collection.update({id: {$in: ids}}, {$set: updateParams}, {multi: true});
   }
   return {
     bulkInsert: function* bulkInsert(toAdd) {
@@ -57,7 +57,7 @@ module.exports = function(collectionName, collection, schema) {
       return bulkUpdate([id], updateParams);
     },
     update: function* update(query, updateParams) {
-      yield collection.update(query, updateParams);
+      yield collection.update(query, {$set: updateParams});
     },
     query: function query(params) {
       params = params || {};

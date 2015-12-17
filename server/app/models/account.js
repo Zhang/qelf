@@ -4,7 +4,8 @@ const db = require('../db');
 const collection = db.get('account');
 const Joi = require('joi');
 const facebook = require('../lib/facebook');
-console.log(facebook);
+const traitModel = require('./models/trait');
+
 const AccountSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
@@ -21,6 +22,14 @@ const getByFacebookId = function getByFacebookId(facebookId) {
 };
 const getFriends = facebook.getFriends;
 const getPicture = facebook.getPicture;
+const incrementTraitByTemplateId = function* (fbId, templateId, increment) {
+  const acct = yield getByFacebookId(fbId);
+  const trait = traitModel.query({
+    id: {$in: acct.traits},
+    templateId: templateId
+  });
+  trait.incrementTrait(trait.id, increment);
+};
 
 module.exports = {
   add: modelCRUD.create,
@@ -31,6 +40,7 @@ module.exports = {
   getPicture: getPicture,
   updateById: modelCRUD.updateById,
   update: modelCRUD.update,
+  incrementTraitByTemplateId: incrementTraitByTemplateId,
   //FOR TESTING ONLY
   clear: function* () {
     yield collection.remove({});

@@ -36,7 +36,7 @@ module.exports = {
     });
 
     if (opts) {
-      yield accountModel.update({facebookId: facebookId}, {$set: opts});
+      yield accountModel.update({facebookId: facebookId}, opts);
     }
 
     return yield accountModel.getByFacebookId(facebookId);

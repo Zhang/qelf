@@ -15,8 +15,16 @@ const VoteSchema = Joi.object().keys({
 
 const modelCRUD = require('./concerns/modelCRUD')('vote', collection, VoteSchema);
 
+const submit = function* submit(id, selected) {
+  yield modelCRUD.updateById(id, {
+    selected: selected
+  });
+};
+
 module.exports = {
   add: modelCRUD.create,
   bulkAdd: modelCRUD.bulkInsert,
-  query: modelCRUD.query
+  query: modelCRUD.query,
+  get: modelCRUD.get,
+  submit: submit
 };
