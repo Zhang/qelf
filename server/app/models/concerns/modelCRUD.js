@@ -33,18 +33,22 @@ module.exports = function(collectionName, collection, schema) {
       return toAddWithIds;
     },
     create: function* create(toAdd) {
-      const existingId = toAdd.id;
-      toAdd.id = existingId || uuid.v4();
+      try {
+        const existingId = toAdd.id;
+        toAdd.id = existingId || uuid.v4();
 
-      validate(toAdd, schema, collectionName);
+        validate(toAdd, schema, collectionName);
 
-      if (existingId) {
-        const existingObj = yield collection.find({id: existingId});
-        if (existingObj) throw new Error('attempted to add duplicate object');
+        if (existingId) {
+          const existingObj = yield collection.find({id: existingId});
+          if (existingObj) throw new Error('attempted to add duplicate object');
+        }
+
+        yield collection.insert(toAdd);
+        return toAdd;
+      } catch (err) {
+        console.error('error attempting to create ' + collectionName + ':', err);
       }
-
-      yield collection.insert(toAdd);
-      return toAdd;
     },
     addOrUpdate: function addOrUpdate(obj) {
       validate(obj, schema, collectionName);

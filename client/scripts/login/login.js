@@ -26,10 +26,8 @@
 
     $scope.fbLogin = function() {
       FBService.getLoginStatus().then(login, function() {
-        SessionAPI.login().then(function resolve() {
-          FBService.login().then(login, function reject(err) {
-            alert(err);
-          });
+        FBService.login().then(login, function reject(err) {
+          alert(err);
         });
       });
     };

@@ -17,9 +17,11 @@
       cache: false,
       controller: 'Frame',
       resolve: {
-        CurrentUser: function(AccountAPI, $rootScope) {
-          return AccountAPI.getCurrentUser().then(function(res) {
+        CurrentUser: function(AccountAPI, $rootScope, $state) {
+          return AccountAPI.getCurrentUser().then(function resolve(res) {
             $rootScope.user = res.data;
+          }, function reject() {
+            $state.go(STATE.login);
           });
         }
       }

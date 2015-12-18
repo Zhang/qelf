@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../db');
-const collection = db.get('feedback');
+const collection = db.get('completedVotes');
 const Joi = require('joi');
 
 const CompletedVotesSchema = Joi.object().keys({
@@ -23,11 +23,14 @@ const getByFacebookId = function getByFacebookId(facebookId) {
   return collection.findOne({facebookId: facebookId});
 };
 const createForAcct = function* createForAcct(fbId) {
-  yield modelCRUD.create({
+  console.log(modelCRUD.create);
+  const created = yield modelCRUD.create({
     facebookId: fbId,
     complete: []
   });
+  return created;
 };
+
 module.exports = {
   add: modelCRUD.create,
   push: push,

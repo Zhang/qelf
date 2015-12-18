@@ -23,7 +23,7 @@ const create = function* create() {
       profile: accountModel.getProfile(facebookId, accessToken),
       completedVotes: completedVotesModel.createForAcct(facebookId)
     };
-
+    console.log(acctOpts.completedVotes);
     yield accountModel.add({
       facebookId: facebookId,
       traits: _.map(acctOpts.defaultTraits, 'id'),
