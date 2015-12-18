@@ -17,15 +17,17 @@ const submit = function* submit() {
   const voterFbId = body.facebookId;
   const selected = body.selected;
 
-  yield voteModel.submit(voteId, selected);
-  const vote = yield voteModel.get(voteId);
+  const values = yield {
+    submit: voteModel.submit(voteId, selected),
+    vote: voteModel.get(voteId)
+  };
+
+  const vote = values.vote;
   const templateId = vote.traitTemplateId;
 
-  _.each(vote.contestants, function(fbId) {
-    co(function*() {
-      yield accountModel.incrementTraitByTemplateId(fbId, templateId, fbId === selected, vote);
-    });
-  });
+  yield [_.map(vote.contestants, function(fbId) {
+    return accountModel.incrementTraitByTemplateId(fbId, templateId, fbId === selected, vote);
+  })];
 
   yield completedModel.push(voterFbId, vote);
   this.status = 200;

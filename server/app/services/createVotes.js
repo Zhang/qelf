@@ -6,8 +6,9 @@ const traitTemplateModel = require('../models/traitTemplate');
 const _ = require('lodash');
 
 module.exports = function* (facebookId) {
-  const user = yield accountModel.getByFacebookId(facebookId);
-  const templates = yield traitTemplateModel.query({});
+  const values = yield [accountModel.getByFacebookId(facebookId), yield traitTemplateModel.query({})];
+  const user = values[0];
+  const templates = values[1];
 
   if (_.isEmpty(templates)) {
     throw new Error('missing default traits, please run addTraits');

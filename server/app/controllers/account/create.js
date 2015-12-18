@@ -15,30 +15,29 @@ const create = function* create() {
   const facebookId = body.facebookId;
   const accessToken = body.access_token;
   const DEFAULT_TRAITS = _.map(['trustworthiness', 'scott'], traitModel.newTrait);
-
-  let defaultTraits;
-  let facebookPresence;
-
-  yield [
-    defaultTraits = traitModel.addBulk(DEFAULT_TRAITS),
-    facebookPresence = yield {
+  try {
+    const acctOpts = yield {
+      defaultTraits: traitModel.addBulk(DEFAULT_TRAITS),
       friends: accountModel.getFriends(facebookId, accessToken),
       picture: accountModel.getPicture(facebookId, accessToken),
-      profile: accountModel.getProfile(facebookId, accessToken)
-    },
-    completedVotesModel.createForAcct(facebookId)
-  ];
+      profile: accountModel.getProfile(facebookId, accessToken),
+      completedVotes: completedVotesModel.createForAcct(facebookId)
+    };
 
-  yield accountModel.add({
-    facebookId: facebookId,
-    traits: _.map(defaultTraits, 'id'),
-    friends: facebookPresence.friends,
-    accessToken: accessToken,
-    profilePicture: facebookPresence.picture,
-    name: facebookPresence.profile.name
-  });
+    yield accountModel.add({
+      facebookId: facebookId,
+      traits: _.map(acctOpts.defaultTraits, 'id'),
+      friends: acctOpts.friends,
+      accessToken: accessToken,
+      profilePicture: acctOpts.picture,
+      name: acctOpts.profile.name
+    });
 
-  yield authentication.login.call(this);
+    yield authentication.login.call(this);
+  } catch(err) {
+    console.error(err);
+    this.status = 500;
+  }
 };
 
 /**
