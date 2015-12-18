@@ -23,23 +23,35 @@ describe('/vote', function() {
   const id2 = 'friend2';
 
   beforeEach(function(cb) {
+    request = agent(http.createServer(app.callback()));
     co(function* () {
-      request = agent(http.createServer(app.callback()));
-      mockUser = yield testUtils.createTestUser(null, null, {
-        friends: [id1, id2]
-      });
       const traitTemplateId = '1';
-      trait1 = yield testUtils.createTrait(traitTemplateId);
-      trait2 = yield testUtils.createTrait(traitTemplateId);
-      testUtils.createTraitTemplate(traitTemplateId, ['comparison1']);
-      friend1 = yield testUtils.createTestUser(id1, null, {
-        traits: [trait1.id]
-      });
-      friend2 = yield testUtils.createTestUser(id2, null, {
-        traits: [trait2.id]
-      });
+      const setup = yield {
+        mockUser: testUtils.createTestUser(null, null, {
+          friends: [id1, id2]
+        }),
+        trait1: testUtils.createTrait(traitTemplateId),
+        trait2: testUtils.createTrait(traitTemplateId),
+        template: testUtils.createTraitTemplate(traitTemplateId, ['comparison1'])
+      };
+      mockUser = setup.mockUser;
+      trait1 = setup.trait1;
+      trait2 = setup.trait2;
+
+      const setupFriends = yield [
+        testUtils.createTestUser(id1, null, {
+          traits: [trait1.id]
+        }),
+        testUtils.createTestUser(id2, null, {
+          traits: [trait2.id]
+        })
+      ];
+      friend1 = setupFriends[0];
+      friend2 = setupFriends[1];
 
       cb();
+    }).catch(function(err) {
+      console.error(err);
     });
   });
 
