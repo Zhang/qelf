@@ -11,7 +11,7 @@ const traitModel = require('../app/models/trait');
 const testUtils = require('./testUtils');
 const co = require('co');
 
-describe('/votes', function() {
+describe('/vote', function() {
   beforeEach(testUtils.clearAll);
   let request;
   let mockUser;
@@ -47,10 +47,10 @@ describe('/votes', function() {
     });
   });
 
-  describe('POST /votes/:id', function() {
+  describe('POST /vote/:id', function() {
     it('should complete a vote', function(done) {
       request
-        .post('/votes/' + testVote.id)
+        .post('/vote/' + testVote.id)
         .send({
           facebookId: mockUser.facebookId,
           selected: id1

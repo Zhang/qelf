@@ -15,6 +15,11 @@ const createAccount = proxyquire('../app/controllers/account/create', {
       },
       getFriends: function* () {
         return [];
+      },
+      getProfile: function* () {
+        return {
+          name: 'test'
+        };
       }
     }
   })

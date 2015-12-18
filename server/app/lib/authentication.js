@@ -9,6 +9,7 @@ const FacebookStrategy = require('passport-facebook-token');
 const co = require('co');
 
 passport.serializeUser(function(user, done) {
+  console.log('serializeUser', user);
   done(null, user.id);
 });
 

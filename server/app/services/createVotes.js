@@ -13,6 +13,10 @@ module.exports = function* (facebookId) {
     throw new Error('missing default traits, please run addTraits');
   }
 
+  if (user.friends.length < 2) {
+    throw new Error('Not enough friends');
+  }
+
   var votes = _.reduce(user.friends, function(total, accountId, key, coll) {
     var unmatchedAccountIds = coll.slice(key + 1);
     var newVotes = _.map(unmatchedAccountIds, function(acctId) {

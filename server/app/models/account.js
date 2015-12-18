@@ -9,6 +9,7 @@ const traitModel = require('./trait');
 const AccountSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
+  name: Joi.string().required(),
   facebookId: Joi.string().required(),
   accessToken: Joi.string().required(),
   friends: Joi.array(Joi.string().description('id of other account objects')).items().required(),
@@ -22,6 +23,8 @@ const getByFacebookId = function getByFacebookId(facebookId) {
 };
 const getFriends = facebook.getFriends;
 const getPicture = facebook.getPicture;
+const getProfile = facebook.getProfile;
+
 const incrementTraitByTemplateId = function* (fbId, templateId, increment, vote) {
   const acct = yield getByFacebookId(fbId);
   const trait = yield traitModel.getFromArrByTemplateId(acct.traits, templateId);
@@ -36,7 +39,7 @@ const add = function* add(toAdd) {
 
   if (existingUser) {
     this.status = 400;
-    throw new Error('attempting to add duplicate user');
+    throw new Error('attempting to add duplicate user', existingUser);
   }
   const added = yield modelCRUD.create(toAdd);
   return added;
@@ -52,6 +55,7 @@ module.exports = {
   updateById: modelCRUD.updateById,
   update: modelCRUD.update,
   incrementTraitByTemplateId: incrementTraitByTemplateId,
+  getProfile: getProfile,
   //FOR TESTING ONLY
   clear: function* () {
     yield collection.remove({});

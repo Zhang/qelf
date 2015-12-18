@@ -9,7 +9,7 @@ const get = function* (fbId, access_token, route, opts) {
     access_token: access_token
   }, opts || {});
   const options = {
-      url: 'https://' + FB_API_HOST + fbId + '/' + route,
+      url: 'https://' + FB_API_HOST + fbId + (route ? '/' + route : ''),
       qs: qs,
       headers: { 'User-Agent': 'request' }
   };
@@ -28,7 +28,13 @@ const getPicture = function* getPicture(facebookId, access_token) {
   return res.data.url;
 };
 
+const getProfile = function* getProfile(facebookId, access_token) {
+  const res = yield get(facebookId, access_token, '');
+  return res;
+};
+
 module.exports = {
   getPicture: getPicture,
-  getFriends: getFriends
+  getFriends: getFriends,
+  getProfile: getProfile
 };

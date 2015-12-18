@@ -53,4 +53,12 @@
       }
     };
   });
+
+  module.service('VoteAPI', function(HttpHelper) {
+    return {
+      getForUser: function(facebookId) {
+        return HttpHelper.get('vote/' + facebookId);
+      }
+    };
+  });
 })();

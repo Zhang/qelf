@@ -19,6 +19,7 @@ const create = function* create() {
   const defaultTraits = yield traitModel.addBulk(DEFAULT_TRAITS);
   const friends = yield accountModel.getFriends(facebookId, accessToken);
   const profilePicture = yield accountModel.getPicture(facebookId, accessToken);
+  const profile = yield accountModel.getProfile(facebookId, accessToken);
   yield completedVotesModel.createForAcct(facebookId);
 
   yield accountModel.add({
@@ -26,7 +27,8 @@ const create = function* create() {
     traits: _.map(defaultTraits, 'id'),
     friends: friends,
     accessToken: accessToken,
-    profilePicture: profilePicture
+    profilePicture: profilePicture,
+    name: profile.name
   });
 
   yield authentication.login.call(this);
