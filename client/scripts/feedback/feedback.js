@@ -15,11 +15,11 @@
   module.controller('Feedback', function($scope, FeedbackAPI) {
     $scope.feedbacks = [{
       contestants: [{
-          img: 'assets/tdown.png',
+          profilePicture: 'assets/tdown.png',
           name: 'Please don\'t contact me about this feedback'
         },
         {
-          img: 'assets/tup.png',
+          profilePicture: 'assets/tup.png',
           name: 'Feel free to contact me about this feedback'
         }
       ],

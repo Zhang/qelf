@@ -16,21 +16,26 @@ const submit = function* submit() {
   const voteId = this.params.id;
   const voterFbId = body.facebookId;
   const selected = body.selected;
+  try {
+    const values = yield {
+      submit: voteModel.submit(voteId, selected),
+      vote: voteModel.get(voteId)
+    };
 
-  const values = yield {
-    submit: voteModel.submit(voteId, selected),
-    vote: voteModel.get(voteId)
-  };
+    const vote = values.vote;
+    const templateId = vote.traitTemplateId;
 
-  const vote = values.vote;
-  const templateId = vote.traitTemplateId;
+    yield [_.map(vote.contestants, function(fbId) {
+      return accountModel.incrementTraitByTemplateId(fbId, templateId, fbId === selected, vote);
+    })];
 
-  yield [_.map(vote.contestants, function(fbId) {
-    return accountModel.incrementTraitByTemplateId(fbId, templateId, fbId === selected, vote);
-  })];
-
-  yield completedModel.push(voterFbId, vote);
-  this.status = 200;
+    vote.selected = selected;
+    yield completedModel.push(voterFbId, vote);
+    this.status = 200;
+  } catch(err) {
+    console.error(err);
+    this.status = 500;
+  }
 };
 
 /**

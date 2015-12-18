@@ -55,6 +55,13 @@
           }
         });
         return deferred.promise;
+      },
+      logout: function() {
+        var deferred = $q.defer();
+        FB.logout(function() {
+          deferred.resolve();
+        });
+        return deferred.promise;
       }
     };
   });

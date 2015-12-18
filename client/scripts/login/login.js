@@ -32,16 +32,20 @@
       });
     };
 
-    $scope.signup = function() {
+    function signup() {
       FBService.login().then(function resolve(res) {
         AccountAPI.create(res.userID, res.accessToken).then(function resolve() {
           $state.go(STATE.voting);
         }, function reject() {
           alert('failure');
         });
-      }, function reject(err) {
-        alert(err);
-      });
+      }, function reject(res) { alert('failure', res); });
+    }
+
+    $scope.signup = function() {
+      FBService.getLoginStatus().then(function loggedIn() {
+        FBService.logout().then(signup);
+      }, signup);
     };
 
     $scope.toSignup = function() {

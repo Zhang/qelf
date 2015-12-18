@@ -23,12 +23,10 @@ const getByFacebookId = function getByFacebookId(facebookId) {
   return collection.findOne({facebookId: facebookId});
 };
 const createForAcct = function* createForAcct(fbId) {
-  console.log(modelCRUD.create);
-  const created = yield modelCRUD.create({
+  yield modelCRUD.create({
     facebookId: fbId,
     complete: []
   });
-  return created;
 };
 
 module.exports = {

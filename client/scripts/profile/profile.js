@@ -53,7 +53,7 @@
       templateUrl: 'scripts/profile/traitCard.html',
       link: function($scope) {
         $scope.score = (function getValidScore() {
-          return $scope.trait.total <= 4 ? 'Not Enough Votes' : Math.ceil(($scope.trait.count/$scope.trait.total) * 100) + '%';
+          return $scope.trait.total.length <= 4 ? 'Not Enough Votes' : Math.ceil(($scope.trait.count/$scope.trait.total) * 100) + '%';
         })();
       }
     };
