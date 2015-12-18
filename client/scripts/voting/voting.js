@@ -30,7 +30,11 @@
 
   module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI) {
     VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
-      $scope.cardManager = new CardManager(res.data);
+      if (_.isEmpty(res.data)) {
+        $scope.emptyVotes = true;
+      } else {
+        $scope.cardManager = new CardManager(res.data);
+      }
     });
     $scope.trait = {
       title: 'Trustworthiness'

@@ -1,5 +1,6 @@
 <div class="voting-container">
   <div class="votes">
-    <card trait="trait" on-right="swipe('right')" on-left="swipe('left')" ng-repeat="card in cardManager.display" contestants="card.contestants"></card>
+    <div class="empty-state" ng-if="emptyVotes">Please add more friends!</div>
+    <card ng-if="!emptyVotes" trait="trait" on-right="swipe('right')" on-left="swipe('left')" ng-repeat="card in cardManager.display" contestants="card.contestants"></card>
   </div>
 </div>

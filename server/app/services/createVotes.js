@@ -14,7 +14,8 @@ module.exports = function* (facebookId) {
   }
 
   if (user.friends.length < 2) {
-    throw new Error('Not enough friends');
+    console.log('Not enough friends');
+    return [];
   }
 
   var votes = _.reduce(user.friends, function(total, accountId, key, coll) {
@@ -29,8 +30,10 @@ module.exports = function* (facebookId) {
         };
       });
     });
+
     return total.concat(newVotes);
   }, []);
 
-  yield voteModel.bulkAdd(_.flatten(votes));
+  const added = yield voteModel.bulkAdd(_.flatten(votes));
+  return added;
 };

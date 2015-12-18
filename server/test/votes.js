@@ -10,6 +10,7 @@ const completedVotesModel = require('../app/models/completedVotes');
 const traitModel = require('../app/models/trait');
 const testUtils = require('./testUtils');
 const co = require('co');
+const _ = require('lodash');
 
 describe('/vote', function() {
   beforeEach(testUtils.clearAll);
@@ -17,13 +18,12 @@ describe('/vote', function() {
   let mockUser;
   let friend1;
   let friend2;
-  let testVote;
   let trait1;
   let trait2;
   const id1 = 'friend1';
   const id2 = 'friend2';
 
-  beforeEach(function(done) {
+  beforeEach(function(cb) {
     co(function* () {
       request = agent(http.createServer(app.callback()));
       mockUser = yield testUtils.createTestUser(null, null, {
@@ -40,15 +40,21 @@ describe('/vote', function() {
         traits: [trait2.id]
       });
 
-      yield createVotes(mockUser.facebookId);
-      const votes = yield voteModel.query({});
-      testVote = votes[0];
-      done();
+      cb();
     });
   });
 
   describe('POST /vote/:id', function() {
-    it('should complete a vote', function(done) {
+    let testVote;
+    beforeEach(function(cb) {
+      co(function* () {
+        yield createVotes(mockUser.facebookId);
+        const votes = yield voteModel.query({});
+        testVote = votes[0];
+        cb();
+      });
+    });
+    it('should complete a vote', function(cb) {
       request
         .post('/vote/' + testVote.id)
         .send({
@@ -67,14 +73,28 @@ describe('/vote', function() {
             expect(losingTrait.total).to.have.length(1);
 
             const completedVotes = yield completedVotesModel.getByFacebookId(mockUser.facebookId);
-            console.log('heyc', completedVotes);
             expect(completedVotes.complete).to.have.length(1);
             expect(completedVotes.complete[0].id).to.be(testVote.id);
 
-            done();
+            cb();
           }).catch(function(err) {
             console.log(err);
           });
+        });
+    });
+  });
+  describe('GET /vote/:facebookId', function() {
+    it('should return an array of incomplete votes', function(cb) {
+      request
+        .get('/vote/' + mockUser.facebookId)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) throw err;
+          const votes = res.body;
+          expect(votes).to.have.length(1);
+          expect(votes[0].contestants).to.have.length(2);
+
+          cb();
         });
     });
   });
