@@ -23,15 +23,26 @@ const getByFacebookId = function getByFacebookId(facebookId) {
 const getFriends = facebook.getFriends;
 const getPicture = facebook.getPicture;
 const incrementTraitByTemplateId = function* (fbId, templateId, increment, vote) {
-  console.log(fbId);
   const acct = yield getByFacebookId(fbId);
   const trait = yield traitModel.getFromArrByTemplateId(acct.traits, templateId);
 
   yield traitModel.incrementTrait(trait.id, increment, vote);
 };
 
+const add = function* add(toAdd) {
+  const existingUser = collection.findOne({
+    facebookId: toAdd.facebookId
+  });
+  if (existingUser) {
+    this.status = 400;
+    throw new Error('attempting to add duplicate user');
+  }
+  const added = yield modelCRUD.create(toAdd);
+  return added;
+};
+
 module.exports = {
-  add: modelCRUD.create,
+  add: add,
   get: modelCRUD.get,
   query: modelCRUD.query,
   getByFacebookId: getByFacebookId,

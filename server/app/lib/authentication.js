@@ -24,7 +24,6 @@ passport.use(new FacebookStrategy({
   clientSecret: '6b4b58114c18d90a2c5f62bb98f595c4', //FACEBOOK_APP_SECRET
 }, function (accessToken, refreshToken, profile, done) {
   co(function* () {
-    console.log(accessToken, refreshToken, profile);
     let account = yield accountModel.getByFacebookId(profile.id);
     if (account.accessToken !== accessToken) {
       account = yield accountModel.updateById(account.id, {
