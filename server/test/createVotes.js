@@ -8,6 +8,8 @@ const expect = require('expect.js');
 const testUtils = require('./testUtils');
 
 describe('createVotes', function() {
+  beforeEach(testUtils.clearAll);
+
   let MOCK_USER;
   const traitTemplate = {
     id: 'test',
@@ -16,7 +18,6 @@ describe('createVotes', function() {
 
   beforeEach(function(cb) {
     co(function* () {
-      yield testUtils.clearUsers();
       yield traitTemplateModel.addOrUpdate(traitTemplate);
       MOCK_USER = yield testUtils.createTestUser(null, null, {
         friends: ['1', '2', '3', '4']

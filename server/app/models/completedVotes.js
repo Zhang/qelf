@@ -32,5 +32,10 @@ module.exports = {
   add: modelCRUD.create,
   push: push,
   createForAcct: createForAcct,
-  getByFacebookId: getByFacebookId
+  getByFacebookId: getByFacebookId,
+  query: modelCRUD.query,
+  //FOR TESTING ONLY
+  clear: function* () {
+    yield collection.remove({});
+  }
 };

@@ -1,21 +1,16 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-
 const agent = require('supertest').agent;
 const app = require('./mockApp');
 const http = require('http');
 const uuid = require('uuid');
 const expect = require('expect.js');
-/**
- * Tests.
- */
+const testUtils = require('./testUtils');
 
 describe('/account', function() {
-  let request;
+  beforeEach(testUtils.clearAll);
 
+  let request;
   beforeEach(function() {
     request = agent(http.createServer(app.callback()));
   });

@@ -20,11 +20,21 @@ const createAccount = proxyquire('../app/controllers/account/create', {
   })
 });
 const traitModel = require('../app/models/trait');
+const voteModel = require('../app/models/vote');
+const completedVotesModel = require('../app/models/completedVotes');
 const traitTemplateModel = require('../app/models/traitTemplate');
+const co = require('co');
 
 module.exports = {
-  clearUsers: function* () {
-    yield accountModel.clear();
+  clearAll: function(cb) {
+    co(function* () {
+      yield accountModel.clear();
+      yield traitModel.clear();
+      yield traitTemplateModel.clear();
+      yield voteModel.clear();
+      yield completedVotesModel.clear();
+      cb();
+    }).catch(function(err) { console.log(err); });
   },
   createTestUser: function* (_facebookId, accessToken, opts) {
     const facebookId = _facebookId || 'test';

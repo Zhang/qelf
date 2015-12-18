@@ -4,8 +4,10 @@ const trustworthiness = require('../bin/traits/trustworthiness');
 const traits = require('../bin/traits');
 const expect = require('expect.js');
 const co = require('co');
+const testUtils = require('./testUtils');
 
 describe('Trait Importing', function() {
+  beforeEach(testUtils.clearAll);
   describe('Adding Traits', function() {
     it('should add traits', function(done) {
       co(function *() {

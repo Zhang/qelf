@@ -7,11 +7,10 @@
 const agent = require('supertest').agent;
 const app = require('./mockApp');
 const http = require('http');
-/**
- * Tests.
- */
+const testUtils = require('./testUtils');
 
 describe('/feedback', function() {
+  beforeEach(testUtils.clearAll);
   let request;
 
   beforeEach(function () {

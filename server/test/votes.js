@@ -12,6 +12,7 @@ const testUtils = require('./testUtils');
 const co = require('co');
 
 describe('/votes', function() {
+  beforeEach(testUtils.clearAll);
   let request;
   let mockUser;
   let friend1;
@@ -22,14 +23,9 @@ describe('/votes', function() {
   const id1 = 'friend1';
   const id2 = 'friend2';
 
-  beforeEach(function() {
-    request = agent(http.createServer(app.callback()));
-  });
-
   beforeEach(function(done) {
     co(function* () {
-
-      yield testUtils.clearUsers();
+      request = agent(http.createServer(app.callback()));
       mockUser = yield testUtils.createTestUser(null, null, {
         friends: [id1, id2]
       });
@@ -71,6 +67,7 @@ describe('/votes', function() {
             expect(losingTrait.total).to.have.length(1);
 
             const completedVotes = yield completedVotesModel.getByFacebookId(mockUser.facebookId);
+            console.log('heyc', completedVotes);
             expect(completedVotes.complete).to.have.length(1);
             expect(completedVotes.complete[0].id).to.be(testVote.id);
 

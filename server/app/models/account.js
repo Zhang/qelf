@@ -23,6 +23,7 @@ const getByFacebookId = function getByFacebookId(facebookId) {
 const getFriends = facebook.getFriends;
 const getPicture = facebook.getPicture;
 const incrementTraitByTemplateId = function* (fbId, templateId, increment, vote) {
+  console.log(fbId);
   const acct = yield getByFacebookId(fbId);
   const trait = yield traitModel.getFromArrByTemplateId(acct.traits, templateId);
 

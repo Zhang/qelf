@@ -26,5 +26,9 @@ module.exports = {
   bulkAdd: modelCRUD.bulkInsert,
   query: modelCRUD.query,
   get: modelCRUD.get,
-  submit: submit
+  submit: submit,
+  //FOR TESTING ONLY
+  clear: function* () {
+    yield collection.remove({});
+  }
 };

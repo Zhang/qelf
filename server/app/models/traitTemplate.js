@@ -15,5 +15,9 @@ const modelCRUD = require('./concerns/modelCRUD')('traitTemplate', collection, T
 module.exports = {
   addOrUpdate: modelCRUD.addOrUpdate,
   get: modelCRUD.get,
-  query: modelCRUD.query
+  query: modelCRUD.query,
+  //FOR TESTING ONLY
+  clear: function* () {
+    yield collection.remove({});
+  }
 };

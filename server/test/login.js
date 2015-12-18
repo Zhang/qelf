@@ -15,6 +15,8 @@ const co = require('co');
  */
 
 describe('/login', function() {
+  beforeEach(testUtils.clearAll);
+
   let request;
   let MOCK_USER;
   beforeEach(function() {
@@ -23,7 +25,6 @@ describe('/login', function() {
 
   beforeEach(function(done) {
     co(function* () {
-      yield testUtils.clearUsers();
       MOCK_USER = yield testUtils.createTestUser();
       done();
     });

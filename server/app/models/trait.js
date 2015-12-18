@@ -45,5 +45,9 @@ module.exports = {
   addBulk: modelCRUD.bulkInsert,
   query: modelCRUD.query,
   incrementTrait: incrementTrait,
-  getFromArrByTemplateId: getFromArrByTemplateId
+  getFromArrByTemplateId: getFromArrByTemplateId,
+  //FOR TESTING ONLY
+  clear: function* () {
+    yield collection.remove({});
+  }
 };
