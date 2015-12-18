@@ -10,7 +10,6 @@ const completedVotesModel = require('../app/models/completedVotes');
 const traitModel = require('../app/models/trait');
 const testUtils = require('./testUtils');
 const co = require('co');
-const _ = require('lodash');
 
 describe('/vote', function() {
   beforeEach(testUtils.clearAll);

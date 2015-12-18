@@ -221,6 +221,7 @@ div.card .card-content .card-header {
   font-weight: bold;
   color: white;
   align-items: center;
+  text-transform: capitalize;
 }
 div.card .card-content .card-comment {
   margin: 20px 10px 10px 10px;

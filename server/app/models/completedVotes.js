@@ -22,8 +22,8 @@ const push = function push(facebookId, vote) {
 const getByFacebookId = function getByFacebookId(facebookId) {
   return collection.findOne({facebookId: facebookId});
 };
-const createForAcct = function createForAcct(fbId) {
-  return modelCRUD.create({
+const createForAcct = function* createForAcct(fbId) {
+  yield modelCRUD.create({
     facebookId: fbId,
     complete: []
   });

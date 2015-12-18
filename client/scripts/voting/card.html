@@ -1,19 +1,17 @@
 <div class="card">
   <div class="card-content">
-    <div class="card-header" ng-bind="trait.title">
-      HEADER
-    </div>
+    <div class="card-header" ng-bind="vote.traitTemplateId"></div>
     <div class="card-main">
       <div class="card-candidates">
         <span class="vote-left candidate-transitioner">
-          <contestant is-feedback="isFeedback" contestant="contestants[0]"></contestant>
+          <contestant is-feedback="isFeedback" contestant="vote.contestants[0]"></contestant>
         </span
         ><span class="vote-right candidate-transitioner">
-          <contestant is-feedback="isFeedback" contestant="contestants[1]"></contestant>
+          <contestant is-feedback="isFeedback" contestant="vote.contestants[1]"></contestant>
         </span>
     </div>
     <div class="card-comment">
-      <div ng-if="!isFeedback">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of </div>
+      <div ng-if="!isFeedback" ng-bind="vote.comparison"></div>
       <div class="feedback-input-container" ng-if="isFeedback"><textarea ng-model="feedback.text" class="feedback-input"></textarea></div>
     </div>
   </div>

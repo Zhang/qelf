@@ -23,9 +23,7 @@
           name: 'Feel free to contact me about this feedback'
         }
       ],
-      trait: {
-        title: 'Sheen App Feedback'
-      }
+      traitTemplateId: 'Sheen App Feedback'
     }];
 
     $scope.swipe = function(feedback, canContact) {

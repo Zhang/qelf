@@ -177,8 +177,7 @@
         var o = e.gesture.deltaX / -1000;
         var yDiff = e.gesture.deltaY / 1000;
         var isZero = Math.abs(e.gesture.deltaX) < 25 || Math.abs(e.gesture.deltaY < 25);
-        console.log('x', e.gesture.deltaX, 'y', e.gesture.deltaY);
-        this.rotationAngle = Math.atan(o) * (isZero ? .1 : 1);
+        this.rotationAngle = Math.atan(o);
 
         this.x = this.startX + (e.gesture.deltaX * 0.8);
         this.y = this.startY + (e.gesture.deltaY * 0.8);
@@ -205,9 +204,8 @@
       transclude: true,
       replace: true,
       scope: {
-        contestants: '=',
+        vote: '=',
         isFeedback: '=',
-        trait: '=',
         onRight: '&?',
         onLeft: '&?'
       },
@@ -262,12 +260,14 @@
                 if (amt < 0) {
                   $scope.onRight({
                     feedbackText: $scope.feedback.text,
-                    canContact: false
+                    canContact: false,
+                    selected: $scope.vote.contestants[0]
                   });
                 } else {
                   $scope.onLeft({
                     feedbackText: $scope.feedback.text,
-                    canContact: true
+                    canContact: true,
+                    selected: $scope.vote.contestants[1]
                   });
                 }
               });

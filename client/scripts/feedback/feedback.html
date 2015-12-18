@@ -4,9 +4,8 @@
       ng-repeat="feedback in feedbacks"
       on-left="swipe(feedbackText, canContact)"
       on-right="swipe(feedbackText, canContact)"
-      trait="feedback.trait"
-      is-feedback="true"
-      contestants="feedback.contestants">
+      vote="feedback"
+      is-feedback="true">
     </card>
   </div>
 </div>

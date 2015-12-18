@@ -54,10 +54,13 @@
     };
   });
 
-  module.service('VoteAPI', function(HttpHelper) {
+  module.service('VoteAPI', function(HttpHelper, $rootScope) {
     return {
       getForUser: function(facebookId) {
         return HttpHelper.get('vote/' + facebookId);
+      },
+      submit: function(voteId, selectedFbId) {
+        return HttpHelper.post('vote/' + voteId, { facebookId: $rootScope.user.facebookId, selected: selectedFbId });
       }
     };
   });
