@@ -23,6 +23,11 @@ const app = proxyquire('../app', {
           },
           getFriends: function* () {
             return [];
+          },
+          getProfile: function() {
+            return {
+              name: 'test'
+            };
           }
         }
       })
