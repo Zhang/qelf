@@ -30,9 +30,10 @@ const incrementTraitByTemplateId = function* (fbId, templateId, increment, vote)
 };
 
 const add = function* add(toAdd) {
-  const existingUser = collection.findOne({
+  const existingUser = yield collection.findOne({
     facebookId: toAdd.facebookId
   });
+
   if (existingUser) {
     this.status = 400;
     throw new Error('attempting to add duplicate user');
