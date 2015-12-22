@@ -2,7 +2,7 @@
 
 module.exports = {
   template: {
-    id: 'available',
+    id: 'Available',
     comparisons: [
       'I feel like this person is approachable'
     ]

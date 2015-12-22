@@ -2,7 +2,7 @@
 
 module.exports = {
   template: {
-    id: 'clear communicator',
+    id: 'Clear Communicator',
     comparisons: [
       'This person rarely has to repeat their points for me to understand'
     ]

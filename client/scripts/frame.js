@@ -28,7 +28,7 @@
     });
   });
 
-  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, $ionicPopup) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService) {
     $scope.isSelected = function(state) {
       return $state.current.name === STATE[state];
     };
@@ -46,16 +46,8 @@
         });
       });
     };
-
-    $scope.openPopover = function() {
-      var alertPopup = $ionicPopup.alert({
-       title: 'Don\'t eat that!',
-       template: 'It might taste good'
-      });
-
-      alertPopup.then(function() {
-       console.log('Thank you for not eating my delicious ice cream cone');
-      });
-    };
+    $scope.$on('$stateChangeSuccess', function(e, currentState) {
+      $scope.isTrait = currentState.name === STATE.trait;
+    });
   });
 })();

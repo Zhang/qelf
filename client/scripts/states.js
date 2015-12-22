@@ -9,6 +9,7 @@
     frame: 'frame',
     voting: 'frame.voting',
     profile: 'frame.profile',
-    feedback: 'frame.feedback'
+    feedback: 'frame.feedback',
+    trait: 'frame.trait'
   });
 })();

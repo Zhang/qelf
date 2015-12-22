@@ -4,14 +4,11 @@
     <div class="card-main">
       <div class="card-candidates">
         <span class="vote-left candidate-transitioner">
-          <contestant is-feedback="isFeedback" contestant="vote.contestants[0]"></contestant>
+          <contestant contestant="vote.contestants[0]"></contestant>
         </span
         ><span class="vote-right candidate-transitioner">
-          <contestant is-feedback="isFeedback" contestant="vote.contestants[1]"></contestant>
+          <contestant contestant="vote.contestants[1]"></contestant>
         </span>
-    </div>
-    <div ng-if="isFeedback" class="card-comment">
-      <div class="feedback-input-container"><textarea ng-model="feedback.text" class="feedback-input"></textarea></div>
     </div>
   </div>
 </div>

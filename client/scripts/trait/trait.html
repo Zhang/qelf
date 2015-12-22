@@ -1,0 +1,19 @@
+<div class="trait-details-container">
+  <div class="trait-overview-container">
+    <div class="trait-title">
+      {{trait.templateId}}
+    </div>
+    <div class="trait-stats">
+      <div class="trait-metrics">
+        <div class="trait-selected-count">{{trait.count}}</div>
+        <div class="divider"></div>
+        <div class="trait-total-count">{{trait.total.length}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="trait-voted-list">
+    <div ng-repeat="vote in trait.total">
+      <div>{{vote.comparison}}</div>
+    </div>
+  </div>
+</div>

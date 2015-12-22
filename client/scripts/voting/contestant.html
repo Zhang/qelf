@@ -2,14 +2,11 @@
   <div class="candidate-picture">
     <img ng-src="{{contestant.profilePicture}}">
   </div>
-  <div ng-if="!isFeedback" class="candidate-description">
+  <div class="candidate-description">
     <div class="name">{{contestant.name || 'Lucy in the sky with diamonds'}}</div>
     <div class="social-description">
       Age: 29 <br>
       {{contestant.location || 'Mars and the rock under the moon'}}
     </div>
-  </div>
-  <div ng-if="isFeedback" class="candidate-description">
-    <div class="feedback-name" ng-bind="contestant.name"></div>
   </div>
 </div>

@@ -1,16 +1,12 @@
 //Profile page css
-@profile-divider-padding: 10px;
 @profile-overview-width: 57%;
 .profile-container {
-  margin: @profile-divider-padding;
-  height: 84vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  .subview-container-defaults();
 }
 .profile-overview-container {
   width: 100%;
-  height: 30%;
-  padding-bottom: @profile-divider-padding;
+  height: 25%;
+  padding-bottom: @subview-container-margin;
   border-bottom: 1px solid @primary-color;
   .settings {
     float: right;
@@ -44,11 +40,11 @@
     padding-bottom: 5px;
   }
   .overview {
-    padding: 5px;
+    padding: 25px 5px;
   }
 }
 .selector-container {
-  padding: @profile-divider-padding 0;
+  padding: @subview-container-margin 0;
 }
 //Trait card css
 .trait-container {

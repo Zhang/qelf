@@ -50,6 +50,9 @@
     return {
       getForUser: function(facebookId) {
         return HttpHelper.get('trait/query/' + facebookId);
+      },
+      getTrait: function(id) {
+        return HttpHelper.get('trait/' + id);
       }
     };
   });

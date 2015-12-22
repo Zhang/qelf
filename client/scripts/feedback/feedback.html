@@ -1,11 +1,5 @@
-<div class="voting-container">
-  <div class="votes">
-    <card
-      ng-repeat="feedback in feedbacks"
-      on-left="swipe(feedbackText, canContact)"
-      on-right="swipe(feedbackText, canContact)"
-      vote="feedback"
-      is-feedback="true">
-    </card>
-  </div>
+<div class="feedback-container">
+  <div class="feedback-comments"></div>
+  <div class="feedback-text"></div>
+  <div class="feedback-submit"></div>
 </div>

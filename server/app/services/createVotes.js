@@ -63,6 +63,7 @@ module.exports = function* (facebookId) {
 
     return total.concat(newVotes);
   }, []);
+
   const flattenedVotes = _.compact(_.flatten(votes));
   if (_.isEmpty(flattenedVotes)) return;
 

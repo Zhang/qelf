@@ -12,7 +12,8 @@
     'frame',
     'voting',
     'profile',
-    'feedback'
+    'feedback',
+    'trait'
   ]);
 
   module.config(function($compileProvider, $httpProvider, $urlRouterProvider) {

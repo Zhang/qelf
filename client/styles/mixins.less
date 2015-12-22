@@ -39,3 +39,11 @@
   align-items: center;
   justify-content: center;
 }
+
+@subview-container-margin: 10px;
+.subview-container-defaults {
+  margin: @subview-container-margin;
+  height: calc(100% ~"-" 2 ~"*" @subview-container-margin);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

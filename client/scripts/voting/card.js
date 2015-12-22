@@ -42,7 +42,6 @@
       replace: true,
       scope: {
         vote: '=',
-        isFeedback: '=',
         onSubmit: '&?'
       },
       compile: function() {
@@ -60,8 +59,6 @@
               $timeout(function() {
                 var isLeftVote = amt < 0;
                 $scope.onSubmit({
-                  feedbackText: $scope.feedback.text,
-                  canContact: isLeftVote,
                   selected: isLeftVote ? $scope.vote.contestants[0] : $scope.vote.contestants[1]
                 });
               });
@@ -94,8 +91,7 @@
       templateUrl: 'scripts/voting/contestant.html',
       transclude: true,
       scope: {
-        contestant: '=',
-        isFeedback: '='
+        contestant: '='
       }
     };
   });
