@@ -45,6 +45,13 @@ const add = function* add(toAdd) {
   return added;
 };
 
+const addAcctToFriends = function(fbId, friends) {
+  return collection.update(
+    { friends: { $in: friends } },
+    { $push: { friends: fbId } }
+  );
+};
+
 module.exports = {
   add: add,
   get: modelCRUD.get,
@@ -56,6 +63,7 @@ module.exports = {
   update: modelCRUD.update,
   incrementTraitByTemplateId: incrementTraitByTemplateId,
   getProfile: getProfile,
+  addAcctToFriends: addAcctToFriends,
   //FOR TESTING ONLY
   clear: function* () {
     yield collection.remove({});

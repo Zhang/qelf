@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.blank610735;
+package com.example.Votely;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

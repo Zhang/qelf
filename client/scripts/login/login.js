@@ -7,7 +7,7 @@
     $stateProvider
 
     .state(STATE.login, {
-      url: '/',
+      url: '/login',
       templateUrl: 'scripts/login/login.html',
       controller: 'Login',
       cache: false
@@ -17,7 +17,7 @@
   module.controller('Login', function($scope, $state, SessionAPI, STATE, FBService, AccountAPI) {
     $scope.isSignup = false;
     function login(response) {
-      SessionAPI.login(response.accessToken).then(function resolve() {
+      SessionAPI.login(response.userID, response.accessToken).then(function resolve() {
         $state.go(STATE.voting);
       }, function reject() {
         alert('failure');
@@ -25,11 +25,12 @@
     }
 
     $scope.fbLogin = function() {
-      FBService.getLoginStatus().then(login, function() {
-        FBService.login().then(login, function reject(err) {
-          alert(err);
-        });
-      });
+      $state.go(STATE.voting);
+      // FBService.getLoginStatus().then(login, function() {
+      //   FBService.login().then(login, function reject(err) {
+      //     alert(err);
+      //   });
+      // });
     };
 
     function signup() {

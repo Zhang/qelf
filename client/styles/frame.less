@@ -1,6 +1,7 @@
-@navbar-height: 55px;
+@navbar-height: 50px;
 div.frame-container {
   height: 100%;
+  overflow: hidden;
   .view-container {
     @border-height: 1px;
     border-top: @border-height solid transparent;
@@ -14,7 +15,9 @@ div.frame-container {
 
 div.navbar-container {
   height: @navbar-height;
-  background-color: @primary-color;
+  background-color: white;
+  border-bottom: 2px solid @primary-color;
+
   div.title-container {
     height: 100%;
     display: inline-block;
@@ -22,8 +25,8 @@ div.navbar-container {
   .title {
     font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
     font-size: @font-icon-size;
-    color: white;
-    margin: 0;
+    color: @primary-color;
+    margin: 3px 7px;
   }
   .navigation {
     display: inline-block;
@@ -31,11 +34,14 @@ div.navbar-container {
     height: 100%;
     padding: 0 5px;
     .nav {
-      padding: 17px 5px;
+      padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 12px) 5px;
       display: inline-block;
-      font-size: @font-large;
-      font-weight: bold;
-      color: white;
+      font-size: @font-smaller;
+      color: @primary-color;
     }
+  }
+  .selected {
+    font-weight: bold;
+    border-bottom: 5px solid @primary-color;
   }
 }

@@ -18,13 +18,11 @@
   module.config(function($compileProvider, $httpProvider, $urlRouterProvider) {
     $httpProvider.defaults.withCredentials = true;
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/voting');
   });
 
   module.run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -42,7 +40,7 @@
           } else {
             deferred.reject('not authenticated');
           }
-        });
+        }, {scope: 'user_friends'});
         return deferred.promise;
       },
       getLoginStatus: function() {

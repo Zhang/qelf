@@ -10,7 +10,8 @@ const VoteSchema = Joi.object().keys({
   traitTemplateId: Joi.string().required(),
   contestants: Joi.array(Joi.string().description('facebookId of contestant')).required(),
   comparison: Joi.string().required(),
-  selected: Joi.string().required().allow(null)
+  selected: Joi.string().required().allow(null),
+  voterId: Joi.string().required()
 });
 
 const modelCRUD = require('./concerns/modelCRUD')('vote', collection, VoteSchema);

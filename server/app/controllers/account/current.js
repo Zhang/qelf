@@ -4,8 +4,9 @@ const accountModel = require('../../models/account');
 const _ = require('lodash');
 
 const current = function* current() {
-  const userId = _.get(this.session, 'passport.user');
-  const acct = yield accountModel.get(userId);
+  //const userId = _.get(this.session, 'passport.user');
+  //const acct = yield accountModel.get(userId);
+  const acct = yield accountModel.getByFacebookId('10101628765817065');
   if (!acct) {
     this.status = 403;
   } else {

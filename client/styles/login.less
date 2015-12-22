@@ -16,7 +16,33 @@ h2.title {
   font-size: 42px;
   margin: 0;
 }
-
+.login-with-fb {
+  @login-container-height: 50px;
+  background-color: @facebook-color;
+  width: 100%;
+  color: white;
+  .logo-container {
+    @margin-heigth: 5px;
+    vertical-align: top;
+    height: calc(@login-container-height ~"-" 2 * @margin-heigth);
+    width: calc(@login-container-height ~"-" 2 * @margin-heigth);
+    margin: @margin-heigth;
+    display: inline-block;
+  }
+  .login-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: inline-block;
+    height: @login-container-height;
+    line-height: @login-container-height;
+    font-size: @font-large;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+}
+.fb-logo {
+  .background-picture();
+  background-image: url('../assets/fbLogo.png');
+}
 button.login {
   margin-top: 20px;
   height: 40px;
@@ -31,8 +57,8 @@ div.login-block {
     color: white;
   }
   .login-input-container {
-    margin: 20px auto;
-    width: 225px;
+    margin: 150px auto;
+    width: 85%;
   }
   input, button.login {
     width: 100%;

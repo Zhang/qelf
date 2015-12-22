@@ -9,7 +9,6 @@ const FacebookStrategy = require('passport-facebook-token');
 const co = require('co');
 
 passport.serializeUser(function(user, done) {
-  console.log('serializeUser', user);
   done(null, user.id);
 });
 
@@ -27,11 +26,12 @@ passport.use(new FacebookStrategy({
   co(function* () {
     let account = yield accountModel.getByFacebookId(profile.id);
     if (account.accessToken !== accessToken) {
-      account = yield accountModel.updateById(account.id, {
+      yield accountModel.updateById(account.id, {
         accessToken: accessToken
       });
+      account = yield accountModel.getByFacebookId(profile.id);
     }
-    //if (account && account.password === password) return done(null, account);
+
     done(null, account);
   });
 }));
@@ -63,6 +63,7 @@ module.exports = {
   },
   login: function () {
     const self = this;
+    console.log(this.request.body);
     return passport.authenticate('facebook-token', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {

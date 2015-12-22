@@ -3,6 +3,7 @@
 const db = require('../db');
 const collection = db.get('completedVotes');
 const Joi = require('joi');
+const _ = require('lodash');
 
 const CompletedVotesSchema = Joi.object().keys({
   _id: Joi.string(),
@@ -12,10 +13,14 @@ const CompletedVotesSchema = Joi.object().keys({
 });
 
 const modelCRUD = require('./concerns/modelCRUD')('completedVotes', collection, CompletedVotesSchema);
-const push = function push(facebookId, vote) {
-  return collection.update({facebookId: facebookId}, {
+const push = function* push(facebookId, votes) {
+  const isVoteArr = _.isArray(votes);
+  const toPush = isVoteArr ? votes : [votes];
+  if (_.isEmpty(toPush)) return;
+
+  yield collection.update({facebookId: facebookId}, {
     $push: {
-      complete: vote
+      complete: { $each: toPush }
     }
   });
 };

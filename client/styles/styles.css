@@ -10,8 +10,13 @@
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 div.login-container {
-  background-color: #CC9FC5;
+  background-color: #997799;
   overflow: hidden;
   height: 100%;
 }
@@ -25,6 +30,35 @@ h2.title {
   text-align: center;
   font-size: 42px;
   margin: 0;
+}
+.login-with-fb {
+  background-color: #3b5998;
+  width: 100%;
+  color: white;
+}
+.login-with-fb .logo-container {
+  vertical-align: top;
+  height: calc(50px - 2 * 5px);
+  width: calc(50px - 2 * 5px);
+  margin: 5px;
+  display: inline-block;
+}
+.login-with-fb .login-text {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+.fb-logo {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url('../assets/fbLogo.png');
 }
 button.login {
   margin-top: 20px;
@@ -51,14 +85,14 @@ div.login-block input {
   color: white;
 }
 div.login-block .login-input-container {
-  margin: 20px auto;
-  width: 225px;
+  margin: 150px auto;
+  width: 85%;
 }
 div.login-block input,
 div.login-block button.login {
   width: 100%;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 div.login-block input:focus,
 div.login-block button.login:focus {
@@ -87,17 +121,19 @@ div.button-group {
 }
 div.frame-container {
   height: 100%;
+  overflow: hidden;
 }
 div.frame-container .view-container {
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  height: calc(100% - 55px - 1px * 2);
-  max-height: calc(100% - 55px - 1px * 2);
+  height: calc(100% - 50px - 1px * 2);
+  max-height: calc(100% - 50px - 1px * 2);
   background-color: rgba(255, 255, 255, 0.8);
 }
 div.navbar-container {
-  height: 55px;
-  background-color: #CC9FC5;
+  height: 50px;
+  background-color: white;
+  border-bottom: 2px solid #997799;
 }
 div.navbar-container div.title-container {
   height: 100%;
@@ -105,9 +141,9 @@ div.navbar-container div.title-container {
 }
 div.navbar-container .title {
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
-  font-size: 42px;
-  color: white;
-  margin: 0;
+  font-size: 35px;
+  color: #997799;
+  margin: 3px 7px;
 }
 div.navbar-container .navigation {
   display: inline-block;
@@ -116,46 +152,68 @@ div.navbar-container .navigation {
   padding: 0 5px;
 }
 div.navbar-container .navigation .nav {
-  padding: 17px 5px;
+  padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 12px) 5px;
   display: inline-block;
-  font-size: 18px;
+  font-size: 12px;
+  color: #997799;
+}
+div.navbar-container .selected {
   font-weight: bold;
-  color: white;
+  border-bottom: 5px solid #997799;
 }
 div.voting-container {
-  padding: 20px 0;
+  padding: 0;
+  height: 100%;
+}
+.empty-state {
+  margin-top: 20%;
+}
+.empty-state .empty-state-text {
+  text-align: center;
+}
+.empty-state .empty-icon {
+  margin: 0 auto;
+  display: block;
+  width: 50%;
+  font-size: 212px;
 }
 div.votes {
-  height: 500px;
+  height: 70%;
   position: relative;
   margin: 0 auto;
-  padding: 15px;
+  padding: 8px;
 }
 div.votes .card:nth-child(1) {
   z-index: 10;
 }
 div.votes .card:nth-child(2) {
-  width: calc(100% - 15px * 2 - 0px * 2 - 4px);
-  margin: 3px 0 0 2px;
+  width: calc(100% - 8px * 2 - 0px * 2 - 6px);
+  margin: 5px 0 0 3px;
   z-index: 5;
 }
 div.votes .card:nth-child(3) {
-  width: calc(100% - 15px * 2 - 0px * 2 - 8px);
-  margin: 6px 0 0 4px;
+  width: calc(100% - 8px * 2 - 0px * 2 - 12px);
+  margin: 10px 0 0 6px;
   z-index: 0;
 }
 div.card {
-  height: 500px;
-  width: calc(100% - 15px * 2 - 0px * 2);
+  height: 100%;
+  width: calc(100% - 8px * 2 - 0px * 2);
   background-color: white;
   position: absolute;
   border: 1px solid #B9B7B7;
-  border-radius: 3px;
   padding: 0px;
+  border-radius: 3px;
 }
 div.card .card-content {
-  background-color: #E0E0DC;
+  background-color: white;
+  border-radius: 3px;
   height: 100%;
+  box-shadow: 0 4px 2px -2px #B9B7B7;
+  color: #221122;
+}
+div.card .card-content .card-main {
+  margin: 10px 0;
 }
 div.card .card-content .card-main .candidate-transitioner {
   padding: 0 2px;
@@ -178,61 +236,50 @@ div.card .card-content .card-main .candidate-picture img {
   width: 100%;
 }
 div.card .card-content .card-main .candidate-description {
-  color: #CC9FC5;
   height: 90px;
-  padding: 5px;
+  padding: 10px;
+  overflow: hidden;
 }
 div.card .card-content .card-main .candidate-description .name,
 div.card .card-content .card-main .candidate-description .feedback-name {
-  text-align: left;
+  text-align: center;
 }
 div.card .card-content .card-main .candidate-description .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 20px;
+  font-size: 14px;
   width: 100%;
   font-weight: 600;
   display: inline-block;
 }
 div.card .card-content .card-main .candidate-description .social-description {
-  font-size: 14px;
-  height: calc(90px - 20px);
-}
-div.card .card-content .card-main .candidate-description .social-description .friends {
-  width: 35%;
-}
-div.card .card-content .card-main .candidate-description .social-description .location {
-  width: 65%;
-}
-div.card .card-content .card-main .candidate-description .social-description .location,
-div.card .card-content .card-main .candidate-description .social-description .friends {
-  display: inline-block;
-  max-height: 100%;
+  margin-top: 8px;
   text-align: center;
   font-size: 12px;
-  overflow: hidden;
 }
 div.card .card-content .card-header {
-  height: 60px;
-  justify-content: center;
   display: flex;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
   align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 0 15px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddccee;
   text-transform: capitalize;
 }
 div.card .card-content .card-comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 20px 10px 10px 10px;
   border-radius: 3px;
   padding: 10px;
-  display: flex;
-  align-items: center;
   height: 123px;
   background-color: white;
-  color: #83af9b;
-  text-align: center;
 }
 div.card .card-content .feedback-input-container {
   height: 100%;
@@ -248,33 +295,29 @@ div.card .card-content .feedback-input-container .feedback-input:focus {
   resize: none;
 }
 .profile-container {
-  margin: 20px 5px;
-  height: 85vh;
+  margin: 10px;
+  height: 84vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.trait-container {
-  background-color: #E0E0DC;
-  height: 100%;
-}
-.trait-container .trait-title {
+.profile-overview-container {
+  width: 100%;
   height: 30%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-  text-transform: capitalize;
-  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #997799;
 }
-.trait-container .trait-score {
-  height: calc(100% - 30%);
-  text-align: center;
+.profile-overview-container .settings {
+  float: right;
+  padding-right: 5px;
 }
-.main-trait-card {
-  background-color: #E0E0DC;
+.profile-picture-container,
+.profile-overview {
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
 }
 .profile-picture-container {
-  height: 80%;
+  width: calc(100% - 57% - 3px);
 }
 .profile-picture-container .profile-picture {
   width: 100%;
@@ -282,7 +325,112 @@ div.card .card-content .feedback-input-container .feedback-input:focus {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  border-radius: 5px;
   background-image: url("https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/12108274_10101564644192315_7334749882900604967_n.jpg?oh=e0fee8c71ce074b2ba8180193ae610bb&oe=56E3A4FB");
+}
+.profile-overview {
+  width: calc(57% - 3px);
+}
+.profile-overview div {
+  text-align: center;
+}
+.profile-overview .name {
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #997799;
+  padding-bottom: 5px;
+}
+.profile-overview .overview {
+  padding: 5px;
+}
+.selector-container {
+  padding: 10px 0;
+}
+.trait-container {
+  background-color: #ddccee;
+  height: 50px;
+  position: relative;
+  width: 100%;
+  margin: 5px 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trait-container:first-child {
+  margin-top: 0;
+}
+.trait-container .score-overlay {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  background-color: #997799;
+  z-index: 5;
+}
+.trait-container .trait-title,
+.trait-container .ion-chevron-right {
+  padding: 0 15px;
+  z-index: 10;
+}
+.trait-container .trait-score {
+  font-weight: 400;
+}
+.trait-container .trait-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.selection-container {
+  position: absolute;
+  bottom: 0;
+  width: 60%;
+  padding: 0 calc(50% - 60% / 2) calc(150px / 2 - 80px / 2 - 20px) calc(50% - 60% / 2);
+}
+.selection-holder {
+  height: 80px;
+  background-color: #ddccee;
+  border-radius: 80px;
+}
+.click-vote {
+  margin: 5px;
+  height: calc(80px - 5px * 2);
+  width: calc(80px - 5px * 2);
+  border-radius: calc(80px - 5px * 2);
+  background-color: #997799;
+  display: inline-block;
+}
+.click-vote .vote-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 25px;
+  color: white;
+}
+.vote-right {
+  float: right;
+}
+.selection-label {
+  color: #221122;
+}
+.selection-label .left-label,
+.selection-label .right-label {
+  display: inline-block;
+  font-size: 12px;
+  max-width: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.selection-label .right-label {
+  float: right;
+}
+.selection-label .left-label {
+  float: left;
 }
 @font-face {
   font-family: 'header-font';
@@ -297,10 +445,16 @@ div.card .card-content .feedback-input-container .feedback-input:focus {
 html {
   height: 100%;
   font-family: 'primary-font', 'Helvetica', 'Arial', 'sans-serif';
-  color: #5D5D5D;
-  font-size: 16px;
+  color: #221122;
+  font-size: 14px;
 }
 body {
   margin: 0;
   height: 100%;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.scroll-bar-indicator {
+  display: none;
 }

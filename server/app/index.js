@@ -20,7 +20,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(logger());
-authentication.initialize(app);
+//authentication.initialize(app);
 
 /**
  * Routes.

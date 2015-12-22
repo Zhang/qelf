@@ -1,49 +1,24 @@
 <div class="profile-container">
-  <div gridster="gridsterOpts">
-    <ul>
-      <li
-        gridster-item="mainTrait"
-        row="mainTrait.row"
-        col="mainTrait.column"
-        size-x="mainTrait.sizeX"
-        size-y="mainTrait.sizeY"
-        class="main-trait-card"
-      >
-        <div class="profile-picture-container">
-          <div id="profile-picture" class="profile-picture"></div>
-          <div class="description">
-            <span class="name">{{user.name}}</span>
-            <span class="name">Score</span>
-          </div>
-        </div>
-      </li>
-      <li
-        gridster-item="categoryPicker"
-        row="categoryPicker.row"
-        col="categoryPicker.column"
-        size-x="categoryPicker.sizeX"
-        size-y="categoryPicker.sizeY"
-        class="category-trait-card"
-      >
-        <div class="description">This is the description of your application</div>
-        <div class="selector">
-        <select>
-          <option>scott</option>
-        </select>
-        </div>
-      </li>
-      <li
-        gridster-item="trait"
-        ng-repeat="trait in traits"
-        row="trait.row"
-        col="trait.column"
-        size-x="trait.sizeX"
-        size-y="trait.sizeY"
-        class="trait-card"
-      >
-        <trait-card trait="trait"></trait-card>
-      </li>
-    </ul>
+  <div class="profile-overview-container">
+    <div class="profile-picture-container">
+      <div id="profile-picture" class="profile-picture"></div>
+    </div>
+    <div class="profile-overview">
+      <div class="name">{{user.name}}</div>
+      <div class="overview">Overview</div>
+    </div>
   </div>
-  <div class="main-card"><div>
+  <div class="selectors-container">
+    <div class="selector-container">
+      <select class="profile-selector">
+        <option>scott</option>
+      </select>
+      <select class="profile-selector">
+        <option>scott</option>
+      </select>
+    </div>
+  </div>
+  <div class="traits-container">
+    <trait-card ng-repeat="trait in traits" trait="trait"></trait-card>
+  </div>
 </div>

@@ -1,12 +1,26 @@
-@card-height: 500px;
+@card-height: 70%;
 @card-width: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2);
-@card-width-2: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 4px);
-@card-width-3: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 8px);
+@card-width-2: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 6px);
+@card-width-3: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 12px);
 @card-padding: 0px;
-@card-container-padding: 15px;
+@card-container-padding: 8px;
 
 div.voting-container {
-  padding: 20px 0;
+  padding: 0;
+  height: 100%;
+}
+
+.empty-state {
+  margin-top: 20%;
+  .empty-state-text {
+    text-align: center;
+  }
+  .empty-icon {
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+    font-size: 212px;
+  }
 }
 
 div.votes {
@@ -19,32 +33,39 @@ div.votes {
   }
   .card:nth-child(2) {
     width: @card-width-2;
-    margin: 3px 0 0 2px;
+    margin: 5px 0 0 3px;
     z-index: @z-index-middle;
   }
   .card:nth-child(3) {
     width: @card-width-3;
-    margin: 6px 0 0 4px;
+    margin: 10px 0 0 6px;
     z-index: @z-index-bottom;
   }
 }
 
 div.card {
-  height: @card-height;
+  height: 100%;
   width: @card-width;
   background-color: white;
   position: absolute;
   border: 1px solid @border-gray;
-  border-radius: @round-border-radius;
   padding: @card-padding;
-  .card-content {
-    background-color: @secondary-color;
-    height: 100%;
+  border-radius: @round-border-radius;
 
-    @card-header-height: 60px;
+  .card-content {
+    background-color: white;
+    border-radius: @round-border-radius;
+    height: 100%;
+    box-shadow: 0 4px 2px -2px @border-gray;
+    color: @primary-font-color;
+
+    @card-header-height: 100px;
 
     .card-main {
       @candidate-padding: 2px;
+      @main-padding: 10px;
+      margin: @main-padding 0;
+
       .candidate-transitioner {
         padding: 0 @candidate-padding;
         width: calc(50% ~"-" @candidate-padding * 2);
@@ -67,62 +88,48 @@ div.card {
         }
       }
       .candidate-description {
-        color: @primary-color;
         @candidate-height: 90px;
         @name-height: 20px;
         height: @candidate-height;
-        padding: 5px;
+        padding: 10px;
+        overflow: hidden;
+
         .name, .feedback-name {
-          text-align: left;
+          text-align: center;
         }
         .name {
           .ellipsis-overflow();
           height: @name-height;
+          font-size: @font-standard;
           width: 100%;
           font-weight: 600;
           display: inline-block;
         }
         .social-description {
-          font-size: 14px;
-          height: calc(90px ~"-" @name-height);
-
-          .friends {
-            width: 35%;
-          }
-          .location {
-            width: 65%;
-          }
-          .location, .friends {
-            display: inline-block;
-            max-height: 100%;
-            text-align: center;
-            font-size: @font-smaller;
-            overflow: hidden;
-          }
+          margin-top: 8px;
+          text-align: center;
+          font-size: @font-smaller;
         }
       }
     }
 
     .card-header {
+      .flex-center();
       height: @card-header-height;
-      justify-content: center;
-      display: flex;
-      font-size: @font-large;
+      padding: 0 15px;
+      text-align: center;
+      font-size: @font-standard;
       font-weight: bold;
-      color: white;
-      align-items: center;
+      border-bottom: 1px solid @secondary-color;
       text-transform: capitalize;
     }
     .card-comment {
+      .flex-center();
       margin: 20px 10px 10px 10px;
       border-radius: @round-border-radius;
       padding: 10px;
-      display: flex;
-      align-items: center;
       height: 123px;
       background-color: white;
-      color: @secondary-font-color;
-      text-align: center;
     }
     .feedback-input-container {
       height: 100%;

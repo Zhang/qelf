@@ -1,33 +1,88 @@
+//Profile page css
+@profile-divider-padding: 10px;
+@profile-overview-width: 57%;
 .profile-container {
-  margin: 20px 5px;
-  height: 85vh;
+  margin: @profile-divider-padding;
+  height: 84vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.trait-container {
-  @trait-title-height: 30%;
-  background-color: @secondary-color;
+.profile-overview-container {
+  width: 100%;
+  height: 30%;
+  padding-bottom: @profile-divider-padding;
+  border-bottom: 1px solid @primary-color;
+  .settings {
+    float: right;
+    padding-right: 5px;
+  }
+}
+.profile-picture-container, .profile-overview {
+  display: inline-block;
   height: 100%;
-  .trait-title {
-    height: @trait-title-height;
-    .ellipsis-overflow();
-    text-align: center;
-    text-transform: capitalize;
-    font-weight: bold;
-  }
-  .trait-score {
-    height: calc(100% ~"-" @trait-title-height);
-    text-align: center;
-  }
+  vertical-align: top;
 }
-.main-trait-card {
-  background-color: @secondary-color;
-}
-
 .profile-picture-container {
-  height: 80%;
+  width: calc(100% ~"-" @profile-overview-width ~"-" 3px);
   .profile-picture {
     .background-picture();
+    border-radius: 5px;
     background-image: url("https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/12108274_10101564644192315_7334749882900604967_n.jpg?oh=e0fee8c71ce074b2ba8180193ae610bb&oe=56E3A4FB");
+  }
+}
+
+.profile-overview {
+  width: calc(@profile-overview-width ~"-" 3px);
+
+  div {
+    text-align: center;
+  }
+  .name {
+    font-size: @font-standard;
+    font-weight: bold;
+    border-bottom: 1px solid @primary-color;
+    padding-bottom: 5px;
+  }
+  .overview {
+    padding: 5px;
+  }
+}
+.selector-container {
+  padding: @profile-divider-padding 0;
+}
+//Trait card css
+.trait-container {
+  background-color: @secondary-color;
+  height: 50px;
+  position: relative;
+  width: 100%;
+  margin: 5px 0;
+  z-index: @z-index-bottom;
+  .flex-center();
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .score-overlay {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    background-color: @primary-color;
+    z-index: @z-index-middle;
+  }
+
+  .trait-title, .ion-chevron-right {
+    padding: 0 15px;
+    z-index: @z-index-top;
+  }
+  .trait-score {
+    font-weight: 400;
+  }
+  .trait-title {
+    .ellipsis-overflow();
+    flex-grow: 1;
+    text-transform: capitalize;
+    font-weight: bold;
   }
 }

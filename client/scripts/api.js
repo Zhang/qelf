@@ -29,8 +29,8 @@
 
   module.service('SessionAPI', function(HttpHelper) {
     return {
-      login: function(access_token) {
-        return HttpHelper.post('login', { access_token: access_token });
+      login: function(facebookId, access_token) {
+        return HttpHelper.post('login', { facebookId: facebookId, access_token: access_token });
       },
       logout: function() {
         return HttpHelper.post('logout');
@@ -54,13 +54,13 @@
     };
   });
 
-  module.service('VoteAPI', function(HttpHelper, $rootScope) {
+  module.service('VoteAPI', function(HttpHelper) {
     return {
       getForUser: function(facebookId) {
         return HttpHelper.get('vote/' + facebookId);
       },
       submit: function(voteId, selectedFbId) {
-        return HttpHelper.post('vote/' + voteId, { facebookId: $rootScope.user.facebookId, selected: selectedFbId });
+        return HttpHelper.post('vote/' + voteId, { selected: selectedFbId });
       }
     };
   });

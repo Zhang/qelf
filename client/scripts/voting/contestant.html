@@ -3,10 +3,10 @@
     <img ng-src="{{contestant.profilePicture}}">
   </div>
   <div ng-if="!isFeedback" class="candidate-description">
-    <div class="name">{{contestant.name}}, 29</div>
+    <div class="name">{{contestant.name || 'Lucy in the sky with diamonds'}}</div>
     <div class="social-description">
-      29 Mutual Friends <br>
-      {{contestant.location}}
+      Age: 29 <br>
+      {{contestant.location || 'Mars and the rock under the moon'}}
     </div>
   </div>
   <div ng-if="isFeedback" class="candidate-description">

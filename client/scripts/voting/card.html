@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <div class="card-header" ng-bind="vote.traitTemplateId"></div>
+    <div class="card-header" ng-bind="vote.comparison"></div>
     <div class="card-main">
       <div class="card-candidates">
         <span class="vote-left candidate-transitioner">
@@ -10,9 +10,8 @@
           <contestant is-feedback="isFeedback" contestant="vote.contestants[1]"></contestant>
         </span>
     </div>
-    <div class="card-comment">
-      <div ng-if="!isFeedback" ng-bind="vote.comparison"></div>
-      <div class="feedback-input-container" ng-if="isFeedback"><textarea ng-model="feedback.text" class="feedback-input"></textarea></div>
+    <div ng-if="isFeedback" class="card-comment">
+      <div class="feedback-input-container"><textarea ng-model="feedback.text" class="feedback-input"></textarea></div>
     </div>
   </div>
 </div>

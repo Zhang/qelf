@@ -1,0 +1,54 @@
+@selection-container-height: 150px;
+@selection-holder-height: 80px;
+@selection-width: 60%;
+
+.selection-container {
+  position: absolute;
+  bottom: 0;
+  width: @selection-width;
+  padding: 0 calc(50% - @selection-width ~"/" 2) calc(@selection-container-height ~"/" 2 ~"-" @selection-holder-height ~"/" 2 - 20px) calc(50% - @selection-width ~"/" 2);
+}
+
+.selection-holder {
+  height: @selection-holder-height;
+  background-color: @secondary-color;
+  border-radius: @selection-holder-height;
+}
+
+.click-vote {
+  @click-margin: 5px;
+  @click-diameter: calc(@selection-holder-height ~"-" @click-margin ~"*" 2);
+  margin: @click-margin;
+  height: @click-diameter;
+  width: @click-diameter;
+  border-radius: @click-diameter;
+  background-color: @primary-color;
+  display: inline-block;
+  .vote-icon {
+    .flex-center();
+    height: 100%;
+    width: 100%;
+    font-size: 25px;
+    color: white;
+  }
+}
+
+.vote-right {
+  float: right;
+}
+
+.selection-label {
+  color: @primary-font-color;
+  .left-label, .right-label {
+    display: inline-block;
+    font-size: @font-smaller;
+    max-width: 40%;
+    .ellipsis-overflow();
+  }
+  .right-label {
+    float: right;
+  }
+  .left-label {
+    float: left;
+  }
+}

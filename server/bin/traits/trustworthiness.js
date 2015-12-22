@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-  model: require('../../app/models/traitTemplate'),
   template: {
     id: 'trustworthiness',
     comparisons: [

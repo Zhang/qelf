@@ -28,13 +28,34 @@
     });
   });
 
-  module.controller('Frame', function($scope, $rootScope, $state, STATE) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, $ionicPopup) {
+    $scope.isSelected = function(state) {
+      return $state.current.name === STATE[state];
+    };
     $scope.goTo = function(state) {
       if (STATE[state]) {
         $state.go(STATE[state]);
       } else {
         console.log('invalid state: ', state);
       }
+    };
+    $scope.logout = function() {
+      FBService.logout().then(function() {
+        SessionAPI.logout().then(function() {
+          $state.go(STATE.login);
+        });
+      });
+    };
+
+    $scope.openPopover = function() {
+      var alertPopup = $ionicPopup.alert({
+       title: 'Don\'t eat that!',
+       template: 'It might taste good'
+      });
+
+      alertPopup.then(function() {
+       console.log('Thank you for not eating my delicious ice cream cone');
+      });
     };
   });
 })();
