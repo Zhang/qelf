@@ -461,6 +461,16 @@ div.card .card-content .card-comment {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.feedback-container .feedback-comments {
+  width: calc(100% - 2 * 15px);
+  height: calc(30% - 2 * 15px);
+  background-color: #ddccee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #221122;
+  padding: 15px;
+}
 @font-face {
   font-family: 'header-font';
   src: url('../assets/fonts/Header.ttf');

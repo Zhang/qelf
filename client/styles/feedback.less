@@ -1,4 +1,12 @@
 .feedback-container {
   .subview-container-defaults();
-
+  .feedback-comments {
+    @comments-padding: 15px;
+    width: calc(100% ~"-" 2 ~"*" @comments-padding);
+    height: calc(30% ~"-" 2 ~"*"  @comments-padding);
+    background-color: @secondary-color;
+    .flex-center();
+    color: @primary-font-color;
+    padding: @comments-padding;
+  }
 }
