@@ -1,12 +1,42 @@
 .feedback-container {
+  color: @primary-font-color;
   .subview-container-defaults();
+  .rounded-borders();
+  position: relative;
+  .feedback-text {
+    margin-top: 70px;
+    height: 30%;
+  }
+  .feedback-text-area {
+    .rounded-borders();
+    @feedback-padding: 15px;
+    @feedback-border-width: 1px;
+    resize: none;
+    width: calc(100% ~"-" @feedback-padding ~"*" 2 - @feedback-border-width ~"*" 2);
+    padding: @feedback-padding;
+    height: 100%;
+    border: @feedback-border-width solid @primary-color;
+    .set-placeholder-color(@primary-font-color);
+  }
   .feedback-comments {
-    @comments-padding: 15px;
-    width: calc(100% ~"-" 2 ~"*" @comments-padding);
-    height: calc(30% ~"-" 2 ~"*"  @comments-padding);
-    background-color: @secondary-color;
     .flex-center();
-    color: @primary-font-color;
+    .rounded-borders();
+    @comments-padding: 15px;
+    height: 25%;
+    background-color: @secondary-color;
     padding: @comments-padding;
+  }
+  .feedback-submit-button {
+    .rounded-borders();
+    font-size: @font-large;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background-color: @primary-color;
+    content: "Submit"
   }
 }

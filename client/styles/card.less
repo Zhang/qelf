@@ -51,6 +51,8 @@ div.card {
   border: 1px solid @border-gray;
   padding: @card-padding;
   border-radius: @round-border-radius;
+  //overrides ionic class
+  margin: 0;
 
   .card-content {
     background-color: white;
@@ -122,14 +124,6 @@ div.card {
       font-weight: bold;
       border-bottom: 1px solid @secondary-color;
       text-transform: capitalize;
-    }
-    .card-comment {
-      .flex-center();
-      margin: 20px 10px 10px 10px;
-      border-radius: @round-border-radius;
-      padding: 10px;
-      height: 123px;
-      background-color: white;
     }
   }
 }

@@ -40,8 +40,8 @@
 
   module.service('FeedbackAPI', function(HttpHelper, $rootScope) {
     return {
-      create: function(feedbackText, canContact) {
-        return HttpHelper.post('feedback', { facebookId: $rootScope.user.facebookId, canContact: canContact, feedbackText: feedbackText });
+      create: function(feedbackText) {
+        return HttpHelper.post('feedback', { facebookId: $rootScope.user.facebookId, feedbackText: feedbackText });
       }
     };
   });

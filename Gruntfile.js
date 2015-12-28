@@ -135,10 +135,7 @@ module.exports = function (grunt) {
           },
           styles: {
             app: ['<%= yeoman.client %>/<%= yeoman.styles %>/**/*.css', '<%= yeoman.client %>/<%= yeoman.assets %>/**/*.css'],
-            bower: [
-              '<%= bowerPath %>/ionic/release/css/ionic.css',
-              '<%= bowerPath %>/angular-gridster/dist/angular-gridster.min.css',
-            ],
+            bower: [],
           }
         }
       }

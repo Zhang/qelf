@@ -1,5 +1,6 @@
 @navbar-height: 50px;
 div.frame-container {
+  transform: translate3d(0%, 0px, 0px);
   height: 100%;
   overflow: hidden;
   .view-container {
@@ -12,7 +13,17 @@ div.frame-container {
     background-color: @view-background-color;
   }
 }
-
+#modal-overlay {
+  opacity: 0.5;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  z-index: @modal-z-bottom;
+}
 div.navbar-container {
   height: @navbar-height;
   background-color: white;
@@ -26,6 +37,7 @@ div.navbar-container {
     font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
     font-size: @font-icon-size;
     color: @primary-color;
+    font-weight: bold;
     margin: 3px 7px;
   }
   .navigation {
@@ -34,7 +46,7 @@ div.navbar-container {
     height: 100%;
     padding: 0 5px;
     .nav {
-      padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 12px) 5px;
+      padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 13px) 5px;
       display: inline-block;
       font-size: @font-smaller;
       color: @primary-color;

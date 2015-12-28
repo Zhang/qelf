@@ -1,14 +1,14 @@
-<div class="frame-container">
+<div id="frame" class="frame-container">
+  <div id="modal-overlay"></div>
   <div class="navbar-container">
     <div class="title-container">
       <h2 class="title">Sheen</h2>
     </div>
     <div class="navigation">
-      <div ng-if="!isTrait" class="nav feedback" ng-class="{selected: isSelected('feedback')}" ng-click="goTo('feedback')">Feedback</div>
-      <div ng-if="!isTrait" class="nav profile" ng-class="{selected: isSelected('profile')}" ng-click="goTo('profile')">Profile</div>
-      <div ng-if="!isTrait" class="nav voting" ng-class="{selected: isSelected('voting')}" ng-click="goTo('voting')">Voting</div>
-      <div ng-if="!isTrait" class="nav settings ion-navicon" ng-click="openPopover()"></div>
-      <div ng-if="isTrait" class="nav profile" ng-click="goTo('profile')">Return to Profile<div class="ion-chevron-right"></div></div>
+      <div ng-if="!isStandardView" class="nav profile" ng-class="{selected: isSelected('profile')}" ng-click="goTo('profile')">Profile</div>
+      <div ng-if="!isStandardView" class="nav voting" ng-class="{selected: isSelected('voting')}" ng-click="goTo('voting')">Voting</div>
+      <div ng-if="!isStandardView" class="nav settings ion-navicon" ng-click="openPopup()"></div>
+      <div ng-if="isStandardView" class="nav profile" ng-click="goTo('lastState')">Go Back<div class="ion-chevron-right"></div></div>
     </div>
   </div>
   <div class="view-container" ui-view></div>

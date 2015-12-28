@@ -21,6 +21,9 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.rounded-borders {
+  border-radius: 3px;
+}
 div.login-container {
   background-color: #997799;
   overflow: hidden;
@@ -126,6 +129,7 @@ div.button-group {
   bottom: 0;
 }
 div.frame-container {
+  transform: translate3d(0%, 0px, 0px);
   height: 100%;
   overflow: hidden;
 }
@@ -135,6 +139,17 @@ div.frame-container .view-container {
   height: calc(100% - 50px - 1px * 2);
   max-height: calc(100% - 50px - 1px * 2);
   background-color: rgba(255, 255, 255, 0.8);
+}
+#modal-overlay {
+  opacity: 0.5;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  z-index: 11;
 }
 div.navbar-container {
   height: 50px;
@@ -149,6 +164,7 @@ div.navbar-container .title {
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
   font-size: 35px;
   color: #997799;
+  font-weight: bold;
   margin: 3px 7px;
 }
 div.navbar-container .navigation {
@@ -158,7 +174,7 @@ div.navbar-container .navigation {
   padding: 0 5px;
 }
 div.navbar-container .navigation .nav {
-  padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 12px) 5px;
+  padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 13px) 5px;
   display: inline-block;
   font-size: 12px;
   color: #997799;
@@ -214,6 +230,7 @@ div.card {
   border: 1px solid #B9B7B7;
   padding: 0px;
   border-radius: 3px;
+  margin: 0;
 }
 div.card .card-content {
   background-color: white;
@@ -280,16 +297,6 @@ div.card .card-content .card-header {
   border-bottom: 1px solid #ddccee;
   text-transform: capitalize;
 }
-div.card .card-content .card-comment {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 10px 10px 10px;
-  border-radius: 3px;
-  padding: 10px;
-  height: 123px;
-  background-color: white;
-}
 .profile-container {
   margin: 10px;
   height: calc(100% - 2 * 10px);
@@ -342,6 +349,9 @@ div.card .card-content .card-comment {
 .selector-container {
   padding: 10px 0;
 }
+.profile-selector {
+  width: 95%;
+}
 .trait-container {
   background-color: #ddccee;
   height: 50px;
@@ -383,7 +393,7 @@ div.card .card-content .card-comment {
   position: absolute;
   bottom: 0;
   width: 60%;
-  padding: 0 calc(50% - 60% / 2) calc(150px / 2 - 80px / 2 - 20px) calc(50% - 60% / 2);
+  margin: 0 calc(50% - 60% / 2) calc(150px / 2 - 80px / 2 - 20px) calc(50% - 60% / 2);
 }
 .selection-holder {
   height: 80px;
@@ -456,20 +466,76 @@ div.card .card-content .card-comment {
   border: 1px solid #997799;
 }
 .feedback-container {
+  color: #221122;
   margin: 10px;
   height: calc(100% - 2 * 10px);
   overflow-y: scroll;
   overflow-x: hidden;
+  border-radius: 3px;
+  position: relative;
+}
+.feedback-container .feedback-text {
+  margin-top: 70px;
+  height: 30%;
+}
+.feedback-container .feedback-text-area {
+  border-radius: 3px;
+  resize: none;
+  width: calc(100% - 15px * 2 - 1px * 2);
+  padding: 15px;
+  height: 100%;
+  border: 1px solid #997799;
+}
+.feedback-container .feedback-text-area ::-webkit-input-placeholder {
+  color: #221122;
+}
+.feedback-container .feedback-text-area :-ms-input-placeholder {
+  color: #221122;
+}
+.feedback-container .feedback-text-area :-moz-placeholder {
+  color: #221122;
+}
+.feedback-container .feedback-text-area ::-moz-placeholder {
+  color: #221122;
 }
 .feedback-container .feedback-comments {
-  width: calc(100% - 2 * 15px);
-  height: calc(30% - 2 * 15px);
-  background-color: #ddccee;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #221122;
+  border-radius: 3px;
+  height: 25%;
+  background-color: #ddccee;
   padding: 15px;
+}
+.feedback-container .feedback-submit-button {
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  background-color: #997799;
+  content: "Submit";
+}
+.popup-container {
+  background-color: white;
+  z-index: 12;
+  width: 300px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 40%;
+}
+.popup-container .popup-list-container {
+  padding: 10px 0;
+}
+.popup-container .popup-list-container .popup-list-item {
+  padding: 10px;
 }
 @font-face {
   font-family: 'header-font';
@@ -483,9 +549,11 @@ div.card .card-content .card-comment {
 }
 html {
   height: 100%;
-  font-family: 'primary-font', 'Helvetica', 'Arial', 'sans-serif';
   color: #221122;
   font-size: 14px;
+}
+html * {
+  font-family: 'primary-font', 'Helvetica', 'Arial', 'sans-serif';
 }
 body {
   margin: 0;

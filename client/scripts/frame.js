@@ -28,26 +28,44 @@
     });
   });
 
-  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, Modals) {
     $scope.isSelected = function(state) {
       return $state.current.name === STATE[state];
     };
+
     $scope.goTo = function(state) {
       if (STATE[state]) {
         $state.go(STATE[state]);
+      } else if (state === 'lastState') {
+        $state.go($scope.lastState || STATE.voting);
+        $scope.lastState = '';
       } else {
         console.log('invalid state: ', state);
       }
     };
-    $scope.logout = function() {
-      FBService.logout().then(function() {
-        SessionAPI.logout().then(function() {
-          $state.go(STATE.login);
-        });
-      });
+
+    $scope.openPopup = function() {
+      $scope.popupItems = [{
+        title: 'Leave Feedback',
+        action: function() {
+          $scope.lastState = $state.current.name;
+          $state.go(STATE.feedback);
+        }
+      }, {
+        title: 'Logout',
+        action: function() {
+          FBService.logout().then(function() {
+            SessionAPI.logout().then(function() {
+              $state.go(STATE.login);
+            });
+          });
+        }
+      }];
+      Modals.open($scope);
     };
+
     $scope.$on('$stateChangeSuccess', function(e, currentState) {
-      $scope.isTrait = currentState.name === STATE.trait;
+      $scope.isStandardView = currentState.name === STATE.trait || currentState.name === STATE.feedback;
     });
   });
 })();

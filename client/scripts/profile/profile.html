@@ -12,11 +12,11 @@
   </div>
   <div class="selectors-container">
     <div class="selector-container">
-      <select class="profile-selector">
-        <option>scott</option>
-      </select>
-      <select class="profile-selector">
-        <option>scott</option>
+      <select
+        class="profile-selector"
+        ng-change="sortTraitsBy(sortBy)"
+        ng-options="option.title for option in sortOptions"
+        ng-model="sortBy">
       </select>
     </div>
   </div>

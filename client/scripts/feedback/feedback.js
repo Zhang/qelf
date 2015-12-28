@@ -13,22 +13,9 @@
   });
 
   module.controller('Feedback', function($scope, FeedbackAPI) {
-    $scope.feedbacks = [{
-      contestants: [{
-          profilePicture: 'assets/tdown.png',
-          name: 'Please don\'t contact me about this feedback'
-        },
-        {
-          profilePicture: 'assets/tup.png',
-          name: 'Feel free to contact me about this feedback'
-        }
-      ],
-      traitTemplateId: 'Sheen App Feedback'
-    }];
-
-    $scope.swipe = function(feedback, canContact) {
-      if (feedback) {
-        FeedbackAPI.create(feedback, canContact).then(function() {
+    $scope.submit = function() {
+      if ($scope.feedbackText) {
+        FeedbackAPI.create($scope.feedbackText).then(function() {
           console.log('something');
         }, function() {
           console.log('something');

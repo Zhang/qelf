@@ -16,9 +16,31 @@
     });
   });
 
-  module.controller('Profile', function($scope, TraitAPI, $rootScope) {
+  module.controller('Profile', function($scope, TraitAPI, $rootScope, $filter) {
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
-      $scope.traits = res.data;
+      // $scope.traits = res.data;
+      $scope.traits = [
+        {
+          templateId: 'test-lowest',
+          count: 0,
+          total: [1, 2, 3, 4, 5, 6]
+        },
+        {
+          templateId: 'test-highest',
+          count: 4,
+          total: [1, 2, 3, 4, 5]
+        },
+        {
+          templateId: 'test-middle',
+          count: 2,
+          total: [1, 2, 3, 4, 5]
+        },
+        {
+          templateId: 'test-noVotes',
+          count: 0,
+          total: []
+        },
+      ];
       $scope.topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
           if(trait.total.length === 0) return null;
@@ -27,7 +49,7 @@
         })), 'score', -1);
         return orderedTraits.splice(0, 3);
       })();
-      $scope.overviewSentence = (function getOverviewSentence() {
+      $scope.overviewSentence = (function constructOverviewSentence() {
         if (_.isEmpty($scope.topTraits)) {
           return 'Not enough votes to determine top traits, invite more friends to gather more data!';
         }
@@ -40,6 +62,43 @@
       })();
     });
 
+    $scope.sortOptions = [{
+      title: 'Lowest Traits',
+      sortFn: function sortByLowTraits() {
+        $scope.traits = _.sortBy($scope.traits, function(trait) {
+          if (_.isEmpty(trait.total)) return 0;
+          return trait.count / trait.total.length;
+        });
+      }
+    },
+    {
+      title: 'Top Traits',
+      sortFn: function sortByTopTraits() {
+        $scope.traits = _.sortBy($scope.traits, function(trait) {
+          if (_.isEmpty(trait.total)) return 0;
+          return -1 * (trait.count / trait.total.length);
+        });
+      }
+    },
+    {
+      title: 'Least Voted On',
+      sortFn: function sortByLeastVotedOn() {
+        $scope.traits = _.sortBy($scope.traits, function(trait) {
+          return trait.total.length;
+        });
+      }
+    },
+    {
+      title: 'Most Voted On',
+      sortFn: function sortByMostVotedOn() {
+        $scope.traits = _.sortBy($scope.traits, function(trait) {
+          return (-1 * trait.total.length);
+        });
+      }
+    }];
+    $scope.sortTraitsBy = function(option) {
+      option.sortFn();
+    };
     $('#profile-picture').css('background-image', 'url(' + $rootScope.user.profilePicture + ')');
   });
 
@@ -51,7 +110,7 @@
       templateUrl: 'scripts/profile/traitCard.html',
       link: function($scope) {
         $scope.score = (function getValidScore() {
-          return $scope.trait.total.length <= 4 ? 'Not Enough Votes' : Math.ceil(($scope.trait.count/$scope.trait.total) * 100) + '%';
+          return _.size($scope.trait.total) <= 4 ? 'Not Enough Votes' : Math.ceil(($scope.trait.count/_.size($scope.trait.total)) * 100) + '%';
         })();
 
         $scope.viewTrait = function() {
