@@ -464,6 +464,7 @@ div.card .card-content .card-header {
 }
 .trait-details-container .trait-overview-container {
   border-radius: 3px;
+  position: relative;
   width: 100%;
   height: 25%;
   background-color: #997799;
@@ -487,6 +488,8 @@ div.card .card-content .card-header {
 }
 .trait-details-container .trait-label {
   padding: 10px 0;
+  position: absolute;
+  width: 100%;
 }
 .trait-details-container .trait-title {
   text-transform: capitalize;
@@ -494,7 +497,7 @@ div.card .card-content .card-header {
 }
 .trait-details-container .title-text {
   flex-grow: 3;
-  font-size: 24px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -503,7 +506,7 @@ div.card .card-content .card-header {
   border: 1px solid #997799;
 }
 .trait-details-container .trait-selected-count {
-  font-size: 24px;
+  font-size: 22px;
   height: 55px;
 }
 .trait-details-container .flex-container {

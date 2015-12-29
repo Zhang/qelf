@@ -33,30 +33,8 @@
       return highestScore;
     }
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
-      // $scope.traits = sortByTopTraits(res.data);
-      $scope.traits = [
-        {
-          templateId: 'test-lowest',
-          count: 0,
-          total: [1, 2, 3, 4, 5, 6]
-        },
-        {
-          templateId: 'test-highest',
-          count: 4,
-          total: [1, 2, 3, 4, 5]
-        },
-        {
-          templateId: 'test-middle',
-          count: 2,
-          total: [1, 2, 3, 4, 5]
-        },
-        {
-          templateId: 'test-noVotes',
-          count: 0,
-          total: []
-        },
-      ];
-      $scope.highestScore = getHighestScore($scope.traits);
+      $scope.highestScore = getHighestScore(res.data);
+      $scope.traits = sortByTopTraits(res.data);
       $scope.topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
           if(trait.total.length === 0) return null;
@@ -73,7 +51,7 @@
           return 'Your top trait is ' + $scope.topTraits[0].templateId + '! Invite more friends to get results on your remaining traits.';
         }
         if ($scope.topTraits.length > 1) {
-          return 'Your top traits are ' + _.map($scope.topTraits, 'templateId').join(', ') + '!';
+          return 'Your top traits are : ' + _.map($scope.topTraits, 'templateId').join(', ') + '!';
         }
       })();
     });
