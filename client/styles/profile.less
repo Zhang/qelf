@@ -47,7 +47,20 @@
   padding: @subview-container-margin 0;
 }
 .profile-selector {
-  width: 95%;
+  .flex-center();
+  .rounded-borders();
+  justify-content: flex-start;
+  width: calc(100% ~"-" 2px);
+  background-color: transparent;
+  height: 30px;
+  border: 1px solid @border-gray;
+  .select-icon {
+    padding: 0 10px;
+  }
+  .sort-text {
+    flex-grow: 4;
+    padding: 0 10px;
+  }
 }
 //Trait card css
 .trait-container {

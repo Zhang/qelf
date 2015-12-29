@@ -16,7 +16,7 @@
     });
   });
 
-  module.controller('Profile', function($scope, TraitAPI, $rootScope) {
+  module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals) {
     function sortByTopTraits(traits) {
       return _.sortBy(traits, function(trait) {
         if (_.isEmpty(trait.total)) return 0;
@@ -68,40 +68,44 @@
       })();
     });
 
-    $scope.sortOptions = [{
-      title: 'Lowest Traits',
-      sortFn: function sortByLowTraits() {
-        $scope.traits = _.sortBy($scope.traits, function(trait) {
-          if (_.isEmpty(trait.total)) return 0;
-          return trait.count / trait.total.length;
-        });
-      }
-    },
-    {
-      title: 'Top Traits',
-      sortFn: function sortByTopTraits() {
-        $scope.traits = sortByTopTraits($scope.traits);
-      }
-    },
-    {
-      title: 'Least Voted On',
-      sortFn: function sortByLeastVotedOn() {
-        $scope.traits = _.sortBy($scope.traits, function(trait) {
-          return trait.total.length;
-        });
-      }
-    },
-    {
-      title: 'Most Voted On',
-      sortFn: function sortByMostVotedOn() {
-        $scope.traits = _.sortBy($scope.traits, function(trait) {
-          return (-1 * trait.total.length);
-        });
-      }
-    }];
-    $scope.sortTraitsBy = function(option) {
-      option.sortFn();
+    $scope.sortBy = function() {
+      $scope.popupItems = [{
+        title: 'Lowest Traits',
+        action: function sortByLowTraits() {
+          $scope.sortByText = this.title;
+          $scope.traits = _.sortBy($scope.traits, function(trait) {
+            if (_.isEmpty(trait.total)) return 0;
+            return trait.count / trait.total.length;
+          });
+        }
+      }, {
+        title: 'Top Traits',
+        action: function byTopTraits() {
+          $scope.sortByText = this.title;
+          $scope.traits = sortByTopTraits($scope.traits);
+        }
+      }, {
+        title: 'Least Voted On',
+        action: function sortByLeastVotedOn() {
+          $scope.sortByText = this.title;
+          $scope.traits = _.sortBy($scope.traits, function(trait) {
+            return trait.total.length;
+          });
+        }
+      }, {
+        title: 'Most Voted On',
+        action: function sortByMostVotedOn() {
+          $scope.sortByText = this.title;
+          $scope.traits = _.sortBy($scope.traits, function(trait) {
+            return (-1 * trait.total.length);
+          });
+        }
+      }];
+
+      $scope.popupTitle = 'Sort Traits By';
+      Modals.open($scope);
     };
+
     $('#profile-picture').css('background-image', 'url(' + $rootScope.user.profilePicture + ')');
   });
 

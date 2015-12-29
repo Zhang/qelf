@@ -12,12 +12,17 @@
   </div>
   <div class="selectors-container">
     <div class="selector-container">
-      <select
+      <div class="profile-selector" ng-click="sortBy()">
+        <div class="sort-text">{{sortByText || 'Sort By'}}</div>
+        <div class="select-icon ion-ios-arrow-down">
+        </div>
+      </div>
+      <!-- <select
         class="profile-selector"
         ng-change="sortTraitsBy(sortBy)"
         ng-options="option.title for option in sortOptions"
         ng-model="sortBy">
-      </select>
+      </select> -->
     </div>
   </div>
   <div class="traits-container">

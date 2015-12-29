@@ -174,14 +174,14 @@ div.navbar-container .navigation {
   padding: 0 5px;
 }
 div.navbar-container .navigation .nav {
-  padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 13px) 5px;
+  padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 11px) 5px;
   display: inline-block;
   font-size: 12px;
   color: #997799;
 }
 div.navbar-container .selected {
   font-weight: bold;
-  border-bottom: 5px solid #997799;
+  border-bottom: 3px solid #997799;
 }
 div.navbar-container .ion-chevron-right {
   display: inline-block;
@@ -350,7 +350,22 @@ div.card .card-content .card-header {
   padding: 10px 0;
 }
 .profile-selector {
-  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  justify-content: flex-start;
+  width: calc(100% - 2px);
+  background-color: transparent;
+  height: 30px;
+  border: 1px solid #B9B7B7;
+}
+.profile-selector .select-icon {
+  padding: 0 10px;
+}
+.profile-selector .sort-text {
+  flex-grow: 4;
+  padding: 0 10px;
 }
 .trait-container {
   background-color: #ddccee;
@@ -542,6 +557,7 @@ div.card .card-content .card-header {
   content: "Submit";
 }
 .popup-container {
+  border-radius: 3px;
   background-color: white;
   z-index: 12;
   width: 300px;
@@ -550,7 +566,12 @@ div.card .card-content .card-header {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 40%;
+  top: 25%;
+}
+.popup-container .popup-title {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
 }
 .popup-container .popup-list-container {
   padding: 10px 0;
