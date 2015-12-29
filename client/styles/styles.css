@@ -447,7 +447,7 @@ div.card .card-content .card-header {
 .trait-details-container .trait-overview-container {
   width: 100%;
   height: 25%;
-  background-color: #ddccee;
+  background-color: #997799;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -464,6 +464,27 @@ div.card .card-content .card-header {
 }
 .trait-details-container .divider {
   border: 1px solid #997799;
+}
+.trait-details-container .trait-voted-list {
+  margin-top: 10px;
+}
+.trait-details-container .trait-voted-list .voted-list-item {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-start;
+  background-color: #ddccee;
+}
+.trait-details-container .trait-voted-list .voted-list-item:not(:first-child) {
+  margin-top: 10px;
+}
+.trait-details-container .trait-voted-list .voted-list-item.negative-sentiment {
+  background-color: #997799;
+}
+.trait-details-container .trait-voted-list .voted-list-item .voted-list-item-sentiment {
+  font-size: 25px;
+  padding: 0 10px;
 }
 .feedback-container {
   color: #221122;

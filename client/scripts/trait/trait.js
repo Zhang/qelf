@@ -14,16 +14,42 @@
       templateUrl: 'scripts/trait/trait.html',
       controller: 'Trait',
       resolve: {
-        ViewedTrait: function(TraitAPI, $stateParams) {
-          return TraitAPI.getTrait($stateParams.id).then(function resolve(res) {
-            return res.data;
-          });
+        ViewedTrait: function(TraitAPI, $stateParams, $state) {
+          // return TraitAPI.getTrait($stateParams.id).then(function resolve(res) {
+          //   return res.data;
+          // }, function reject(err) {
+          //   console.log(err);
+          //   $state.go(STATE.profile);
+          // });
         }
       }
     });
   });
 
   module.controller('Trait', function(ViewedTrait, $scope) {
-    $scope.trait = ViewedTrait;
+    // $scope.trait = ViewedTrait;
+    $scope.trait = {
+      templateId: 'scott',
+      count: 5,
+      total: _.map([{
+        comparison: 'is friendly as a wombat\'s soul',
+        selected: 1
+      },
+      {
+        comparison: 'has the hair of an angel',
+        selected: 2
+      },
+      {
+        comparison: 'likes tacos and isn\'t afraid to admit it',
+        selected: 2
+      },
+      {
+        comparison: 'fluffy fluffy bunnies are their favorite thing',
+        selected: 1
+      }], function(vote) {
+        vote.sentiment = vote.selected === 1;
+        return vote;
+      })
+    };
   });
 })();

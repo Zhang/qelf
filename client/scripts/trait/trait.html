@@ -12,8 +12,18 @@
     </div>
   </div>
   <div class="trait-voted-list">
-    <div ng-repeat="vote in trait.total">
-      <div>{{vote.comparison}}</div>
+    <div
+      class="voted-list-item"
+      ng-class="{
+        'positive-sentiment': !vote.sentiment,
+        'negative-sentiment': vote.sentiment
+      }"
+      ng-repeat="vote in trait.total">
+      <div class="voted-list-item-sentiment" ng-class="{
+        'ion-android-sad': !vote.sentiment,
+        'ion-android-happy': vote.sentiment
+      }"></div>
+      <div class="voted-list-item-title">{{vote.comparison}}</div>
     </div>
   </div>
 </div>

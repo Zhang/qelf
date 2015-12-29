@@ -16,31 +16,37 @@
     });
   });
 
-  module.controller('Profile', function($scope, TraitAPI, $rootScope, $filter) {
+  module.controller('Profile', function($scope, TraitAPI, $rootScope) {
+    function sortByTopTraits(traits) {
+      return _.sortBy(traits, function(trait) {
+        if (_.isEmpty(trait.total)) return 0;
+        return -1 * (trait.count / trait.total.length);
+      });
+    }
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
-      // $scope.traits = res.data;
-      $scope.traits = [
-        {
-          templateId: 'test-lowest',
-          count: 0,
-          total: [1, 2, 3, 4, 5, 6]
-        },
-        {
-          templateId: 'test-highest',
-          count: 4,
-          total: [1, 2, 3, 4, 5]
-        },
-        {
-          templateId: 'test-middle',
-          count: 2,
-          total: [1, 2, 3, 4, 5]
-        },
-        {
-          templateId: 'test-noVotes',
-          count: 0,
-          total: []
-        },
-      ];
+      $scope.traits = sortByTopTraits(res.data);
+      // $scope.traits = [
+      //   {
+      //     templateId: 'test-lowest',
+      //     count: 0,
+      //     total: [1, 2, 3, 4, 5, 6]
+      //   },
+      //   {
+      //     templateId: 'test-highest',
+      //     count: 4,
+      //     total: [1, 2, 3, 4, 5]
+      //   },
+      //   {
+      //     templateId: 'test-middle',
+      //     count: 2,
+      //     total: [1, 2, 3, 4, 5]
+      //   },
+      //   {
+      //     templateId: 'test-noVotes',
+      //     count: 0,
+      //     total: []
+      //   },
+      // ];
       $scope.topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
           if(trait.total.length === 0) return null;
@@ -74,10 +80,7 @@
     {
       title: 'Top Traits',
       sortFn: function sortByTopTraits() {
-        $scope.traits = _.sortBy($scope.traits, function(trait) {
-          if (_.isEmpty(trait.total)) return 0;
-          return -1 * (trait.count / trait.total.length);
-        });
+        $scope.traits = sortByTopTraits($scope.traits);
       }
     },
     {
@@ -108,11 +111,11 @@
         trait: '='
       },
       templateUrl: 'scripts/profile/traitCard.html',
-      link: function($scope) {
+      link: function($scope, el) {
         $scope.score = (function getValidScore() {
           return _.size($scope.trait.total) <= 4 ? 'Not Enough Votes' : Math.ceil(($scope.trait.count/_.size($scope.trait.total)) * 100) + '%';
         })();
-
+        $(el[0].querySelector('.score-overlay')).css('width', $scope.score || 0);
         $scope.viewTrait = function() {
           $state.go(STATE.trait, {id: $scope.trait.id});
         };

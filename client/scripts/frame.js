@@ -37,7 +37,7 @@
       if (STATE[state]) {
         $state.go(STATE[state]);
       } else if (state === 'lastState') {
-        $state.go($scope.lastState || STATE.voting);
+        $state.go($scope.lastState || STATE.profile);
         $scope.lastState = '';
       } else {
         console.log('invalid state: ', state);

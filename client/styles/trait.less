@@ -4,7 +4,7 @@
   .trait-overview-container {
     width: 100%;
     height: 25%;
-    background-color: @secondary-color;
+    background-color: @primary-color;
     .flex-center();
   }
   .trait-title, .trait-stats {
@@ -18,5 +18,24 @@
   }
   .divider {
     border: 1px solid @primary-color;
+  }
+  .trait-voted-list {
+    margin-top: @subview-container-margin;
+    .voted-list-item {
+      height: 40px;
+      .flex-center();
+      justify-content: flex-start;
+      background-color: @secondary-color;
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+      &.negative-sentiment {
+        background-color: @primary-color;
+      }
+      .voted-list-item-sentiment {
+        font-size: 25px;
+        padding: 0 10px;
+      }
+    }
   }
 }
