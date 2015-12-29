@@ -17,15 +17,9 @@
         <div class="select-icon ion-ios-arrow-down">
         </div>
       </div>
-      <!-- <select
-        class="profile-selector"
-        ng-change="sortTraitsBy(sortBy)"
-        ng-options="option.title for option in sortOptions"
-        ng-model="sortBy">
-      </select> -->
     </div>
   </div>
   <div class="traits-container">
-    <trait-card ng-repeat="trait in traits" trait="trait"></trait-card>
+    <trait-card ng-repeat="trait in traits" highest-score="highestScore" trait="trait"></trait-card>
   </div>
 </div>

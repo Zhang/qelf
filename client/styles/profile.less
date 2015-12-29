@@ -71,6 +71,7 @@
   margin: 5px 0;
   z-index: @z-index-bottom;
   .flex-center();
+  .rounded-borders();
 
   &:first-child {
     margin-top: 0;
@@ -82,6 +83,8 @@
     left: 0;
     background-color: @primary-color;
     z-index: @z-index-middle;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
   }
 
   .trait-title, .ion-chevron-right {

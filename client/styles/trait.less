@@ -1,28 +1,64 @@
 .trait-details-container {
+  @trait-overview-height: 25%;
   .subview-container-defaults();
 
   .trait-overview-container {
+    .rounded-borders();
     width: 100%;
-    height: 25%;
+    height: @trait-overview-height;
     background-color: @primary-color;
-    .flex-center();
   }
   .trait-title, .trait-stats {
     display: inline-block;
-    color: @primary-font-color;
     font-size: @font-standard;
+    flex-grow: 2;
+    text-align: center;
+    width: calc(50% ~"-" 2px);
+    height: 100%;
+    vertical-align: top;
+    color: white;
+  }
+  .trait-metrics {
+    .flex-center();
+    height: 100%;
+  }
+  .trait-label {
+    padding: 10px 0;
   }
   .trait-title {
     text-transform: capitalize;
     font-weight: bold;
   }
+  .title-text {
+    flex-grow: 3;
+    font-size: @font-xlarge;
+    .flex-center();
+  }
   .divider {
     border: 1px solid @primary-color;
   }
+  .trait-selected-count {
+    font-size: @font-xlarge;
+    height: 55px;
+  }
+  .flex-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
   .trait-voted-list {
+    &.empty-state {
+      background-color: @secondary-color;
+      .flex-center();
+      color: @primary-font-color;
+      text-align: center;
+      padding: 20px;
+    }
     margin-top: @subview-container-margin;
+    height: calc(100% ~"-" @trait-overview-height ~"-" @subview-container-margin);
     .voted-list-item {
       height: 40px;
+      .rounded-borders();
       .flex-center();
       justify-content: flex-start;
       background-color: @secondary-color;

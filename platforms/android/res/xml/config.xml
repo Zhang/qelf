@@ -45,7 +45,7 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-    <content original-src="index.html" src="http://192.168.42.66:8100" />
+    <content original-src="index.html" src="http://192.168.0.27:8100" />
     <access origin="*" />
     <allow-navigation href="*" />
     <preference name="SplashScreen" value="screen" />

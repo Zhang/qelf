@@ -51,5 +51,7 @@
         return vote;
       })
     };
+
+    $scope.enoughVotes = $scope.trait.total.length > 4;
   });
 })();

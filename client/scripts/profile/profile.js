@@ -23,30 +23,40 @@
         return -1 * (trait.count / trait.total.length);
       });
     }
+    function getHighestScore(traits) {
+      var highestScore = 0;
+      _.each(traits, function(trait) {
+        if (trait.total.length && (trait.count / trait.total.length) > highestScore) {
+          highestScore = trait.count / trait.total.length;
+        }
+      });
+      return highestScore;
+    }
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
-      $scope.traits = sortByTopTraits(res.data);
-      // $scope.traits = [
-      //   {
-      //     templateId: 'test-lowest',
-      //     count: 0,
-      //     total: [1, 2, 3, 4, 5, 6]
-      //   },
-      //   {
-      //     templateId: 'test-highest',
-      //     count: 4,
-      //     total: [1, 2, 3, 4, 5]
-      //   },
-      //   {
-      //     templateId: 'test-middle',
-      //     count: 2,
-      //     total: [1, 2, 3, 4, 5]
-      //   },
-      //   {
-      //     templateId: 'test-noVotes',
-      //     count: 0,
-      //     total: []
-      //   },
-      // ];
+      // $scope.traits = sortByTopTraits(res.data);
+      $scope.traits = [
+        {
+          templateId: 'test-lowest',
+          count: 0,
+          total: [1, 2, 3, 4, 5, 6]
+        },
+        {
+          templateId: 'test-highest',
+          count: 4,
+          total: [1, 2, 3, 4, 5]
+        },
+        {
+          templateId: 'test-middle',
+          count: 2,
+          total: [1, 2, 3, 4, 5]
+        },
+        {
+          templateId: 'test-noVotes',
+          count: 0,
+          total: []
+        },
+      ];
+      $scope.highestScore = getHighestScore($scope.traits);
       $scope.topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
           if(trait.total.length === 0) return null;
@@ -112,12 +122,13 @@
   module.directive('traitCard', function($state, STATE) {
     return {
       scope: {
-        trait: '='
+        trait: '=',
+        highestScore: '='
       },
       templateUrl: 'scripts/profile/traitCard.html',
       link: function($scope, el) {
         $scope.score = (function getValidScore() {
-          return _.size($scope.trait.total) <= 4 ? 'Not Enough Votes' : Math.ceil(($scope.trait.count/_.size($scope.trait.total)) * 100) + '%';
+          return _.size($scope.trait.total) <= 4 ? 'Not Enough Votes' : (Math.ceil(($scope.trait.count/_.size($scope.trait.total)) * 100) / $scope.highestScore) + '%';
         })();
         $(el[0].querySelector('.score-overlay')).css('width', $scope.score || 0);
         $scope.viewTrait = function() {

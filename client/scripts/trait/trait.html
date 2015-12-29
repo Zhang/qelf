@@ -1,18 +1,30 @@
 <div class="trait-details-container">
   <div class="trait-overview-container">
     <div class="trait-title">
-      {{trait.templateId}}
+      <div class="flex-container">
+        <div class="trait-label">
+          Trait
+        </div>
+        <div class="title-text">
+          {{trait.templateId}}
+        </div>
+      </div>
     </div>
     <div class="trait-stats">
       <div class="trait-metrics">
-        <div class="trait-selected-count">{{trait.count}}</div>
-        <div class="divider"></div>
-        <div class="trait-total-count">{{trait.total.length}}</div>
+        <div ng-if="enoughVotes" class="trait-selected-count">{{trait.count + ' / '}}{{trait.total.length}}</div>
+        <div ng-if="!enoughVotes" class="trait-selected-count">Not enough votes</div>
       </div>
     </div>
   </div>
-  <div class="trait-voted-list">
+  <div class="trait-voted-list" ng-class="{
+    'empty-state': !enoughVotes
+  }">
+    <div ng-if="!enoughVotes">
+      Not enough votes - please ask your friends to vote more frequently!
+    </div>
     <div
+      ng-if="enoughVotes"
       class="voted-list-item"
       ng-class="{
         'positive-sentiment': !vote.sentiment,
