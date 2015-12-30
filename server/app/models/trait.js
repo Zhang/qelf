@@ -10,7 +10,7 @@ const TraitSchema = Joi.object().keys({
   id: Joi.string().required(),
   templateId: Joi.string().required(),
   count: Joi.number().required(),
-  total: Joi.array().required()
+  total: Joi.array().required().items(Joi.string()).description('An array of vote ids corresponding to completed votes')
 });
 
 const modelCRUD = require('./concerns/modelCRUD')('trait', collection, TraitSchema);
@@ -23,7 +23,7 @@ const newTrait = function newTrait(templateId) {
 };
 
 const incrementTrait = function(id, incrementCount, vote) {
-  const update = _.merge({ $push: {total: vote } },
+  const update = _.merge({ $push: {total: vote.id } },
     (incrementCount ? {$inc: {count: 1}} : {})
   );
 

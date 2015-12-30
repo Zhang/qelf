@@ -28,17 +28,21 @@ div.navbar-container {
   height: @navbar-height;
   background-color: white;
   border-bottom: 2px solid @primary-color;
+  .flex-center();
 
   div.title-container {
     height: 100%;
     display: inline-block;
+    flex-grow: 2;
+    .flex-center();
+    justify-content: flex-start;
   }
   .title {
     font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
     font-size: @font-icon-size;
     color: @primary-color;
     font-weight: bold;
-    margin: 3px 7px;
+    margin-left: 10px;
   }
   .navigation {
     display: inline-block;
@@ -51,10 +55,11 @@ div.navbar-container {
       font-size: @font-smaller;
       color: @primary-color;
     }
-  }
-  .selected {
-    font-weight: bold;
-    border-bottom: 3px solid @primary-color;
+    .selected {
+      color: @primary-font-color;
+      font-weight: bold;
+      border-bottom: 3px solid @primary-color;
+    }
   }
   .ion-chevron-right {
     display: inline-block;

@@ -33,14 +33,20 @@
   div {
     text-align: center;
   }
+  @profile-name-height: 25px;
   .name {
+    .flex-center();
     font-size: @font-standard;
     font-weight: bold;
     border-bottom: 1px solid @primary-color;
-    padding-bottom: 5px;
+    text-transform: capitalize;
+    height: @profile-name-height;
   }
   .overview {
-    padding: 25px 5px;
+    @overview-padding-height: 5px;
+    .flex-center();
+    height: calc(100% ~"-" @profile-name-height ~"-" 2 ~"*" @overview-padding-height ~"-" 2px);
+    padding: @overview-padding-height;
   }
 }
 .selector-container {

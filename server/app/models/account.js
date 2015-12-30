@@ -41,7 +41,8 @@ const add = function* add(toAdd) {
     this.status = 400;
     throw new Error('attempting to add duplicate user', existingUser);
   }
-  const added = yield modelCRUD.create(toAdd);
+
+  const added = yield* modelCRUD.create(toAdd);
   return added;
 };
 

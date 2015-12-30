@@ -15,7 +15,7 @@ const create = function* create() {
   const body = this.request.body;
   const facebookId = body.facebookId;
   const accessToken = body.access_token;
-  const DEFAULT_TRAITS = _.map(_.map(traits, 'template.id'), traitModel.newTrait);
+  const DEFAULT_TRAITS = _.map(_.map(traits.defaultTraits, 'template.id'), traitModel.newTrait);
   try {
     const acctOpts = yield {
       defaultTraits: traitModel.addBulk(DEFAULT_TRAITS),

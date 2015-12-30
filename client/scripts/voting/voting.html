@@ -8,7 +8,7 @@
     </div>
     <card ng-if="!emptyVotes" vote="vote" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
   </div>
-  <div class="selection-container">
+  <div ng-if="!emptyVotes" class="selection-container">
     <div class="selection-holder">
       <div class="click-vote vote-left" ng-click="vote('left')">
         <div class="ion-chevron-left vote-icon"></div>

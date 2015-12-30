@@ -29,7 +29,7 @@
   module.controller('Trait', function(ViewedTrait, $scope, $rootScope) {
     $scope.trait = ViewedTrait;
     $scope.trait.total = _.map(ViewedTrait.total, function(vote) {
-      vote.sentiment = vote.selected === $rootScope.user.id;
+      vote.sentiment = vote.selected === $rootScope.user.facebookId;
       return vote;
     });
 

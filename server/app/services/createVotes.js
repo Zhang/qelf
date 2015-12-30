@@ -35,7 +35,7 @@ module.exports = function* (facebookId) {
   const templates = values[1];
   const completedVotes = _.get(values[2], 'complete');
   const completedVoteMap = getCompletedMapByFriend(completedVotes);
-
+  console.log(completedVoteMap);
   if (_.isEmpty(templates)) {
     throw new Error('missing default traits, please run addTraits');
   }

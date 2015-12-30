@@ -18,7 +18,6 @@ div.voting-container {
   .empty-icon {
     margin: 0 auto;
     display: block;
-    width: 50%;
     font-size: 212px;
   }
 }
@@ -78,16 +77,11 @@ div.card {
         overflow: hidden;
       }
       .candidate-picture {
+        .background-picture();
         border-radius: @round-border-radius;
         padding: 2px;
         background-color: white;
         height: 155px;
-
-        img {
-          border-radius: @round-border-radius;
-          height: 100%;
-          width: 100%;
-        }
       }
       .candidate-description {
         @candidate-height: 90px;

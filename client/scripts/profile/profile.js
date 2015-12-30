@@ -35,7 +35,7 @@
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       $scope.highestScore = getHighestScore(res.data);
       $scope.traits = sortByTopTraits(res.data);
-      $scope.topTraits = (function getTopTraits() {
+      var topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
           if(trait.total.length === 0) return null;
           trait.score = trait.count / trait.total.length;
@@ -44,14 +44,15 @@
         return orderedTraits.splice(0, 3);
       })();
       $scope.overviewSentence = (function constructOverviewSentence() {
-        if (_.isEmpty($scope.topTraits)) {
+        if (_.isEmpty(topTraits)) {
           return 'Not enough votes to determine top traits, invite more friends to gather more data!';
         }
-        if ($scope.topTraits.length === 1) {
-          return 'Your top trait is ' + $scope.topTraits[0].templateId + '! Invite more friends to get results on your remaining traits.';
+        if (topTraits.length === 1) {
+          return 'Your top trait is ' + topTraits[0].templateId + '! Invite more friends to get results on your remaining traits.';
         }
-        if ($scope.topTraits.length > 1) {
-          return 'Your top traits are : ' + _.map($scope.topTraits, 'templateId').join(', ') + '!';
+        if (topTraits.length > 1) {
+          var lastEl = topTraits.splice(topTraits.length - 1)[0];
+          return 'Your top traits are that you are: ' + _.map(topTraits, 'templateId').join(', ') + ', and ' + lastEl.templateId + '!';
         }
       })();
     });
@@ -106,7 +107,7 @@
       templateUrl: 'scripts/profile/traitCard.html',
       link: function($scope, el) {
         $scope.score = (function getValidScore() {
-          return _.size($scope.trait.total) <= 4 ? 'Not Enough Votes' : (Math.ceil(($scope.trait.count/_.size($scope.trait.total)) * 100) / $scope.highestScore) + '%';
+          return _.size($scope.trait.total) <= 4 ? 'Not Enough Votes' : Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / $scope.highestScore) + '%';
         })();
         $(el[0].querySelector('.score-overlay')).css('width', $scope.score || 0);
         $scope.viewTrait = function() {

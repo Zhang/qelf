@@ -19,18 +19,23 @@ module.exports = function(collectionName, collection, schema) {
   }
   return {
     bulkInsert: function* bulkInsert(toAdd) {
-      var toAddWithIds = (function() {
-        return _.map(toAdd, function(v) {
-          v.id = v.id || uuid.v4();
-          return v;
-        });
-      })();
+      try {
+        const toAddWithIds = (function() {
+          return _.map(toAdd, function(v) {
+            const val = _.cloneDeep(v);
+            val.id = v.id || uuid.v4();
+            return val;
+          });
+        })();
 
-      _.each(toAdd, function(v) {
-        validate(v, schema, collectionName);
-      });
-      yield collection.insert(toAddWithIds);
-      return toAddWithIds;
+        _.each(toAddWithIds, function(v) {
+          validate(v, schema, collectionName);
+        });
+        yield collection.insert(toAddWithIds);
+        return toAddWithIds;
+      } catch (err) {
+        console.error('error attempting to bulk insert ' + collectionName + ':', err);
+      }
     },
     create: function* create(toAdd) {
       try {
@@ -38,7 +43,6 @@ module.exports = function(collectionName, collection, schema) {
         toAdd.id = existingId || uuid.v4();
 
         validate(toAdd, schema, collectionName);
-
         if (existingId) {
           const existingObj = yield collection.find({id: existingId});
           if (existingObj) throw new Error('attempted to add duplicate object');

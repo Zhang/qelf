@@ -92,6 +92,10 @@
       transclude: true,
       scope: {
         contestant: '='
+      },
+      link: function($scope, el) {
+        var candidateImgContainer = $(el).find('.candidate-picture')[0];
+        $(candidateImgContainer).css('background-image', 'url(' + $scope.contestant.profilePicture + ')');
       }
     };
   });
