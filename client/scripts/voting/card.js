@@ -42,7 +42,8 @@
       replace: true,
       scope: {
         vote: '=',
-        onSubmit: '&?'
+        comment: '=',
+        onSubmit: '&'
       },
       compile: function() {
         return function($scope, $element) {

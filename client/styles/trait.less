@@ -57,7 +57,6 @@
       text-align: center;
       padding: 20px;
     }
-    margin-top: @subview-container-margin;
     height: calc(100% ~"-" @trait-overview-height ~"-" @subview-container-margin);
     .voted-list-item {
       height: 40px;
@@ -75,6 +74,13 @@
         font-size: 25px;
         padding: 0 10px;
       }
+      .vote-comment {
+        .ellipsis-overflow();
+        margin-right: 10px;
+      }
     }
+  }
+  .comment-divider {
+    padding: @subview-container-margin;
   }
 }

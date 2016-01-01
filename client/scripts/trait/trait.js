@@ -28,9 +28,13 @@
 
   module.controller('Trait', function(ViewedTrait, $scope, $rootScope) {
     $scope.trait = ViewedTrait;
-    $scope.trait.total = _.map(ViewedTrait.total, function(vote) {
+    var totalVotes = _.map(ViewedTrait.total, function(vote) {
       vote.sentiment = vote.selected === $rootScope.user.facebookId;
       return vote;
+    });
+
+    $scope.voteWithComments = _.filter(totalVotes , function(vote) {
+      return !!vote.comment;
     });
 
     $scope.enoughVotes = $scope.trait.total.length > 4;

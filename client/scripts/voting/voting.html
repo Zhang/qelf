@@ -6,7 +6,7 @@
       </div>
       <div class="empty-state-text">No one to vote on, invite some friends!</div>
     </div>
-    <card ng-if="!emptyVotes" vote="vote" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
+    <card ng-if="!emptyVotes" vote="vote" comment="comment" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
   </div>
   <div ng-if="!emptyVotes && !commenting" class="selection-container">
     <div class="selection-holder">

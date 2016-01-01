@@ -416,21 +416,21 @@ div.card .card-content .card-header {
   position: absolute;
   bottom: 0;
   width: 60%;
-  margin: 0 calc(50% - 60% / 2) calc(150px / 2 - 80px / 2 - 20px) calc(50% - 60% / 2);
+  margin: 0 calc(50% - 60% / 2) calc(22vh / 2 - 13vh / 2 - 20px) calc(50% - 60% / 2);
 }
 .icon-set {
   text-align: center;
 }
 .selection-holder {
-  height: 80px;
+  height: 13vh;
   background-color: #ddccee;
-  border-radius: 80px;
+  border-radius: 13vh;
 }
 .click-vote {
   margin: 5px;
-  height: calc(80px - 5px * 2);
-  width: calc(80px - 5px * 2);
-  border-radius: calc(80px - 5px * 2);
+  height: calc(13vh - 5px * 2);
+  width: calc(13vh - 5px * 2);
+  border-radius: calc(13vh - 5px * 2);
   background-color: #997799;
   display: inline-block;
 }
@@ -559,7 +559,6 @@ div.card .card-content .card-header {
   flex-direction: column;
 }
 .trait-details-container .trait-voted-list {
-  margin-top: 10px;
   height: calc(100% - 25% - 10px);
 }
 .trait-details-container .trait-voted-list.empty-state {
@@ -589,6 +588,15 @@ div.card .card-content .card-header {
 .trait-details-container .trait-voted-list .voted-list-item .voted-list-item-sentiment {
   font-size: 25px;
   padding: 0 10px;
+}
+.trait-details-container .trait-voted-list .voted-list-item .vote-comment {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+}
+.trait-details-container .comment-divider {
+  padding: 10px;
 }
 .feedback-container {
   color: #221122;

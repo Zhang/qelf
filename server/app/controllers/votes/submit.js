@@ -12,9 +12,11 @@ const submit = function* submit() {
   const body = this.request.body;
   const voteId = this.params.id;
   const selected = body.selected;
+  const comment = body.comment;
+
   try {
     const values = yield {
-      submit: voteModel.submit(voteId, selected),
+      submit: voteModel.submit(voteId, selected, comment),
       vote: voteModel.get(voteId)
     };
 

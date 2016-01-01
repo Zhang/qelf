@@ -17,11 +17,15 @@
       </div>
     </div>
   </div>
+  <div class="comment-divider">Comments</div>
   <div class="trait-voted-list" ng-class="{
     'empty-state': !enoughVotes
   }">
     <div ng-if="!enoughVotes">
       Not enough votes - please ask your friends to vote more frequently!
+    </div>
+    <div ng-if="enoughVotes && !voteWithComments.length">
+      No comments received on this trait
     </div>
     <div
       ng-if="enoughVotes"
@@ -30,12 +34,12 @@
         'positive-sentiment': !vote.sentiment,
         'negative-sentiment': vote.sentiment
       }"
-      ng-repeat="vote in trait.total">
+      ng-repeat="vote in voteWithComments">
       <div class="voted-list-item-sentiment" ng-class="{
         'ion-android-sad': !vote.sentiment,
         'ion-android-happy': vote.sentiment
       }"></div>
-      <div class="voted-list-item-title">{{vote.comparison}}</div>
+      <div class="vote-comment">{{vote.comment}}</div>
     </div>
   </div>
 </div>
