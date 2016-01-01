@@ -6,6 +6,7 @@
     'ngCookies',
     'ui.router',
     'ENV_VARS',
+    'overlay',
     'modals',
     'states',
     'api',

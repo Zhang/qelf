@@ -34,7 +34,7 @@
     };
   });
 
-  module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI, $timeout) {
+  module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI, $timeout, OverlayService) {
     VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       if (_.isEmpty(res.data)) {
         $scope.emptyVotes = true;
@@ -42,7 +42,12 @@
         $scope.cardManager = new CardManager(res.data);
       }
     });
-
+    function closeComment() {
+      $scope.commenting = false;
+    }
+    var overlay = new OverlayService({
+      onClick: closeComment
+    });
     $scope.comment = {
       text: ''
     };
@@ -58,11 +63,13 @@
     };
 
     $scope.submitComment = function() {
-      $scope.commenting = false;
+      overlay.close();
+      closeComment();
     };
 
     $scope.$on('card:commenting', function() {
       $scope.commenting = true;
+      overlay.open();
       $timeout(function focusCommentInput() {
         $('#comment-input').focus();
       });

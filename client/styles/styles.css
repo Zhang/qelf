@@ -469,10 +469,12 @@ div.card .card-content .card-header {
   text-align: left;
 }
 .card-comment-container {
+  z-index: 13;
   position: absolute;
   bottom: 0;
 }
 .card-comment-container .comment-description {
+  background-color: white;
   padding: 10px;
   border: 1px solid #997799;
 }
