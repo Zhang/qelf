@@ -113,8 +113,10 @@ div.button-group {
   bottom: 0;
 }
 a.login-tag {
-  margin-top: 10px;
+  padding: 15px;
   display: block;
+  width: 50%;
+  margin: 0 auto;
 }
 .sub-title {
   text-align: center;
@@ -154,12 +156,10 @@ div.navbar-container {
   justify-content: center;
 }
 div.navbar-container div.title-container {
-  height: 100%;
-  display: inline-block;
-  flex-grow: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 2;
   justify-content: flex-start;
 }
 div.navbar-container .title {
@@ -170,21 +170,31 @@ div.navbar-container .title {
   margin-left: 10px;
 }
 div.navbar-container .navigation {
-  display: inline-block;
-  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   padding: 0 5px;
 }
 div.navbar-container .navigation .nav {
-  padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 11px) 5px;
-  display: inline-block;
+  padding: 0 10px;
   font-size: 12px;
   color: #997799;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.navbar-container .navigation .settings {
+  font-size: 20px;
+  width: 30px;
+  padding: 0;
 }
 div.navbar-container .navigation .selected {
   color: #221122;
   font-weight: bold;
-  border-bottom: 3px solid #997799;
+  height: calc(100% - 4px);
+  border-bottom: 4px solid #997799;
 }
 div.navbar-container .ion-chevron-right {
   display: inline-block;
@@ -277,7 +287,15 @@ div.card .card-content .card-main .candidate-description {
   font-weight: bold;
 }
 div.card .card-content .card-comment {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: center;
+  padding: 10px;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid #997799;
 }
 div.card .card-content .card-header {
   display: flex;
@@ -564,13 +582,15 @@ div.card .card-content .card-header {
   height: calc(100% - 25% - 10px);
 }
 .trait-details-container .trait-voted-list.empty-state {
-  background-color: #ddccee;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 3px;
+  background-color: #ddccee;
   color: #221122;
+  margin-top: 0;
   text-align: center;
-  padding: 20px;
+  padding: 0 25px;
 }
 .trait-details-container .trait-voted-list .voted-list-item {
   height: 40px;

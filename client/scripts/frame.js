@@ -54,11 +54,12 @@
       }, {
         title: 'Logout',
         action: function() {
-          FBService.logout().then(function() {
-            SessionAPI.logout().then(function() {
-              $state.go(STATE.login);
-            });
-          });
+          $state.go(STATE.login);
+          // FBService.logout().then(function() {
+          //   SessionAPI.logout().then(function() {
+          //     $state.go(STATE.login);
+          //   });
+          // });
         }
       }];
       Modals.open($scope);

@@ -16,7 +16,7 @@
     $scope.submit = function() {
       if ($scope.feedbackText) {
         FeedbackAPI.create($scope.feedbackText).then(function() {
-          console.log('something');
+          $scope.feedbackText = '';
         }, function() {
           console.log('something');
         });

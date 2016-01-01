@@ -31,10 +31,8 @@ div.navbar-container {
   .flex-center();
 
   div.title-container {
-    height: 100%;
-    display: inline-block;
-    flex-grow: 2;
     .flex-center();
+    flex-grow: 2;
     justify-content: flex-start;
   }
   .title {
@@ -45,20 +43,27 @@ div.navbar-container {
     margin-left: 10px;
   }
   .navigation {
-    display: inline-block;
-    float: right;
+    .flex-center();
     height: 100%;
     padding: 0 5px;
     .nav {
-      padding: calc(50px / 2 - 5px) 5px calc(50px / 2 - 11px) 5px;
-      display: inline-block;
+      padding: 0 10px;
       font-size: @font-smaller;
       color: @primary-color;
+      height: 100%;
+      .flex-center();
+    }
+    .settings {
+      font-size: @font-xlarge;
+      width: 30px;
+      padding: 0;
     }
     .selected {
+      @selected-border-height: 4px;
       color: @primary-font-color;
       font-weight: bold;
-      border-bottom: 3px solid @primary-color;
+      height: calc(100% - @selected-border-height);
+      border-bottom: @selected-border-height solid @primary-color;
     }
   }
   .ion-chevron-right {

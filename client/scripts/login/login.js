@@ -25,12 +25,11 @@
     }
 
     $scope.fbLogin = function() {
-      $state.go(STATE.voting);
-      // FBService.getLoginStatus().then(login, function() {
-      //   FBService.login().then(login, function reject(err) {
-      //     alert(err);
-      //   });
-      // });
+      FBService.getLoginStatus().then(login, function() {
+        FBService.login().then(login, function reject(err) {
+          alert(err);
+        });
+      });
     };
 
     function signup() {

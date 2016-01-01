@@ -24,6 +24,11 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.example.Votely"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "409640992567240",
+            "APP_NAME": "Sheen",
+            "PACKAGE_NAME": "com.example.Votely"
         }
     },
     "dependent_plugins": {}

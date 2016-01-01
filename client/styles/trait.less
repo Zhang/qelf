@@ -51,11 +51,13 @@
   }
   .trait-voted-list {
     &.empty-state {
-      background-color: @secondary-color;
       .flex-center();
+      .rounded-borders();
+      background-color: @secondary-color;
       color: @primary-font-color;
+      margin-top: 0;
       text-align: center;
-      padding: 20px;
+      padding: 0 25px;
     }
     height: calc(100% ~"-" @trait-overview-height ~"-" @subview-container-margin);
     .voted-list-item {
