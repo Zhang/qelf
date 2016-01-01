@@ -7,7 +7,7 @@ const q = require('q');
 const uuid = require('uuid');
 
 function* validateMongoVersion(db) {
-  const EXPECTED_MONGO_VERSION = '3.0.x';
+  const EXPECTED_MONGO_VERSION = '3.x.x';
 
   function promisifiedBuildInfo() {
     const deferred = q.defer();
