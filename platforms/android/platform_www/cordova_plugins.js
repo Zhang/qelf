@@ -46,6 +46,14 @@ module.exports = [
         "clobbers": [
             "facebookConnectPlugin"
         ]
+    },
+    {
+        "file": "plugins/com.cordova.plugins.sms/www/sms.js",
+        "id": "com.cordova.plugins.sms.Sms",
+        "pluginId": "com.cordova.plugins.sms",
+        "clobbers": [
+            "window.sms"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -57,7 +65,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.0.0",
     "cordova-plugin-whitelist": "1.2.0",
     "ionic-plugin-keyboard": "1.0.8",
-    "phonegap-facebook-plugin": "0.12.0"
+    "phonegap-facebook-plugin": "0.12.0",
+    "com.cordova.plugins.sms": "0.1.6"
 }
 // BOTTOM OF METADATA
 });

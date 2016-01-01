@@ -20,7 +20,7 @@
       SessionAPI.login(response.userID, response.accessToken).then(function resolve() {
         $state.go(STATE.voting);
       }, function reject() {
-        alert('failure');
+        alert('Failed to login, please ensure you\'ve signed up before trying to log in');
       });
     }
 
@@ -42,11 +42,12 @@
       }, function reject(res) { alert('failure', res); });
     }
 
-    $scope.signup = function() {
-      FBService.getLoginStatus().then(function loggedIn() {
-        FBService.logout().then(signup);
-      }, signup);
-    };
+    $scope.signup = signup;
+    // function() {
+    //   FBService.getLoginStatus().then(function loggedIn() {
+    //     FBService.logout().then(signup);
+    //   }, signup);
+    // };
 
     $scope.toSignup = function() {
       $scope.isSignup = !$scope.isSignup;

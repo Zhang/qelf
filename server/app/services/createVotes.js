@@ -31,23 +31,29 @@ function validateCombinationIsUnique(completedVoteMap, accountId, accountId2, tr
 
 module.exports = function* (facebookId) {
   const values = yield [accountModel.getByFacebookId(facebookId), traitTemplateModel.query({}), completedVotesModel.getByFacebookId(facebookId)];
-  const user = values[0];
+  const account = values[0];
   const templates = values[1];
   const completedVotes = _.get(values[2], 'complete');
   const completedVoteMap = getCompletedMapByFriend(completedVotes);
-  console.log(completedVoteMap);
+
   if (_.isEmpty(templates)) {
     throw new Error('missing default traits, please run addTraits');
   }
 
-  if (user.friends.length < 2) {
+  if (account.friends.length < 2) {
     console.log('Not enough friends');
     return [];
   }
 
-  var votes = _.reduce(user.friends, function(total, accountId, key, coll) {
-    var unmatchedAccountIds = coll.slice(key + 1);
-    var newVotes = _.map(unmatchedAccountIds, function(acctId) {
+  const TOTAL_POSSIBLE_VOTES = ((account.friends.length * ( account.friends.length - 1 )) / 2 ) * (templates.length);
+  if (completedVotes.length === TOTAL_POSSIBLE_VOTES) {
+    //don't need to create any more votes;
+    return [];
+  }
+
+  const votes = _.reduce(account.friends, function(total, accountId, key, coll) {
+    const unmatchedAccountIds = coll.slice(key + 1);
+    const newVotes = _.map(unmatchedAccountIds, function(acctId) {
       return _.map(templates, function(template) {
         if (validateCombinationIsUnique(completedVoteMap, accountId, acctId, template.id)) return null;
 

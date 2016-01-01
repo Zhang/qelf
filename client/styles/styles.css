@@ -520,6 +520,15 @@ div.card .card-content .card-header {
 .card-comment-container .comment-text-input :-ms-input-placeholder {
   color: #221122;
 }
+.invite-friends-btn {
+  border-radius: 3px;
+  width: 50%;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #997799;
+  color: white;
+  font-weight: bold;
+}
 .trait-details-container {
   margin: 10px;
   height: calc(100% - 2 * 10px);

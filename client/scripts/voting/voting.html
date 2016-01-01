@@ -4,7 +4,10 @@
       <div class="icon-set">
         <i class="empty-icon ion-android-happy"></i>
       </div>
-      <div class="empty-state-text">No one to vote on, invite some friends!</div>
+      <div class="empty-state-text">
+        <div>No one to vote on, invite some friends!</div>
+        <div class="invite-friends-btn" ng-click="share()">Invite Friends!</div>
+      </div>
     </div>
     <card ng-if="!emptyVotes" vote="vote" comment="comment" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
   </div>

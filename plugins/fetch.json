@@ -57,5 +57,13 @@
             "APP_ID": "409640992567240",
             "APP_NAME": "Sheen"
         }
+    },
+    "com.cordova.plugins.sms": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-sms-plugin"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
