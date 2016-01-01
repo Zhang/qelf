@@ -41,25 +41,26 @@ h2.title {
   margin: 0;
 }
 .login-with-fb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #3b5998;
   width: 100%;
+  height: 50px;
   color: white;
+  border-radius: 3px;
 }
 .login-with-fb .logo-container {
   vertical-align: top;
   height: calc(50px - 2 * 5px);
   width: calc(50px - 2 * 5px);
-  margin: 5px;
-  display: inline-block;
+  margin-left: 5px;
 }
 .login-with-fb .login-text {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  display: inline-block;
-  height: 50px;
-  line-height: 50px;
   font-size: 16px;
+  flex-grow: 2;
   font-weight: bold;
-  margin-left: 20px;
 }
 .fb-logo {
   width: 100%;
@@ -76,41 +77,24 @@ button.login {
   color: white;
   font-size: 20px;
 }
-div.login-block ::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-div.login-block :-moz-placeholder {
-  /* Firefox 18- */
-  color: rgba(255, 255, 255, 0.5);
-}
-div.login-block ::-moz-placeholder {
-  /* Firefox 19+ */
-  color: rgba(255, 255, 255, 0.5);
-}
-div.login-block :-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-div.login-block input {
-  color: white;
-}
-div.login-block .login-input-container {
-  margin: 150px auto;
-  width: 85%;
-}
-div.login-block input,
-div.login-block button.login {
+.button-group.bottom input,
+.button-group.bottom button.login {
   width: 100%;
   border: none;
   font-size: 14px;
 }
-div.login-block input:focus,
-div.login-block button.login:focus {
+.button-group.bottom input:focus,
+.button-group.bottom button.login:focus {
   outline: none;
 }
-div.login-block .login-input {
+.button-group.bottom .login-input {
   margin: 5px auto;
   border-bottom: 1px solid white;
   height: 20px;
+}
+.login-input-container {
+  margin: 0 auto;
+  width: 85%;
 }
 .transparent-inputs input {
   background-color: transparent;
@@ -121,12 +105,22 @@ input.block {
 div.button-group {
   width: 100%;
   text-align: center;
-  padding: 30px 0;
+  padding: 15px 0;
   color: white;
 }
 .bottom {
   position: absolute;
   bottom: 0;
+}
+a.login-tag {
+  margin-top: 10px;
+  display: block;
+}
+.sub-title {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
 }
 div.frame-container {
   transform: translate3d(0%, 0px, 0px);
@@ -212,33 +206,33 @@ div.voting-container {
   font-size: 212px;
 }
 div.votes {
-  height: 70%;
+  height: 65%;
+  min-height: 350px;
   position: relative;
   margin: 0 auto;
-  padding: 8px;
+  padding: 10px 20px;
 }
 div.votes .card:nth-child(1) {
   z-index: 10;
 }
 div.votes .card:nth-child(2) {
-  width: calc(100% - 8px * 2 - 0px * 2 - 6px);
+  width: calc(100% - 20px * 2 - 0px * 2 - 6px);
   margin: 5px 0 0 3px;
   z-index: 5;
 }
 div.votes .card:nth-child(3) {
-  width: calc(100% - 8px * 2 - 0px * 2 - 12px);
+  width: calc(100% - 20px * 2 - 0px * 2 - 12px);
   margin: 10px 0 0 6px;
   z-index: 0;
 }
 div.card {
   height: 100%;
-  width: calc(100% - 8px * 2 - 0px * 2);
+  width: calc(100% - 20px * 2 - 0px * 2);
   background-color: white;
   position: absolute;
   border: 1px solid #B9B7B7;
   padding: 0px;
   border-radius: 3px;
-  margin: 0;
 }
 div.card .card-content {
   background-color: white;
@@ -271,35 +265,27 @@ div.card .card-content .card-main .candidate-picture {
   height: 155px;
 }
 div.card .card-content .card-main .candidate-description {
-  height: 90px;
+  height: 30px;
   padding: 10px;
-  overflow: hidden;
-}
-div.card .card-content .card-main .candidate-description .name {
-  text-align: center;
-}
-div.card .card-content .card-main .candidate-description .name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 20px;
   font-size: 14px;
-  width: 100%;
-  font-weight: 600;
-  display: inline-block;
+  font-weight: bold;
 }
-div.card .card-content .card-main .candidate-description .social-description {
-  margin-top: 8px;
+div.card .card-content .card-comment {
   text-align: center;
-  font-size: 12px;
 }
 div.card .card-content .card-header {
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-content: flex-start;
   height: 100px;
   padding: 0 15px;
-  text-align: center;
   font-size: 14px;
   font-weight: bold;
   border-bottom: 1px solid #ddccee;
@@ -364,6 +350,9 @@ div.card .card-content .card-header {
 }
 .selector-container {
   padding: 10px 0;
+}
+.selection-label {
+  margin-top: 5px;
 }
 .profile-selector {
   display: flex;
@@ -464,16 +453,52 @@ div.card .card-content .card-header {
 .selection-label .right-label {
   display: inline-block;
   font-size: 12px;
-  max-width: 40%;
+  max-width: 35%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .selection-label .right-label {
+  margin-right: 25px;
   float: right;
+  text-align: right;
 }
 .selection-label .left-label {
+  margin-left: 25px;
   float: left;
+  text-align: left;
+}
+.card-comment-container {
+  position: absolute;
+  bottom: 0;
+}
+.card-comment-container .comment-description {
+  padding: 10px;
+  border: 1px solid #997799;
+}
+.card-comment-container .comment-text-input {
+  border-radius: 3px;
+  border: 1px solid #997799;
+  color: #221122;
+  margin: 0 auto;
+  display: block;
+  width: calc(100% - 10px * 2 - 2px);
+  height: 30px;
+  padding: 0 10px;
+}
+.card-comment-container .comment-text-input ::-webkit-input-placeholder {
+  color: #221122;
+}
+.card-comment-container .comment-text-input :-moz-placeholder {
+  /* Firefox 18- */
+  color: #221122;
+}
+.card-comment-container .comment-text-input ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #221122;
+}
+.card-comment-container .comment-text-input :-ms-input-placeholder {
+  color: #221122;
 }
 .trait-details-container {
   margin: 10px;

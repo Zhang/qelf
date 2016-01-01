@@ -4,7 +4,7 @@ module.exports = {
   template: {
     id: 'Fun',
     comparisons: [
-      'I would want to spend a weekend with this person'
+      'Who is more fun to spend time with?'
     ]
   }
 };

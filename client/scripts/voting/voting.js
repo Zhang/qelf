@@ -34,7 +34,7 @@
     };
   });
 
-  module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI) {
+  module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI, $timeout) {
     VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       if (_.isEmpty(res.data)) {
         $scope.emptyVotes = true;
@@ -43,13 +43,29 @@
       }
     });
 
+    $scope.comment = {
+      text: ''
+    };
+
     $scope.submit = function(voteId, selected) {
-      VoteAPI.submit(voteId, selected.facebookId);
+      VoteAPI.submit(voteId, selected.facebookId, $scope.comment.text);
+      $scope.comment.text = '';
     };
 
     $scope.vote = function(leftOrRight) {
       $scope.$broadcast('vote:' + leftOrRight, $scope.cardManager.current);
       $scope.cardManager.next();
     };
+
+    $scope.submitComment = function() {
+      $scope.commenting = false;
+    };
+
+    $scope.$on('card:commenting', function() {
+      $scope.commenting = true;
+      $timeout(function focusCommentInput() {
+        $('#comment-input').focus();
+      });
+    });
   });
 })();

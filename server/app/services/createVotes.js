@@ -56,6 +56,7 @@ module.exports = function* (facebookId) {
           comparison: template.comparisons[Math.floor(Math.random() * (template.comparisons.length - 1))],
           traitTemplateId: template.id,
           selected: null,
+          comment: null,
           voterId: facebookId
         };
       });

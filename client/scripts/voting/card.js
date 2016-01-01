@@ -49,10 +49,6 @@
           var el = $element[0];
           // Force hardware acceleration for animation - better performance on first touch
           transformUtils.translateDefault(el);
-
-          $scope.feedback = {
-            text: ''
-          };
           var swipeableCard = new SwipeableCard({
             el: el,
             onTransitionOut: function(amt) {
@@ -77,6 +73,9 @@
               swipeableCard.transitionOut(dir);
             };
           }
+          $scope.onComment = function() {
+            $scope.$emit('card:commenting');
+          };
 
           $scope.$on('vote:left', voteSubmit(-1));
           $scope.$on('vote:right', voteSubmit(1));

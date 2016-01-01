@@ -8,7 +8,7 @@
     </div>
     <card ng-if="!emptyVotes" vote="vote" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
   </div>
-  <div ng-if="!emptyVotes" class="selection-container">
+  <div ng-if="!emptyVotes && !commenting" class="selection-container">
     <div class="selection-holder">
       <div class="click-vote vote-left" ng-click="vote('left')">
         <div class="ion-chevron-left vote-icon"></div>
@@ -19,11 +19,17 @@
     </div>
     <div class="selection-label">
       <div class="left-label">
-        <span>Vote {{cardManager.current.contestants[0].name}}</span>
+        <span>Vote<br>{{cardManager.current.contestants[0].name}}</span>
       </div>
       <div class="right-label">
-        <span>Vote {{cardManager.current.contestants[1].name}}</span>
+        <span>Vote<br>{{cardManager.current.contestants[1].name}}</span>
       </div>
     </div>
+  </div>
+  <div class="card-comment-container" ng-if="commenting">
+    <div class="comment-description">
+      This is a description of what can happen when you decide to comment
+    </div>
+    <input enter-submit="submitComment()" placeholder="Leave a comment..." class="comment-text-input" ng-model="comment.text" id="comment-input" type="text">
   </div>
 </div>

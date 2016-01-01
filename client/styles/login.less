@@ -18,25 +18,24 @@ h2.title {
 }
 .login-with-fb {
   @login-container-height: 50px;
+  .flex-center();
   background-color: @facebook-color;
   width: 100%;
+  height: @login-container-height;
   color: white;
+  .rounded-borders();
   .logo-container {
-    @margin-heigth: 5px;
+    @margin-height: 5px;
     vertical-align: top;
-    height: calc(@login-container-height ~"-" 2 * @margin-heigth);
-    width: calc(@login-container-height ~"-" 2 * @margin-heigth);
-    margin: @margin-heigth;
-    display: inline-block;
+    height: calc(@login-container-height ~"-" 2 * @margin-height);
+    width: calc(@login-container-height ~"-" 2 * @margin-height);
+    margin-left: @margin-height;
   }
   .login-text {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    display: inline-block;
-    height: @login-container-height;
-    line-height: @login-container-height;
     font-size: @font-large;
+    flex-grow: 2;
     font-weight: bold;
-    margin-left: 20px;
   }
 }
 .fb-logo {
@@ -51,15 +50,7 @@ button.login {
   font-size: 20px;
 }
 
-div.login-block {
-  .placeholder-color(@opaque-white);
-  input {
-    color: white;
-  }
-  .login-input-container {
-    margin: 150px auto;
-    width: 85%;
-  }
+.button-group.bottom {
   input, button.login {
     width: 100%;
     border: none;
@@ -75,6 +66,10 @@ div.login-block {
   }
 }
 
+.login-input-container {
+  margin: 0 auto;
+  width: 85%;
+}
 .transparent-inputs {
   input {
     background-color: transparent;
@@ -88,10 +83,20 @@ input.block {
 div.button-group {
   width: 100%;
   text-align: center;
-  padding: 30px 0;
+  padding: 15px 0;
   color: white;
 }
 .bottom {
   position: absolute;
   bottom: 0;
+}
+a.login-tag {
+  margin-top: 10px;
+  display: block;
+}
+.sub-title {
+  text-align: center;
+  color: white;
+  font-size: @font-standard;
+  font-weight: bold;
 }

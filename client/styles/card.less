@@ -1,9 +1,9 @@
-@card-height: 70%;
+@card-height: 65%;
 @card-width: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2);
 @card-width-2: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 6px);
 @card-width-3: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 12px);
 @card-padding: 0px;
-@card-container-padding: 8px;
+@card-container-padding: 20px;
 
 div.voting-container {
   padding: 0;
@@ -24,9 +24,10 @@ div.voting-container {
 
 div.votes {
   height: @card-height;
+  min-height: 350px;
   position: relative;
   margin: 0 auto;
-  padding: @card-container-padding;
+  padding: 10px @card-container-padding;
   .card:nth-child(1) {
     z-index: @z-index-top;
   }
@@ -50,8 +51,6 @@ div.card {
   border: 1px solid @border-gray;
   padding: @card-padding;
   border-radius: @round-border-radius;
-  //overrides ionic class
-  margin: 0;
 
   .card-content {
     background-color: white;
@@ -84,36 +83,25 @@ div.card {
         height: 155px;
       }
       .candidate-description {
-        @candidate-height: 90px;
+        @candidate-height: 30px;
         @name-height: 20px;
         height: @candidate-height;
         padding: 10px;
         overflow: hidden;
-
-        .name, {
-          text-align: center;
-        }
-        .name {
-          .ellipsis-overflow();
-          height: @name-height;
-          font-size: @font-standard;
-          width: 100%;
-          font-weight: 600;
-          display: inline-block;
-        }
-        .social-description {
-          margin-top: 8px;
-          text-align: center;
-          font-size: @font-smaller;
-        }
+        .flex-center();
+        .ellipsis-overflow();
+        font-size: @font-standard;
+        font-weight: bold;
       }
     }
-
+    .card-comment {
+      text-align: center;
+    }
     .card-header {
       .flex-center();
+      justify-content: flex-start;
       height: @card-header-height;
       padding: 0 15px;
-      text-align: center;
       font-size: @font-standard;
       font-weight: bold;
       border-bottom: 1px solid @secondary-color;

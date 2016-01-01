@@ -46,13 +46,38 @@
   .left-label, .right-label {
     display: inline-block;
     font-size: @font-smaller;
-    max-width: 40%;
+    max-width: 35%;
     .ellipsis-overflow();
   }
   .right-label {
+    margin-right: 25px;
     float: right;
+    text-align: right;
   }
   .left-label {
+    margin-left: 25px;
     float: left;
+    text-align: left;
+  }
+}
+
+.card-comment-container {
+  position: absolute;
+  bottom: 0;
+  .comment-description {
+    padding: 10px;
+    border: 1px solid @primary-color;
+  }
+  .comment-text-input {
+    @comment-padding: 10px;
+    .rounded-borders();
+    .placeholder-color(@primary-font-color);
+    border: 1px solid @primary-color;
+    color: @primary-font-color;
+    margin: 0 auto;
+    display: block;
+    width: calc(100% - @comment-padding ~"*" 2 - 2px);
+    height: 30px;
+    padding: 0 @comment-padding;
   }
 }

@@ -11,6 +11,7 @@ const VoteSchema = Joi.object().keys({
   contestants: Joi.array(Joi.string().description('facebookId of contestant')).required(),
   comparison: Joi.string().required(),
   selected: Joi.string().required().allow(null),
+  comment: Joi.string().required().allow(null),
   voterId: Joi.string().required()
 });
 

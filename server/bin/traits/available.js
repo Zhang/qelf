@@ -2,9 +2,9 @@
 
 module.exports = {
   template: {
-    id: 'Available',
+    id: 'Social Initiative',
     comparisons: [
-      'I feel like this person is approachable'
+      'Who is more likely to take the initiative when interacting socially?'
     ]
   }
 };

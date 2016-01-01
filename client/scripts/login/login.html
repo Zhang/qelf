@@ -1,16 +1,17 @@
 <div class="login-container">
   <div class="list landing">
     <div class="transparent-inputs login-block">
-      <h2 class="title">Sheen</h2>
-      <div class="login-input-container">
-        <div class="login-with-fb" ng-if="!isSignup" ng-click="fbLogin()"><div class="logo-container"><div class="fb-logo"></div></div><div class="login-text">Log in with Facebook</div></div>
-        <div class="login-with-fb" ng-if="isSignup" ng-click="signup()"><div class="logo-container"><div class="fb-logo"></div></div><div class="login-text">Continue with Facebook</div></div>
-      </div>
+      <h2 class="title">Aggregated Self</h2>
+      <div class="sub-title">See yourself from your friends' point of view</div>
     </div>
   </div>
   <div class="button-group bottom">
-    <a ng-click="toSignup()" class="">
-      {{ !isSignup ? 'Signup' : 'Back to Login' }}
+    <div class="login-input-container">
+      <div class="login-with-fb" ng-if="!isSignup" ng-click="fbLogin()"><div class="logo-container"><div class="fb-logo"></div></div><div class="login-text">Log in with Facebook</div></div>
+      <div class="login-with-fb" ng-if="isSignup" ng-click="signup()"><div class="logo-container"><div class="fb-logo"></div></div><div class="login-text">Signup with Facebook</div></div>
+    </div>
+    <a ng-click="toSignup()" class="login-tag">
+      {{ !isSignup ? 'Signup with Facebook' : 'Back to Login' }}
     </a>
   </div>
 </div>

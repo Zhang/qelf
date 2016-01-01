@@ -2,9 +2,9 @@
 
 module.exports = {
   template: {
-    id: 'Clever',
+    id: 'General likability',
     comparisons: [
-      'More likely to be clever'
+      'Who do you like more?'
     ]
   }
 };
