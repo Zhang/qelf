@@ -68,18 +68,7 @@
     };
 
     $scope.share = function() {
-      var options = {
-          replaceLineBreaks: false, // true to replace \n by a new line, false by default
-          android: {
-              intent: 'INTENT'  // send SMS with the native android SMS messaging
-              //intent: '' // send SMS without open any other app
-          }
-      };
-
-      var error = function() { alert('Message Failed'); };
-      sms.send('', 'hey - share this shit', options, function() {
-        //no-op
-      }, error);
+      window.plugins.socialsharing.share('Message only');
     };
 
     $scope.$on('card:commenting', function() {

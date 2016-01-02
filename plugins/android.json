@@ -30,7 +30,7 @@
             "APP_NAME": "Sheen",
             "PACKAGE_NAME": "com.example.Votely"
         },
-        "com.cordova.plugins.sms": {
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.example.Votely"
         }
     },

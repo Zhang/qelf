@@ -58,10 +58,10 @@
             "APP_NAME": "Sheen"
         }
     },
-    "com.cordova.plugins.sms": {
+    "cordova-plugin-x-socialsharing": {
         "source": {
             "type": "registry",
-            "id": "cordova-sms-plugin"
+            "id": "cordova-plugin-x-socialsharing"
         },
         "is_top_level": true,
         "variables": {}

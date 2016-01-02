@@ -48,11 +48,11 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.cordova.plugins.sms/www/sms.js",
-        "id": "com.cordova.plugins.sms.Sms",
-        "pluginId": "com.cordova.plugins.sms",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-x-socialsharing",
         "clobbers": [
-            "window.sms"
+            "window.plugins.socialsharing"
         ]
     }
 ];
@@ -66,7 +66,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.0",
     "ionic-plugin-keyboard": "1.0.8",
     "phonegap-facebook-plugin": "0.12.0",
-    "com.cordova.plugins.sms": "0.1.6"
+    "cordova-plugin-x-socialsharing": "5.0.8"
 }
 // BOTTOM OF METADATA
 });

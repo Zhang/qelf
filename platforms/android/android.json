@@ -53,7 +53,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.cordova.plugins.sms.Sms\" /></feature>",
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -85,17 +85,10 @@
                             "count": 1
                         }
                     ],
-                    "/manifest": [
+                    "/manifest": [],
+                    "/*": [
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ]
@@ -127,7 +120,7 @@
             "APP_NAME": "Sheen",
             "PACKAGE_NAME": "com.example.Votely"
         },
-        "com.cordova.plugins.sms": {
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.example.Votely"
         }
     },
@@ -181,11 +174,11 @@
             ]
         },
         {
-            "file": "plugins/com.cordova.plugins.sms/www/sms.js",
-            "id": "com.cordova.plugins.sms.Sms",
-            "pluginId": "com.cordova.plugins.sms",
+            "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+            "id": "cordova-plugin-x-socialsharing.SocialSharing",
+            "pluginId": "cordova-plugin-x-socialsharing",
             "clobbers": [
-                "window.sms"
+                "window.plugins.socialsharing"
             ]
         }
     ],
@@ -197,6 +190,6 @@
         "cordova-plugin-whitelist": "1.2.0",
         "ionic-plugin-keyboard": "1.0.8",
         "phonegap-facebook-plugin": "0.12.0",
-        "com.cordova.plugins.sms": "0.1.6"
+        "cordova-plugin-x-socialsharing": "5.0.8"
     }
 }
