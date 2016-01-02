@@ -130,7 +130,8 @@ module.exports = function (grunt) {
               '<%= bowerPath %>/jquery/dist/jquery.min.js',
               '<%= bowerPath %>/angular-cookies/angular-cookies.min.js',
               '<%= bowerPath %>/lodash/lodash.min.js',
-              '<%= bowerPath %>/javascript-detect-element-resize/jquery.resize.js'
+              '<%= bowerPath %>/javascript-detect-element-resize/jquery.resize.js',
+              '<%= bowerPath %>/ngCordova/dist/ng-cordova.min.js'
             ]
           },
           styles: {

@@ -68,7 +68,7 @@
     };
 
     $scope.share = function() {
-      window.plugins.socialsharing.share('Message only');
+      window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };
 
     $scope.$on('card:commenting', function() {

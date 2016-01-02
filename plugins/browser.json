@@ -1,0 +1,38 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.example.Votely"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.example.Votely"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.example.Votely"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.example.Votely"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.example.Votely"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.example.Votely"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.example.Votely"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "409640992567240",
+            "APP_NAME": "Sheen",
+            "PACKAGE_NAME": "com.example.Votely"
+        }
+    },
+    "dependent_plugins": {}
+}
