@@ -25,6 +25,10 @@ passport.use(new FacebookStrategy({
 }, function (accessToken, refreshToken, profile, done) {
   co(function* () {
     let account = yield accountModel.getByFacebookId(profile.id);
+    if (!account)  {
+      console.log('No such account: ', profile);
+      return done(null, false);
+    }
     if (account.accessToken !== accessToken) {
       yield accountModel.updateById(account.id, {
         accessToken: accessToken
@@ -63,6 +67,7 @@ module.exports = {
   },
   login: function () {
     const self = this;
+    console.log('called');
     return passport.authenticate('facebook-token', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {
