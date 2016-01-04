@@ -391,6 +391,9 @@ div.card .card-content .card-header {
   padding: 0 10px;
 }
 .profile-selector .sort-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   flex-grow: 4;
   padding: 0 10px;
 }
