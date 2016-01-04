@@ -590,12 +590,16 @@ div.card .card-content .card-header {
 }
 .trait-details-container .trait-selected-count {
   font-size: 20px;
+  width: 80%;
   font-weight: bold;
 }
 .trait-details-container .flex-container {
   display: flex;
   height: 100%;
   flex-direction: column;
+}
+.trait-details-container .comparisons-container {
+  padding: 0 15px;
 }
 .trait-details-container .trait-voted-list {
   height: calc(100% - 25% - 10px);

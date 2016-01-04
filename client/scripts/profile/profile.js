@@ -102,7 +102,9 @@
 
     $scope.viewByCategory = function() {
       var ALL_CATEGORIES = 'All Categories';
-      $scope.popupItems = _.map(_.compact(_.uniq(_.flatten(_.map($scope.traits, 'categories').unshift(ALL_CATEGORIES)))), function(category) {
+      var UNIQUE_CATEGORIES = _.compact(_.uniq(_.flatten(_.map($scope.traits, 'categories'))));
+      UNIQUE_CATEGORIES.unshift(ALL_CATEGORIES)
+      $scope.popupItems = _.map(UNIQUE_CATEGORIES, function(category) {
         return {
           title: category,
           action: function() {
