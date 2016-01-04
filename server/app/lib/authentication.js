@@ -67,7 +67,6 @@ module.exports = {
   },
   login: function () {
     const self = this;
-    console.log('called');
     return passport.authenticate('facebook-token', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {

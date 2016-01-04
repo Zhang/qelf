@@ -89,10 +89,12 @@ div.card {
         padding: 10px;
         overflow: hidden;
         .flex-center();
-        .ellipsis-overflow();
         font-size: @font-standard;
         font-weight: bold;
         text-transform: capitalize;
+        .name {
+          .ellipsis-overflow();
+        }
       }
     }
     .card-comment {

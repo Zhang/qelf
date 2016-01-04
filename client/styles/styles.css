@@ -293,15 +293,18 @@ div.card .card-content .card-main .candidate-picture {
 div.card .card-content .card-main .candidate-description {
   height: 30px;
   padding: 10px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: 14px;
   font-weight: bold;
   text-transform: capitalize;
+}
+div.card .card-content .card-main .candidate-description .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 div.card .card-content .card-comment {
   white-space: nowrap;

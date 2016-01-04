@@ -36,18 +36,19 @@
       FBService.login().then(function resolve(res) {
         AccountAPI.create(res.userID, res.accessToken).then(function resolve() {
           $state.go(STATE.voting);
-        }, function reject() {
-          alert('failure');
+        }, function reject(err) {
+          if (err.data === 'attempting to add duplicate user') {
+            alert('An account associated with this facebook account already exists');
+          } else {
+            alert('failure');
+          }
         });
-      }, function reject(res) { alert('failure', res); });
+      }, function reject(res) {
+        alert('failure', res);
+      });
     }
 
     $scope.signup = signup;
-    // function() {
-    //   FBService.getLoginStatus().then(function loggedIn() {
-    //     FBService.logout().then(signup);
-    //   }, signup);
-    // };
 
     $scope.toSignup = function() {
       $scope.isSignup = !$scope.isSignup;

@@ -118,7 +118,7 @@ const defaults = [
     categories: [CATEGORIES.likeability]
   },
   {
-    id: 'Loyality (as a friend)',
+    id: 'Loyalty (as a friend)',
     comparisons: ['Who would you consider to be a more loyal friend?'],
     categories: [CATEGORIES.likeability]
   },
@@ -129,7 +129,7 @@ const defaults = [
   },
   {
     id: 'Happiness',
-    comparisons: ['Who would you consider to be more happy?'],
+    comparisons: ['Who would you consider to be a happier person?'],
     categories: [CATEGORIES.happiness]
   },
   {

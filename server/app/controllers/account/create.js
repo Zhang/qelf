@@ -40,8 +40,9 @@ const create = function* create() {
 
     yield authentication.login.call(this);
   } catch(err) {
-    console.error(err);
+    this.body = err.message;
     this.status = 500;
+    console.error(err);
   }
 };
 

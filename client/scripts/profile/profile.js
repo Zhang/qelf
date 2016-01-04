@@ -47,7 +47,7 @@
         }
         if (topTraits.length > 1) {
           var lastEl = topTraits.splice(topTraits.length - 1)[0];
-          return 'Your top traits are that you are: ' + _.map(topTraits, 'templateId').join(', ') + ', and ' + lastEl.templateId + '!';
+          return 'Your top traits are: ' + _.map(topTraits, 'templateId').join(', ') + ', and ' + lastEl.templateId + '!';
         }
       })();
     });
@@ -90,16 +90,16 @@
     };
 
     $scope.viewByCategory = function() {
-      var ALL_CATEGORIES = 'All Categories';
+      var ALL_TRAITS = 'All Traits';
       var UNIQUE_CATEGORIES = _.compact(_.uniq(_.flatten(_.map($scope.traits, 'categories'))));
-      UNIQUE_CATEGORIES.unshift(ALL_CATEGORIES)
+      UNIQUE_CATEGORIES.unshift(ALL_TRAITS)
       $scope.popupItems = _.map(UNIQUE_CATEGORIES, function(category) {
         return {
           title: category,
           action: function() {
             $scope.viewCategory = category;
             _.each($scope.traits, function(trait) {
-              if (_.contains(trait.categories, category) || category === ALL_CATEGORIES) {
+              if (_.contains(trait.categories, category) || category === ALL_TRAITS) {
                 trait.display = true;
               } else {
                 trait.display = false;
