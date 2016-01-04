@@ -2,9 +2,7 @@
   <div class="trait-overview-container">
     <div class="trait-title">
       <div class="flex-container">
-        <div class="trait-label">
-          Trait Overview
-        </div>
+        <div class="ion-help-circled describe-score" ng-click="showHelp()"></div>
         <div class="title-text">
           {{trait.templateId}}
         </div>
@@ -12,14 +10,14 @@
     </div>
     <div class="trait-stats">
       <div class="trait-metrics">
-        <div ng-if="enoughVotes" class="trait-selected-count">{{trait.count + ' / '}}{{trait.total.length}}</div>
+        <div ng-if="enoughVotes" class="trait-selected-count">trait.score</div>
         <div ng-if="!enoughVotes" class="trait-selected-count">Not enough votes</div>
       </div>
     </div>
   </div>
-  <div class="comment-divider">Questions we ask</div>
+  <div class="comment-divider">Question(s) we asked</div>
   <div class="comparisons-container">
-    <div ng-repeat="comparison in trait.template.comparisons">{{comparison}}</div>
+    <div class="voted-list-item" ng-repeat="comparison in trait.template.comparisons">{{comparison}}</div>
   </div>
   <div class="comment-divider">Comments</div>
   <div class="trait-voted-list" ng-class="{

@@ -7,7 +7,7 @@ const Joi = require('joi');
 const TraitTemplateSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  comparisons: Joi.array().required(),
+  comparisons: Joi.array().required().items(Joi.string().required()),
   categories: Joi.array().required()
 });
 

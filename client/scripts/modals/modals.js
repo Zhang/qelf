@@ -2,7 +2,7 @@
 
 (function() {
   var app = angular.module('modals', []);
-
+  //todo - open (opts) should be the signiture - remove passing scope
   app.service('Modals', function($compile, OverlayService) {
     var FAST_FADE = 200;
     var template;
@@ -17,13 +17,14 @@
           delete $scope.closePopup;
           delete $scope.popupItems;
           delete $scope.popupTitle;
+          delete $scope.popupText;
         }
         var overlay = new OverlayService({
           fadeSpeed: FAST_FADE,
           onClick: close
         });
 
-        var LIST_LENGTH = $scope.popupItems.length;
+        var LIST_LENGTH = $scope.popupItems ? $scope.popupItems.length : 0;
         var distFromTop = (function() {
           if (LIST_LENGTH < 3) return '40%';
           if (LIST_LENGTH < 6) return '25%';

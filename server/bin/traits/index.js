@@ -7,6 +7,7 @@ const CATEGORIES = {
   happiness: 'Traits predicting happiness (According to: UPenn Study by Kaufman)',
   likeability: 'Traits predicting likability (According to: Norman Anderson Study)',
   likeHangingOutWith: 'Why people enjoy hanging out with you',
+  leadership: 'Traits related to leadership (According to: Cattell leadership potential equation)'
 };
 //Friendship related things
 //Personal related things
@@ -40,21 +41,66 @@ const CATEGORIES = {
 //What do people like about hanging out with you
 //You make things happen
 //You are someone that is fun to hang out with
-//
-
-//What is your general sentiment
-
-//How do you convey your dreams?
-//Ambition
-//Hobbies
-//Travel
-//Knowledge
 
 const defaults = [
   //Personal Improvement
   {
+    id: 'Kindness',
+    comparisons: ['Who is more kind?']
+  },
+  {
+    id: 'Thoughtfulness',
+    comparisons: ['Who is more thoughtful?'],
+    categories: [CATEGORIES.likeHangingOutWith]
+  },
+  {
+    id: 'Enthusiastic',
+    comparisons: [
+      'Who is more enthusiastic?',
+      'Who might you describe as more eager and interested in events in their lives?'
+    ],
+    categories: [CATEGORIES.leadership]
+  },
+  {
+    id: 'Intuitiveness',
+    comparisons: [
+      'Who would you consider as being more intuitive?'
+    ],
+    categories: [CATEGORIES.leadership]
+  },
+  {
+    id: 'Charasmatic',
+    comparisons: [
+      'Who would you consider as being more charismatic?'
+    ],
+    categories: [CATEGORIES.leadership]
+  },
+  {
+    id: 'Emotionally Stable',
+    comparisons: [
+      'Who would you consider as being more emotionally stable?',
+      'Who would you consider as being even-tempered?'
+    ],
+    categories: [CATEGORIES.leadership]
+  },
+  {
+    id: 'Self Assurance',
+    comparisons: [
+      'Who is more confident?',
+      'Who would you consider to have less need for approval?'
+    ],
+    categories: [CATEGORIES.leadership]
+  },
+  {
     id: 'Positivity',
     comparisons: ['Who would you consider to have a more positive attitude?']
+  },
+  {
+    id: 'Dominance',
+    comparisons: [
+      'Who would you consider as more dominant?'
+    ],
+    categories: [CATEGORIES.leadership]
   },
   {
     id: 'Love of Learning',
@@ -100,8 +146,13 @@ const defaults = [
     categories: [CATEGORIES.likeability]
   },
   {
-    id: 'Initiative (Social)',
-    comparisons: ['Who is likely to take more social initiative (host an event / invite you to lunch)?']
+    id: 'Social Boldness',
+    comparisons: [
+      'Who do you believe is less effected by shame or rejection in social situations?',
+      'Who would you consider to be more socially bold?',
+      'Who would you consider to be more thick skinned?'
+    ],
+    categories: [CATEGORIES.leadership]
   },
   {
     id: 'Inspiring',
@@ -138,7 +189,15 @@ const defaults = [
   {
     id: 'Empathy',
     comparisons: ['Who would you consider to be more empathetic?'],
-    categories: [CATEGORIES.likeability]
+    categories: [CATEGORIES.likeability, CATEGORIES.leadership]
+  },
+  {
+    id: 'Conscientiousness',
+    comparisons: [
+      'Who would you consider to have a high standards for themselves?',
+      'Who would you consider to be thorough, someone who follows through with what they start?'
+    ],
+    categories: [CATEGORIES.leadership]
   }
 ];
 

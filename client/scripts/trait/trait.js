@@ -26,7 +26,7 @@
     });
   });
 
-  module.controller('Trait', function(ViewedTrait, $scope, $rootScope) {
+  module.controller('Trait', function(ViewedTrait, $scope, $rootScope, Modals) {
     $scope.trait = ViewedTrait;
     var totalVotes = _.map(ViewedTrait.total, function(vote) {
       vote.sentiment = vote.selected === $rootScope.user.facebookId;
@@ -37,6 +37,11 @@
       return !!vote.comment;
     });
 
-    $scope.enoughVotes = $scope.trait.total.length > 4;
+    $scope.enoughVotes = $scope.trait.total.length >= 4;
+    $scope.showHelp = function() {
+      $scope.popupText = 'Scores are relative to your most popular trait, and are calculated by the formula: score = (current-trait-% / top-trait-%)';
+      $scope.popupTitle = 'Score calculation';
+      Modals.open($scope);
+    };
   });
 })();

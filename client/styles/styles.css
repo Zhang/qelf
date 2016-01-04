@@ -15,6 +15,11 @@
   align-items: center;
   justify-content: center;
 }
+.flex-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .subview-container-defaults {
   margin: 10px;
   height: calc(100% - 2 * 10px);
@@ -158,9 +163,16 @@ div.navbar-container {
 div.navbar-container div.title-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-grow: 2;
   justify-content: flex-start;
+  flex-grow: 2;
+  height: 100%;
+}
+div.navbar-container div.title-container .go-back {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 25%;
 }
 div.navbar-container .go-back-btn {
   padding: 0 10px;
@@ -305,7 +317,6 @@ div.card .card-content .card-comment {
 div.card .card-content .card-header {
   display: flex;
   align-items: center;
-  justify-content: center;
   justify-content: flex-start;
   height: 100px;
   padding: 0 15px;
@@ -379,9 +390,8 @@ div.card .card-content .card-header {
 .profile-selector {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 3px;
   justify-content: flex-start;
+  border-radius: 3px;
   width: calc(100% - 2px);
   background-color: transparent;
   height: 30px;
@@ -569,10 +579,12 @@ div.card .card-content .card-header {
   justify-content: center;
   height: 100%;
 }
-.trait-details-container .trait-label {
-  padding: 10px 0;
+.trait-details-container .describe-score {
   position: absolute;
-  width: 100%;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  font-size: 16px;
 }
 .trait-details-container .trait-title {
   text-transform: capitalize;
@@ -620,7 +632,6 @@ div.card .card-content .card-header {
   border-radius: 3px;
   display: flex;
   align-items: center;
-  justify-content: center;
   justify-content: flex-start;
   background-color: #ddccee;
 }
@@ -709,6 +720,13 @@ div.card .card-content .card-header {
   left: 0;
   right: 0;
   top: 25%;
+}
+.popup-container .popup-text {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .popup-container .popup-title {
   text-align: center;

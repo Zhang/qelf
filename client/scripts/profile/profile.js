@@ -19,34 +19,23 @@
   module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals) {
     function sortByTopTraits(traits) {
       return _.sortBy(traits, function(trait) {
-        if (_.isEmpty(trait.total)) return 0;
-        return -1 * (trait.count / trait.total.length);
-      });
-    }
-    function getHighestScore(traits) {
-      var highestScore = 0;
-      _.each(traits, function(trait) {
-        if (trait.total.length && (trait.count / trait.total.length) > highestScore) {
-          highestScore = trait.count / trait.total.length;
-        }
-      });
-      return highestScore;
-    }
-    function displayAllTraits(traits) {
-      return _.map(traits, function(trait) {
-        return _.assign(trait, {display: true});
+        if (trait.total.length <= 3) return 0;
+        return -1 * trait.score;
       });
     }
 
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
-      $scope.highestScore = getHighestScore(res.data);
-      $scope.traits = displayAllTraits(sortByTopTraits(res.data));
-      var topTraits = (function getTopTraits() {
-        var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
-          if (_.isEmpty(trait.total)) return null;
-          trait.score = trait.count / trait.total.length;
+      var traitsWithScores = (function addDefaultPropsToTraits() {
+        return _.map(res.data, function(trait) {
+          trait.score = trait.total.length ? (trait.count / trait.total.length) : 0;
+          trait.display = true;
           return trait;
-        })), 'score', -1);
+        });
+      })();
+      $scope.highestScore = _.max(traitsWithScores, 'score').score;
+      $scope.traits = sortByTopTraits(traitsWithScores);
+      var topTraits = (function getTopTraits() {
+        var orderedTraits = _.sortBy($scope.traits, 'score', -1);
         return orderedTraits.splice(0, 3);
       })();
       $scope.overviewSentence = (function constructOverviewSentence() {
@@ -75,8 +64,8 @@
         action: function sortByLowTraits() {
           $scope.sortByText = this.title;
           $scope.traits = _.sortBy($scope.traits, function(trait) {
-            if (_.isEmpty(trait.total)) return 0;
-            return trait.count / trait.total.length;
+            if (trait.total.length <= 3) return 0;
+            return trait.score;
           });
         }
       }, {
@@ -135,7 +124,7 @@
       templateUrl: 'scripts/profile/traitCard.html',
       link: function($scope, el) {
         $scope.score = (function getValidScore() {
-          return _.size($scope.trait.total) <= 4 ? 'Not Enough Votes' : Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / $scope.highestScore) + '%';
+          return _.size($scope.trait.total) <= 3 ? 'Not Enough Votes' : Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / $scope.highestScore) + '%';
         })();
         $(el[0].querySelector('.score-overlay')).css('width', $scope.score || 0);
         $scope.viewTrait = function() {
