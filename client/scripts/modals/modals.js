@@ -10,7 +10,7 @@
       template = _template;
     });
     return {
-      open: function($scope) {
+      open: function($scope, customClass) {
         function close() {
           overlay.close();
           $(compiledTemplate).remove();
@@ -32,6 +32,7 @@
         var compiledTemplate = $compile(template)($scope);
         compiledTemplate.css('display', 'none');
         compiledTemplate.css('top', distFromTop);
+        $(compiledTemplate).addClass(customClass || '');
         $('#frame').append(compiledTemplate);
         $(compiledTemplate).fadeIn(FAST_FADE);
         overlay.open();

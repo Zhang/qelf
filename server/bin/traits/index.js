@@ -82,6 +82,11 @@ const defaults = [
     categories: [CATEGORIES.happiness]
   },
   {
+    id: 'Happiness',
+    comparisons: ['Who would you consider to be more happy?'],
+    categories: [CATEGORIES.happiness]
+  },
+  {
     id: 'Successful',
     comparisons: ['Who do you consider to be more successful?']
   },
@@ -100,24 +105,27 @@ const defaults = [
   },
   {
     id: 'Inspiring',
-    comparisons: ['I find this person to be more inspiring']
+    comparisons: ['I find this person to be more inspiring'],
+    categories: [CATEGORIES.likeHangingOutWith]
   },
-  //Friendship / relationship geared traits
   {
     id: 'Patience (towards friends)',
     comparisons: ['Who is more patient with you?']
   },
   {
     id: 'Likable',
-    comparisons: ['Who do you like more?']
+    comparisons: ['Who do you like more?'],
+    categories: [CATEGORIES.likeHangingOutWith, CATEGORIES.likeability]
   },
   {
     id: 'Comfortable to be around',
-    comparisons: ['Who makes you feel more comfortable to be around?']
+    comparisons: ['Who makes you feel more comfortable to be around?'],
+    categories: [CATEGORIES.likeHangingOutWith]
   },
   {
     id: 'Fun',
-    comparisons: ['Who is more fun to spend time with?']
+    comparisons: ['Who is more fun to spend time with?'],
+    categories: [CATEGORIES.likeHangingOutWith]
   },
   {
     id: 'Reliability',
