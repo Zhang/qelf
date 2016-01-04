@@ -32,10 +32,15 @@
       });
       return highestScore;
     }
+    function displayAllTraits(traits) {
+      return _.map(traits, function(trait) {
+        return _.assign(trait, {display: true});
+      });
+    }
 
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       $scope.highestScore = getHighestScore(res.data);
-      $scope.traits = sortByTopTraits(res.data);
+      $scope.traits = displayAllTraits(sortByTopTraits(res.data));
       var topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
           if (_.isEmpty(trait.total)) return null;
