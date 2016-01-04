@@ -17,6 +17,10 @@
       </div>
     </div>
   </div>
+  <div class="comment-divider">Comparisons</div>
+  <div>
+    <div ng-repeat="comparison in trait.template.comparisons">{{comparison}}</div>
+  </div>
   <div class="comment-divider">Comments</div>
   <div class="trait-voted-list" ng-class="{
     'empty-state': !enoughVotes

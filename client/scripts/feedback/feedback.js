@@ -17,6 +17,7 @@
       if ($scope.feedbackText) {
         FeedbackAPI.create($scope.feedbackText).then(function() {
           $scope.feedbackText = '';
+          alert('Thanks for the feedback!');
         }, function() {
           console.log('something');
         });

@@ -1,14 +1,21 @@
 'use strict';
 
 const voteModel = require('../models/vote');
+const traitTemplateModel = require('../models/traitTemplate');
 
 module.exports = function* (trait) {
   const voteIds = trait.total;
-  console.log(voteIds);
-  const votes = yield voteModel.query({
-    id: {$in: voteIds}
-  });
+  const traitTemplateId = trait.templateId;
 
-  trait.total = votes;
+  const vals = yield {
+    votes: voteModel.query({
+      id: {$in: voteIds}
+    }),
+    traitTemplate: traitTemplateModel.get(traitTemplateId)
+  };
+
+  trait.total = vals.votes;
+  trait.template = vals.traitTemplate;
+
   return trait;
 };

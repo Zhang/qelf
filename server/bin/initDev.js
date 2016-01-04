@@ -5,8 +5,9 @@ const traitModel = require('../app/models/trait');
 const completedVotesModel = require('../app/models/completedVotes');
 const _ = require('lodash');
 const traits = require('./traits');
-const defaultTraitIds = _.map(traits.defaultTraits, 'template.id');
-const DEFAULT_TRAITS = _.map(defaultTraitIds, traitModel.newTrait);
+const DEFAULT_TRAITS = _.map(traits.defaultTraits, function(trait) {
+  return traitModel.newTrait(trait.id, trait.categories);
+});
 const users = ['mock_facebookId1', 'mock_facebookId2', 'mock_facebookId13', 'mock_facebookId4'];
 const co = require('co');
 function getAllExcept(user) {
@@ -49,9 +50,14 @@ const user4 = {
 var mockUsers = [user1, user2, user3, user4];
 function addAcct(acct) {
   co(function* () {
-    const acctValues = yield [traitModel.addBulk(DEFAULT_TRAITS), completedVotesModel.createForAcct(acct.facebookId)];
-    acct.traits = _.map(acctValues[0], 'id');
-    yield* accountModel.add(acct);
+    try {
+      yield traits.addDefault();
+      const acctValues = yield [traitModel.addBulk(DEFAULT_TRAITS), completedVotesModel.createForAcct(acct.facebookId)];
+      acct.traits = _.map(acctValues[0], 'id');
+      yield* accountModel.add(acct);
+    } catch (e) {
+      console.error('error adding account', e);
+    }
   });
 }
 for (var i = 0; i < mockUsers.length; i++) {

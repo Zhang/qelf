@@ -52,14 +52,19 @@
           $state.go(STATE.feedback);
         }
       }, {
+        title: 'Invite Friends',
+        action: function() {
+          window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
+        }
+      },
+      {
         title: 'Logout',
         action: function() {
-          $state.go(STATE.login);
-          // FBService.logout().then(function() {
-          //   SessionAPI.logout().then(function() {
-          //     $state.go(STATE.login);
-          //   });
-          // });
+          FBService.logout().then(function() {
+            SessionAPI.logout().then(function() {
+              $state.go(STATE.login);
+            });
+          });
         }
       }];
       Modals.open($scope);

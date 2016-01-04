@@ -1,19 +1,147 @@
 'use strict';
 
 const _ = require('lodash');
-const fs = require('fs');
 const traitTemplateModel = require('../../app/models/traitTemplate');
-const files = fs.readdirSync(__dirname);
-const defaultTraits = _.reduce(files, function(total, file) {
-  if (file === 'index.js') return total;
-  return total.concat(require('./' + file));
-}, []);
+
+const CATEGORIES = {
+  happiness: 'Traits predicting happiness (According to: UPenn Study by Kaufman)',
+  likeability: 'Traits predicting likability (According to: Norman Anderson Study)',
+  likeHangingOutWith: 'Why people enjoy hanging out with you',
+};
+//Friendship related things
+//Personal related things
+//Professional related things
+//Curiosity driven things
+
+//Someone that people want to reach out to and hang out with -
+//This person is easy to invite to events, I think of this person when I want to invite them to things
+//This person is
+//I like being around this person
+//
+
+//Are you someone that is predispositioned to be happy?
+//Happiness
+//Calmness, and unpreterbability
+//Enjoys things
+//Positivity
+//Gratitude + love of learning (AHHH - Are you predispositioned towards happiness according to xyz)
+
+//What do people look up to you for?
+//Smarts
+//Charm
+//Success
+
+//What composes likeability (aboutpeople.com)
+//General likability
+//Relevance
+//Empathy
+//Realness
+
+//What do people like about hanging out with you
+//You make things happen
+//You are someone that is fun to hang out with
+//
+
+//What is your general sentiment
+
+//How do you convey your dreams?
+//Ambition
+//Hobbies
+//Travel
+//Knowledge
+
+const defaults = [
+  //Personal Improvement
+  {
+    id: 'Positivity',
+    comparisons: ['Who would you consider to have a more positive attitude?']
+  },
+  {
+    id: 'Love of Learning',
+    comparisons: ['Who displays a greater love of learning'],
+    categories: [CATEGORIES.happiness]
+  },
+  {
+    id: 'Sincerity',
+    comparisons: ['Who do you consider more sincere?'],
+    categories: [CATEGORIES.likeability]
+  },
+  {
+    id: 'Honesty',
+    comparisons: ['Who do you consider to be more honest?'],
+    categories: [CATEGORIES.likeability]
+  },
+  {
+    id: 'Loyality (as a friend)',
+    comparisons: ['Who would you consider to be a more loyal friend?'],
+    categories: [CATEGORIES.likeability]
+  },
+  {
+    id: 'Gratitude',
+    comparisons: ['Who shows their gratitude most frequently'],
+    categories: [CATEGORIES.happiness]
+  },
+  {
+    id: 'Successful',
+    comparisons: ['Who do you consider to be more successful?']
+  },
+  {
+    id: 'Calm',
+    comparisons: ['Who would you consider more calm?']
+  },
+  {
+    id: 'Trustworthy',
+    comparisons: ['Who do you trust more?'],
+    categories: [CATEGORIES.likeability]
+  },
+  {
+    id: 'Initiative (Social)',
+    comparisons: ['Who is likely to take more social initiative (host an event / invite you to lunch)?']
+  },
+  {
+    id: 'Inspiring',
+    comparisons: ['I find this person to be more inspiring']
+  },
+  //Friendship / relationship geared traits
+  {
+    id: 'Patience (towards friends)',
+    comparisons: ['Who is more patient with you?']
+  },
+  {
+    id: 'Likable',
+    comparisons: ['Who do you like more?']
+  },
+  {
+    id: 'Comfortable to be around',
+    comparisons: ['Who makes you feel more comfortable to be around?']
+  },
+  {
+    id: 'Fun',
+    comparisons: ['Who is more fun to spend time with?']
+  },
+  {
+    id: 'Reliability',
+    comparisons: ['Who is more reliable?']
+  },
+  {
+    id: 'True to their word',
+    comparisons: ['This person is likely to keep a promise they make to you?']
+  },
+  {
+    id: 'Empathy',
+    comparisons: ['Who would you consider to be more empathetic?'],
+    categories: [CATEGORIES.likeability]
+  }
+];
 
 module.exports = {
-  defaultTraits: defaultTraits,
+  defaultTraits: defaults,
   addDefault: function* () {
-    yield _.map(defaultTraits, function(traitConfig) {
-      return traitTemplateModel.addOrUpdate(traitConfig.template);
+    yield _.map(defaults, function(trait) {
+      if (!trait.categories) {
+        trait.categories = [];
+      }
+      return traitTemplateModel.addOrUpdate(trait);
     });
   }
 };

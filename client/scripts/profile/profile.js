@@ -32,12 +32,13 @@
       });
       return highestScore;
     }
+
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       $scope.highestScore = getHighestScore(res.data);
       $scope.traits = sortByTopTraits(res.data);
       var topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy(_.compact(_.map($scope.traits, function(trait) {
-          if(trait.total.length === 0) return null;
+          if (_.isEmpty(trait.total)) return null;
           trait.score = trait.count / trait.total.length;
           return trait;
         })), 'score', -1);
@@ -59,26 +60,18 @@
 
     $scope.sortBy = function() {
       $scope.popupItems = [{
-        title: 'Lowest Traits',
-        action: function sortByLowTraits() {
-          $scope.sortByText = this.title;
-          $scope.traits = _.sortBy($scope.traits, function(trait) {
-            if (_.isEmpty(trait.total)) return 0;
-            return trait.count / trait.total.length;
-          });
-        }
-      }, {
         title: 'Top Traits',
         action: function byTopTraits() {
           $scope.sortByText = this.title;
           $scope.traits = sortByTopTraits($scope.traits);
         }
       }, {
-        title: 'Least Voted On',
-        action: function sortByLeastVotedOn() {
+        title: 'Lowest Traits',
+        action: function sortByLowTraits() {
           $scope.sortByText = this.title;
           $scope.traits = _.sortBy($scope.traits, function(trait) {
-            return trait.total.length;
+            if (_.isEmpty(trait.total)) return 0;
+            return trait.count / trait.total.length;
           });
         }
       }, {
@@ -89,9 +82,37 @@
             return (-1 * trait.total.length);
           });
         }
+      }, {
+        title: 'Least Voted On',
+        action: function sortByLeastVotedOn() {
+          $scope.sortByText = this.title;
+          $scope.traits = _.sortBy($scope.traits, function(trait) {
+            return trait.total.length;
+          });
+        }
       }];
+      $scope.popupTitle = 'Sort Traits';
+      Modals.open($scope);
+    };
 
-      $scope.popupTitle = 'Sort Traits By';
+    $scope.viewByCategory = function() {
+      var ALL_CATEGORIES = 'All Categories';
+      $scope.popupItems = _.map(_.compact(_.uniq(_.flatten(_.map($scope.traits, 'categories').concat([ALL_CATEGORIES])))), function(category) {
+        return {
+          title: category,
+          action: function() {
+            $scope.viewCategory = category;
+            _.each($scope.traits, function(trait) {
+              if (_.contains(trait.categories, category) || category === ALL_CATEGORIES) {
+                trait.display = true;
+              } else {
+                trait.display = false;
+              }
+            });
+          }
+        };
+      });
+      $scope.popupTitle = 'View By Category';
       Modals.open($scope);
     };
 

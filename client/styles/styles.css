@@ -162,6 +162,10 @@ div.navbar-container div.title-container {
   flex-grow: 2;
   justify-content: flex-start;
 }
+div.navbar-container .go-back-btn {
+  padding: 0 10px;
+  display: inline-block;
+}
 div.navbar-container .title {
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
   font-size: 35px;
@@ -285,6 +289,7 @@ div.card .card-content .card-main .candidate-description {
   text-overflow: ellipsis;
   font-size: 14px;
   font-weight: bold;
+  text-transform: capitalize;
 }
 div.card .card-content .card-comment {
   white-space: nowrap;
@@ -307,7 +312,6 @@ div.card .card-content .card-header {
   font-size: 14px;
   font-weight: bold;
   border-bottom: 1px solid #ddccee;
-  text-transform: capitalize;
 }
 .profile-container {
   margin: 10px;
@@ -389,6 +393,9 @@ div.card .card-content .card-header {
 .profile-selector .sort-text {
   flex-grow: 4;
   padding: 0 10px;
+}
+.profile-selector:not(:first-child) {
+  margin-top: 10px;
 }
 .trait-container {
   background-color: #ddccee;
