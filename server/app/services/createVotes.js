@@ -61,14 +61,12 @@ module.exports = function* (facebookId) {
       return _.map(templates, function(template) {
         if (validateCombinationIsUnique(completedVoteMap, accountId, acctId, template.id)) return null;
         const contestants = shuffleContestants(acctId, accountId);
-        return {
-          contestants: contestants,
-          comparison: template.comparisons[Math.floor(Math.random() * (template.comparisons.length - 1))],
-          traitTemplateId: template.id,
-          selected: null,
-          comment: null,
-          voterId: facebookId
-        };
+        return voteModel.newVote(
+          facebookId,
+          template.comparisons[Math.floor(Math.random() * (template.comparisons.length - 1))],
+          contestants,
+          template.id
+        );
       });
     });
 

@@ -7,6 +7,7 @@ const _ = require('lodash');
 const expect = require('expect.js');
 const co = require('co');
 const testUtils = require('./testUtils');
+const voteModel = require('../app/models/vote');
 
 describe('/trait', function() {
   beforeEach(testUtils.clearAll);
@@ -32,6 +33,36 @@ describe('/trait', function() {
           var traits = res.body;
           expect(_.map(traits, 'id')[0]).to.be(MOCK_USER.traits[0]);
           expect(traits).to.have.length(MOCK_USER.traits.length);
+          done();
+        });
+    });
+  });
+
+  describe('GET /get', function() {
+    //Add vote
+    let testTrait;
+    beforeEach(function(done) {
+      co(function* () {
+        const vote = yield voteModel.add(voteModel.newVote('testId', 'is this a test?', ['1', '2'], 'test'));
+        testTrait = yield testUtils.createTrait('test', {
+          total: [vote.id]
+        });
+        done();
+      }).catch(function(err) {
+        console.error(err);
+      });
+    });
+
+    it('should get denormalized traits by id', function(done) {
+      request
+        .get('/trait/' + testTrait.id)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) throw err;
+          const trait = res.body;
+          expect(trait.total).to.have.length(1);
+          expect(_.first(trait.total)).to.have.keys(['contestants', 'voterId', 'comment']);
+          expect(trait).to.have.key('template');
           done();
         });
     });

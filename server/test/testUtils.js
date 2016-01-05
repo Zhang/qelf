@@ -24,6 +24,7 @@ const createAccount = proxyquire('../app/controllers/account/create', {
     }
   })
 });
+const _ = require('lodash');
 const traitModel = require('../app/models/trait');
 const voteModel = require('../app/models/vote');
 const completedVotesModel = require('../app/models/completedVotes');
@@ -58,9 +59,9 @@ module.exports = {
 
     return yield accountModel.getByFacebookId(facebookId);
   },
-  createTrait: function* (templateId) {
+  createTrait: function* (templateId, overrides) {
     var trait = traitModel.newTrait(templateId);
-    return yield traitModel.add(trait);
+    return yield traitModel.add(_.merge(trait, overrides || {}));
   },
   createTraitTemplate: function(id, comparisons) {
     traitTemplateModel.addOrUpdate({
