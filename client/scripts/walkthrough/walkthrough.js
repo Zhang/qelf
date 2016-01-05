@@ -27,6 +27,6 @@
         console.log(err);
         alert('Error completing walkthrough');
       });
-    }
+    };
   });
 })();

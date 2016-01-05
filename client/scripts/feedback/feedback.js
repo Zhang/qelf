@@ -17,9 +17,9 @@
       if ($scope.feedbackText) {
         FeedbackAPI.create($scope.feedbackText).then(function() {
           $scope.feedbackText = '';
-          alert('Thanks for the feedback!');
+          alert('Thanks for the feedback, an email has been directly sent to the team!');
         }, function() {
-          console.log('something');
+          alert('Something went wrong with sending your feedback. Feel free to email scottzhang235@gmail.com!');
         });
       }
     };
