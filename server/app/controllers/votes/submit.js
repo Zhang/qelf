@@ -15,12 +15,9 @@ const submit = function* submit() {
   const comment = body.comment;
 
   try {
-    const values = yield {
-      submit: voteModel.submit(voteId, selected, comment),
-      vote: voteModel.get(voteId)
-    };
+    yield voteModel.submit(voteId, selected, comment);
+    const vote = yield voteModel.get(voteId);
 
-    const vote = values.vote;
     yield [_.map(vote.contestants, function(fbId) {
       return accountModel.incrementTraitByTemplateId(fbId, vote.traitTemplateId, fbId === selected, vote);
     })];

@@ -76,6 +76,6 @@ module.exports = function* (facebookId) {
   const flattenedVotes = _.compact(_.flatten(votes));
   if (_.isEmpty(flattenedVotes)) return;
 
-  yield completedVotesModel.push(facebookId, flattenedVotes);
-  yield voteModel.bulkAdd(flattenedVotes);
+  const addedVotes = yield voteModel.bulkAdd(flattenedVotes);
+  yield completedVotesModel.push(facebookId, addedVotes);
 };

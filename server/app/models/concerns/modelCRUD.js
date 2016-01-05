@@ -52,6 +52,7 @@ module.exports = function(collectionName, collection, schema) {
         return toAdd;
       } catch (err) {
         console.error('error attempting to create ' + collectionName + ':', err);
+        throw err;
       }
     },
     addOrUpdate: function addOrUpdate(obj) {

@@ -89,7 +89,8 @@ describe('/vote', function() {
 
             cb();
           }).catch(function(err) {
-            console.log(err);
+            console.log('error with should complete a vote', err);
+            throw err;
           });
         });
     });

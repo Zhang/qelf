@@ -8,7 +8,7 @@ const _ = require('lodash');
 const CompletedVotesSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  complete: Joi.array().required(),
+  complete: Joi.array().items().required().description('an array of vote objects'),
   facebookId: Joi.string().required()
 });
 

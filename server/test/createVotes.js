@@ -13,7 +13,8 @@ describe('createVotes', function() {
   let MOCK_USER;
   const traitTemplate = {
     id: 'test',
-    comparisons: ['this is a comparison']
+    comparisons: ['this is a comparison'],
+    categories: []
   };
 
   beforeEach(function(cb) {
@@ -34,8 +35,9 @@ describe('createVotes', function() {
         traitTemplateId: TEMPLATE_ID
       });
 
+      const TOTAL_POSSIBLE_VOTES = ((MOCK_USER.friends.length * ( MOCK_USER.friends.length - 1 )) / 2 );
       expect(votes).to.be.an('array');
-      expect(votes).to.have.length(6);
+      expect(votes).to.have.length(TOTAL_POSSIBLE_VOTES);
       done();
     }).catch(function(err) {
       if (err) return console.log(err);

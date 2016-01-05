@@ -63,10 +63,11 @@ module.exports = {
     var trait = traitModel.newTrait(templateId);
     return yield traitModel.add(_.merge(trait, overrides || {}));
   },
-  createTraitTemplate: function(id, comparisons) {
+  createTraitTemplate: function(id, comparisons, categories) {
     traitTemplateModel.addOrUpdate({
       id: id,
-      comparisons: comparisons
+      comparisons: comparisons,
+      categories: categories || []
     });
   }
 };

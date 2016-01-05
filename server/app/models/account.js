@@ -12,7 +12,7 @@ const AccountSchema = Joi.object().keys({
   name: Joi.string().required(),
   facebookId: Joi.string().required(),
   accessToken: Joi.string().required(),
-  friends: Joi.array(Joi.string().description('id of other account objects')).items().required(),
+  friends: Joi.array().items(Joi.string().description('id of other account objects')).required(),
   traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
   profilePicture: Joi.string().required().description('profile picture url'),
   walkthroughComplete: Joi.boolean().required()
@@ -38,6 +38,7 @@ const completeWalkthrough = function* completeWalkthrough(id) {
     yield modelCRUD.updateById(id, {walkthroughComplete: true});
   } catch (e) {
     console.error('error completing walkthrough', e);
+    throw e;
   }
 };
 
