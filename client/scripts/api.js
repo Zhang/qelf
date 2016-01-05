@@ -23,7 +23,10 @@
       },
       getCurrentUser: function() {
         return HttpHelper.get('account/current');
-      }
+      },
+      completeWalkthrough: function(id) {
+        return HttpHelper.post('account/_walkthrough', { id: id });
+      },
     };
   });
 

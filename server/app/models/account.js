@@ -14,7 +14,8 @@ const AccountSchema = Joi.object().keys({
   accessToken: Joi.string().required(),
   friends: Joi.array(Joi.string().description('id of other account objects')).items().required(),
   traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
-  profilePicture: Joi.string().required().description('profile picture url')
+  profilePicture: Joi.string().required().description('profile picture url'),
+  walkthroughComplete: Joi.boolean().required()
 });
 
 const modelCRUD = require('./concerns/modelCRUD')('account', collection, AccountSchema);
@@ -30,6 +31,14 @@ const incrementTraitByTemplateId = function* (fbId, templateId, increment, vote)
   const trait = yield traitModel.getFromArrByTemplateId(acct.traits, templateId);
 
   yield traitModel.incrementTrait(trait.id, increment, vote);
+};
+
+const completeWalkthrough = function* completeWalkthrough(id) {
+  try {
+    yield modelCRUD.updateById(id, {walkthroughComplete: true});
+  } catch (e) {
+    console.error('error completing walkthrough', e);
+  }
 };
 
 const add = function* add(toAdd) {
@@ -65,6 +74,7 @@ module.exports = {
   incrementTraitByTemplateId: incrementTraitByTemplateId,
   getProfile: getProfile,
   addAcctToFriends: addAcctToFriends,
+  completeWalkthrough: completeWalkthrough,
   //FOR TESTING ONLY
   clear: function* () {
     yield collection.remove({});

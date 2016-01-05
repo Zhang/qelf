@@ -29,6 +29,10 @@ function validateCombinationIsUnique(completedVoteMap, accountId, accountId2, tr
     _.get(completedVoteMap, traitTemplateId + '.' + accountId2 + '.' + accountId);
 }
 
+function shuffleContestants(id1, id2) {
+  return Math.random() > 0.5 ? [id1, id2] : [id2, id1];
+}
+
 module.exports = function* (facebookId) {
   const values = yield [accountModel.getByFacebookId(facebookId), traitTemplateModel.query({}), completedVotesModel.getByFacebookId(facebookId)];
   const account = values[0];
@@ -56,9 +60,9 @@ module.exports = function* (facebookId) {
     const newVotes = _.map(unmatchedAccountIds, function(acctId) {
       return _.map(templates, function(template) {
         if (validateCombinationIsUnique(completedVoteMap, accountId, acctId, template.id)) return null;
-
+        const contestants = shuffleContestants(acctId, accountId);
         return {
-          contestants: [acctId, accountId],
+          contestants: contestants,
           comparison: template.comparisons[Math.floor(Math.random() * (template.comparisons.length - 1))],
           traitTemplateId: template.id,
           selected: null,

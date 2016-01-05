@@ -62,6 +62,7 @@ function addAcct(acct) {
 }
 for (var i = 0; i < mockUsers.length; i++) {
   try {
+    mockUsers[i].walkthroughComplete = false;
     addAcct(mockUsers[i]);
   } catch (err) {
     console.error(err);

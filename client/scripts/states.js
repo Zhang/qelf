@@ -10,6 +10,7 @@
     voting: 'frame.voting',
     profile: 'frame.profile',
     feedback: 'frame.feedback',
-    trait: 'frame.trait'
+    trait: 'frame.trait',
+    walkthrough: 'walkthrough'
   });
 })();

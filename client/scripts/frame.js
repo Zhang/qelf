@@ -20,6 +20,9 @@
         CurrentUser: function(AccountAPI, $rootScope, $state) {
           return AccountAPI.getCurrentUser().then(function resolve(res) {
             $rootScope.user = res.data;
+            if (!$rootScope.user.walkthroughComplete) {
+              $state.go(STATE.walkthrough);
+            }
           }, function reject() {
             $state.go(STATE.login);
           });

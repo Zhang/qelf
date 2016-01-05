@@ -27,7 +27,7 @@
     $scope.fbLogin = function() {
       FBService.getLoginStatus().then(login, function() {
         FBService.login().then(login, function reject(err) {
-          alert(err);
+          alert('Failed to login to facebook');
         });
       });
     };
@@ -40,11 +40,11 @@
           if (err.data === 'attempting to add duplicate user') {
             alert('An account associated with this facebook account already exists');
           } else {
-            alert('failure');
+            alert('Failed to create account');
           }
         });
       }, function reject(res) {
-        alert('failure', res);
+        alert('Failed to login to Facebook', res);
       });
     }
 
