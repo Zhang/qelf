@@ -2,19 +2,7 @@
 
 const db = require('../db');
 const collection = db.get('vote');
-const Joi = require('joi');
-
-const VoteSchema = Joi.object().keys({
-  _id: Joi.string(),
-  id: Joi.string().required(),
-  traitTemplateId: Joi.string().required(),
-  contestants: Joi.array(Joi.string().description('facebookId of contestant').required()).required(),
-  comparison: Joi.string().required(),
-  selected: Joi.string().required().allow(null),
-  comment: Joi.string().required().allow(null),
-  voterId: Joi.string().required()
-});
-
+const VoteSchema = require('./schemas').vote;
 const modelCRUD = require('./concerns/modelCRUD')('vote', collection, VoteSchema);
 
 const submit = function* submit(id, selected, comment) {

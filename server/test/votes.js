@@ -10,6 +10,9 @@ const completedVotesModel = require('../app/models/completedVotes');
 const traitModel = require('../app/models/trait');
 const testUtils = require('./testUtils');
 const co = require('co');
+const _ = require('lodash');
+const Joi = require('joi');
+const accountSchema = require('../app/models/schemas').account;
 
 describe('/vote', function() {
   beforeEach(testUtils.clearAll);
@@ -106,6 +109,20 @@ describe('/vote', function() {
           expect(votes).to.have.length(1);
           expect(votes[0].contestants).to.have.length(2);
 
+          cb();
+        });
+    });
+    it('returned votes should be denomalized', function(cb) {
+      request
+        .get('/vote/' + mockUser.facebookId)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) throw err;
+          const votes = res.body;
+          _.each(votes[0].contestants, function(acct) {
+            const validation = Joi.validate(acct, accountSchema);
+            expect(!validation.error).to.be.ok();
+          });
           cb();
         });
     });

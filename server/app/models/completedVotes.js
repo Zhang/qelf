@@ -2,15 +2,8 @@
 
 const db = require('../db');
 const collection = db.get('completedVotes');
-const Joi = require('joi');
 const _ = require('lodash');
-
-const CompletedVotesSchema = Joi.object().keys({
-  _id: Joi.string(),
-  id: Joi.string().required(),
-  complete: Joi.array().items().required().description('an array of vote objects'),
-  facebookId: Joi.string().required()
-});
+const CompletedVotesSchema = require('./schemas').completedVotes;
 
 const modelCRUD = require('./concerns/modelCRUD')('completedVotes', collection, CompletedVotesSchema);
 const push = function* push(facebookId, votes) {

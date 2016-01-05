@@ -2,21 +2,9 @@
 
 const db = require('../db');
 const collection = db.get('account');
-const Joi = require('joi');
 const facebook = require('../lib/facebook');
 const traitModel = require('./trait');
-
-const AccountSchema = Joi.object().keys({
-  _id: Joi.string(),
-  id: Joi.string().required(),
-  name: Joi.string().required(),
-  facebookId: Joi.string().required(),
-  accessToken: Joi.string().required(),
-  friends: Joi.array().items(Joi.string().description('id of other account objects')).required(),
-  traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
-  profilePicture: Joi.string().required().description('profile picture url'),
-  walkthroughComplete: Joi.boolean().required()
-});
+const AccountSchema = require('./schemas').account;
 
 const modelCRUD = require('./concerns/modelCRUD')('account', collection, AccountSchema);
 const getByFacebookId = function getByFacebookId(facebookId) {

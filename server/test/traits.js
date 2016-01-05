@@ -8,6 +8,8 @@ const expect = require('expect.js');
 const co = require('co');
 const testUtils = require('./testUtils');
 const voteModel = require('../app/models/vote');
+const Joi = require('joi');
+const voteSchema = require('../app/models/schemas').vote;
 
 describe('/trait', function() {
   beforeEach(testUtils.clearAll);
@@ -61,7 +63,12 @@ describe('/trait', function() {
           if (err) throw err;
           const trait = res.body;
           expect(trait.total).to.have.length(1);
-          expect(_.first(trait.total)).to.have.keys(['contestants', 'voterId', 'comment']);
+
+          const validation = Joi.validate(_.first(trait.total), voteSchema);
+          if (validation.error) {
+            throw validation.error;
+          };
+
           expect(trait).to.have.key('template');
           done();
         });

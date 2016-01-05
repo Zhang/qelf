@@ -2,14 +2,7 @@
 
 const db = require('../db');
 const collection = db.get('traitTemplate');
-const Joi = require('joi');
-
-const TraitTemplateSchema = Joi.object().keys({
-  _id: Joi.string(),
-  id: Joi.string().required(),
-  comparisons: Joi.array().required().items(Joi.string().required()),
-  categories: Joi.array().required()
-});
+const TraitTemplateSchema = require('./schemas').traitTemplate;
 
 const modelCRUD = require('./concerns/modelCRUD')('traitTemplate', collection, TraitTemplateSchema);
 

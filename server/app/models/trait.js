@@ -2,17 +2,8 @@
 
 const db = require('../db');
 const collection = db.get('trait');
-const Joi = require('joi');
 const _ = require('lodash');
-
-const TraitSchema = Joi.object().keys({
-  _id: Joi.string(),
-  id: Joi.string().required(),
-  templateId: Joi.string().required(),
-  categories: Joi.array().required().items(Joi.string()).description('An array of categories that the trait fits into'),
-  count: Joi.number().required(),
-  total: Joi.array().required().items(Joi.string()).description('An array of vote ids corresponding to completed votes')
-});
+const TraitSchema = require('./schemas').trait;
 
 const modelCRUD = require('./concerns/modelCRUD')('trait', collection, TraitSchema);
 const newTrait = function newTrait(templateId, categories) {

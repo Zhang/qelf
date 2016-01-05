@@ -38,7 +38,7 @@ const create = function* create() {
         name: acctOpts.profile.name
       })
     ];
-    console.log('no');
+
     yield authentication.login.call(this);
   } catch (err) {
     console.log('aSDHASHDASDHASDHASDHASDH');
