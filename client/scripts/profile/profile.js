@@ -144,6 +144,12 @@
           return _.size($scope.trait.total) <= 3 ? 'Not Enough Votes' : Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / TopScore.score) + '%';
         })();
         $(el[0].querySelector('.score-overlay')).css('width', $scope.score || 0);
+        //set the right sided borders to round when the overlay is nearly full
+        if (_.contains(['100%', '99%'], $scope.score)) {
+          $(el[0].querySelector('.score-overlay')).css('border-bottom-right-radius', '3px');
+          $(el[0].querySelector('.score-overlay')).css('border-top-right-radius', '3px');
+        }
+
         $scope.viewTrait = function() {
           $state.go(STATE.trait, {id: $scope.trait.id});
         };
