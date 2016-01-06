@@ -31,7 +31,7 @@
     });
   });
 
-  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, Modals) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, Modals, ShareService) {
     $scope.isSelected = function(state) {
       return $state.current.name === STATE[state];
     };
@@ -59,7 +59,7 @@
           }, {
             title: 'Invite Friends',
             action: function() {
-              window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
+              ShareService.share();
             }
           },
           {

@@ -2,7 +2,7 @@ Qelf
 =====
 
 ## Setup
-1. Install prerequisites (mongo 3.0.x, node 0.12.x, npm 2.x.x)
+1. Install prerequisites (mongo 3.2.x, node 5.4.x, npm 3.5.x)
 
 2. Install App
     git clone git@github.com:zhang/qelf.git
@@ -17,4 +17,8 @@ Qelf
     ionic serve
 
 2. Start the server
-    cd server && node bin/server
+    npm start
+
+##Dev Data
+
+1. Run `node server/bin/initDev`

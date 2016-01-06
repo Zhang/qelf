@@ -5,29 +5,37 @@ const semver = require('semver');
 const util = require('util');
 const q = require('q');
 const uuid = require('uuid');
-
+const co = require('co');
 function* validateMongoVersion(db) {
-  const EXPECTED_MONGO_VERSION = '3.x.x';
+  const EXPECTED_MONGO_VERSION = '3.0.x';
 
   function promisifiedBuildInfo() {
     const deferred = q.defer();
-    db.admin().buildInfo(function(err, res) {
-      if (err) return deferred.reject(err);
-      deferred.resolve(res);
-    });
-    return deferred;
+    db.admin().buildInfo(
+      function(err, res) {
+        if (err) return deferred.reject(err);
+        deferred.resolve(res);
+      },
+      function(err) {
+        console.error('error checking mongo version', err);
+        deferred.reject(err);
+      }
+    );
+    return deferred.promise;
   }
 
-  const buildInfo = yield promisifiedBuildInfo();
-  const version = buildInfo.version;
-  if (!semver.satisfies(version, EXPECTED_MONGO_VERSION)) {
-        throw new Error(util.format(
-          'Mongo version is %s, but Votally requires version %s. Exiting...',
-          version, EXPECTED_MONGO_VERSION
-        ));
-  } else {
-    return null;
-  }
+  promisifiedBuildInfo().then(function(res) {
+    const version = res.version;
+
+    if (!semver.satisfies(version, EXPECTED_MONGO_VERSION)) {
+          throw new Error(util.format(
+            'Mongo version is %s, but Votally requires version %s. Exiting...',
+            version, EXPECTED_MONGO_VERSION
+          ));
+    } else {
+      return null;
+    }
+  });
 }
 
 module.exports = (function() {
@@ -36,14 +44,16 @@ module.exports = (function() {
   var mongoUri = (function() {
     return isTest ? 'localhost/qelf_test_' + uuid.v4() : (process.env.APP_HOST || 'localhost') + '/qelf';
   })();
-
   const db = monk(mongoUri, {
     w: 1,
     j: true,
     native_parser: true,
     poolSize: 25
   });
-  validateMongoVersion(db.driver);
+
+  co(function* () {
+    yield validateMongoVersion(db.driver);
+  });
 
   if (isTest) {
     process.on('exit', function() {
