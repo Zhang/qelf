@@ -45,7 +45,7 @@
     };
   });
 
-  module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI, $timeout, OverlayService) {
+  module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI, $timeout, OverlayService, Mixpanel) {
     function getVotes() {
       VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
         $scope.cardManager = new CardManager(res.data, getVotes);
@@ -63,6 +63,10 @@
     };
 
     $scope.submit = function(voteId, selected) {
+      Mixpanel.track('Voted', {
+        userId: $rootScope.user.id,
+        hasComment: !!$scope.comment.text
+      });
       VoteAPI.submit(voteId, selected.facebookId, $scope.comment.text);
       $scope.comment.text = '';
     };

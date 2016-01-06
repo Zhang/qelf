@@ -12,15 +12,22 @@
     });
   });
 
-  module.controller('Feedback', function($scope, FeedbackAPI) {
+  module.controller('Feedback', function($scope, FeedbackAPI, Modals) {
     $scope.submit = function() {
       if ($scope.feedbackText) {
-        FeedbackAPI.create($scope.feedbackText).then(function() {
-          $scope.feedbackText = '';
-          alert('Thanks for the feedback, an email has been directly sent to the team!');
-        }, function() {
-          alert('Something went wrong with sending your feedback. Feel free to email scottzhang235@gmail.com!');
+        //Ask for their email
+        Modals.open('email', {
+          onClose: function(modalScope) {
+            FeedbackAPI.create($scope.feedbackText, modalScope.email).then(function() {
+              $scope.feedbackText = '';
+              alert('Thanks for the feedback, an email has been directly sent to the team!');
+            }, function() {
+              alert('Something went wrong with sending your feedback. Feel free to email scottzhang235@gmail.com!');
+            });
+          }
         });
+      } else {
+        alert('Sorry, I don\'t understand what you\'re trying to say. It may help to write something');
       }
     };
   });

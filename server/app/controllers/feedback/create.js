@@ -27,12 +27,14 @@ const create = function* create() {
     const body = this.request.body;
     const text = body.feedbackText;
     const facebookId = body.facebookId;
+    const email = body.email;
 
     const vals = yield [
       accountModel.getByFacebookId(facebookId),
       feedbackModel.add({
         facebookId: facebookId,
-        text: text
+        text: text,
+        email: email
       })
     ];
 
@@ -42,7 +44,7 @@ const create = function* create() {
         from: 'scottzhang235@gmail.com',
         to: 'scottzhang235@gmail.com',
         subject: 'I GOTZ APP FEEDBACK',
-        text: text + ' USER OBJECT: ' + JSON.stringify(account)
+        text: text + ' EMAIL: ' + email + ' USER OBJECT: ' + JSON.stringify(account)
       }, function() {
         console.log('node email cb arguments: ', arguments);
       });

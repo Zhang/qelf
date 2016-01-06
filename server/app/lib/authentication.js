@@ -20,8 +20,8 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(new FacebookStrategy({
-  clientID: '409640992567240', //FACEBOOK_APP_ID
-  clientSecret: '6b4b58114c18d90a2c5f62bb98f595c4', //FACEBOOK_APP_SECRET
+  clientID: '201708533509741', //FACEBOOK_APP_ID
+  clientSecret: '2815fd63ddaf3161387ec1ef760b66a7', //FACEBOOK_APP_SECRET
 }, function (accessToken, refreshToken, profile, done) {
   co(function* () {
     let account = yield accountModel.getByFacebookId(profile.id);

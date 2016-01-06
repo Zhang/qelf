@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-  var module = angular.module('sheen', [
+  var module = angular.module('qelf', [
     'ionic',
     'ngCookies',
     'ui.router',
@@ -48,5 +48,8 @@
         }
       });
     };
+  });
+  module.service('Mixpanel', function() {
+    return window.mixpanel;
   });
 })();

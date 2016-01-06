@@ -48,29 +48,33 @@
     };
 
     $scope.openPopup = function() {
-      $scope.popupItems = [{
-        title: 'Leave Feedback',
-        action: function() {
-          $scope.lastState = $state.current.name;
-          $state.go(STATE.feedback);
-        }
-      }, {
-        title: 'Invite Friends',
-        action: function() {
-          window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
-        }
-      },
-      {
-        title: 'Logout',
-        action: function() {
-          FBService.logout().then(function() {
-            SessionAPI.logout().then(function() {
-              $state.go(STATE.login);
-            });
-          });
-        }
-      }];
-      Modals.open($scope);
+      var opts = {
+        items: [
+          {
+            title: 'Leave Feedback',
+            action: function() {
+              $scope.lastState = $state.current.name;
+              $state.go(STATE.feedback);
+            }
+          }, {
+            title: 'Invite Friends',
+            action: function() {
+              window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
+            }
+          },
+          {
+            title: 'Logout',
+            action: function() {
+              FBService.logout().then(function() {
+                SessionAPI.logout().then(function() {
+                  $state.go(STATE.login);
+                });
+              });
+            }
+          }
+        ]
+      };
+      Modals.open(null, opts);
     };
 
     $scope.$on('$stateChangeSuccess', function(e, currentState) {

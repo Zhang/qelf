@@ -72,12 +72,7 @@
   }
   .comment-text-input {
     @comment-padding: 10px;
-    .rounded-borders();
-    .placeholder-color(@primary-font-color);
-    border: 1px solid @primary-color;
-    color: @primary-font-color;
-    margin: 0 auto;
-    display: block;
+    .text-input-defaults();
     width: calc(100% - @comment-padding ~"*" 2 - 2px);
     height: 30px;
     padding: 0 @comment-padding;

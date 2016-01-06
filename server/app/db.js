@@ -34,7 +34,7 @@ module.exports = (function() {
   const isTest = process.env.NODE_ENV === 'test';
 
   var mongoUri = (function() {
-    return isTest ? 'localhost/sheen_test_' + uuid.v4() : (process.env.APP_HOST || 'localhost') + '/sheen';
+    return isTest ? 'localhost/qelf_test_' + uuid.v4() : (process.env.APP_HOST || 'localhost') + '/qelf';
   })();
 
   const db = monk(mongoUri, {

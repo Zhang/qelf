@@ -43,8 +43,8 @@
 
   module.service('FeedbackAPI', function(HttpHelper, $rootScope) {
     return {
-      create: function(feedbackText) {
-        return HttpHelper.post('feedback', { facebookId: $rootScope.user.facebookId, feedbackText: feedbackText });
+      create: function(feedbackText, email) {
+        return HttpHelper.post('feedback', { email: email, facebookId: $rootScope.user.facebookId, feedbackText: feedbackText });
       }
     };
   });

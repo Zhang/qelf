@@ -35,7 +35,8 @@ const FeedbackSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
   text: Joi.string().required(),
-  facebookId: Joi.string().required()
+  facebookId: Joi.string().required(),
+  email: Joi.string().required().allow('')
 });
 
 const TraitSchema = Joi.object().keys({

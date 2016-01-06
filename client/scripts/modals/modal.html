@@ -1,7 +1,7 @@
 <div class="popup-container">
-  <div class="popup-title" ng-if="popupTitle">{{popupTitle}}</div>
-  <div class="popup-text" ng-if="popupText">{{popupText}}</div>
+  <div class="popup-title" ng-if="title">{{title}}</div>
+  <div class="popup-text" ng-if="text">{{text}}</div>
   <div class="popup-list-container">
-    <div class="popup-list-item" ng-repeat="item in popupItems" ng-click="item.action(); closePopup()">{{item.title}}</div>
+    <div class="popup-list-item" ng-repeat="item in items" ng-click="item.action(); closePopup()">{{item.title}}</div>
   </div>
 </div>

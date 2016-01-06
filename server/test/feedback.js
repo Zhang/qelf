@@ -24,7 +24,7 @@ describe('/feedback', function() {
         .send({
           facebookId: 'test',
           feedbackText: 'testFeedback',
-          canContact: false
+          email: ''
         })
         .expect(200, done);
     });

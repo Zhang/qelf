@@ -1,5 +1,5 @@
 {
-  "name": "sheen",
+  "name": "Qelf",
   "version": "1.0.0",
   "description": "",
   "main": "Gruntfile.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zhang/sheen.git"
+    "url": "git+https://github.com/Zhang/qelf.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zhang/sheen/issues"
+    "url": "https://github.com/Zhang/qelf/issues"
   },
-  "homepage": "https://github.com/Zhang/sheen#readme",
+  "homepage": "https://github.com/Zhang/qelf#readme",
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
