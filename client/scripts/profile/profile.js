@@ -16,7 +16,17 @@
     });
   });
 
-  module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals, Mixpanel) {
+  //Used to calculate the score in profile and trait views;
+  module.service('TopScore', function() {
+    return {
+      set: function(score) {
+        this.score = score;
+      },
+      score: null
+    };
+  });
+
+  module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals, Mixpanel, TopScore) {
     Mixpanel.track('Viewed Profile', {id: $rootScope.user.id});
     function sortByTopTraits(traits) {
       return _.sortBy(traits, function(trait) {
@@ -33,7 +43,9 @@
           return trait;
         });
       })();
-      $scope.highestScore = _.max(traitsWithScores, 'score').score;
+
+      TopScore.set(_.max(traitsWithScores, 'score').score);
+
       $scope.traits = sortByTopTraits(traitsWithScores);
       var topTraits = (function getTopTraits() {
         var orderedTraits = _.sortBy($scope.traits, 'score', -1);
@@ -121,16 +133,15 @@
     $('#profile-picture').css('background-image', 'url(' + $rootScope.user.profilePicture + ')');
   });
 
-  module.directive('traitCard', function($state, STATE) {
+  module.directive('traitCard', function($state, STATE, TopScore) {
     return {
       scope: {
-        trait: '=',
-        highestScore: '='
+        trait: '='
       },
       templateUrl: 'scripts/profile/traitCard.html',
       link: function($scope, el) {
         $scope.score = (function getValidScore() {
-          return _.size($scope.trait.total) <= 3 ? 'Not Enough Votes' : Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / $scope.highestScore) + '%';
+          return _.size($scope.trait.total) <= 3 ? 'Not Enough Votes' : Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / TopScore.score) + '%';
         })();
         $(el[0].querySelector('.score-overlay')).css('width', $scope.score || 0);
         $scope.viewTrait = function() {

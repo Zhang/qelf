@@ -619,7 +619,8 @@ div.card .card-content .card-header {
   height: 100%;
   flex-direction: column;
 }
-.trait-details-container .comparisons-container {
+.trait-details-container .comparisons-container,
+.trait-details-container .no-comments {
   padding: 0 15px;
 }
 .trait-details-container .trait-voted-list {
@@ -662,6 +663,7 @@ div.card .card-content .card-header {
 }
 .trait-details-container .comment-divider {
   padding: 10px;
+  font-weight: bold;
 }
 .feedback-container {
   color: #221122;

@@ -26,22 +26,31 @@
     });
   });
 
-  module.controller('Trait', function(ViewedTrait, $scope, $rootScope, Modals) {
+  module.controller('Trait', function(ViewedTrait, $scope, $rootScope, Modals, TopScore) {
     $scope.trait = ViewedTrait;
     var totalVotes = _.map(ViewedTrait.total, function(vote) {
       vote.sentiment = vote.selected === $rootScope.user.facebookId;
+      //vote.comment = 'scott';
       return vote;
     });
+    function enoughVotes() {
+      return _.size($scope.trait.total) > 3;
+    }
+    $scope.score = (function getValidScore() {
+      return enoughVotes() ? Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / TopScore.score) + '%' : 'Not Enough Votes';
+    })();
+    $scope.enoughVotes = enoughVotes();
 
     $scope.voteWithComments = _.filter(totalVotes , function(vote) {
       return !!vote.comment;
     });
 
-    $scope.enoughVotes = $scope.trait.total.length >= 4;
     $scope.showHelp = function() {
-      $scope.popupText = 'Scores are relative to your most popular trait, and are calculated by the formula: score = (current-trait-% / top-trait-%)';
-      $scope.popupTitle = 'Score calculation';
-      Modals.open($scope);
+      var opts = {
+        text: 'Scores are relative to your most popular trait, and are calculated by the formula: score = (current-trait-% / top-trait-%)',
+        title: 'Score calculation'
+      };
+      Modals.open(null, opts);
     };
   });
 })();
