@@ -9,7 +9,7 @@ const CATEGORIES = {
   likeHangingOutWith: 'Why people enjoy hanging out with you',
   leadership: 'Traits related to leadership (According to: Cattell leadership potential equation)',
   founder: 'Traits of being a good founder (According to Paul Graham + Y Combinator)',
-  authenticity: 'Traits related to authenticity (According to UWash Study by Kernis and Goldman)'
+  friend: 'Traits related towards being a good friend (According to UPenn study by Roberts-Griffin)'
 };
 
 //Trait names must fit into the sentence: "I scored really high in ___TRAIT___"
@@ -17,7 +17,7 @@ const defaults = [
   {
     id: 'Kindness',
     comparisons: [
-      'Who do you think is more kind?'
+      'Who is more kind?'
     ]
   },
   {
@@ -25,6 +25,7 @@ const defaults = [
     comparisons: [
       'Who is more thoughtful?',
       'Who is more likely to keep your interests in mind?',
+      'Who is more likely to remember your birthday?'
     ],
     categories: [CATEGORIES.likeHangingOutWith]
   },
@@ -32,29 +33,31 @@ const defaults = [
     id: 'Enthusiasm',
     comparisons: [
       'Who is more energetic?',
-      'Who might you describe as more eager and interested in events in their lives?'
+      'Who is more enthusiastic?',
+      'Who is more eager and interested in the events in their life?'
     ],
     categories: [CATEGORIES.leadership]
   },
   {
     id: 'Intuitiveness',
     comparisons: [
-      'Who would you consider as being more intuitive?'
+      'Who is more intuitive?',
+      'Who is more likely to rely on their gut instinct over research?'
     ],
     categories: [CATEGORIES.leadership]
   },
   {
     id: 'Charisma',
     comparisons: [
-      'Who would you consider as being more charismatic?'
+      'Who is more charismatic?'
     ],
     categories: [CATEGORIES.leadership]
   },
   {
     id: 'Emotionally Stability',
     comparisons: [
-      'Who would you consider as being more emotionally stable?',
-      'Who would you consider as being even-tempered?'
+      'Who is more emotionally stable?',
+      'Who is more even-tempered?'
     ],
     categories: [CATEGORIES.leadership]
   },
@@ -68,50 +71,59 @@ const defaults = [
   },
   {
     id: 'Positivity',
-    comparisons: ['Who would you consider to have a more positive attitude?']
+    comparisons: [
+      'Who has a more positive attitude?'
+    ]
   },
   {
     id: 'Dominance',
     comparisons: [
-      'Who would you consider as more dominant?'
+      'Who is more dominant?'
     ],
     categories: [CATEGORIES.leadership]
   },
   {
     id: 'Loving to Learn',
     comparisons: [
-      'Who do you think would get more excited about learning something new?',
-      'Who more actively seeks to learn and participate in their interests?'
+      'Who is more excited about learning something new?',
+      'Who looks for new things to learn?'
     ],
     categories: [CATEGORIES.happiness]
   },
   {
     id: 'Sincerity',
     comparisons: [
-      'Who do you think is more sincere?'
+      'Who is more sincere?'
     ],
     categories: [CATEGORIES.likeability]
   },
   {
     id: 'Honesty',
     comparisons: [
-      'Who\'s more honest?'
+      'Who\'s more honest?',
+      'Who is more likely to return excess change given to them by a cashier'
+    ],
+    categories: [CATEGORIES.likeability, CATEGORIES.leadership]
+  },
+  {
+    id: 'Loyalty',
+    comparisons: [
+      'Who is a more loyal friend?'
     ],
     categories: [CATEGORIES.likeability]
   },
   {
-    id: 'Loyalty',
-    comparisons: ['Who would you consider to be a more loyal friend?'],
-    categories: [CATEGORIES.likeability]
-  },
-  {
     id: 'Gratitude',
-    comparisons: ['Who shows their gratitude most frequently'],
+    comparisons: [
+      'Who shows their gratitude most frequently'
+    ],
     categories: [CATEGORIES.happiness]
   },
   {
     id: 'Happiness',
-    comparisons: ['Who would you consider to be a happier person?'],
+    comparisons: [
+      'Who is happier?'
+    ],
     categories: [CATEGORIES.happiness]
   },
   {
@@ -124,29 +136,31 @@ const defaults = [
   {
     id: 'Trustworthiness',
     comparisons: [
-      'Who do you trust more?'
+      'Who do you trust more?',
+      'Who '
     ],
-    categories: [CATEGORIES.likeability]
+    categories: [CATEGORIES.likeability, CATEGORIES.leadership]
   },
   {
     id: 'Social Boldness',
     comparisons: [
-      'Who do you think less effected by shame or rejection in social situations?',
-      'Who do you think would be less offended by criticism'
+      'Who is less effected by shame or rejection in social situations?',
+      'Who is less offended by criticism'
     ],
     categories: [CATEGORIES.leadership]
   },
   {
     id: 'Inspiration',
     comparisons: [
-      'Who are you more inspired by?'
+      'Who is more inspiring?'
     ],
     categories: [CATEGORIES.likeHangingOutWith]
   },
   {
     id: 'Patience',
     comparisons: [
-      'Who is more patient?'
+      'Who is more patient?',
+      'Who is less likely to have road rage?'
     ]
   },
   {
@@ -201,22 +215,25 @@ const defaults = [
   {
     id: 'Determination',
     comparisons: [
+      'Who is more likely to complete a goal once they set their mind on it?',
       'Who is more determined?',
-      'Who is more likely to pursue their dreams and continue until they succeed?'
+      'Who will not quit?'
     ],
     categories: [CATEGORIES.founder]
   },
   {
     id: 'Adaptability',
     comparisons: [
-      'Who is more adaptable?'
+      'If time travelled to the 1800\'s, who do you think would adapt the most quickly?',
+      'If woken up in a foreign country, who would be most likely to make it home unscathed?'
     ],
     categories: [CATEGORIES.founder]
   },
   {
     id: 'Imaginative',
     comparisons: [
-      'Who can talk an unusual road to a solution?'
+      'Who can talk an unusual road to a solution?',
+      'Who would make it further on a season of Survivor?'
     ],
     categories: [CATEGORIES.founder]
   },
@@ -226,6 +243,14 @@ const defaults = [
       'Who is likely to successfully bend the rules to get what they want?'
     ],
     categories: [CATEGORIES.founder]
+  },
+  {
+    id: 'Supportive',
+    comparisons: [
+      'Who is more likely to show up to support you at the finish line of a half-marathon?',
+      'Who is more likely to know your goals and ambitions?'
+    ],
+    categories: [CATEGORIES.friend]
   }
 ];
 
