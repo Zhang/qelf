@@ -8,6 +8,7 @@
     'ENV_VARS',
     'facebook',
     'share',
+    'enterSubmit',
     'overlay',
     'modals',
     'states',
@@ -35,20 +36,7 @@
       }
     });
   });
-  module.directive('enterSubmit', function () {
-    return function (scope, element, attrs) {
-      element.bind('keydown keypress', function (event) {
-        var ENTER_KEYCODE = 13;
-        if(event.which === ENTER_KEYCODE) {
-          scope.$apply(function (){
-              scope.$eval(attrs.enterSubmit);
-          });
 
-          event.preventDefault();
-        }
-      });
-    };
-  });
   module.service('Mixpanel', function() {
     return window.mixpanel;
   });

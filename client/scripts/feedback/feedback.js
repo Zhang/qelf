@@ -16,7 +16,7 @@
     $scope.submit = function() {
       if ($scope.feedbackText) {
         //Ask for their email
-        Modals.open('email', {
+        Modals.open(Modals.TYPES.email, {
           onClose: function(modalScope) {
             FeedbackAPI.create($scope.feedbackText, modalScope.email).then(function() {
               $scope.feedbackText = '';

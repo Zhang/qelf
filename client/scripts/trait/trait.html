@@ -1,47 +1,47 @@
 <div class="subview-container trait-details-container">
   <div class="trait-overview-container">
-    <div class="trait-title">
-      <div class="flex-container">
-        <div class="ion-help-circled describe-score" ng-click="showHelp()"></div>
-        <div class="title-text">
-          {{trait.templateId}}
-        </div>
+    <div class="ion-help-circled describe-score" ng-click="showHelp()"></div>
+    <div class="trait-title-subview">
+      <div class="title-text">
+        {{trait.templateId}}
       </div>
     </div>
-    <div class="trait-stats">
+    <div class="trait-title-subview">
       <div class="trait-metrics">
         <div ng-if="enoughVotes" class="trait-selected-count">{{score}}</div>
         <div ng-if="!enoughVotes" class="trait-selected-count">Not enough votes</div>
       </div>
     </div>
   </div>
-  <div class="comment-divider">Question(s) we asked</div>
-  <div class="comparisons-container">
-    <div class="voted-list-item" ng-repeat="comparison in trait.template.comparisons">"{{comparison}}"</div>
-  </div>
-  <div class="comment-divider">Comments</div>
-  <div class="trait-voted-list" ng-class="{
-    'empty-state': !enoughVotes
-  }">
-    <div ng-if="!enoughVotes">
-      Not enough votes - please ask your friends to vote more frequently!
+  <div class="trait-comments-container">
+    <div class="comment-divider">Question(s) we asked</div>
+    <div class="comparisons-container">
+      <div class="voted-list-item" ng-repeat="comparison in trait.template.comparisons">"{{comparison}}"</div>
     </div>
-    <div class="no-comments" ng-if="enoughVotes && !voteWithComments.length">
-      No comments received on this trait
-    </div>
-    <div
-      ng-if="enoughVotes"
-      class="voted-list-item"
-      ng-class="{
-        'positive-sentiment': !vote.sentiment,
-        'negative-sentiment': vote.sentiment
-      }"
-      ng-repeat="vote in voteWithComments">
-      <div class="voted-list-item-sentiment" ng-class="{
-        'ion-android-sad': !vote.sentiment,
-        'ion-android-happy': vote.sentiment
-      }"></div>
-      <div class="vote-comment">{{vote.comment}}</div>
+    <div class="comment-divider">Comments</div>
+    <div class="trait-voted-list" ng-class="{
+      'empty-state': !enoughVotes
+    }">
+      <div ng-if="!enoughVotes">
+        Not enough votes - please ask your friends to vote more frequently!
+      </div>
+      <div class="no-comments" ng-if="enoughVotes && !voteWithComments.length">
+        No comments received on this trait
+      </div>
+      <div
+        ng-if="enoughVotes"
+        class="voted-list-item"
+        ng-class="{
+          'positive-sentiment': !vote.sentiment,
+          'negative-sentiment': vote.sentiment
+        }"
+        ng-repeat="vote in voteWithComments">
+        <div class="voted-list-item-sentiment" ng-class="{
+          'ion-android-sad': !vote.sentiment,
+          'ion-android-happy': vote.sentiment
+        }"></div>
+        <div class="vote-comment">{{vote.comment}}</div>
+      </div>
     </div>
   </div>
 </div>

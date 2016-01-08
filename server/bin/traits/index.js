@@ -4,20 +4,27 @@ const _ = require('lodash');
 const traitTemplateModel = require('../../app/models/traitTemplate');
 
 const CATEGORIES = {
-  happiness: 'Traits predicting happiness (According to: UPenn Study by Kaufman)',
-  likeability: 'Traits predicting likability (According to: Norman Anderson Study)',
-  likeHangingOutWith: 'Why people enjoy hanging out with you',
-  leadership: 'Traits related to leadership (According to: Cattell leadership potential equation)',
-  founder: 'Traits of being a good founder (According to Paul Graham + Y Combinator)',
-  friend: 'Traits related towards being a good friend (According to UPenn study by Roberts-Griffin)'
+  happiness: 'Traits that predict happiness (Kaufman at UPenn)',
+  likeability: 'Traits that make you likeable (Norman Anderson)',
+  leadership: 'Traits of strong leadership (Cattell Leadership Potential Equation)',
+  founder: 'Traits of a YCombinator founder (Paul Graham via Y Combinator)',
+  friend: 'Traits of being a good friend (Roberts-Griffin at UPenn)'
 };
 
 //Trait names must fit into the sentence: "I scored really high in ___TRAIT___"
+//Comparisons are meant to:
+//  1. Be interesting to answer
+//  2. Together, fully encompass the given trait
+//  3. Concise
+
 const defaults = [
   {
-    id: 'Kindness',
+    id: 'Kindness', //Ethical, pleasant, and concerned about others (Wikipedia)
     comparisons: [
-      'Who is more kind?'
+      'Who is more kind?',
+      'Who is more ethical?',
+      'Who is more pleasant?',
+      'Who is more concerned about others?'
     ]
   },
   {
@@ -25,16 +32,16 @@ const defaults = [
     comparisons: [
       'Who is more thoughtful?',
       'Who is more likely to keep your interests in mind?',
-      'Who is more likely to remember your birthday?'
-    ],
-    categories: [CATEGORIES.likeHangingOutWith]
+      'Who is more likely to remember your birthday?',
+      'Who is more likely to wonder about your thoughts at night?'
+    ]
   },
   {
     id: 'Enthusiasm',
     comparisons: [
-      'Who is more energetic?',
       'Who is more enthusiastic?',
-      'Who is more eager and interested in the events in their life?'
+      'Who is more energetic?',
+      'Who is more interested in the events in their life?'
     ],
     categories: [CATEGORIES.leadership]
   },
@@ -42,14 +49,15 @@ const defaults = [
     id: 'Intuitiveness',
     comparisons: [
       'Who is more intuitive?',
-      'Who is more likely to rely on their gut instinct over research?'
+      'Who is more likely to rely on their gut instinct?'
     ],
     categories: [CATEGORIES.leadership]
   },
   {
     id: 'Charisma',
     comparisons: [
-      'Who is more charismatic?'
+      'Who is more charismatic?',
+      'Who do you feel more devoted towards?'
     ],
     categories: [CATEGORIES.leadership]
   },
@@ -153,8 +161,7 @@ const defaults = [
     id: 'Inspiration',
     comparisons: [
       'Who is more inspiring?'
-    ],
-    categories: [CATEGORIES.likeHangingOutWith]
+    ]
   },
   {
     id: 'Patience',
@@ -168,21 +175,19 @@ const defaults = [
     comparisons: [
       'Who do you like more?'
     ],
-    categories: [CATEGORIES.likeHangingOutWith, CATEGORIES.likeability]
+    categories: [CATEGORIES.likeability]
   },
   {
     id: 'Comfortable Person to be Around',
     comparisons: [
       'Who are you more comfortable being yourself around?'
-    ],
-    categories: [CATEGORIES.likeHangingOutWith]
+    ]
   },
   {
     id: 'Fun',
     comparisons: [
       'Who do you think is more fun to hang out with?'
-    ],
-    categories: [CATEGORIES.likeHangingOutWith]
+    ]
   },
   {
     id: 'Reliability',
@@ -248,7 +253,7 @@ const defaults = [
     id: 'Supportive',
     comparisons: [
       'Who is more likely to show up to support you at the finish line of a half-marathon?',
-      'Who is more likely to know your goals and ambitions?'
+      'Who is more likely to know your goals?'
     ],
     categories: [CATEGORIES.friend]
   }

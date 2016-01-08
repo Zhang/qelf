@@ -7,50 +7,42 @@
     width: 100%;
     height: @trait-overview-height;
     background-color: @primary-color;
+    .trait-title-subview {
+      .width-minus-box(@base-width: 50%);
+      display: inline-block;
+      height: 100%;
+    }
+
+    .title-text, .trait-metrics {
+      .flex-center();
+      font-size: @font-xlarge;
+      text-align: center;
+      color: white;
+      height: 100%;
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+    .describe-score {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 5px;
+      color: white;
+      font-size: @font-large;
+    }
+    .trait-selected-count {
+      width: 80%;
+    }
   }
-  .trait-title, .trait-stats {
-    .width-minus-box(@base-width: 50%);
-    display: inline-block;
-    font-size: @font-standard;
-    flex-grow: 2;
-    text-align: center;
-    height: 100%;
-    vertical-align: top;
-    color: white;
+
+  .trait-comments-container {
+    height: calc(100% ~"-" @trait-overview-height);
   }
-  .trait-metrics {
-    .flex-center();
-    height: 100%;
-  }
-  .describe-score {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 5px;
-    font-size: @font-large;
-  }
-  .trait-title {
-    text-transform: capitalize;
-    font-weight: bold;
-  }
-  .title-text {
-    flex-grow: 3;
-    font-size: @font-xlarge;
-    .flex-center();
-  }
+
   .divider {
     border: 1px solid @primary-color;
   }
-  .trait-selected-count {
-    font-size: @font-xlarge;
-    width: 80%;
-    font-weight: bold;
-  }
-  .flex-container {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-  }
+
   .comparisons-container, .no-comments {
     padding: 0 15px;
   }

@@ -52,6 +52,7 @@
       });
     }
     getVotes();
+
     function closeComment() {
       $scope.commenting = false;
     }

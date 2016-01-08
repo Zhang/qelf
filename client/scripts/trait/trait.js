@@ -47,7 +47,7 @@
 
     $scope.showHelp = function() {
       var opts = {
-        text: 'Scores are relative to your most popular trait, and are calculated by the formula: score = (current-trait-% / top-trait-%)',
+        text: 'Scores are weighted against your most positively-voted trait, rather than an absolute percentage of people who vote for you / total',
         title: 'Score calculation'
       };
       Modals.open(null, opts);

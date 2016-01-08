@@ -27,7 +27,6 @@
         };
 
         overlay.on('click', clickFn);
-
       };
   });
 })();

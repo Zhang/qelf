@@ -4,10 +4,14 @@
   var app = angular.module('modals', []);
   //todo - open (opts) should be the signiture - remove passing scope
   app.service('Modals', function($compile, OverlayService, $rootScope) {
+    var TYPES = {
+      email: 'email',
+      generic: 'generic'
+    };
     var genericTemplate;
     var emailTemplate;
 
-    $.get('scripts/modals/modal.html', function(_template) {
+    $.get('scripts/modals/genericModal.html', function(_template) {
       genericTemplate = _template;
     });
     $.get('scripts/modals/emailSharing.html', function(_template) {
@@ -49,12 +53,13 @@
 
     return {
       open: function(type, opts) {
-        if (type === 'email') {
+        if (type === TYPES.email) {
           openTemplate(emailTemplate, opts);
         } else {
           openTemplate(genericTemplate, opts);
         }
-      }
+      },
+      types: TYPES
     };
   });
 })();

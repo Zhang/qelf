@@ -16,7 +16,7 @@
     });
   });
 
-  //Used to calculate the score in profile and trait views;
+  //Used to calculate trait scores in profile and trait views;
   module.service('TopScore', function() {
     return {
       set: function(score) {

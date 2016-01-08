@@ -554,53 +554,39 @@ div.card .card-content .card-header {
   height: 25%;
   background-color: #997799;
 }
-.trait-details-container .trait-title,
-.trait-details-container .trait-stats {
+.trait-details-container .trait-overview-container .trait-title-subview {
   width: calc(50% - 2 * 1px - 2 * 0px - 2 * 0px);
   display: inline-block;
-  font-size: 14px;
-  flex-grow: 2;
-  text-align: center;
   height: 100%;
-  vertical-align: top;
-  color: white;
 }
-.trait-details-container .trait-metrics {
+.trait-details-container .trait-overview-container .title-text,
+.trait-details-container .trait-overview-container .trait-metrics {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 20px;
+  text-align: center;
+  color: white;
   height: 100%;
+  text-transform: capitalize;
+  font-weight: bold;
 }
-.trait-details-container .describe-score {
+.trait-details-container .trait-overview-container .describe-score {
   position: absolute;
   right: 0;
   top: 0;
   padding: 5px;
+  color: white;
   font-size: 16px;
 }
-.trait-details-container .trait-title {
-  text-transform: capitalize;
-  font-weight: bold;
+.trait-details-container .trait-overview-container .trait-selected-count {
+  width: 80%;
 }
-.trait-details-container .title-text {
-  flex-grow: 3;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.trait-details-container .trait-comments-container {
+  height: calc(100% - 25%);
 }
 .trait-details-container .divider {
   border: 1px solid #997799;
-}
-.trait-details-container .trait-selected-count {
-  font-size: 20px;
-  width: 80%;
-  font-weight: bold;
-}
-.trait-details-container .flex-container {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
 }
 .trait-details-container .comparisons-container,
 .trait-details-container .no-comments {
