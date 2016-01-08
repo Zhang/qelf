@@ -714,6 +714,9 @@ div.card .card-content .card-header {
 .popup-container .popup-list-container .popup-list-item {
   padding: 10px;
 }
+.popup-container .popup-list-container .popup-list-item .subtitle {
+  font-size: 12px;
+}
 .popup-container .email-input {
   border-radius: 3px;
   border: 1px solid #997799;

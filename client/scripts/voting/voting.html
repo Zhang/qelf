@@ -9,9 +9,9 @@
         <div class="invite-friends-btn" ng-click="share()">Invite Friends!</div>
       </div>
     </div>
-    <card ng-if="!cardManager.isEmpty" vote="vote" comment="comment" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
+    <card ng-if="!cardManager.isEmpty" vote="vote" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
   </div>
-  <div ng-if="!cardManager.isEmpty && !commenting" class="selection-container">
+  <div ng-if="!cardManager.isEmpty" class="selection-container">
     <div class="selection-holder">
       <div class="click-vote" ng-click="vote('left')">
         <div class="ion-chevron-left vote-icon"></div>
@@ -20,19 +20,5 @@
         <div class="ion-chevron-right vote-icon"></div>
       </div>
     </div>
-    <div class="selection-label">
-      <div class="left-label">
-        <span>Vote<br>{{cardManager.current.contestants[0].name.split(' ')[0]}}</span>
-      </div>
-      <div class="right-label">
-        <span>Vote<br>{{cardManager.current.contestants[1].name.split(' ')[0]}}</span>
-      </div>
-    </div>
-  </div>
-  <div class="card-comment-container" ng-if="commenting">
-    <div class="comment-description">
-      Comments will be anonymously displayed to both users. You can use this space to tell them why you're voting one way or the other, or to point to something specific for a given user.
-    </div>
-    <input enter-submit="submitComment()" placeholder="Leave a comment..." class="comment-text-input" ng-model="comment.text" id="comment-input" type="text">
   </div>
 </div>

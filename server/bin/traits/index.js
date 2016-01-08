@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 const traitTemplateModel = require('../../app/models/traitTemplate');
-
+//Rename
 const CATEGORIES = {
   happiness: 'Traits that predict happiness (Kaufman at UPenn)',
   likeability: 'Traits that make you likeable (Norman Anderson)',

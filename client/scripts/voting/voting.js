@@ -53,23 +53,11 @@
     }
     getVotes();
 
-    function closeComment() {
-      $scope.commenting = false;
-    }
-    var overlay = new OverlayService({
-      onClick: closeComment
-    });
-    $scope.comment = {
-      text: ''
-    };
-
     $scope.submit = function(voteId, selected) {
       Mixpanel.track('Voted', {
         userId: $rootScope.user.id,
-        hasComment: !!$scope.comment.text
       });
-      VoteAPI.submit(voteId, selected.facebookId, $scope.comment.text);
-      $scope.comment.text = '';
+      VoteAPI.submit(voteId, selected.facebookId);
     };
 
     $scope.vote = function(leftOrRight) {
@@ -77,21 +65,8 @@
       $scope.cardManager.next();
     };
 
-    $scope.submitComment = function() {
-      overlay.close();
-      closeComment();
-    };
-
     $scope.share = function() {
       window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };
-
-    $scope.$on('card:commenting', function() {
-      $scope.commenting = true;
-      overlay.open();
-      $timeout(function focusCommentInput() {
-        $('#comment-input').focus();
-      });
-    });
   });
 })();

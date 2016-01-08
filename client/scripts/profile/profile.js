@@ -69,13 +69,13 @@
       var opts = {
         items: [
           {
-            title: 'Top Traits',
+            title: 'Top Rated Traits',
             action: function byTopTraits() {
               $scope.sortByText = this.title;
               $scope.traits = sortByTopTraits($scope.traits);
             }
           }, {
-            title: 'Lowest Traits',
+            title: 'Lowest Rated Traits',
             action: function sortByLowTraits() {
               $scope.sortByText = this.title;
               $scope.traits = _.sortBy($scope.traits, function(trait) {
@@ -112,8 +112,12 @@
       var UNIQUE_CATEGORIES = _.compact(_.uniq(_.flatten(_.map($scope.traits, 'categories'))));
       UNIQUE_CATEGORIES.unshift(ALL_TRAITS)
       opts.items = _.map(UNIQUE_CATEGORIES, function(category) {
+        var splitCategory = category.split('(');
+        var title = splitCategory[0];
+        var subtitle = splitCategory[1];
         return {
-          title: category,
+          title: title,
+          subtitle: subtitle,
           action: function() {
             $scope.viewCategory = category;
             _.each($scope.traits, function(trait) {

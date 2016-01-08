@@ -42,7 +42,6 @@
       replace: true,
       scope: {
         vote: '=',
-        comment: '=',
         onSubmit: '&'
       },
       compile: function() {
@@ -74,9 +73,6 @@
               swipeableCard.transitionOut(dir);
             };
           }
-          $scope.onComment = function() {
-            $scope.$emit('card:commenting');
-          };
 
           $scope.$on('vote:left', voteSubmit(-1));
           $scope.$on('vote:right', voteSubmit(1));

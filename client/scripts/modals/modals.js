@@ -42,7 +42,7 @@
 
       var compiledTemplate = $compile(template)(_scope);
       compiledTemplate.css('display', 'none');
-      compiledTemplate.css('top', getModalYPlacement(_scope.items || 0));
+      compiledTemplate.css('top', getModalYPlacement(_.size(_scope.items) || 0));
       $(compiledTemplate).addClass(_scope.customClass || '');
       $('#frame').append(compiledTemplate);
 

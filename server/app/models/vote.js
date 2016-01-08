@@ -5,10 +5,9 @@ const collection = db.get('vote');
 const VoteSchema = require('./schemas').vote;
 const modelCRUD = require('./concerns/modelCRUD')('vote', collection, VoteSchema);
 
-const submit = function* submit(id, selected, comment) {
+const submit = function* submit(id, selected) {
   yield modelCRUD.updateById(id, {
-    selected: selected,
-    comment: comment
+    selected: selected
   });
 };
 
@@ -16,7 +15,6 @@ const newVote = function(fbId, comparison, contestants, traitTemplateId) {
   return {
     traitTemplateId: traitTemplateId,
     voterId: fbId,
-    comment: null,
     selected: null,
     comparison: comparison,
     contestants: contestants
