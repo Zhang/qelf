@@ -1,12 +1,13 @@
 @selection-container-height: 22vh;
 @selection-holder-height: 13vh;
 @selection-width: 60%;
+@selection-container-x-margin: calc(50% ~"-" @selection-width ~"/" 2 ~"-" @subview-container-margin);
 
 .selection-container {
   position: absolute;
   bottom: 0;
   width: @selection-width;
-  margin: 0 calc(50% - @selection-width ~"/" 2) calc(@selection-container-height ~"/" 2 ~"-" @selection-holder-height ~"/" 2 - 20px) calc(50% - @selection-width ~"/" 2);
+  margin: 0 @selection-container-x-margin calc(@selection-container-height ~"/" 2 ~"-" @selection-holder-height ~"/" 2 - 20px) @selection-container-x-margin;
 }
 
 .icon-set {
@@ -37,10 +38,6 @@
   }
 }
 
-.vote-right {
-  float: right;
-}
-
 .selection-label {
   color: @primary-font-color;
   .left-label, .right-label {
@@ -62,9 +59,10 @@
 }
 
 .card-comment-container {
+  .bottom();
   z-index: @modal-z-top;
-  position: absolute;
-  bottom: 0;
+  margin-left: calc(-1 ~"*" @subview-container-margin);
+  width: 100%;
   .comment-description {
     background-color: white;
     padding: 10px;
@@ -73,18 +71,15 @@
   .comment-text-input {
     @comment-padding: 10px;
     .text-input-defaults();
-    width: calc(100% - @comment-padding ~"*" 2 - 2px);
+    .width-minus-box(@padding: @comment-padding);
     height: 30px;
     padding: 0 @comment-padding;
   }
 }
 
 .invite-friends-btn {
-  .rounded-borders();
+  .btn-defaults();
   width: 50%;
   margin: 10px auto;
   padding: 20px;
-  background-color: @primary-color;
-  color: white;
-  font-weight: bold;
 }

@@ -1,4 +1,4 @@
-<div class="voting-container">
+<div class="subview-container voting-container">
   <div class="votes">
     <div class="empty-state" ng-if="cardManager.isEmpty">
       <div class="icon-set">
@@ -13,10 +13,10 @@
   </div>
   <div ng-if="!cardManager.isEmpty && !commenting" class="selection-container">
     <div class="selection-holder">
-      <div class="click-vote vote-left" ng-click="vote('left')">
+      <div class="click-vote" ng-click="vote('left')">
         <div class="ion-chevron-left vote-icon"></div>
       </div>
-      <div class="click-vote vote-right" ng-click="vote('right')">
+      <div class="click-vote right" ng-click="vote('right')">
         <div class="ion-chevron-right vote-icon"></div>
       </div>
     </div>

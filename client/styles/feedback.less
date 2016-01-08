@@ -1,22 +1,21 @@
 .feedback-container {
   color: @primary-font-color;
-  .subview-container-defaults();
-  .rounded-borders();
   position: relative;
+
   .feedback-text {
     margin-top: 10px;
     height: 150px;
   }
   .feedback-text-area {
-    .rounded-borders();
     @feedback-padding: 15px;
-    @feedback-border-width: 1px;
+    .rounded-borders();
+    .width-minus-box(@padding: @feedback-padding);
+
     resize: none;
-    width: calc(100% ~"-" @feedback-padding ~"*" 2 - @feedback-border-width ~"*" 2);
     padding: @feedback-padding;
     height: 100%;
-    border: @feedback-border-width solid @primary-color;
-    .set-placeholder-color(@primary-font-color);
+    border: 1px solid @primary-color;
+    .set-placeholder-color(@color: @primary-font-color);
   }
   .feedback-comments {
     .flex-center();
@@ -27,16 +26,10 @@
     padding: @comments-padding;
   }
   .feedback-submit-button {
-    .rounded-borders();
-    font-size: @font-large;
-    font-weight: bold;
-    text-align: center;
+    .btn-defaults();
+    .bottom();
     padding: 15px 0;
-    position: absolute;
-    bottom: 0;
+    content: "Submit";
     width: 100%;
-    color: white;
-    background-color: @primary-color;
-    content: "Submit"
   }
 }

@@ -1,17 +1,15 @@
-</ion-view>
-  <div id="frame" class="frame-container">
-    <div id="modal-overlay"></div>
-    <div class="navbar-container">
-      <div class="title-container">
-        <h2 ng-if="!isStandardView" class="title">Qelf <span class="beta-heading">beta</span></h2>
-        <div ng-if="isStandardView" class="nav go-back" ng-click="goTo('lastState')"><div class="go-back-btn ion-chevron-left"></div>Go Back</div>
-      </div>
-      <div class="navigation">
-        <div ng-if="!isStandardView" class="nav profile" ng-class="{selected: isSelected('profile')}" ng-click="goTo('profile')">Profile</div>
-        <div ng-if="!isStandardView" class="nav voting" ng-class="{selected: isSelected('voting')}" ng-click="goTo('voting')">Voting</div>
-        <div ng-if="!isStandardView" class="nav settings ion-navicon" ng-click="openPopup()"></div>
-      </div>
+<div id="frame" class="frame-container">
+  <div id="modal-overlay"></div>
+  <div class="navbar-container">
+    <div class="title-container">
+      <h2 ng-if="!isStandardView" class="title">Qelf <span class="beta-heading">beta</span></h2>
+      <div ng-if="isStandardView" class="nav go-back" ng-click="goTo('lastState')"><div class="go-back-btn ion-chevron-left"></div>Go Back</div>
     </div>
-    <div class="view-container" ui-view></div>
+    <div class="navigation">
+      <div ng-if="!isStandardView" class="nav profile" ng-class="{selected: isSelected('profile')}" ng-click="goTo('profile')">Profile</div>
+      <div ng-if="!isStandardView" class="nav voting" ng-class="{selected: isSelected('voting')}" ng-click="goTo('voting')">Voting</div>
+      <div ng-if="!isStandardView" class="nav settings ion-navicon" ng-click="openPopup()"></div>
+    </div>
   </div>
-</ion-view>
+  <div class="view-container" ui-view></div>
+</div>

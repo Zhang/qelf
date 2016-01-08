@@ -94,7 +94,7 @@
         contestant: '='
       },
       link: function($scope, el) {
-        var candidateImgContainer = $(el).find('.candidate-picture')[0];
+        var candidateImgContainer = $(el).find('.contestant-picture')[0];
         $(candidateImgContainer).css('background-image', 'url(' + $scope.contestant.profilePicture + ')');
       }
     };

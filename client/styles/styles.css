@@ -20,12 +20,6 @@
   align-items: center;
   justify-content: flex-start;
 }
-.subview-container-defaults {
-  margin: 10px;
-  height: calc(100% - 2 * 10px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
 .rounded-borders {
   border-radius: 3px;
 }
@@ -82,6 +76,10 @@ button.login {
   color: white;
   font-size: 20px;
 }
+.button-group.bottom {
+  position: absolute;
+  bottom: 0;
+}
 .button-group.bottom input,
 .button-group.bottom button.login {
   width: 100%;
@@ -113,10 +111,6 @@ div.button-group {
   padding: 15px 0;
   color: white;
 }
-.bottom {
-  position: absolute;
-  bottom: 0;
-}
 a.login-tag {
   padding: 15px;
   display: block;
@@ -136,7 +130,6 @@ div.frame-container {
 }
 div.frame-container .view-container {
   border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
   height: calc(100% - 50px - 1px * 2);
   max-height: calc(100% - 50px - 1px * 2);
   background-color: rgba(255, 255, 255, 0.8);
@@ -219,6 +212,15 @@ div.navbar-container .ion-chevron-right {
   display: inline-block;
   margin-left: 10px;
 }
+.subview-container {
+  margin: 10px;
+  height: calc(100% - 2 * 10px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.right {
+  float: right;
+}
 div.voting-container {
   padding: 0;
   height: 100%;
@@ -239,32 +241,29 @@ div.votes {
   min-height: 350px;
   position: relative;
   margin: 0 auto;
-  padding: 10px 20px;
 }
 div.votes .card:nth-child(1) {
   z-index: 10;
 }
 div.votes .card:nth-child(2) {
-  width: calc(100% - 20px * 2 - 0px * 2 - 6px);
+  width: calc(100% - 1px * 2 - 6px);
   margin: 5px 0 0 3px;
   z-index: 5;
 }
 div.votes .card:nth-child(3) {
-  width: calc(100% - 20px * 2 - 0px * 2 - 12px);
+  width: calc(100% - 1px * 2 - 12px);
   margin: 10px 0 0 6px;
   z-index: 0;
 }
 div.card {
   height: 100%;
-  width: calc(100% - 20px * 2 - 0px * 2);
+  width: calc(100% - 1px * 2);
   background-color: white;
   position: absolute;
   border: 1px solid #B9B7B7;
-  padding: 0px;
   border-radius: 3px;
 }
 div.card .card-content {
-  background-color: white;
   border-radius: 3px;
   height: 100%;
   box-shadow: 0 4px 2px -2px #B9B7B7;
@@ -273,16 +272,16 @@ div.card .card-content {
 div.card .card-content .card-main {
   margin: 10px 0;
 }
-div.card .card-content .card-main .candidate-transitioner {
+div.card .card-content .card-main .contestant-parent-container {
+  width: calc(50% - 2 * 1px - 2 * 0px - 2 * 2px);
   padding: 0 2px;
-  width: calc(50% - 2px * 2);
   display: inline-block;
 }
-div.card .card-content .card-main .candidate-container {
+div.card .card-content .card-main .contestant-container {
   width: 100%;
   overflow: hidden;
 }
-div.card .card-content .card-main .candidate-picture {
+div.card .card-content .card-main .contestant-picture {
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -293,18 +292,18 @@ div.card .card-content .card-main .candidate-picture {
   background-color: white;
   height: 155px;
 }
-div.card .card-content .card-main .candidate-description {
-  height: 30px;
-  padding: 10px;
-  overflow: hidden;
+div.card .card-content .card-main .contestant-description {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 30px;
+  padding: 10px;
+  overflow: hidden;
   font-size: 14px;
   font-weight: bold;
   text-transform: capitalize;
 }
-div.card .card-content .card-main .candidate-description .name {
+div.card .card-content .card-main .contestant-description .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -329,12 +328,6 @@ div.card .card-content .card-header {
   font-size: 14px;
   font-weight: bold;
   border-bottom: 1px solid #ddccee;
-}
-.profile-container {
-  margin: 10px;
-  height: calc(100% - 2 * 10px);
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 .profile-overview-container {
   width: 100%;
@@ -361,32 +354,28 @@ div.card .card-content .card-header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  border-radius: 5px;
-  background-image: url("https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/12108274_10101564644192315_7334749882900604967_n.jpg?oh=e0fee8c71ce074b2ba8180193ae610bb&oe=56E3A4FB");
+  border-radius: 3px;
 }
 .profile-overview {
-  width: calc(57% - 3px);
+  width: calc(57% - 2 * 1px - 2 * 0px - 2 * 0px);
 }
-.profile-overview div {
-  text-align: center;
-}
-.profile-overview .name {
+.profile-overview .name,
+.profile-overview .overview {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+.profile-overview .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 14px;
   font-weight: bold;
   border-bottom: 1px solid #997799;
   text-transform: capitalize;
   height: 25px;
 }
 .profile-overview .overview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: calc(100% - 25px - 2 * 5px - 2px);
   padding: 5px;
 }
@@ -401,8 +390,7 @@ div.card .card-content .card-header {
   align-items: center;
   justify-content: flex-start;
   border-radius: 3px;
-  width: calc(100% - 2px);
-  background-color: transparent;
+  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 0px);
   height: 30px;
   border: 1px solid #B9B7B7;
 }
@@ -413,23 +401,23 @@ div.card .card-content .card-header {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex-grow: 4;
+  flex-grow: 2;
   padding: 0 10px;
 }
 .profile-selector:not(:first-child) {
   margin-top: 10px;
 }
 .trait-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
   background-color: #ddccee;
   height: 50px;
   position: relative;
   width: 100%;
   margin: 5px 0;
   z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
 }
 .trait-container:first-child {
   margin-top: 0;
@@ -448,22 +436,21 @@ div.card .card-content .card-header {
   padding: 0 15px;
   z-index: 10;
 }
-.trait-container .trait-score {
-  font-weight: 400;
-}
 .trait-container .trait-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   flex-grow: 1;
-  text-transform: capitalize;
   font-weight: bold;
+}
+.trait-container .trait-title .trait-score {
+  font-weight: 400;
 }
 .selection-container {
   position: absolute;
   bottom: 0;
   width: 60%;
-  margin: 0 calc(50% - 60% / 2) calc(22vh / 2 - 13vh / 2 - 20px) calc(50% - 60% / 2);
+  margin: 0 calc(50% - 60% / 2 - 10px) calc(22vh / 2 - 13vh / 2 - 20px) calc(50% - 60% / 2 - 10px);
 }
 .icon-set {
   text-align: center;
@@ -490,9 +477,6 @@ div.card .card-content .card-header {
   font-size: 25px;
   color: white;
 }
-.vote-right {
-  float: right;
-}
 .selection-label {
   color: #221122;
 }
@@ -516,9 +500,11 @@ div.card .card-content .card-header {
   text-align: left;
 }
 .card-comment-container {
-  z-index: 13;
   position: absolute;
   bottom: 0;
+  z-index: 13;
+  margin-left: calc(-1 * 10px);
+  width: 100%;
 }
 .card-comment-container .comment-description {
   background-color: white;
@@ -531,7 +517,8 @@ div.card .card-content .card-header {
   color: #221122;
   margin: 0 auto;
   display: block;
-  width: calc(100% - 10px * 2 - 2px);
+  position: relative;
+  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
   height: 30px;
   padding: 0 10px;
 }
@@ -551,18 +538,14 @@ div.card .card-content .card-header {
 }
 .invite-friends-btn {
   border-radius: 3px;
-  width: 50%;
-  margin: 10px auto;
-  padding: 20px;
+  margin: 0 auto;
   background-color: #997799;
   color: white;
   font-weight: bold;
-}
-.trait-details-container {
-  margin: 10px;
-  height: calc(100% - 2 * 10px);
-  overflow-y: scroll;
-  overflow-x: hidden;
+  text-align: center;
+  width: 50%;
+  margin: 10px auto;
+  padding: 20px;
 }
 .trait-details-container .trait-overview-container {
   border-radius: 3px;
@@ -573,11 +556,11 @@ div.card .card-content .card-header {
 }
 .trait-details-container .trait-title,
 .trait-details-container .trait-stats {
+  width: calc(50% - 2 * 1px - 2 * 0px - 2 * 0px);
   display: inline-block;
   font-size: 14px;
   flex-grow: 2;
   text-align: center;
-  width: calc(50% - 2px);
   height: 100%;
   vertical-align: top;
   color: white;
@@ -667,11 +650,6 @@ div.card .card-content .card-header {
 }
 .feedback-container {
   color: #221122;
-  margin: 10px;
-  height: calc(100% - 2 * 10px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  border-radius: 3px;
   position: relative;
 }
 .feedback-container .feedback-text {
@@ -680,8 +658,8 @@ div.card .card-content .card-header {
 }
 .feedback-container .feedback-text-area {
   border-radius: 3px;
+  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 15px);
   resize: none;
-  width: calc(100% - 15px * 2 - 1px * 2);
   padding: 15px;
   height: 100%;
   border: 1px solid #997799;
@@ -709,16 +687,16 @@ div.card .card-content .card-header {
 }
 .feedback-container .feedback-submit-button {
   border-radius: 3px;
-  font-size: 16px;
+  margin: 0 auto;
+  background-color: #997799;
+  color: white;
   font-weight: bold;
   text-align: center;
-  padding: 15px 0;
   position: absolute;
   bottom: 0;
-  width: 100%;
-  color: white;
-  background-color: #997799;
+  padding: 15px 0;
   content: "Submit";
+  width: 100%;
 }
 .popup-container {
   border-radius: 3px;
@@ -756,6 +734,7 @@ div.card .card-content .card-header {
   color: #221122;
   margin: 0 auto;
   display: block;
+  position: relative;
   padding: 10px;
   width: 80%;
 }

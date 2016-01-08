@@ -1,9 +1,8 @@
 @card-height: 65%;
-@card-width: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2);
-@card-width-2: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 6px);
-@card-width-3: calc(100% ~"-" @card-container-padding * 2 ~"-" @card-padding * 2 ~"-" 12px);
-@card-padding: 0px;
-@card-container-padding: 20px;
+@card-width: calc(100% ~"-" @card-border * 2);
+@card-width-2: calc(100% ~"-" @card-border * 2 ~"-" 6px);
+@card-width-3: calc(100% ~"-" @card-border * 2 ~"-" 12px);
+@card-border: 1px;
 
 div.voting-container {
   padding: 0;
@@ -27,7 +26,6 @@ div.votes {
   min-height: 350px;
   position: relative;
   margin: 0 auto;
-  padding: 10px @card-container-padding;
   .card:nth-child(1) {
     z-index: @z-index-top;
   }
@@ -48,12 +46,10 @@ div.card {
   width: @card-width;
   background-color: white;
   position: absolute;
-  border: 1px solid @border-gray;
-  padding: @card-padding;
+  border: @card-border solid @border-gray;
   border-radius: @round-border-radius;
 
   .card-content {
-    background-color: white;
     border-radius: @round-border-radius;
     height: 100%;
     box-shadow: 0 4px 2px -2px @border-gray;
@@ -62,33 +58,32 @@ div.card {
     @card-header-height: 100px;
 
     .card-main {
-      @candidate-padding: 2px;
-      @main-padding: 10px;
-      margin: @main-padding 0;
+      margin: 10px 0;
 
-      .candidate-transitioner {
-        padding: 0 @candidate-padding;
-        width: calc(50% ~"-" @candidate-padding * 2);
+      .contestant-parent-container {
+        @contestant-padding: 2px;
+        .width-minus-box(@base-width: 50%, @padding: @contestant-padding);
+        padding: 0 @contestant-padding;
         display: inline-block;
       }
-      .candidate-container {
+      .contestant-container {
         width: 100%;
         overflow: hidden;
       }
-      .candidate-picture {
+      .contestant-picture {
         .background-picture();
         border-radius: @round-border-radius;
         padding: 2px;
         background-color: white;
         height: 155px;
       }
-      .candidate-description {
-        @candidate-height: 30px;
+      .contestant-description {
+        @contestant-height: 30px;
         @name-height: 20px;
-        height: @candidate-height;
+        .flex-center();
+        height: @contestant-height;
         padding: 10px;
         overflow: hidden;
-        .flex-center();
         font-size: @font-standard;
         font-weight: bold;
         text-transform: capitalize;
