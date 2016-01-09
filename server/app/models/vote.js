@@ -16,6 +16,7 @@ const newVote = function(fbId, comparison, contestants, traitTemplateId) {
     traitTemplateId: traitTemplateId,
     voterId: fbId,
     selected: null,
+    score: null,
     comparison: comparison,
     contestants: contestants
   };

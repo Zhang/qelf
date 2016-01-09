@@ -65,8 +65,8 @@
       getForUser: function(facebookId) {
         return HttpHelper.get('vote/' + facebookId);
       },
-      submit: function(voteId, selectedFbId) {
-        return HttpHelper.post('vote/' + voteId, { selected: selectedFbId });
+      submit: function(voteId, selectedFbId, score) {
+        return HttpHelper.post('vote/' + voteId, { selected: selectedFbId, score: score });
       }
     };
   });

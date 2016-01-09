@@ -12,9 +12,10 @@ const submit = function* submit() {
   const body = this.request.body;
   const voteId = this.params.id;
   const selected = body.selected;
+  const score = body.score;
 
   try {
-    yield voteModel.submit(voteId, selected);
+    yield voteModel.submit(voteId, selected, score);
     const vote = yield voteModel.get(voteId);
 
     yield [_.map(vote.contestants, function(fbId) {
