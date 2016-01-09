@@ -122,13 +122,21 @@
           _doDrag: function(e) {
             e.preventDefault();
             if (e.gesture.deltaX >= 0) {
-              this.x = this.startX + Math.min(e.gesture.deltaX, this.voteThreshold);
+              if ((e.gesture.deltaX + this.startX) > this.threshold) {
+                this.x = this.startX + this.threshold + Math.min((e.gesture.deltaX - this.threshold - this.startX) / 1.5, this.voteThreshold - this.threshold);
+              } else {
+                this.x = this.startX + Math.min(e.gesture.deltaX, this.voteThreshold);
+              }
             } else {
-              this.x = this.startX + Math.max(e.gesture.deltaX, -this.voteThreshold);
+              if (e.gesture.deltaX < -(this.threshold - this.startX)) {
+                this.x = this.startX - this.threshold + Math.max((e.gesture.deltaX + this.threshold + this.startX) / 1.5, -(this.voteThreshold - this.threshold));
+              } else {
+                this.x = this.startX + Math.max(e.gesture.deltaX, -this.voteThreshold);
+              }
             }
 
-            if (Math.abs(e.gesture.deltaX) >= this.threshold) {
-              drawCircle(Math.min(1, (Math.abs(e.gesture.deltaX) - this.threshold) / (this.voteThreshold - this.threshold)));
+            if (Math.abs(this.x) >= this.threshold || (this.x - this.startX) <= -this.threshold) {
+              drawCircle(Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)));
             } else {
               circle.css('stroke-dashoffset', BASE_OFFSET);
               if ($scope.certainty.text) {
@@ -142,6 +150,7 @@
           _doDragEnd: function(e) {
             $scope.certainty.text = '';
             if (Math.abs(e.gesture.deltaX) > this.threshold) {
+              console.log(((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET));
               $scope.submit({
                 result: this.x > this.startX ? 'right' : 'left',
                 score: ((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET)

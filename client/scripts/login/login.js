@@ -17,11 +17,11 @@
   module.controller('Login', function($scope, $state, SessionAPI, STATE, FBService, AccountAPI) {
     $scope.isSignup = false;
     function login(response) {
-      SessionAPI.login(response.userID, response.accessToken).then(function resolve() {
+      // SessionAPI.login(response.userID, response.accessToken).then(function resolve() {
         $state.go(STATE.voting);
-      }, function reject() {
-        alert('Failed to login, please ensure you\'ve signed up before trying to log in');
-      });
+      // }, function reject() {
+      //   alert('Failed to login, please ensure you\'ve signed up before trying to log in');
+      // });
     }
 
     $scope.fbLogin = function() {
