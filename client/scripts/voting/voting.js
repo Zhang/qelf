@@ -70,7 +70,7 @@
     };
   });
 
-  module.directive('voteSlider', function(transformUtils) {
+  module.directive('voteSlider', function(transformUtils, $timeout) {
     return {
       restrict: 'E',
       templateUrl: 'scripts/voting/voteSlider.html',
@@ -80,11 +80,9 @@
       },
       link: function($scope, el) {
 
-        var DragToggle = ionic.views.View.inherit({
+        var Slider = ionic.views.View.inherit({
           initialize: function(opts) {
-            opts = ionic.extend({
-            }, opts);
-
+            opts = ionic.extend({}, opts);
             ionic.extend(this, opts);
 
             this.el = opts.el;
@@ -115,25 +113,34 @@
                 result: this.x > this.startX ? 'right' : 'left'
               });
             }
-
-            transformUtils.translate3d(this.el, this.startX, this.startY);
+            this.snapBack();
           },
           bindEvents: function() {
             var self = this;
 
             ionic.onGesture('drag', function(e) {
               ionic.requestAnimationFrame(function() { self._doDrag(e); });
-              // Indicate we want to stop parents from using this
               e.gesture.srcEvent.preventDefault();
-            }, this.el);
+            }, self.el);
 
             ionic.onGesture('dragend', function(e) {
               ionic.requestAnimationFrame(function() { self._doDragEnd(e); });
-            }, this.el);
+              e.gesture.srcEvent.preventDefault();
+            }, self.el);
           },
-
+          snapBack: function() {
+            var self = this;
+            var TRANSITION_TIME = 0.15;
+            ionic.requestAnimationFrame(function() {
+              transformUtils.translate3d(self.el, self.startX, self.startY);
+              transformUtils.transitionTime(self.el, TRANSITION_TIME);
+              $timeout(function() {
+                transformUtils.resetTransitionTime(self.el);
+              }, TRANSITION_TIME * 1000);
+            });
+          }
         });
-        var toggle = new DragToggle({
+        new Slider({
           el: $(el).find('#drag-vote')[0]
         });
       }
