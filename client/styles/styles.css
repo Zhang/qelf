@@ -460,15 +460,15 @@ div.card .card-content .card-header {
   background-color: #ddccee;
   border-radius: 13vh;
 }
-.click-vote {
-  margin: 5px;
+#drag-vote {
+  margin: 5px 0;
   height: calc(13vh - 5px * 2);
   width: calc(13vh - 5px * 2);
   border-radius: calc(13vh - 5px * 2);
   background-color: #997799;
   display: inline-block;
 }
-.click-vote .vote-icon {
+#drag-vote .vote-icon {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -60,13 +60,83 @@
       VoteAPI.submit(voteId, selected.facebookId);
     };
 
-    $scope.vote = function(leftOrRight) {
-      $scope.$broadcast('vote:' + leftOrRight, $scope.cardManager.current);
+    $scope.vote = function(result) {
+      $scope.$broadcast('vote:' + result, $scope.cardManager.current);
       $scope.cardManager.next();
     };
 
     $scope.share = function() {
       window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
+    };
+  });
+
+  module.directive('voteSlider', function(transformUtils) {
+    return {
+      restrict: 'E',
+      templateUrl: 'scripts/voting/voteSlider.html',
+      replace: true,
+      scope: {
+        submit: '&'
+      },
+      link: function($scope, el) {
+
+        var DragToggle = ionic.views.View.inherit({
+          initialize: function(opts) {
+            opts = ionic.extend({
+            }, opts);
+
+            ionic.extend(this, opts);
+
+            this.el = opts.el;
+            this.parentWidth = this.el.parentNode.offsetWidth;
+            this.width = this.el.offsetWidth;
+
+            this.startX = (this.parentWidth / 2) - (this.width / 2);
+            this.startY = 0;
+
+            this.voteThreshold = (this.parentWidth / 2);
+
+            this.bindEvents();
+            transformUtils.translate3d(this.el, this.startX, this.startY);
+          },
+          _doDrag: function(e) {
+            e.preventDefault();
+            if (e.gesture.deltaX >= 0) {
+              this.x = Math.min(this.startX + e.gesture.deltaX, this.startX + this.voteThreshold);
+            } else {
+              this.x = Math.max(this.startX + e.gesture.deltaX, this.startX - this.voteThreshold);
+            }
+
+            transformUtils.translate3d(this.el, this.x, this.startY);
+          },
+          _doDragEnd: function(e) {
+            if (Math.abs(e.gesture.deltaX) > this.voteThreshold) {
+              $scope.submit({
+                result: this.x > this.startX ? 'right' : 'left'
+              });
+            }
+
+            transformUtils.translate3d(this.el, this.startX, this.startY);
+          },
+          bindEvents: function() {
+            var self = this;
+
+            ionic.onGesture('drag', function(e) {
+              ionic.requestAnimationFrame(function() { self._doDrag(e) });
+              // Indicate we want to stop parents from using this
+              e.gesture.srcEvent.preventDefault();
+            }, this.el);
+
+            ionic.onGesture('dragend', function(e) {
+              ionic.requestAnimationFrame(function() { self._doDragEnd(e); });
+            }, this.el);
+          },
+
+        });
+        var toggle = new DragToggle({
+          el: $(el).find('#drag-vote')[0]
+        });
+      }
     };
   });
 })();

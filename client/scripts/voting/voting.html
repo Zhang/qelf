@@ -12,13 +12,6 @@
     <card ng-if="!cardManager.isEmpty" vote="vote" on-submit="submit(vote.id, selected)" ng-repeat="vote in cardManager.display"></card>
   </div>
   <div ng-if="!cardManager.isEmpty" class="selection-container">
-    <div class="selection-holder">
-      <div class="click-vote" ng-click="vote('left')">
-        <div class="ion-chevron-left vote-icon"></div>
-      </div>
-      <div class="click-vote right" ng-click="vote('right')">
-        <div class="ion-chevron-right vote-icon"></div>
-      </div>
-    </div>
+    <vote-slider submit="vote(result)"></vote-slider>
   </div>
 </div>
