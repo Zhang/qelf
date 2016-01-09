@@ -79,6 +79,26 @@
         submit: '&'
       },
       link: function($scope, el) {
+        $scope.certainty = {
+          text: ''
+        };
+        var STROKE_WIDTH = 8;
+        var circle = $(el).find('#circle');
+        circle.attr('stroke-width', STROKE_WIDTH);
+        var BASE_OFFSET = 440;
+        var FULL_OFFSET = 220;
+        circle.css('stroke-dashoffset', BASE_OFFSET);
+        var drawCircle = function(amt) {
+          if (amt < 0.33) {
+            $scope.certainty.text = 'agree';
+          } else if (amt < 0.66) {
+            $scope.certainty.text = 'Definitely';
+          } else {
+            $scope.certainty.text = 'ABSOLUTELY!!';
+          }
+          $scope.$digest();
+          circle.css('stroke-dashoffset', (BASE_OFFSET - amt * FULL_OFFSET));
+        };
 
         var Slider = ionic.views.View.inherit({
           initialize: function(opts) {
@@ -88,11 +108,13 @@
             this.el = opts.el;
             this.parentWidth = this.el.parentNode.offsetWidth;
             this.width = this.el.offsetWidth;
+            circle.attr('r', (this.width - STROKE_WIDTH) / 2 - 1);
 
             this.startX = (this.parentWidth / 2) - (this.width / 2);
             this.startY = 0;
 
-            this.voteThreshold = (this.parentWidth / 2);
+            this.threshold = (this.parentWidth / 2);
+            this.voteThreshold = (this.parentWidth / 2) + (this.width / 2);
 
             this.bindEvents();
             transformUtils.translate3d(this.el, this.startX, this.startY);
@@ -100,19 +122,32 @@
           _doDrag: function(e) {
             e.preventDefault();
             if (e.gesture.deltaX >= 0) {
-              this.x = Math.min(this.startX + e.gesture.deltaX, this.startX + this.voteThreshold);
+              this.x = this.startX + Math.min(e.gesture.deltaX, this.voteThreshold);
             } else {
-              this.x = Math.max(this.startX + e.gesture.deltaX, this.startX - this.voteThreshold);
+              this.x = this.startX + Math.max(e.gesture.deltaX, -this.voteThreshold);
+            }
+
+            if (Math.abs(e.gesture.deltaX) >= this.threshold) {
+              drawCircle(Math.min(1, (Math.abs(e.gesture.deltaX) - this.threshold) / (this.voteThreshold - this.threshold)));
+            } else {
+              circle.css('stroke-dashoffset', BASE_OFFSET);
+              if ($scope.certainty.text) {
+                $scope.certainty.text = '';
+                $scope.$digest();
+              }
             }
 
             transformUtils.translate3d(this.el, this.x, this.startY);
           },
           _doDragEnd: function(e) {
-            if (Math.abs(e.gesture.deltaX) > this.voteThreshold) {
+            $scope.certainty.text = '';
+            if (Math.abs(e.gesture.deltaX) > this.threshold) {
               $scope.submit({
-                result: this.x > this.startX ? 'right' : 'left'
+                result: this.x > this.startX ? 'right' : 'left',
+                score: ((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET)
               });
             }
+
             this.snapBack();
           },
           bindEvents: function() {
@@ -131,6 +166,7 @@
           snapBack: function() {
             var self = this;
             var TRANSITION_TIME = 0.15;
+            circle.css('stroke-dashoffset', BASE_OFFSET);
             ionic.requestAnimationFrame(function() {
               transformUtils.translate3d(self.el, self.startX, self.startY);
               transformUtils.transitionTime(self.el, TRANSITION_TIME);
@@ -140,8 +176,10 @@
             });
           }
         });
+        var elem = $(el).find('#drag-vote')[0];
+        transformUtils.translateDefault(elem);
         new Slider({
-          el: $(el).find('#drag-vote')[0]
+          el: elem
         });
       }
     };

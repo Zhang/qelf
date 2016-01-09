@@ -8,7 +8,7 @@ const feedbackModel = require('../../models/feedback');
 const nodemailer = require('nodemailer');
 
 if (!process.env.SUPPORT_EMAIL || !process.env.SUPPORT_PASSWORD) {
-  console.error('MISSING SUPPORT EMAIL AND PASSWORD, FEEDBACK WILL NOT SEND EMAILS');
+  console.error('MISSING SUPPORT_EMAIL AND SUPPORT_PASSWORD, FEEDBACK WILL NOT SEND EMAILS');
 }
 
 const transporter = nodemailer.createTransport({

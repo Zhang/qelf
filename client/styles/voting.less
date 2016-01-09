@@ -10,16 +10,24 @@
   margin: 0 @selection-container-x-margin calc(@selection-container-height ~"/" 2 ~"-" @selection-holder-height ~"/" 2 - 20px) @selection-container-x-margin;
 }
 
-.icon-set {
-  text-align: center;
-}
-
 .selection-holder {
   height: @selection-holder-height;
   background-color: @secondary-color;
   border-radius: @selection-holder-height;
+  position: relative;
+  width: 100%;
 }
 
+.icon-set {
+  text-align: center;
+}
+.vote-overlay {
+  .flex-center();
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: black;
+}
 #drag-vote {
   @click-margin: 5px;
   @click-diameter: calc(@selection-holder-height ~"-" @click-margin ~"*" 2);
@@ -29,6 +37,8 @@
   border-radius: @click-diameter;
   background-color: @primary-color;
   display: inline-block;
+  box-shadow: 0 4px 6px -2px #382C2C;
+
   .vote-icon {
     .flex-center();
     height: 100%;
@@ -36,44 +46,14 @@
     font-size: 25px;
     color: white;
   }
-}
-
-.selection-label {
-  color: @primary-font-color;
-  .left-label, .right-label {
-    display: inline-block;
-    font-size: @font-smaller;
-    max-width: 35%;
-    .ellipsis-overflow();
-  }
-  .right-label {
-    margin-right: 25px;
-    float: right;
-    text-align: right;
-  }
-  .left-label {
-    margin-left: 25px;
-    float: left;
-    text-align: left;
-  }
-}
-
-.card-comment-container {
-  .bottom();
-  z-index: @modal-z-top;
-  margin-left: calc(-1 ~"*" @subview-container-margin);
-  width: 100%;
-  .comment-description {
-    background-color: white;
-    padding: 10px;
-    border: 1px solid @primary-color;
-  }
-  .comment-text-input {
-    @comment-padding: 10px;
-    .text-input-defaults();
-    .width-minus-box(@padding: @comment-padding);
-    height: 30px;
-    padding: 0 @comment-padding;
+  svg {
+    height: 100%;
+    width: 100%;
+    #circle {
+      stroke: @primary-font-color;
+      fill: none;
+      stroke-dasharray: 440;
+    }
   }
 }
 

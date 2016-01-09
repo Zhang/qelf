@@ -49,7 +49,7 @@
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-    <name>Aggregated Self</name>
+    <name>Qelf</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>

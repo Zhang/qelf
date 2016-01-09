@@ -452,13 +452,24 @@ div.card .card-content .card-header {
   width: 40%;
   margin: 0 calc(50% - 40% / 2 - 10px) calc(22vh / 2 - 13vh / 2 - 20px) calc(50% - 40% / 2 - 10px);
 }
-.icon-set {
-  text-align: center;
-}
 .selection-holder {
   height: 13vh;
   background-color: #ddccee;
   border-radius: 13vh;
+  position: relative;
+  width: 100%;
+}
+.icon-set {
+  text-align: center;
+}
+.vote-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: black;
 }
 #drag-vote {
   margin: 5px 0;
@@ -467,6 +478,7 @@ div.card .card-content .card-header {
   border-radius: calc(13vh - 5px * 2);
   background-color: #997799;
   display: inline-block;
+  box-shadow: 0 4px 6px -2px #382C2C;
 }
 #drag-vote .vote-icon {
   display: flex;
@@ -477,64 +489,14 @@ div.card .card-content .card-header {
   font-size: 25px;
   color: white;
 }
-.selection-label {
-  color: #221122;
-}
-.selection-label .left-label,
-.selection-label .right-label {
-  display: inline-block;
-  font-size: 12px;
-  max-width: 35%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.selection-label .right-label {
-  margin-right: 25px;
-  float: right;
-  text-align: right;
-}
-.selection-label .left-label {
-  margin-left: 25px;
-  float: left;
-  text-align: left;
-}
-.card-comment-container {
-  position: absolute;
-  bottom: 0;
-  z-index: 13;
-  margin-left: calc(-1 * 10px);
+#drag-vote svg {
+  height: 100%;
   width: 100%;
 }
-.card-comment-container .comment-description {
-  background-color: white;
-  padding: 10px;
-  border: 1px solid #997799;
-}
-.card-comment-container .comment-text-input {
-  border-radius: 3px;
-  border: 1px solid #997799;
-  color: #221122;
-  margin: 0 auto;
-  display: block;
-  position: relative;
-  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
-  height: 30px;
-  padding: 0 10px;
-}
-.card-comment-container .comment-text-input ::-webkit-input-placeholder {
-  color: #221122;
-}
-.card-comment-container .comment-text-input :-moz-placeholder {
-  /* Firefox 18- */
-  color: #221122;
-}
-.card-comment-container .comment-text-input ::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #221122;
-}
-.card-comment-container .comment-text-input :-ms-input-placeholder {
-  color: #221122;
+#drag-vote svg #circle {
+  stroke: #221122;
+  fill: none;
+  stroke-dasharray: 440;
 }
 .invite-friends-btn {
   border-radius: 3px;
