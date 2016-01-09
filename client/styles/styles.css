@@ -449,8 +449,8 @@ div.card .card-content .card-header {
 .selection-container {
   position: absolute;
   bottom: 0;
-  width: 60%;
-  margin: 0 calc(50% - 60% / 2 - 10px) calc(22vh / 2 - 13vh / 2 - 20px) calc(50% - 60% / 2 - 10px);
+  width: 40%;
+  margin: 0 calc(50% - 40% / 2 - 10px) calc(22vh / 2 - 13vh / 2 - 20px) calc(50% - 40% / 2 - 10px);
 }
 .icon-set {
   text-align: center;

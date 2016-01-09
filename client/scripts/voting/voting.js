@@ -122,7 +122,7 @@
             var self = this;
 
             ionic.onGesture('drag', function(e) {
-              ionic.requestAnimationFrame(function() { self._doDrag(e) });
+              ionic.requestAnimationFrame(function() { self._doDrag(e); });
               // Indicate we want to stop parents from using this
               e.gesture.srcEvent.preventDefault();
             }, this.el);

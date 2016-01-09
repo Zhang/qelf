@@ -23,7 +23,7 @@
         var transitionDir = 0.35;
         ionic.requestAnimationFrame(function() {
           transformUtils.translateAndRotate(self.el, dir * 450, 0, dir);
-          self.el.style.transition = self.el.style.webkitTransition = 'all ' + transitionDir + 's ease-in-out';
+          transformUtils.transitionTime(self.el, transitionDir);
         });
 
         // Trigger destroy after card has swiped out

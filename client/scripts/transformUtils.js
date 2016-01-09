@@ -35,6 +35,12 @@
       translateAndRotate: function translateAndRotate(el, x, y, angle) {
         el.style.transform = el.style.webkitTransform = 'translate3d(' + x + 'px, ' + y + 'px,0) rotate(' + angle + 'rad)';
       },
+      resetTransitionTime: function(el) {
+        el.style.transition = el.style.webkitTransition = 'none';
+      },
+      transitionTime: function(el, time) {
+        el.style.transition = el.style.webkitTransition = 'all ' + time + 's ease-in-out';
+      },
       transformKeys: keys
     };
   });
