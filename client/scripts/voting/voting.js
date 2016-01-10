@@ -53,15 +53,8 @@
     }
     getVotes();
 
-    $scope.submit = function(voteId, selected) {
-      Mixpanel.track('Voted', {
-        userId: $rootScope.user.id,
-      });
-      VoteAPI.submit(voteId, selected.facebookId);
-    };
-
-    $scope.vote = function(result) {
-      $scope.$broadcast('vote:' + result, $scope.cardManager.current);
+    $scope.vote = function(result, score) {
+      $scope.$broadcast('vote:' + result, $scope.cardManager.current, score);
       $scope.cardManager.next();
     };
 
@@ -150,7 +143,6 @@
           _doDragEnd: function(e) {
             $scope.certainty.text = '';
             if (Math.abs(e.gesture.deltaX) > this.threshold) {
-              console.log(((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET));
               $scope.submit({
                 result: this.x > this.startX ? 'right' : 'left',
                 score: ((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET)

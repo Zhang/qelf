@@ -18,8 +18,6 @@
       transitionOut: function(dir) {
         var self = this;
 
-        this.onTransitionOut(dir);
-
         var transitionDir = 0.35;
         ionic.requestAnimationFrame(function() {
           transformUtils.translateAndRotate(self.el, dir * 450, 0, dir);
@@ -34,15 +32,14 @@
     });
   });
 
-  module.directive('card', function($timeout, SwipeableCard, transformUtils) {
+  module.directive('card', function($timeout, SwipeableCard, transformUtils, $rootScope, VoteAPI, Mixpanel) {
     return {
       restrict: 'E',
       templateUrl: 'scripts/voting/card.html',
       transclude: true,
       replace: true,
       scope: {
-        vote: '=',
-        onSubmit: '&'
+        vote: '='
       },
       compile: function() {
         return function($scope, $element) {
@@ -51,14 +48,6 @@
           transformUtils.translateDefault(el);
           var swipeableCard = new SwipeableCard({
             el: el,
-            onTransitionOut: function(amt) {
-              $timeout(function() {
-                var isLeftVote = amt < 0;
-                $scope.onSubmit({
-                  selected: isLeftVote ? $scope.vote.contestants[0] : $scope.vote.contestants[1]
-                });
-              });
-            },
             onDestroy: function() {
               $timeout(function() {
                 el.remove();
@@ -68,8 +57,13 @@
           $scope.$parent.swipeCard = swipeableCard;
 
           function voteSubmit(dir) {
-            return function(e, vote) {
+            return function(e, vote, score) {
               if (vote.id !== $scope.vote.id) return;
+              Mixpanel.track('Voted', {
+                userId: $rootScope.user.id,
+              });
+              var selected = dir === -1 ? $scope.vote.contestants[0] : $scope.vote.contestants[1];
+              VoteAPI.submit(vote.id, selected.facebookId, score);
               swipeableCard.transitionOut(dir);
             };
           }
