@@ -1,4 +1,9 @@
 @navbar-height: 50px;
+.ios-status-bar {
+  height: 20px;
+  width: 100%;
+  background-color: @primary-color;
+}
 div.frame-container {
   transform: translate3d(0%, 0px, 0px);
   height: 100%;
@@ -60,7 +65,7 @@ div.navbar-container {
   .navigation {
     .flex-center();
     height: 100%;
-    padding: 0 5px;
+    padding: 0;
     .nav {
       padding: 0 10px;
       font-size: @font-smaller;
@@ -70,7 +75,7 @@ div.navbar-container {
     }
     .settings {
       font-size: @font-xlarge;
-      width: 30px;
+      width: 50px;
       padding: 0;
     }
     .selected {

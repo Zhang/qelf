@@ -123,6 +123,11 @@ a.login-tag {
   font-size: 14px;
   font-weight: bold;
 }
+.ios-status-bar {
+  height: 20px;
+  width: 100%;
+  background-color: #997799;
+}
 div.frame-container {
   transform: translate3d(0%, 0px, 0px);
   height: 100%;
@@ -186,7 +191,7 @@ div.navbar-container .navigation {
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 0 5px;
+  padding: 0;
 }
 div.navbar-container .navigation .nav {
   padding: 0 10px;
@@ -199,7 +204,7 @@ div.navbar-container .navigation .nav {
 }
 div.navbar-container .navigation .settings {
   font-size: 20px;
-  width: 30px;
+  width: 50px;
   padding: 0;
 }
 div.navbar-container .navigation .selected {
@@ -287,6 +292,7 @@ div.card .card-content .card-main .contestant-picture {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 2px);
   border-radius: 3px;
   padding: 2px;
   background-color: white;

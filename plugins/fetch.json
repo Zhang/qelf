@@ -50,12 +50,12 @@
     "phonegap-facebook-plugin": {
         "source": {
             "type": "local",
-            "path": "/home/zhang/Desktop/phonegap-facebook-plugin"
+            "path": "/Users/moxi/Desktop/phonegap-facebook-plugin"
         },
         "is_top_level": true,
         "variables": {
-            "APP_ID": "409640992567240",
-            "APP_NAME": "Sheen"
+            "APP_ID": "201708533509741",
+            "APP_NAME": "qelf"
         }
     },
     "cordova-plugin-x-socialsharing": {

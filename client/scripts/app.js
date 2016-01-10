@@ -28,13 +28,17 @@
     $urlRouterProvider.otherwise('/voting');
   });
 
-  module.run(function($ionicPlatform) {
+  module.run(function($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
       }
     });
+    console.log()
+    $rootScope.isIOS = ionic.Platform.isIOS();
+    $rootScope.isAndroid = ionic.Platform.isAndroid();
+    $rootScope.isWeb = !$rootScope.isIOS && !$rootScope.isAndroid;
   });
 
   module.service('Mixpanel', function() {

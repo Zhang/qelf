@@ -71,9 +71,11 @@ div.card {
         overflow: hidden;
       }
       .contestant-picture {
+        @picture-padding: 2px;
         .background-picture();
+        .width-minus-box(@padding: @picture-padding);
         border-radius: @round-border-radius;
-        padding: 2px;
+        padding: @picture-padding;
         background-color: white;
         height: 155px;
       }
