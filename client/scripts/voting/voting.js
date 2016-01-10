@@ -33,6 +33,7 @@
       deck.display = cards.splice(0, 3);
       deck.fullDeck = cards;
       deck.top = _.first(deck.display);
+      deck.isEmpty = _.isEmpty(deck.display);
     }
 
     function isOutOfCards() {
