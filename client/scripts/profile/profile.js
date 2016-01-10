@@ -42,8 +42,6 @@
           trait.display = true;
           return trait;
         });
-      }, function reject(err) {
-        console.error('error getting traits', err)
       })();
 
       TopScore.set(_.max(traitsWithScores, 'score').score);

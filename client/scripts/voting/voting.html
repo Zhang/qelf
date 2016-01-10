@@ -1,6 +1,6 @@
 <div class="subview-container voting-container">
   <div class="votes">
-    <div class="empty-state" ng-if="cardManager.isEmpty">
+    <div class="empty-state" ng-if="cardDeck.isEmpty">
       <div class="icon-set">
         <i class="empty-icon ion-android-happy"></i>
       </div>
@@ -9,9 +9,9 @@
         <div class="invite-friends-btn" ng-click="share()">Invite Friends!</div>
       </div>
     </div>
-    <card ng-if="!cardManager.isEmpty" vote="vote" ng-repeat="vote in cardManager.display"></card>
+    <card ng-if="!cardDeck.isEmpty" vote="vote" ng-repeat="vote in cardDeck.display"></card>
   </div>
-  <div ng-if="!cardManager.isEmpty" class="selection-container">
+  <div ng-if="!cardDeck.isEmpty" class="selection-container">
     <vote-slider submit="vote(result, score)"></vote-slider>
   </div>
 </div>

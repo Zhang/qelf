@@ -131,6 +131,7 @@ a.login-tag {
 div.frame-container {
   transform: translate3d(0%, 0px, 0px);
   height: 100%;
+  -webkit-overflow-scrolling: touch;
   overflow: hidden;
 }
 div.frame-container .view-container {
