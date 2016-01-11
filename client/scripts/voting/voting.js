@@ -22,6 +22,7 @@
       fullDeck: [],
       top: null
     };
+    var hasVoted = false;
 
     function _getCards() {
       VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
@@ -42,6 +43,7 @@
 
     return {
       getNextCard: function() {
+        hasVoted = true;
         if (!_.isEmpty(deck.fullDeck)) {
           deck.display.push(deck.fullDeck.shift());
         }
@@ -60,15 +62,19 @@
         if (isOutOfCards()) {
           _getCards();
         }
+      },
+      hasVoted: function() {
+        return hasVoted;
       }
     };
   });
 
-  module.controller('Voting', function($scope, CardDeckManager, $window) {
+  module.controller('Voting', function($scope, CardDeckManager, $window, $timeout) {
     CardDeckManager.getCardsIfEmpty();
     $scope.cardDeck = CardDeckManager.deck;
 
     $scope.vote = function(result, score) {
+      $scope.stalled = false;
       $scope.$broadcast('vote:' + result, $scope.cardDeck.top, score);
       CardDeckManager.getNextCard();
     };
@@ -76,6 +82,10 @@
     $scope.share = function() {
       $window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };
+
+    $timeout(function() {
+      $scope.stalled = !CardDeckManager.hasVoted();
+    }, 2000);
   });
 
   module.directive('voteSlider', function(transformUtils, $timeout) {

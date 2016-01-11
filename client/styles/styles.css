@@ -534,6 +534,18 @@ div.card .card-content .card-header {
   margin: 10px auto;
   padding: 20px;
 }
+.blinker-text {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  opacity: 0;
+  animation: blinker 2s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 1;
+  }
+}
 .trait-details-container .trait-overview-container {
   border-radius: 3px;
   position: relative;
