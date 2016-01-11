@@ -30,7 +30,6 @@
   });
 
   module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE) {
-    console.log('wtf');
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -41,7 +40,7 @@
         if (navigator.connection.type === Connection.NONE) {
           $timeout(function() {
             //$state.go(STATE.notConnected)
-          })
+          });
         }
       }
     });

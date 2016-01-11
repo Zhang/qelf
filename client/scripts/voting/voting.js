@@ -21,7 +21,7 @@
       display: [],
       fullDeck: [],
       top: null
-    }
+    };
 
     function _getCards() {
       VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
@@ -47,7 +47,6 @@
         }
 
         //Allow for the card-animation to complete before turning to empty state
-        var self = this;
         $timeout(function() {
           deck.display.shift();
           deck.top = _.first(deck.display);
