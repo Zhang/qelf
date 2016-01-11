@@ -115,14 +115,14 @@
           _doDrag: function(e) {
             e.preventDefault();
             if (e.gesture.deltaX >= 0) {
-              if ((e.gesture.deltaX + this.startX) > this.threshold) {
-                this.x = this.startX + this.threshold + Math.min((e.gesture.deltaX - this.threshold - this.startX) / 1.5, this.voteThreshold - this.threshold);
+              if ((e.gesture.deltaX) > this.threshold) {
+                this.x = this.startX + this.threshold + Math.min((e.gesture.deltaX - this.threshold - this.startX) / 1.7, this.voteThreshold - this.threshold);
               } else {
                 this.x = this.startX + Math.min(e.gesture.deltaX, this.voteThreshold);
               }
             } else {
-              if (e.gesture.deltaX < -(this.threshold - this.startX)) {
-                this.x = this.startX - this.threshold + Math.max((e.gesture.deltaX + this.threshold + this.startX) / 1.5, -(this.voteThreshold - this.threshold));
+              if (e.gesture.deltaX < -this.threshold) {
+                this.x = this.startX - this.threshold + Math.max((e.gesture.deltaX + this.threshold + this.startX) / 1.7, -(this.voteThreshold - this.threshold));
               } else {
                 this.x = this.startX + Math.max(e.gesture.deltaX, -this.voteThreshold);
               }
@@ -145,7 +145,7 @@
             if (Math.abs(e.gesture.deltaX) > this.threshold) {
               $scope.submit({
                 result: this.x > this.startX ? 'right' : 'left',
-                score: ((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET)
+                score: Math.ceil(100 * ((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET))
               });
             }
 

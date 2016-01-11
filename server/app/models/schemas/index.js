@@ -21,7 +21,7 @@ const VoteSchema = Joi.object().keys({
   comparison: Joi.string().required(),
   selected: Joi.string().required().allow(null),
   voterId: Joi.string().required(),
-  score: Joi.number().required.allow(null)
+  score: Joi.number().required.allow(null).description('Score between 0 - 100, representing % confidence of voter on their selection')
 });
 
 const CompletedVotesSchema = Joi.object().keys({
