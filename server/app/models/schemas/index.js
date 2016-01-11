@@ -21,7 +21,7 @@ const VoteSchema = Joi.object().keys({
   comparison: Joi.string().required(),
   selected: Joi.string().required().allow(null),
   voterId: Joi.string().required(),
-  score: Joi.number().required.allow(null).description('Score between 0 - 100, representing % confidence of voter on their selection')
+  score: Joi.number().required().allow(null).description('Score between 0 - 100, representing % confidence of voter on their selection')
 });
 
 const CompletedVotesSchema = Joi.object().keys({
@@ -43,7 +43,7 @@ const TraitSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
   templateId: Joi.string().required(),
-  categories: Joi.array().required().items(Joi.string()).description('An array of categories that the trait fits into'),
+  themes: Joi.array().required().items(Joi.string()).description('An array of themes that the trait fits into'),
   count: Joi.number().required(),
   total: Joi.array().required().items(Joi.string()).description('An array of vote ids corresponding to completed votes')
 });
@@ -52,7 +52,7 @@ const TraitTemplateSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
   comparisons: Joi.array().required().items(Joi.string().required()),
-  categories: Joi.array().required()
+  themes: Joi.array().required()
 });
 
 module.exports = {

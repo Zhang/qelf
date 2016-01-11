@@ -1,6 +1,8 @@
 @navbar-height: 50px;
+
 div.frame-container {
-  transform: translate3d(0%, 0px, 0px);
+  .ios-parentView-defaults();
+
   height: 100%;
   overflow: hidden;
   .view-container {
@@ -50,6 +52,9 @@ div.navbar-container {
     padding: 0 10px;
     display: inline-block;
   }
+  .go-back {
+    color: @primary-color;
+  }
   .title {
     font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
     font-size: @font-icon-size;
@@ -60,7 +65,7 @@ div.navbar-container {
   .navigation {
     .flex-center();
     height: 100%;
-    padding: 0 5px;
+    padding: 0;
     .nav {
       padding: 0 10px;
       font-size: @font-smaller;
@@ -70,7 +75,7 @@ div.navbar-container {
     }
     .settings {
       font-size: @font-xlarge;
-      width: 30px;
+      width: 50px;
       padding: 0;
     }
     .selected {

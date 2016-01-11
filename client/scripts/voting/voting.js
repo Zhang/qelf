@@ -16,50 +16,66 @@
     });
   });
 
-  module.service('CardManager', function($timeout) {
-    return function(cards, onComplete) {
-      var current = 0;
-      var totalCards = cards.length;
-      this.display = cards.splice(0, 3);
-      this.fullList = cards;
-      this.isEmpty = cards.length === 0;
-      this.current = this.display[current];
-      this.next = function next() {
-        //Allow for the card-animation to complete before turning to empty state
-        if (current ===  (totalCards - 1)) {
-          return $timeout(function() {
-            if (onComplete) {
-              onComplete();
-            }
-          }, 200);
-        }
+  module.service('CardDeckManager', function($timeout, VoteAPI, $rootScope) {
+    var deck = {
+      display: [],
+      fullDeck: [],
+      top: null
+    }
 
-        if (!_.isEmpty(this.fullList)) {
-          this.display.push(this.fullList.shift());
+    function _getCards() {
+      VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
+        initialize(res.data);
+      });      
+    }
+
+    function initialize(cards) {
+      deck.display = cards.splice(0, 3);
+      deck.fullDeck = cards;
+      deck.top = _.first(deck.display);
+      deck.isEmpty = _.isEmpty(deck.display);
+    }
+
+    function isOutOfCards() {
+      return _.isEmpty(deck.fullList) && _.isEmpty(deck.display);
+    }
+
+    return {
+      getNextCard: function() {
+        if (!_.isEmpty(deck.fullDeck)) {
+          deck.display.push(deck.fullDeck.shift());
         }
-        if (this.display[current + 1]) {
-          current += 1;
-          this.current = this.display[current];
+        
+        //Allow for the card-animation to complete before turning to empty state 
+        var self = this;
+        $timeout(function() {
+          deck.display.shift();
+          deck.top = _.first(deck.display);
+          if (isOutOfCards()) {
+            _getCards();
+          }
+        }, 350);                
+      },
+      deck: deck,
+      getCardsIfEmpty: function() {
+        if (isOutOfCards()) {
+          _getCards();
         }
-      };
+      }
     };
   });
 
-  module.controller('Voting', function($scope, CardManager, $rootScope, VoteAPI, $timeout, OverlayService, Mixpanel) {
-    function getVotes() {
-      VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
-        $scope.cardManager = new CardManager(res.data, getVotes);
-      });
-    }
-    getVotes();
+  module.controller('Voting', function($scope, CardDeckManager, $window) {
+    CardDeckManager.getCardsIfEmpty();
+    $scope.cardDeck = CardDeckManager.deck;
 
     $scope.vote = function(result, score) {
-      $scope.$broadcast('vote:' + result, $scope.cardManager.current, score);
-      $scope.cardManager.next();
+      $scope.$broadcast('vote:' + result, $scope.cardDeck.top, score);
+      CardDeckManager.getNextCard();
     };
 
     $scope.share = function() {
-      window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
+      $window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };
   });
 

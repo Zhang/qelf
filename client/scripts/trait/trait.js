@@ -30,7 +30,6 @@
     $scope.trait = ViewedTrait;
     var totalVotes = _.map(ViewedTrait.total, function(vote) {
       vote.sentiment = vote.selected === $rootScope.user.facebookId;
-      //vote.comment = 'scott';
       return vote;
     });
     function enoughVotes() {

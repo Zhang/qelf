@@ -14,7 +14,7 @@ describe('createVotes', function() {
   const traitTemplate = {
     id: 'test',
     comparisons: ['this is a comparison'],
-    categories: []
+    themes: []
   };
 
   beforeEach(function(cb) {

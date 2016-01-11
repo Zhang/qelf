@@ -2,7 +2,11 @@ Qelf
 =====
 
 ## Setup
-1. Install prerequisites (mongo 3.2.x, node 5.4.x, npm 3.5.x)
+1. Install prerequisites 
+	mongo 3.2.x
+	node 5.4.x
+	npm 3.5.x
+	npm install -g (grunt, cordova, ionic, grunt-cli)
 
 2. Install App
     git clone git@github.com:zhang/qelf.git

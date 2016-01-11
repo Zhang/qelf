@@ -1,0 +1,29 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "201708533509741",
+            "APP_NAME": "qelf",
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        }
+    },
+    "dependent_plugins": {}
+}

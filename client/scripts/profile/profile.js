@@ -106,22 +106,22 @@
       Modals.open(null, opts);
     };
 
-    $scope.viewByCategory = function() {
+    $scope.viewByTheme = function() {
       var opts = {};
       var ALL_TRAITS = 'All Traits';
-      var UNIQUE_CATEGORIES = _.compact(_.uniq(_.flatten(_.map($scope.traits, 'categories'))));
-      UNIQUE_CATEGORIES.unshift(ALL_TRAITS)
-      opts.items = _.map(UNIQUE_CATEGORIES, function(category) {
-        var splitCategory = category.split('(');
+      var UNIQUE_THEMES = _.compact(_.uniq(_.flatten(_.map($scope.traits, 'themes'))));
+      UNIQUE_THEMES.unshift(ALL_TRAITS)
+      opts.items = _.map(UNIQUE_THEMES, function(theme) {
+        var splitCategory = theme.split('(');
         var title = splitCategory[0];
         var subtitle = splitCategory[1];
         return {
           title: title,
           subtitle: subtitle,
           action: function() {
-            $scope.viewCategory = category;
+            $scope.viewTheme = theme;
             _.each($scope.traits, function(trait) {
-              if (_.contains(trait.categories, category) || category === ALL_TRAITS) {
+              if (_.contains(trait.themes, theme) || theme === ALL_TRAITS) {
                 trait.display = true;
               } else {
                 trait.display = false;
@@ -130,7 +130,7 @@
           }
         };
       });
-      opts.title = 'View By Category';
+      opts.title = 'View By Theme';
       Modals.open(null, opts);
     };
 
