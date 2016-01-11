@@ -55,12 +55,12 @@ module.exports = function* (facebookId) {
     return [];
   }
 
-  const votes = _.reduce(account.friends, function(total, accountId, key, coll) {
-    const unmatchedAccountIds = coll.slice(key + 1);
-    const newVotes = _.map(unmatchedAccountIds, function(acctId) {
+  const votes = _.reduce(account.friends, function(total, friendFBid1, key, coll) {
+    const unmatchedFBIds = coll.slice(key + 1);
+    const newVotes = _.map(unmatchedFBIds, function(friendFBid2) {
       return _.map(templates, function(template) {
-        if (validateCombinationIsUnique(completedVoteMap, accountId, acctId, template.id)) return null;
-        const contestants = shuffleContestants(acctId, accountId);
+        if (validateCombinationIsUnique(completedVoteMap, friendFBid1, friendFBid2, template.id)) return null;
+        const contestants = shuffleContestants(friendFBid2, friendFBid1);
         return voteModel.newVote(
           facebookId,
           template.comparisons[Math.floor(Math.random() * (template.comparisons.length - 1))],

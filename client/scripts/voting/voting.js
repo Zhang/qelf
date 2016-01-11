@@ -26,7 +26,7 @@
     function _getCards() {
       VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
         initialize(res.data);
-      });      
+      });
     }
 
     function initialize(cards) {
@@ -45,8 +45,8 @@
         if (!_.isEmpty(deck.fullDeck)) {
           deck.display.push(deck.fullDeck.shift());
         }
-        
-        //Allow for the card-animation to complete before turning to empty state 
+
+        //Allow for the card-animation to complete before turning to empty state
         var self = this;
         $timeout(function() {
           deck.display.shift();
@@ -54,7 +54,7 @@
           if (isOutOfCards()) {
             _getCards();
           }
-        }, 350);                
+        }, 350);
       },
       deck: deck,
       getCardsIfEmpty: function() {

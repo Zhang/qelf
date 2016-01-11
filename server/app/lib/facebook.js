@@ -20,6 +20,7 @@ const get = function* (fbId, access_token, route, opts) {
 
 const getFriends = function* getFriends(facebookId, access_token) {
   const res = yield get(facebookId, access_token, 'friends');
+  console.log(res.data);
   return res.data;
 };
 

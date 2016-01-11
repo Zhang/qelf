@@ -7,7 +7,7 @@ const AccountSchema = Joi.object().keys({
   name: Joi.string().required(),
   facebookId: Joi.string().required(),
   accessToken: Joi.string().required(),
-  friends: Joi.array().items(Joi.string().description('id of other account objects')).required(),
+  friends: Joi.array().items(Joi.string().description('facebookId of other account objects')).required(),
   traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
   profilePicture: Joi.string().required().description('profile picture url'),
   walkthroughComplete: Joi.boolean().required()

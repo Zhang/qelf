@@ -32,7 +32,7 @@ const create = function* create() {
         walkthroughComplete: false,
         facebookId: facebookId,
         traits: _.map(acctOpts.defaultTraits, 'id'),
-        friends: acctOpts.friends,
+        friends: _.map(acctOpts.friends, 'id'),
         accessToken: accessToken,
         profilePicture: acctOpts.picture,
         name: acctOpts.profile.name
