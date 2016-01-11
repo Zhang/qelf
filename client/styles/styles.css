@@ -1,3 +1,10 @@
+.ios-parentView-defaults {
+  transform: translate3d(0%, 0px, 0px);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
+}
 .ellipsis-overflow {
   white-space: nowrap;
   overflow: hidden;
@@ -20,10 +27,21 @@
   align-items: center;
   justify-content: flex-start;
 }
+.flex-column {
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 .rounded-borders {
   border-radius: 3px;
 }
 div.login-container {
+  transform: translate3d(0%, 0px, 0px);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
   background-color: #997799;
   overflow: hidden;
   height: 100%;
@@ -123,15 +141,13 @@ a.login-tag {
   font-size: 14px;
   font-weight: bold;
 }
-.ios-status-bar {
-  height: 20px;
-  width: 100%;
-  background-color: #997799;
-}
 div.frame-container {
   transform: translate3d(0%, 0px, 0px);
-  height: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   -webkit-overflow-scrolling: touch;
+  height: 100%;
   overflow: hidden;
 }
 div.frame-container .view-container {
@@ -179,6 +195,9 @@ div.navbar-container div.title-container .beta-heading {
 div.navbar-container .go-back-btn {
   padding: 0 10px;
   display: inline-block;
+}
+div.navbar-container .go-back {
+  color: #997799;
 }
 div.navbar-container .title {
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
@@ -279,7 +298,7 @@ div.card .card-content .card-main {
   margin: 10px 0;
 }
 div.card .card-content .card-main .contestant-parent-container {
-  width: calc(50% - 2 * 1px - 2 * 0px - 2 * 2px);
+  width: calc(50% - 2 * 0px - 2 * 0px - 2 * 2px);
   padding: 0 2px;
   display: inline-block;
 }
@@ -293,7 +312,7 @@ div.card .card-content .card-main .contestant-picture {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 2px);
+  width: calc(100% - 2 * 0px - 2 * 0px - 2 * 2px);
   border-radius: 3px;
   padding: 2px;
   background-color: white;
@@ -525,6 +544,7 @@ div.card .card-content .card-header {
 }
 .trait-details-container .trait-overview-container .trait-title-subview {
   width: calc(50% - 2 * 1px - 2 * 0px - 2 * 0px);
+  vertical-align: top;
   display: inline-block;
   height: 100%;
 }
@@ -553,6 +573,10 @@ div.card .card-content .card-header {
 }
 .trait-details-container .trait-comments-container {
   height: calc(100% - 25%);
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .trait-details-container .divider {
   border: 1px solid #997799;
@@ -562,7 +586,7 @@ div.card .card-content .card-header {
   padding: 0 15px;
 }
 .trait-details-container .trait-voted-list {
-  height: calc(100% - 25% - 10px);
+  flex-grow: 2;
 }
 .trait-details-container .trait-voted-list.empty-state {
   display: flex;
@@ -619,18 +643,6 @@ div.card .card-content .card-header {
   height: 100%;
   border: 1px solid #997799;
 }
-.feedback-container .feedback-text-area ::-webkit-input-placeholder {
-  color: #221122;
-}
-.feedback-container .feedback-text-area :-ms-input-placeholder {
-  color: #221122;
-}
-.feedback-container .feedback-text-area :-moz-placeholder {
-  color: #221122;
-}
-.feedback-container .feedback-text-area ::-moz-placeholder {
-  color: #221122;
-}
 .feedback-container .feedback-comments {
   display: flex;
   align-items: center;
@@ -675,13 +687,16 @@ div.card .card-content .card-header {
 .popup-container .popup-title {
   text-align: center;
   font-weight: bold;
-  padding: 10px;
-}
-.popup-container .popup-list-container {
-  padding: 10px 0;
+  padding: 10px 10px 0 10px;
 }
 .popup-container .popup-list-container .popup-list-item {
   padding: 10px;
+}
+.popup-container .popup-list-container .popup-list-item:first-child {
+  padding-top: 20px;
+}
+.popup-container .popup-list-container .popup-list-item:last-child {
+  padding-bottom: 20px;
 }
 .popup-container .popup-list-container .popup-list-item .subtitle {
   font-size: 12px;

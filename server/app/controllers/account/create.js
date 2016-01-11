@@ -16,7 +16,7 @@ const create = function* create() {
   const facebookId = body.facebookId;
   const accessToken = body.access_token;
   const DEFAULT_TRAITS = _.map(traits.defaultTraits, function(traitTemplate) {
-    return traitModel.newTrait(traitTemplate.id, traitTemplate.categories);
+    return traitModel.newTrait(traitTemplate.id, traitTemplate.themes);
   });
   try {
     const acctOpts = yield {

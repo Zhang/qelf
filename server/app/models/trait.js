@@ -6,11 +6,11 @@ const _ = require('lodash');
 const TraitSchema = require('./schemas').trait;
 
 const modelCRUD = require('./concerns/modelCRUD')('trait', collection, TraitSchema);
-const newTrait = function newTrait(templateId, categories) {
+const newTrait = function newTrait(templateId, themes) {
   return {
     templateId: templateId,
     count: 0,
-    categories: categories || [],
+    themes: themes || [],
     total: []
   };
 };

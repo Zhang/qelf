@@ -6,7 +6,7 @@ const completedVotesModel = require('../app/models/completedVotes');
 const _ = require('lodash');
 const traits = require('./traits');
 const DEFAULT_TRAITS = _.map(traits.defaultTraits, function(trait) {
-  return traitModel.newTrait(trait.id, trait.categories);
+  return traitModel.newTrait(trait.id, trait.themes);
 });
 const users = ['mock_facebookId1', 'mock_facebookId2', 'mock_facebookId3', 'mock_facebookId4'];
 const co = require('co');

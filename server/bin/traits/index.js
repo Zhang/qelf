@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const traitTemplateModel = require('../../app/models/traitTemplate');
 //Rename
-const CATEGORIES = {
+const THEMES = {
   happiness: 'Traits that predict happiness (Kaufman at UPenn)',
   likeability: 'Traits that make you likeable (Norman Anderson)',
   leadership: 'Traits of strong leadership (Cattell Leadership Potential Equation)',
@@ -43,7 +43,7 @@ const defaults = [
       'Who is more energetic?',
       'Who is more interested in the events in their life?'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Intuitiveness',
@@ -51,7 +51,7 @@ const defaults = [
       'Who is more intuitive?',
       'Who is more likely to rely on their gut instinct?'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Charisma',
@@ -59,7 +59,7 @@ const defaults = [
       'Who is more charismatic?',
       'Who do you feel more devoted towards?'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Emotionally Stability',
@@ -67,7 +67,7 @@ const defaults = [
       'Who is more emotionally stable?',
       'Who is more even-tempered?'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Self Assurance',
@@ -75,7 +75,7 @@ const defaults = [
       'Who is more confident?',
       'Who would you consider to have less need for approval?'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Positivity',
@@ -88,7 +88,7 @@ const defaults = [
     comparisons: [
       'Who is more dominant?'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Loving to Learn',
@@ -96,14 +96,14 @@ const defaults = [
       'Who is more excited about learning something new?',
       'Who looks for new things to learn?'
     ],
-    categories: [CATEGORIES.happiness]
+    themes: [THEMES.happiness]
   },
   {
     id: 'Sincerity',
     comparisons: [
       'Who is more sincere?'
     ],
-    categories: [CATEGORIES.likeability]
+    themes: [THEMES.likeability]
   },
   {
     id: 'Honesty',
@@ -111,28 +111,28 @@ const defaults = [
       'Who\'s more honest?',
       'Who is more likely to return excess change given to them by a cashier'
     ],
-    categories: [CATEGORIES.likeability, CATEGORIES.leadership]
+    themes: [THEMES.likeability, THEMES.leadership]
   },
   {
     id: 'Loyalty',
     comparisons: [
       'Who is a more loyal friend?'
     ],
-    categories: [CATEGORIES.likeability]
+    themes: [THEMES.likeability]
   },
   {
     id: 'Gratitude',
     comparisons: [
       'Who shows their gratitude most frequently'
     ],
-    categories: [CATEGORIES.happiness]
+    themes: [THEMES.happiness]
   },
   {
     id: 'Happiness',
     comparisons: [
       'Who is happier?'
     ],
-    categories: [CATEGORIES.happiness]
+    themes: [THEMES.happiness]
   },
   {
     id: 'Calmness',
@@ -147,7 +147,7 @@ const defaults = [
       'Who do you trust more?',
       'Who '
     ],
-    categories: [CATEGORIES.likeability, CATEGORIES.leadership]
+    themes: [THEMES.likeability, THEMES.leadership]
   },
   {
     id: 'Social Boldness',
@@ -155,7 +155,7 @@ const defaults = [
       'Who is less effected by shame or rejection in social situations?',
       'Who is less offended by criticism'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Inspiration',
@@ -175,7 +175,7 @@ const defaults = [
     comparisons: [
       'Who do you like more?'
     ],
-    categories: [CATEGORIES.likeability]
+    themes: [THEMES.likeability]
   },
   {
     id: 'Comfortable Person to be Around',
@@ -207,7 +207,7 @@ const defaults = [
       'Who would be more likely to understand your point of view?',
       'Who is more empathetic towards your point of view?'
     ],
-    categories: [CATEGORIES.likeability, CATEGORIES.leadership]
+    themes: [THEMES.likeability, THEMES.leadership]
   },
   {
     id: 'Conscientiousness',
@@ -215,7 +215,7 @@ const defaults = [
       'Who would you consider to have a high standards for themselves?',
       'Who would you consider to be thorough, someone who follows through with what they start?'
     ],
-    categories: [CATEGORIES.leadership]
+    themes: [THEMES.leadership]
   },
   {
     id: 'Determination',
@@ -224,7 +224,7 @@ const defaults = [
       'Who is more determined?',
       'Who will not quit?'
     ],
-    categories: [CATEGORIES.founder]
+    themes: [THEMES.founder]
   },
   {
     id: 'Adaptability',
@@ -232,7 +232,7 @@ const defaults = [
       'If time travelled to the 1800\'s, who do you think would adapt the most quickly?',
       'If woken up in a foreign country, who would be most likely to make it home unscathed?'
     ],
-    categories: [CATEGORIES.founder]
+    themes: [THEMES.founder]
   },
   {
     id: 'Imaginative',
@@ -240,14 +240,14 @@ const defaults = [
       'Who can talk an unusual road to a solution?',
       'Who would make it further on a season of Survivor?'
     ],
-    categories: [CATEGORIES.founder]
+    themes: [THEMES.founder]
   },
   {
     id: 'Naughtiness',
     comparisons: [
       'Who is likely to successfully bend the rules to get what they want?'
     ],
-    categories: [CATEGORIES.founder]
+    themes: [THEMES.founder]
   },
   {
     id: 'Supportive',
@@ -255,7 +255,7 @@ const defaults = [
       'Who is more likely to show up to support you at the finish line of a half-marathon?',
       'Who is more likely to know your goals?'
     ],
-    categories: [CATEGORIES.friend]
+    themes: [THEMES.friend]
   }
 ];
 
@@ -263,8 +263,8 @@ module.exports = {
   defaultTraits: defaults,
   addDefault: function* () {
     yield _.map(defaults, function(trait) {
-      if (!trait.categories) {
-        trait.categories = [];
+      if (!trait.themes) {
+        trait.themes = [];
       }
       return traitTemplateModel.addOrUpdate(trait);
     });

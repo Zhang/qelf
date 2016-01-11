@@ -59,7 +59,7 @@
           openTemplate(genericTemplate, opts);
         }
       },
-      types: TYPES
+      TYPES: TYPES
     };
   });
 })();

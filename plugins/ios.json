@@ -20,6 +20,9 @@
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
         }
     },
     "dependent_plugins": {}

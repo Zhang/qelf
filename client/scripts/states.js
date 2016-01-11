@@ -11,6 +11,7 @@
     profile: 'frame.profile',
     feedback: 'frame.feedback',
     trait: 'frame.trait',
-    walkthrough: 'walkthrough'
+    walkthrough: 'walkthrough',
+    notConnected: 'notConnected'
   });
 })();

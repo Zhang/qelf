@@ -29,11 +29,20 @@
     $ionicConfigProvider.scrolling.jsScrolling(false);
   });
 
-  module.run(function($ionicPlatform, $rootScope) {
+  module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE) {
+    console.log('wtf');
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
+      }
+
+      if(window.Connection) {
+        if (navigator.connection.type === Connection.NONE) {
+          $timeout(function() {
+            //$state.go(STATE.notConnected)
+          })
+        }
       }
     });
 

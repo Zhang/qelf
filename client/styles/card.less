@@ -62,7 +62,7 @@ div.card {
 
       .contestant-parent-container {
         @contestant-padding: 2px;
-        .width-minus-box(@base-width: 50%, @padding: @contestant-padding);
+        .width-minus-box(@base-width: 50%, @padding: @contestant-padding, @border: 0px);
         padding: 0 @contestant-padding;
         display: inline-block;
       }
@@ -73,7 +73,7 @@ div.card {
       .contestant-picture {
         @picture-padding: 2px;
         .background-picture();
-        .width-minus-box(@padding: @picture-padding);
+        .width-minus-box(@padding: @picture-padding, @border: 0px);
         border-radius: @round-border-radius;
         padding: @picture-padding;
         background-color: white;
