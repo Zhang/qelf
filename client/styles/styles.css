@@ -522,7 +522,6 @@ div.card .card-content .card-header {
 #drag-vote svg #circle {
   stroke: #221122;
   fill: none;
-  stroke-dasharray: 440;
 }
 .invite-friends-btn {
   border-radius: 3px;
