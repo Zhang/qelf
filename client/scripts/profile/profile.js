@@ -114,7 +114,7 @@
       opts.items = _.map(UNIQUE_THEMES, function(theme) {
         var splitCategory = theme.split('(');
         var title = splitCategory[0];
-        var subtitle = splitCategory[1];
+        var subtitle = splitCategory[1] ? splitCategory[1].slice(0, -1) : null;
         return {
           title: title,
           subtitle: subtitle,
