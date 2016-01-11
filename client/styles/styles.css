@@ -700,6 +700,7 @@ div.card .card-content .card-header {
 }
 .popup-container .popup-list-container .popup-list-item .subtitle {
   font-size: 12px;
+  font-weight: bold;
 }
 .popup-container .email-input {
   border-radius: 3px;

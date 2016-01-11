@@ -4,11 +4,11 @@ const _ = require('lodash');
 const traitTemplateModel = require('../../app/models/traitTemplate');
 //Rename
 const THEMES = {
-  happiness: 'Traits that predict happiness (Kaufman at UPenn)',
+  happiness: 'Traits that predict happiness (Kaufman @ UPenn)',
   likeability: 'Traits that make you likeable (Norman Anderson)',
-  leadership: 'Traits of strong leadership (Cattell Leadership Potential Equation)',
-  founder: 'Traits of a YCombinator founder (Paul Graham via Y Combinator)',
-  friend: 'Traits of being a good friend (Roberts-Griffin at UPenn)'
+  leadership: 'Traits measuring leadership potential (Cattell Leadership Potential Equation)',
+  founder: 'Traits of a strong YCombinator founder (Paul Graham @ Y Combinator)',
+  friend: 'Traits of a good friend (Roberts-Griffin @ UPenn)'
 };
 
 //Trait names must fit into the sentence: "I scored really high in ___TRAIT___"
