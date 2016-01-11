@@ -131,19 +131,19 @@
             e.preventDefault();
             if (e.gesture.deltaX >= 0) {
               if ((e.gesture.deltaX) > this.threshold) {
-                this.x = this.startX + this.threshold + Math.min((e.gesture.deltaX - this.threshold - this.startX) / 1.7, this.voteThreshold - this.threshold);
+                this.x = this.startX + this.threshold + Math.min((e.gesture.deltaX - this.threshold) / 2, this.voteThreshold - this.threshold);
               } else {
                 this.x = this.startX + Math.min(e.gesture.deltaX, this.voteThreshold);
               }
             } else {
               if (e.gesture.deltaX < -this.threshold) {
-                this.x = this.startX - this.threshold + Math.max((e.gesture.deltaX + this.threshold + this.startX) / 1.7, -(this.voteThreshold - this.threshold));
+                this.x = this.startX - this.threshold + Math.max((e.gesture.deltaX + this.threshold) / 2, -(this.voteThreshold - this.threshold));
               } else {
                 this.x = this.startX + Math.max(e.gesture.deltaX, -this.voteThreshold);
               }
             }
 
-            if (Math.abs(this.x) >= this.threshold || (this.x - this.startX) <= -this.threshold) {
+            if (Math.abs(e.gesture.deltaX) > this.threshold) {
               drawCircle(Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)));
             } else {
               circle.css('stroke-dashoffset', BASE_OFFSET);
