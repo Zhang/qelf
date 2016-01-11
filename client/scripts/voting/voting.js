@@ -93,9 +93,8 @@
         var STROKE_WIDTH = 8;
         var circle = $(el).find('#circle');
         circle.attr('stroke-width', STROKE_WIDTH);
-        var BASE_OFFSET = 440;
-        var FULL_OFFSET = 220;
-        circle.css('stroke-dashoffset', BASE_OFFSET);
+        var circumference;
+
         var drawCircle = function(amt) {
           if (amt < 0.33) {
             $scope.certainty.text = 'agree';
@@ -105,7 +104,7 @@
             $scope.certainty.text = 'ABSOLUTELY!!';
           }
           $scope.$digest();
-          circle.css('stroke-dashoffset', (BASE_OFFSET - amt * FULL_OFFSET));
+          circle.css('stroke-dashoffset', ((1 - amt) * circumference));
         };
 
         var Slider = ionic.views.View.inherit({
@@ -116,7 +115,11 @@
             this.el = opts.el;
             this.parentWidth = this.el.parentNode.offsetWidth;
             this.width = this.el.offsetWidth;
-            circle.attr('r', (this.width - STROKE_WIDTH) / 2 - 1);
+            var radius = ((this.width - STROKE_WIDTH) / 2) - 1;
+            circumference = Math.PI * radius * 2;
+            circle.attr('r', radius);
+            circle.css('stroke-dasharray', circumference);
+            circle.css('stroke-dashoffset', circumference);
 
             this.startX = (this.parentWidth / 2) - (this.width / 2);
             this.startY = 0;
@@ -146,7 +149,7 @@
             if (Math.abs(e.gesture.deltaX) > this.threshold) {
               drawCircle(Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)));
             } else {
-              circle.css('stroke-dashoffset', BASE_OFFSET);
+              circle.css('stroke-dashoffset', circumference);
               if ($scope.certainty.text) {
                 $scope.certainty.text = '';
                 $scope.$digest();
@@ -160,7 +163,7 @@
             if (Math.abs(e.gesture.deltaX) > this.threshold) {
               $scope.submit({
                 result: this.x > this.startX ? 'right' : 'left',
-                score: Math.ceil(100 * ((BASE_OFFSET - parseInt(circle.css('stroke-dashoffset'), 10)) / FULL_OFFSET))
+                score: Math.ceil(100 * (1 - (parseInt(circle.css('stroke-dashoffset'), 10) / circumference)))
               });
             }
 
@@ -182,7 +185,7 @@
           snapBack: function() {
             var self = this;
             var TRANSITION_TIME = 0.15;
-            circle.css('stroke-dashoffset', BASE_OFFSET);
+            circle.css('stroke-dashoffset', circumference);
             ionic.requestAnimationFrame(function() {
               transformUtils.translate3d(self.el, self.startX, self.startY);
               transformUtils.transitionTime(self.el, TRANSITION_TIME);
