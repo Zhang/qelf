@@ -1,87 +1,70 @@
 .trait-details-container {
   @trait-overview-height: 25%;
-
+  @trait-confidence-height: 10%;
+  @confidence-margin: 10px;
+  @left-padding: 15px;
   .trait-overview-container {
     .rounded-borders();
     position: relative;
     width: 100%;
     height: @trait-overview-height;
     background-color: @primary-color;
+    color: white;
+    font-size: @font-xlarge;
+
     .trait-title-subview {
-      .width-minus-box(@base-width: 50%);
+      .width-minus-box(@base-width: 50%, @padding: 1px);
       vertical-align: top;
       display: inline-block;
       height: 100%;
     }
-
     .title-text, .trait-metrics {
       .flex-center();
-      font-size: @font-xlarge;
-      text-align: center;
-      color: white;
       height: 100%;
       text-transform: capitalize;
       font-weight: bold;
     }
+    .trait-metrics {
+      text-align: center;
+    }
+    .title-text {
+      justify-content: flex-start;
+      padding: 0 @left-padding;
+    }
     .describe-score {
+      .flex-center();
       position: absolute;
       right: 0;
       top: 0;
-      padding: 5px;
-      color: white;
       font-size: @font-large;
+      height: 25px;
+      width: 25px;
+      text-align: center;
     }
     .trait-selected-count {
       width: 80%;
     }
   }
+  .trait-overview-container.confidence-container {
+    height: @trait-confidence-height;
+    margin-top: @confidence-margin;
+    color: @primary-font-color;
+    background-color: @secondary-color;
+    font-size: @font-large;
+  }
 
   .trait-comments-container {
-    height: calc(100% ~"-" @trait-overview-height);
+    height: calc(100% ~"-" @trait-overview-height ~"-"  @trait-confidence-height ~"-" @confidence-margin);
     .flex-column();
   }
 
-  .divider {
-    border: 1px solid @primary-color;
+  .comparisons-container {
+    padding: 0 @left-padding;
   }
 
-  .comparisons-container, .no-comments {
-    padding: 0 15px;
-  }
-  .trait-voted-list {
-    flex-grow: 2;
-    &.empty-state {
-      .flex-center();
-      .rounded-borders();
-      background-color: @secondary-color;
-      color: @primary-font-color;
-      margin-top: 0;
-      text-align: center;
-      padding: 0 25px;
-    }
-    .voted-list-item {
-      height: 40px;
-      .rounded-borders();
-      .flex-left();
-      background-color: @secondary-color;
-      &:not(:first-child) {
-        margin-top: 10px;
-      }
-      &.negative-sentiment {
-        background-color: @primary-color;
-      }
-      .voted-list-item-sentiment {
-        font-size: 25px;
-        padding: 0 10px;
-      }
-      .vote-comment {
-        .ellipsis-overflow();
-        margin-right: 10px;
-      }
-    }
-  }
   .comment-divider {
     padding: @subview-container-margin;
     font-weight: bold;
+    font-size: @font-large;
   }
 }

@@ -12,7 +12,9 @@
     <card ng-if="!cardDeck.isEmpty" vote="vote" ng-repeat="vote in cardDeck.display"></card>
   </div>
   <div ng-if="!cardDeck.isEmpty" class="selection-container">
-    <div class="blinker-text" ng-if="stalled"><-- Drag to Vote --></div>
+    <div ng-if="stalled">
+      <div class="blinker-text"><-- Drag to Vote --></div>
+    </div>
     <vote-slider submit="vote(result, score)"></vote-slider>
   </div>
 </div>

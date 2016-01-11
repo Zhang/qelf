@@ -38,17 +38,24 @@
     $scope.score = (function getValidScore() {
       return enoughVotes() ? Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / TopScore.score) + '%' : 'Not Enough Votes';
     })();
+    $scope.confidence = Math.ceil(_.sum($scope.trait.total, 'score') / _.size($scope.trait.total))
     $scope.enoughVotes = enoughVotes();
 
     $scope.voteWithComments = _.filter(totalVotes , function(vote) {
       return !!vote.comment;
     });
 
-    $scope.showHelp = function() {
-      var opts = {
-        text: 'Scores are weighted against your most positively-voted trait, rather than an absolute percentage of people who vote for you / total',
-        title: 'Score calculation'
-      };
+    $scope.showHelp = function(type) {
+      var opts = {};
+      if (type === 'score') {
+        opts.text = 'Scores are weighted against your most positively-voted trait, rather than an absolute percentage of people who vote for you / total';
+        opts.title = 'Score calculation';
+      }
+      if (type === 'confidence') {
+        opts.text = 'Confidence ratings are calculated through the degree to which people vote';
+        opts.title = 'Confidence Rating';
+      }
+
       Modals.open(null, opts);
     };
   });
