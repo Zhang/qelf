@@ -20,7 +20,8 @@
     var deck = {
       display: [],
       fullDeck: [],
-      top: null
+      top: null,
+      isEmpty: null
     };
     var hasVoted = false;
 
@@ -114,7 +115,12 @@
       $scope.$broadcast('vote:' + result, $scope.cardDeck.top, $scope.cardDeck.top.displayScore);
       CardDeckManager.getNextCard();
     };
-
+    // (function autovoteall() {
+    //   setInterval(function() {
+    //     $scope.cardDeck.top.displayScore = Math.ceil(Math.random() * 100);
+    //     $scope.vote('left');
+    //   }, 100);
+    // })();
     $scope.share = function() {
       $window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };

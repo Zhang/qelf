@@ -70,7 +70,7 @@ module.exports = {
     return passport.authenticate('facebook-token', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {
-        console.log('Authentication error: ', info);
+        console.error('Authentication error: ', info);
         self.status = 403;
       } else {
         self.status = 200;
