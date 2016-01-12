@@ -91,25 +91,26 @@ div.navbar-container {
   height: 50px;
   .flex-center();
   .icon {
-    background-color: @primary-color;
+    fill: @primary-color;
     height: 50%;
     width: 100%;
-    -webkit-mask-size: cover;
   }
   .profile-icon {
-    -webkit-mask: url('/assets/profile.svg') no-repeat 50% 50%;
-    -webkit-mask-image: url('/assets/profile.svg') no-repeat 50% 50%;
+    //background: url('/assets/profile.svg') no-repeat 50% 50%;
+    // -webkit-mask: url('/assets/profile.svg') no-repeat 50% 50%;
+    // -webkit-mask-image: url('/assets/profile.svg') no-repeat 50% 50%;
   }
   .vote-icon {
-    -webkit-mask: url('/assets/vote.svg') no-repeat 50% 50%;
-    -webkit-mask-image: url('/assets/vote.svg') no-repeat 50% 50%;
+    //background: url('/assets/vote.svg') no-repeat 50% 50%;
+    // -webkit-mask: url('/assets/vote.svg') no-repeat 50% 50%;
+    // -webkit-mask-image: url('/assets/vote.svg') no-repeat 50% 50%;
   }
   &.settings {
     font-size: 32px;
   }
   &.selected {
     .icon {
-      background-color: @primary-font-color;
+      fill: @primary-font-color;
     }
   }
 }

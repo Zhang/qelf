@@ -235,24 +235,15 @@ div.navbar-container .ion-chevron-right {
   justify-content: center;
 }
 .nav .icon {
-  background-color: #642C8C;
+  fill: #642C8C;
   height: 50%;
   width: 100%;
-  -webkit-mask-size: cover;
-}
-.nav .profile-icon {
-  -webkit-mask: url('/assets/profile.svg') no-repeat 50% 50%;
-  -webkit-mask-image: url('/assets/profile.svg') no-repeat 50% 50%;
-}
-.nav .vote-icon {
-  -webkit-mask: url('/assets/vote.svg') no-repeat 50% 50%;
-  -webkit-mask-image: url('/assets/vote.svg') no-repeat 50% 50%;
 }
 .nav.settings {
   font-size: 32px;
 }
 .nav.selected .icon {
-  background-color: #221122;
+  fill: #221122;
 }
 div.voting-container {
   padding: 0;
