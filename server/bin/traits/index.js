@@ -7,7 +7,6 @@ const THEMES = {
   happiness: 'Traits that predict happiness (Kaufman @ UPenn)',
   likeability: 'Traits that make you likeable (Norman Anderson)',
   leadership: 'Traits measuring leadership potential (Cattell Leadership Potential Equation)',
-  founder: 'Traits of a strong YCombinator founder (Paul Graham @ Y Combinator)',
   friend: 'Traits of a good friend (Roberts-Griffin @ UPenn)'
 };
 
@@ -16,39 +15,38 @@ const THEMES = {
 //  1. Be interesting to answer
 //  2. Together, fully encompass the given trait
 //  3. Concise
+//  4. Has to be easy to answer ('Who is more inspiring' vs 'Who inspires you to be a better person?')
 
 const defaults = [
   {
     id: 'Kindness', //Ethical, pleasant, and concerned about others (Wikipedia)
     comparisons: [
-      'Who is more kind?',
-      'Who is more ethical?',
-      'Who is more pleasant?',
-      'Who is more concerned about others?'
+      'Who is a more kind person?',
+      'Who is a more ethical person?',
+      'Who is more pleasant to spend time around?',
+      'Who is more concerned about the well being of others?'
     ]
   },
   {
     id: 'Thoughtfulness',
     comparisons: [
-      'Who is more thoughtful?',
-      'Who is more likely to keep your interests in mind?',
+      'Who is a more thoughtful person?',
       'Who is more likely to remember your birthday?',
-      'Who is more likely to wonder about your thoughts at night?'
+      'Who is more concerned about your well being?'
     ]
   },
   {
     id: 'Enthusiasm',
     comparisons: [
-      'Who is more enthusiastic?',
-      'Who is more energetic?',
-      'Who is more interested in the events in their life?'
+      'Who is a more enthusiastic person?',
+      'Who is more energetic?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Intuitiveness',
     comparisons: [
-      'Who is more intuitive?',
+      'Who is a more intuitive person?',
       'Who is more likely to rely on their gut instinct?'
     ],
     themes: [THEMES.leadership]
@@ -56,44 +54,45 @@ const defaults = [
   {
     id: 'Charisma',
     comparisons: [
-      'Who is more charismatic?',
-      'Who do you feel more devoted towards?'
+      'Who is a more charismatic person?',
+      'Who do you think ?'
     ],
     themes: [THEMES.leadership]
   },
   {
-    id: 'Emotionally Stability',
+    id: 'Emotional Stability',
     comparisons: [
-      'Who is more emotionally stable?',
-      'Who is more even-tempered?'
+      'Who is a more emotionally stable person?',
+      'Who is more even-tempered (who is less likely to have mood swings)?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Self Assurance',
     comparisons: [
-      'Who is more confident?',
-      'Who would you consider to have less need for approval?'
+      'Who is a more confident person?',
+      'Who is more confident in their own decisions?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Positivity',
     comparisons: [
-      'Who has a more positive attitude?'
+      'Who has a more positive attitude?',
+      'Who is more likely to make the best out of a bad situation?'
     ]
   },
   {
     id: 'Dominance',
     comparisons: [
-      'Who is more dominant?'
+      'Who has a more dominant personality?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Loving to Learn',
     comparisons: [
-      'Who is more excited about learning something new?',
+      //'Who is more curiouslikely to value new opinions over ?',
       'Who looks for new things to learn?'
     ],
     themes: [THEMES.happiness]
@@ -101,51 +100,55 @@ const defaults = [
   {
     id: 'Sincerity',
     comparisons: [
-      'Who is more sincere?'
+      'Who is a more sincere person?',
+      'Who is less likely to talk about you behind your back?',
+      'Who is more likely to tell you how they really feel rather than hold it in?'
     ],
     themes: [THEMES.likeability]
   },
   {
     id: 'Honesty',
     comparisons: [
-      'Who\'s more honest?',
-      'Who is more likely to return excess change given to them by a cashier'
+      'Who is a more honest person?',
+      'Who is more likely to return excess change given to them by a cashier',
+      'Who will'
     ],
     themes: [THEMES.likeability, THEMES.leadership]
   },
   {
     id: 'Loyalty',
     comparisons: [
-      'Who is a more loyal friend?'
+      'Who is a more loyal friend?',
+      'Who can you turn to during hard times?'
     ],
     themes: [THEMES.likeability]
   },
   {
     id: 'Gratitude',
     comparisons: [
-      'Who shows their gratitude most frequently'
+      'Who shows their gratitude most frequently',
+      ''
     ],
     themes: [THEMES.happiness]
   },
   {
     id: 'Happiness',
     comparisons: [
-      'Who is happier?'
+      'Who is a happier person?'
     ],
     themes: [THEMES.happiness]
   },
   {
     id: 'Calmness',
     comparisons: [
-      'Who\'s calmer?',
-      'Who\'s more likely to keep their cool in a stressful situation?'
+      'Who is a calmer person?',
+      'Who is more likely to keep their cool in a stressful situation?'
     ]
   },
   {
     id: 'Trustworthiness',
     comparisons: [
-      'Who do you trust more?',
-      'Who '
+      'Who do you trust more?'
     ],
     themes: [THEMES.likeability, THEMES.leadership]
   },
@@ -160,7 +163,8 @@ const defaults = [
   {
     id: 'Inspiration',
     comparisons: [
-      'Who is more inspiring?'
+      'Who is more inspiring?',
+      'Who'
     ]
   },
   {
@@ -178,27 +182,31 @@ const defaults = [
     themes: [THEMES.likeability]
   },
   {
-    id: 'Comfortable Person to be Around',
+    id: 'Acceptance',
     comparisons: [
-      'Who are you more comfortable being yourself around?'
+      'Who is more accepting of others?',
+      'Who are you more comfortable being yourself around?',
     ]
   },
   {
     id: 'Fun',
     comparisons: [
-      'Who do you think is more fun to hang out with?'
+      'Who do you think is more fun to hang out with?',
+      'Who is more fun?'
     ]
   },
   {
     id: 'Reliability',
     comparisons: [
-      'Who would you be more likey to rely on?'
+      'Who is a more reliable person?',
+      'Who is more likely to keep their promises?'
     ]
   },
   {
     id: 'Integrity',
     comparisons: [
-      'Who is more true to their word?'
+      'Who is more true to their word?',
+      'Who has a stronger moral compass?'
     ]
   },
   {
@@ -212,48 +220,31 @@ const defaults = [
   {
     id: 'Conscientiousness',
     comparisons: [
-      'Who would you consider to have a high standards for themselves?',
-      'Who would you consider to be thorough, someone who follows through with what they start?'
+      'Who has a higher standard for themselves and their work?',
+      'Who is more organized and neat rather than disordered and messy?',
+      'Who is more self disciplined?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Determination',
     comparisons: [
-      'Who is more likely to complete a goal once they set their mind on it?',
-      'Who is more determined?',
-      'Who will not quit?'
-    ],
-    themes: [THEMES.founder]
+      'Who is a more determined person',
+      'Who pushes themselves harder to succeed?'
+    ]
   },
   {
     id: 'Adaptability',
     comparisons: [
       'If time travelled to the 1800\'s, who do you think would adapt the most quickly?',
       'If woken up in a foreign country, who would be most likely to make it home unscathed?'
-    ],
-    themes: [THEMES.founder]
-  },
-  {
-    id: 'Imaginative',
-    comparisons: [
-      'Who can talk an unusual road to a solution?',
-      'Who would make it further on a season of Survivor?'
-    ],
-    themes: [THEMES.founder]
-  },
-  {
-    id: 'Naughtiness',
-    comparisons: [
-      'Who is likely to successfully bend the rules to get what they want?'
-    ],
-    themes: [THEMES.founder]
+    ]
   },
   {
     id: 'Supportive',
     comparisons: [
-      'Who is more likely to show up to support you at the finish line of a half-marathon?',
-      'Who is more likely to know your goals?'
+      'Who is a more supportive friend?',
+      'Who are you more likely to turn to during hard times?'
     ],
     themes: [THEMES.friend]
   }
