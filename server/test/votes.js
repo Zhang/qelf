@@ -73,7 +73,8 @@ describe('/vote', function() {
         .post('/vote/' + testVote.id)
         .send({
           facebookId: mockUser.facebookId,
-          selected: id1
+          selected: id1,
+          score: 22
         })
         .expect(200)
         .end(function(err) {

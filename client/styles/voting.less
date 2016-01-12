@@ -7,7 +7,12 @@
   position: absolute;
   bottom: 0;
   width: @selection-width;
-  margin: 0 @selection-container-x-margin calc(@selection-container-height ~"/" 2 ~"-" @selection-holder-height ~"/" 2 - 20px) @selection-container-x-margin;
+  //.width-minus-box(@margin: @subview-container-margin);
+  height: calc(100% - @card-height - 2 * @subview-container-margin - 20px);
+  .flex-column();
+  align-items: center;
+  justify-content: center;
+  margin: 0 @selection-container-x-margin;
 }
 
 .selection-holder {
@@ -28,6 +33,7 @@
   width: 100%;
   color: black;
 }
+
 #drag-vote {
   @click-margin: 5px;
   @click-diameter: calc(@selection-holder-height ~"-" @click-margin ~"*" 2);
@@ -63,15 +69,20 @@
   padding: 20px;
 }
 
+.placeholder-blinker, .blinker-text {
+  height: 15px;
+  margin-bottom: 10px;
+}
 .blinker-text {
   text-align: center;
-  margin-bottom: 10px;
   font-weight: bold;
   opacity: 0;
   animation: blinker 3s linear infinite;
   font-size: 65%;
 
   @keyframes blinker {
-    50% { opacity: 1; }
+    50% {
+      opacity: 1;
+    }
   }
 }

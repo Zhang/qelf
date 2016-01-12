@@ -69,13 +69,47 @@
     };
   });
 
-  module.controller('Voting', function($scope, CardDeckManager, $window, $timeout) {
+  module.controller('Voting', function($scope, CardDeckManager, $window) {
     CardDeckManager.getCardsIfEmpty();
     $scope.cardDeck = CardDeckManager.deck;
 
-    $scope.vote = function(result, score) {
+    var leftOverlay;
+    var rightOverlay;
+
+    $scope.onRelease = function() {
+      leftOverlay.css('opacity', 0);
+      leftOverlay.css('color', 'transparent');
+      rightOverlay.css('opacity', 0);
+      rightOverlay.css('color', 'transparent');
+    };
+
+    $scope.onDrag = function(direction, score, opacityLevel) {
+      if (!leftOverlay || !rightOverlay) {
+        leftOverlay = $('.card').find('.contestant-overlay.left').first();
+        rightOverlay = $('.card').find('.contestant-overlay.right').first();
+      }
+
+
+      var selectedOverlay = direction === 'left' ? leftOverlay : rightOverlay;
+      var notSelectedOverlay = direction === 'left' ? rightOverlay : leftOverlay;
+
+      notSelectedOverlay.css('color', 'transparent');
+      notSelectedOverlay.css('opacity', 0);
+
+      selectedOverlay.css('opacity', opacityLevel / 1.1);
+      if (score) {
+        $scope.cardDeck.top.displayScore = Math.ceil(score * 100);
+        selectedOverlay.css('color', 'white');
+      } else {
+        selectedOverlay.css('color', 'transparent');
+      }
+    };
+
+    $scope.vote = function(result) {
+      leftOverlay = null;
+      rightOverlay = null;
       $scope.stalled = false;
-      $scope.$broadcast('vote:' + result, $scope.cardDeck.top, score);
+      $scope.$broadcast('vote:' + result, $scope.cardDeck.top, $scope.cardDeck.top.displayScore);
       CardDeckManager.getNextCard();
     };
 
@@ -83,9 +117,7 @@
       $window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };
 
-    $timeout(function() {
-      $scope.stalled = !CardDeckManager.hasVoted();
-    }, 2000);
+    $scope.stalled = !CardDeckManager.hasVoted();
   });
 
   module.directive('voteSlider', function(transformUtils, $timeout) {
@@ -94,29 +126,11 @@
       templateUrl: 'scripts/voting/voteSlider.html',
       replace: true,
       scope: {
-        submit: '&'
+        submit: '&',
+        onDrag: '&',
+        onRelease: '&'
       },
       link: function($scope, el) {
-        $scope.certainty = {
-          text: ''
-        };
-        var STROKE_WIDTH = 8;
-        var circle = $(el).find('#circle');
-        circle.attr('stroke-width', STROKE_WIDTH);
-        var circumference;
-
-        var drawCircle = function(amt) {
-          if (amt < 0.33) {
-            $scope.certainty.text = 'agree';
-          } else if (amt < 0.66) {
-            $scope.certainty.text = 'Definitely';
-          } else {
-            $scope.certainty.text = 'ABSOLUTELY!!';
-          }
-          $scope.$digest();
-          circle.css('stroke-dashoffset', ((1 - amt) * circumference));
-        };
-
         var Slider = ionic.views.View.inherit({
           initialize: function(opts) {
             opts = ionic.extend({}, opts);
@@ -125,11 +139,6 @@
             this.el = opts.el;
             this.parentWidth = this.el.parentNode.offsetWidth;
             this.width = this.el.offsetWidth;
-            var radius = ((this.width - STROKE_WIDTH) / 2) - 1;
-            circumference = Math.PI * radius * 2;
-            circle.attr('r', radius);
-            circle.css('stroke-dasharray', circumference);
-            circle.css('stroke-dashoffset', circumference);
 
             this.startX = (this.parentWidth / 2) - (this.width / 2);
             this.startY = 0;
@@ -142,6 +151,8 @@
           },
           _doDrag: function(e) {
             e.preventDefault();
+            //Responsible for maintaining x distance
+            //increasing friction of pull when determining % confidence
             if (e.gesture.deltaX >= 0) {
               if ((e.gesture.deltaX) > this.threshold) {
                 this.x = this.startX + this.threshold + Math.min((e.gesture.deltaX - this.threshold) / 2, this.voteThreshold - this.threshold);
@@ -156,24 +167,24 @@
               }
             }
 
-            if (Math.abs(e.gesture.deltaX) > this.threshold) {
-              drawCircle(Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)));
-            } else {
-              circle.css('stroke-dashoffset', circumference);
-              if ($scope.certainty.text) {
-                $scope.certainty.text = '';
-                $scope.$digest();
-              }
+            var opacityLevel = Math.abs(e.gesture.deltaX) > this.threshold ? 1 : Math.abs(e.gesture.deltaX) / this.threshold;
+            var score = Math.abs(e.gesture.deltaX) > this.threshold ? Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)) : 0;
+            var leftOrRight = e.gesture.deltaX > 0 ? 'right' : 'left';
+            if (opacityLevel) {
+              $scope.onDrag({
+                direction: leftOrRight,
+                score: score,
+                opacityLevel: opacityLevel
+              });
             }
 
             transformUtils.translate3d(this.el, this.x, this.startY);
           },
           _doDragEnd: function(e) {
-            $scope.certainty.text = '';
+            $scope.onRelease();
             if (Math.abs(e.gesture.deltaX) > this.threshold) {
               $scope.submit({
-                result: this.x > this.startX ? 'right' : 'left',
-                score: Math.ceil(100 * (1 - (parseInt(circle.css('stroke-dashoffset'), 10) / circumference)))
+                result: this.x > this.startX ? 'right' : 'left'
               });
             }
 
@@ -195,7 +206,7 @@
           snapBack: function() {
             var self = this;
             var TRANSITION_TIME = 0.15;
-            circle.css('stroke-dashoffset', circumference);
+
             ionic.requestAnimationFrame(function() {
               transformUtils.translate3d(self.el, self.startX, self.startY);
               transformUtils.transitionTime(self.el, TRANSITION_TIME);

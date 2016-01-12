@@ -5,9 +5,10 @@ const collection = db.get('vote');
 const VoteSchema = require('./schemas').vote;
 const modelCRUD = require('./concerns/modelCRUD')('vote', collection, VoteSchema);
 
-const submit = function* submit(id, selected) {
+const submit = function* submit(id, selected, score) {
   yield modelCRUD.updateById(id, {
-    selected: selected
+    selected: selected,
+    score: score
   });
 };
 

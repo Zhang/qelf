@@ -38,7 +38,7 @@
     $scope.score = (function getValidScore() {
       return enoughVotes() ? Math.floor((($scope.trait.count/_.size($scope.trait.total)) * 100) / TopScore.score) + '%' : 'Not Enough Votes';
     })();
-    $scope.confidence = Math.ceil(_.sum($scope.trait.total, 'score') / _.size($scope.trait.total))
+    $scope.confidence = enoughVotes() ? Math.ceil(_.sum($scope.trait.total, 'score') / _.size($scope.trait.total)) : null;
     $scope.enoughVotes = enoughVotes();
 
     $scope.voteWithComments = _.filter(totalVotes , function(vote) {

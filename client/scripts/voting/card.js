@@ -44,7 +44,6 @@
       compile: function() {
         return function($scope, $element) {
           var el = $element[0];
-          // Force hardware acceleration for animation - better performance on first touch
           transformUtils.translateDefault(el);
           var swipeableCard = new SwipeableCard({
             el: el,
@@ -54,7 +53,6 @@
               });
             }
           });
-          $scope.$parent.swipeCard = swipeableCard;
 
           function voteSubmit(dir) {
             return function(e, vote, score) {
