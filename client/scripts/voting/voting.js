@@ -89,7 +89,6 @@
         rightOverlay = $('.card').find('.contestant-overlay.right').first();
       }
 
-
       var selectedOverlay = direction === 'left' ? leftOverlay : rightOverlay;
       var notSelectedOverlay = direction === 'left' ? rightOverlay : leftOverlay;
 
@@ -127,7 +126,7 @@
       replace: true,
       scope: {
         submit: '&',
-        onDrag: '&',
+        dragFn: '&',
         onRelease: '&'
       },
       link: function($scope, el) {
@@ -170,8 +169,8 @@
             var opacityLevel = Math.abs(e.gesture.deltaX) > this.threshold ? 1 : Math.abs(e.gesture.deltaX) / this.threshold;
             var score = Math.abs(e.gesture.deltaX) > this.threshold ? Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)) : 0;
             var leftOrRight = e.gesture.deltaX > 0 ? 'right' : 'left';
-            if (opacityLevel) {
-              $scope.onDrag({
+            if (opacityLevel && leftOrRight) {
+              $scope.dragFn({
                 direction: leftOrRight,
                 score: score,
                 opacityLevel: opacityLevel

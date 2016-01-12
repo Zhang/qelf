@@ -18,6 +18,6 @@
     <div ng-if="!stalled">
       <div class="placeholder-blinker"></div>
     </div>
-    <vote-slider on-drag="onDrag(direction, score, opacityLevel)" on-release="onRelease()" submit="vote(result)"></vote-slider>
+    <vote-slider drag-fn="onDrag(direction, score, opacityLevel)" on-release="onRelease()" submit="vote(result)"></vote-slider>
   </div>
 </div>
