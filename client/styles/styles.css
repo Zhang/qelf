@@ -516,6 +516,7 @@ div.card .card-content .card-header {
   margin: 0 calc(50% - 32% / 2 - 10px);
 }
 .selection-holder {
+  margin-top: 3%;
   height: 13vh;
   background-color: #ddccee;
   border-radius: 13vh;
@@ -557,7 +558,6 @@ div.card .card-content .card-header {
 .placeholder-blinker,
 .blinker-text {
   height: 15px;
-  margin-bottom: 5%;
 }
 .blinker-text {
   text-align: center;
