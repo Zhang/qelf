@@ -79,10 +79,8 @@
 
     $scope.onRelease = function() {
       if (leftOverlay && rightOverlay) {
-        leftOverlay.css('opacity', 0);
-        leftOverlay.css('color', 'transparent');
-        rightOverlay.css('opacity', 0);
-        rightOverlay.css('color', 'transparent');
+        rightOverlay.fadeOut(300);
+        leftOverlay.fadeOut(300);
       }
     };
 
@@ -94,17 +92,13 @@
 
       var selectedOverlay = direction === 'left' ? leftOverlay : rightOverlay;
       var notSelectedOverlay = direction === 'left' ? rightOverlay : leftOverlay;
-
-      notSelectedOverlay.css('color', 'transparent');
-      notSelectedOverlay.css('opacity', 0);
-
-      selectedOverlay.css('opacity', opacityLevel / 1.1);
+      notSelectedOverlay.fadeOut(100);
       if (score) {
         $scope.cardDeck.top.displayScore = Math.ceil(score * 100);
         $scope.$digest();
-        selectedOverlay.css('color', 'white');
+        selectedOverlay.fadeIn(200);
       } else {
-        selectedOverlay.css('color', 'transparent');
+        selectedOverlay.fadeOut(100);
       }
     };
 

@@ -334,7 +334,8 @@ div.card .card-content .card-main .contestant-overlay {
   background-color: #642C8C;
   height: calc(180px + 2 * 2px);
   position: absolute;
-  opacity: 0;
+  display: none;
+  color: white;
 }
 div.card .card-content .card-main .contestant-overlay .vote-text {
   display: flex;

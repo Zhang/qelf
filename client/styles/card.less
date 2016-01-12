@@ -85,14 +85,16 @@ div.card {
         background-color: @primary-color;
         height: calc(@contestant-picture-height ~"+" 2 ~"*" @contestant-padding);
         position: absolute;
-        opacity: 0;
+        display: none;
+        color: white;
 
         .vote-text {
+          @vote-padding: 10px;
           .flex-center();
           font-size: @font-large;
-          padding: 10px;
+          padding: @vote-padding;
           font-weight: bold;
-          .width-minus-box(@padding: 10px);
+          .width-minus-box(@padding: @vote-padding);
           text-align: center;
           height: 50px;
         }
