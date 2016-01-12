@@ -42,7 +42,7 @@ div.login-container {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-overflow-scrolling: touch;
-  background-color: #997799;
+  background-color: #642C8C;
   overflow: hidden;
   height: 100%;
 }
@@ -170,7 +170,7 @@ div.frame-container .view-container {
 div.navbar-container {
   height: 50px;
   background-color: white;
-  border-bottom: 2px solid #997799;
+  border-bottom: 2px solid #642C8C;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,12 +197,12 @@ div.navbar-container .go-back-btn {
   display: inline-block;
 }
 div.navbar-container .go-back {
-  color: #997799;
+  color: #642C8C;
 }
 div.navbar-container .title {
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
   font-size: 35px;
-  color: #997799;
+  color: #642C8C;
   font-weight: bold;
   margin-left: 10px;
 }
@@ -212,26 +212,7 @@ div.navbar-container .navigation {
   justify-content: center;
   height: 100%;
   padding: 0;
-}
-div.navbar-container .navigation .nav {
-  padding: 0 10px;
-  font-size: 12px;
-  color: #997799;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-div.navbar-container .navigation .settings {
-  font-size: 20px;
-  width: 50px;
-  padding: 0;
-}
-div.navbar-container .navigation .selected {
-  color: #221122;
-  font-weight: bold;
-  height: calc(100% - 4px);
-  border-bottom: 4px solid #997799;
+  color: #642C8C;
 }
 div.navbar-container .ion-chevron-right {
   display: inline-block;
@@ -245,6 +226,33 @@ div.navbar-container .ion-chevron-right {
 }
 .right {
   float: right;
+}
+.nav {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav .icon {
+  background-color: #642C8C;
+  height: 50%;
+  width: 100%;
+  -webkit-mask-size: cover;
+}
+.nav .profile-icon {
+  -webkit-mask: url('/assets/profile.svg') no-repeat 50% 50%;
+  -webkit-mask-image: url('/assets/profile.svg') no-repeat 50% 50%;
+}
+.nav .vote-icon {
+  -webkit-mask: url('/assets/vote.svg') no-repeat 50% 50%;
+  -webkit-mask-image: url('/assets/vote.svg') no-repeat 50% 50%;
+}
+.nav.settings {
+  font-size: 32px;
+}
+.nav.selected .icon {
+  background-color: #221122;
 }
 div.voting-container {
   padding: 0;
@@ -320,6 +328,35 @@ div.card .card-content .card-main .contestant-picture {
   background-color: white;
   height: 180px;
 }
+div.card .card-content .card-main .contestant-overlay {
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #642C8C;
+  height: calc(180px + 2 * 2px);
+  position: absolute;
+  opacity: 0;
+}
+div.card .card-content .card-main .contestant-overlay .vote-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
+  text-align: center;
+  height: 50px;
+}
+div.card .card-content .card-main .contestant-overlay .vote-meter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-grow: 2;
+  width: 100%;
+}
 div.card .card-content .card-main .contestant-description {
   display: flex;
   align-items: center;
@@ -345,7 +382,7 @@ div.card .card-content .card-comment {
   display: block;
   width: 50%;
   margin: 0 auto;
-  border: 1px solid #997799;
+  border: 1px solid #642C8C;
 }
 div.card .card-content .card-header {
   display: flex;
@@ -357,40 +394,11 @@ div.card .card-content .card-header {
   font-weight: bold;
   border-bottom: 1px solid #ddccee;
 }
-.contestant-overlay {
-  flex-direction: column;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  background-color: #997799;
-  height: 184px;
-  position: absolute;
-  opacity: 0;
-}
-.contestant-overlay .vote-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  padding: 10px;
-  font-weight: bold;
-  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
-  text-align: center;
-  height: 50px;
-}
-.contestant-overlay .vote-meter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-grow: 2;
-  width: 100%;
-}
 .profile-overview-container {
   width: 100%;
   height: 25%;
   padding-bottom: 10px;
-  border-bottom: 1px solid #997799;
+  border-bottom: 1px solid #642C8C;
 }
 .profile-overview-container .settings {
   float: right;
@@ -428,7 +436,7 @@ div.card .card-content .card-header {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-  border-bottom: 1px solid #997799;
+  border-bottom: 1px solid #642C8C;
   text-transform: capitalize;
   height: 25px;
 }
@@ -483,7 +491,7 @@ div.card .card-content .card-header {
   position: absolute;
   height: 100%;
   left: 0;
-  background-color: #997799;
+  background-color: #642C8C;
   z-index: 5;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -540,31 +548,14 @@ div.card .card-content .card-header {
   height: calc(13vh - 5px * 2);
   width: calc(13vh - 5px * 2);
   border-radius: calc(13vh - 5px * 2);
-  background-color: #997799;
+  background-color: #642C8C;
   display: inline-block;
   box-shadow: 0 4px 6px -2px #382C2C;
-}
-#drag-vote .vote-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  font-size: 25px;
-  color: white;
-}
-#drag-vote svg {
-  height: 100%;
-  width: 100%;
-}
-#drag-vote svg #circle {
-  stroke: #221122;
-  fill: none;
 }
 .invite-friends-btn {
   border-radius: 3px;
   margin: 0 auto;
-  background-color: #997799;
+  background-color: #642C8C;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -594,7 +585,7 @@ div.card .card-content .card-header {
   position: relative;
   width: 100%;
   height: 25%;
-  background-color: #997799;
+  background-color: #642C8C;
   color: white;
   font-size: 20px;
 }
@@ -671,7 +662,7 @@ div.card .card-content .card-header {
   resize: none;
   padding: 15px;
   height: 100%;
-  border: 1px solid #997799;
+  border: 1px solid #642C8C;
 }
 .feedback-container .feedback-comments {
   display: flex;
@@ -685,7 +676,7 @@ div.card .card-content .card-header {
 .feedback-container .feedback-submit-button {
   border-radius: 3px;
   margin: 0 auto;
-  background-color: #997799;
+  background-color: #642C8C;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -734,7 +725,7 @@ div.card .card-content .card-header {
 }
 .popup-container .email-input {
   border-radius: 3px;
-  border: 1px solid #997799;
+  border: 1px solid #642C8C;
   color: #221122;
   margin: 0 auto;
   display: block;
@@ -763,7 +754,7 @@ div.card .card-content .card-header {
   border-radius: 3px;
   font-size: 16px;
   padding: 7px 5px;
-  background-color: #997799;
+  background-color: #642C8C;
   width: 30%;
   margin: 0 auto;
   text-align: center;

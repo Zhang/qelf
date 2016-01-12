@@ -7,7 +7,6 @@
   position: absolute;
   bottom: 0;
   width: @selection-width;
-  //.width-minus-box(@margin: @subview-container-margin);
   height: calc(100% - @card-height - 2 * @subview-container-margin - 28px);
   .flex-column();
   align-items: center;
@@ -44,22 +43,6 @@
   background-color: @primary-color;
   display: inline-block;
   box-shadow: 0 4px 6px -2px #382C2C;
-
-  .vote-icon {
-    .flex-center();
-    height: 100%;
-    width: 100%;
-    font-size: 25px;
-    color: white;
-  }
-  svg {
-    height: 100%;
-    width: 100%;
-    #circle {
-      stroke: @primary-font-color;
-      fill: none;
-    }
-  }
 }
 
 .invite-friends-btn {

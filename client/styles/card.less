@@ -56,7 +56,7 @@ div.card {
     color: @primary-font-color;
 
     @card-header-height: 100px;
-
+    @contestant-picture-height: 180px;
     @contestant-padding: 2px;
     .contestant-width {
       .width-minus-box(@base-width: 50%, @padding: @contestant-padding, @border: 0px);
@@ -78,7 +78,30 @@ div.card {
         border-radius: @round-border-radius;
         padding: @picture-padding;
         background-color: white;
-        height: 180px;
+        height: @contestant-picture-height;
+      }
+      .contestant-overlay {
+        .flex-column();
+        background-color: @primary-color;
+        height: calc(@contestant-picture-height ~"+" 2 ~"*" @contestant-padding);
+        position: absolute;
+        opacity: 0;
+
+        .vote-text {
+          .flex-center();
+          font-size: @font-large;
+          padding: 10px;
+          font-weight: bold;
+          .width-minus-box(@padding: 10px);
+          text-align: center;
+          height: 50px;
+        }
+        .vote-meter {
+          .flex-center();
+          font-size: @font-xlarge;
+          flex-grow: 2;
+          width: 100%;
+        }
       }
       .contestant-description {
         @contestant-height: 30px;
@@ -112,28 +135,5 @@ div.card {
       font-weight: bold;
       border-bottom: 1px solid @secondary-color;
     }
-  }
-}
-.contestant-overlay {
-  .flex-column();
-  background-color: @primary-color;
-  height: 184px;
-  position: absolute;
-  opacity: 0;
-  // color: transparent;
-  .vote-text {
-    .flex-center();
-    font-size: @font-large;
-    padding: 10px;
-    font-weight: bold;
-    .width-minus-box(@padding: 10px);
-    text-align: center;
-    height: 50px;
-  }
-  .vote-meter {
-    .flex-center();
-    font-size: @font-xlarge;
-    flex-grow: 2;
-    width: 100%;
   }
 }

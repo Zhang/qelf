@@ -66,25 +66,7 @@ div.navbar-container {
     .flex-center();
     height: 100%;
     padding: 0;
-    .nav {
-      padding: 0 10px;
-      font-size: @font-smaller;
-      color: @primary-color;
-      height: 100%;
-      .flex-center();
-    }
-    .settings {
-      font-size: @font-xlarge;
-      width: 50px;
-      padding: 0;
-    }
-    .selected {
-      @selected-border-height: 4px;
-      color: @primary-font-color;
-      font-weight: bold;
-      height: calc(100% - @selected-border-height);
-      border-bottom: @selected-border-height solid @primary-color;
-    }
+    color: @primary-color;
   }
   .ion-chevron-right {
     display: inline-block;
@@ -102,4 +84,32 @@ div.navbar-container {
 
 .right {
   float: right;
+}
+
+.nav {
+  width: 50px;
+  height: 50px;
+  .flex-center();
+  .icon {
+    background-color: @primary-color;
+    height: 50%;
+    width: 100%;
+    -webkit-mask-size: cover;
+  }
+  .profile-icon {
+    -webkit-mask: url('/assets/profile.svg') no-repeat 50% 50%;
+    -webkit-mask-image: url('/assets/profile.svg') no-repeat 50% 50%;
+  }
+  .vote-icon {
+    -webkit-mask: url('/assets/vote.svg') no-repeat 50% 50%;
+    -webkit-mask-image: url('/assets/vote.svg') no-repeat 50% 50%;
+  }
+  &.settings {
+    font-size: 32px;
+  }
+  &.selected {
+    .icon {
+      background-color: @primary-font-color;
+    }
+  }
 }
