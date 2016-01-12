@@ -84,7 +84,8 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "1.0.8",
     "phonegap-facebook-plugin": "0.12.0",
     "cordova-plugin-x-socialsharing": "5.0.8",
-    "cordova-plugin-network-information": "1.1.0"
+    "cordova-plugin-network-information": "1.1.0",
+    "cordova-plugin-ios-longpress-fix": "1.1.0"
 }
 // BOTTOM OF METADATA
 });

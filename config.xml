@@ -37,6 +37,7 @@
     <splash src="resources/ios/splash/Default-Portrait~ipad.png" height="1024" width="768"/>
     <splash src="resources/ios/splash/Default@2x~iphone.png" height="960" width="640"/>
     <splash src="resources/ios/splash/Default~iphone.png" height="480" width="320"/>
+    <hook type="after_prepare" src="hooks/after_prepare/updatePlist.js"/>
   </platform>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
