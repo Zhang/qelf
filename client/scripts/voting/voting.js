@@ -190,7 +190,7 @@
               });
             }
 
-            this.snapBack();
+            this.snapBack(0.35);
           },
           bindEvents: function() {
             var self = this;
@@ -205,9 +205,9 @@
               e.gesture.srcEvent.preventDefault();
             }, self.el);
           },
-          snapBack: function() {
+          snapBack: function(transitionSpeed) {
             var self = this;
-            var TRANSITION_TIME = 0.15;
+            var TRANSITION_TIME = transitionSpeed || 0.15;
 
             ionic.requestAnimationFrame(function() {
               transformUtils.translate3d(self.el, self.startX, self.startY);
