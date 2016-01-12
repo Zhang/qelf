@@ -77,10 +77,12 @@
     var rightOverlay;
 
     $scope.onRelease = function() {
-      leftOverlay.css('opacity', 0);
-      leftOverlay.css('color', 'transparent');
-      rightOverlay.css('opacity', 0);
-      rightOverlay.css('color', 'transparent');
+      if (leftOverlay && rightOverlay) {
+        leftOverlay.css('opacity', 0);
+        leftOverlay.css('color', 'transparent');
+        rightOverlay.css('opacity', 0);
+        rightOverlay.css('color', 'transparent');
+      }
     };
 
     $scope.onDrag = function(direction, score, opacityLevel) {
@@ -98,6 +100,7 @@
       selectedOverlay.css('opacity', opacityLevel / 1.1);
       if (score) {
         $scope.cardDeck.top.displayScore = Math.ceil(score * 100);
+        $scope.$digest();
         selectedOverlay.css('color', 'white');
       } else {
         selectedOverlay.css('color', 'transparent');
