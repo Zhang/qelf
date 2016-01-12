@@ -507,7 +507,7 @@ div.card .card-content .card-header {
   position: absolute;
   bottom: 0;
   width: 32%;
-  height: calc(100% - 65% - 2 * 10px - 20px);
+  height: calc(100% - 65% - 2 * 10px - 28px);
   flex-direction: column;
   display: flex;
   align-items: flex-start;
