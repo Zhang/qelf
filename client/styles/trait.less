@@ -60,10 +60,14 @@
 
   .comparisons-container {
     padding: 0 calc(@left-padding + 5px);
+
+    .voted-list-item:not(:first-child) {
+      margin: 5px 0;
+    }
   }
 
   .comment-divider {
-    padding: @left-padding;
+    margin: @left-padding;
     font-weight: bold;
     font-size: @font-large;
   }
