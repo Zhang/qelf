@@ -23,15 +23,16 @@ const defaults = [
     comparisons: [
       'Who is a more kind person?',
       'Who do you enjoy spending time with more?',
-      'Who is more concerned about the well being of others?'
-    ]
+      'Who is more concerned about others?'
+    ],
+    themes: [THEMES.likeability]
   },
   {
     id: 'Thoughtfulness',
     comparisons: [
       'Who is a more thoughtful person?',
       'Who is more likely to remember your birthday?',
-      'Who is more concerned about your well being?'
+      'Who is more concerned about your well being?' //Hmm
     ]
   },
   {
@@ -45,7 +46,7 @@ const defaults = [
   {
     id: 'Intuitiveness',
     comparisons: [
-      'Who is a more intuitive person?',
+      'Who has more intuition?',
       'Who is more likely to rely on their gut instinct?'
     ],
     themes: [THEMES.leadership]
@@ -54,7 +55,7 @@ const defaults = [
     id: 'Charisma',
     comparisons: [
       'Who is a more charismatic person?',
-      'Who do you think ?'
+      //'Who do you think ?'
     ],
     themes: [THEMES.leadership]
   },
@@ -62,14 +63,14 @@ const defaults = [
     id: 'Emotional Stability',
     comparisons: [
       'Who is a more emotionally stable person?',
-      'Who is more even-tempered (who is less likely to have mood swings)?'
+      'Who is more even-tempered?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Self Assurance',
     comparisons: [
-      'Who is a more confident person?',
+      'Who is more confident?',
       'Who is more confident in their own decisions?'
     ],
     themes: [THEMES.leadership]
@@ -92,7 +93,8 @@ const defaults = [
     id: 'Loving to Learn',
     comparisons: [
       'Who is a more curious person?',
-      'Who looks for new things to learn?'
+      'Who is more likely to try out new things?',
+      'Who likes to learn more?' //Hmm
     ],
     themes: [THEMES.happiness]
   },
@@ -101,7 +103,7 @@ const defaults = [
     comparisons: [
       'Who is a more sincere person?',
       'Who is less likely to talk about you behind your back?',
-      'Who is more likely to tell you how they really feel rather than hold it in?'
+      'Who is more likely to tell you how they really feel rather than hold it in?' //HMMM
     ],
     themes: [THEMES.likeability]
   },
@@ -109,23 +111,23 @@ const defaults = [
     id: 'Honesty',
     comparisons: [
       'Who is a more honest person?',
-      'Who is more likely to return excess change given to them by a cashier',
-      'Who will'
+      'Who is more likely to return excess change given to them by a cashier'
     ],
-    themes: [THEMES.likeability, THEMES.leadership]
+    themes: [THEMES.likeability, THEMES.leadership, THEMES.friend]
   },
   {
     id: 'Loyalty',
     comparisons: [
       'Who is a more loyal friend?',
-      'Who can you turn to during hard times?'
+      'During tough times, who\'s more likely to be there to support you?'
     ],
     themes: [THEMES.likeability]
   },
   {
     id: 'Gratitude',
     comparisons: [
-      'Who shows their gratitude more frequently'
+      'Who is more grateful for things that happen?',
+      'Who shows more gratitude for the things you do?'
     ],
     themes: [THEMES.happiness]
   },
@@ -139,7 +141,7 @@ const defaults = [
   {
     id: 'Calmness',
     comparisons: [
-      'Who is a calmer person?',
+      'Who is more calm?',
       'Who is more likely to keep their cool in a stressful situation?'
     ]
   },
@@ -148,12 +150,12 @@ const defaults = [
     comparisons: [
       'Who do you trust more?'
     ],
-    themes: [THEMES.likeability, THEMES.leadership]
+    themes: [THEMES.likeability, THEMES.leadership, THEMES.friend]
   },
   {
     id: 'Social Boldness',
     comparisons: [
-      'Who is more likely to stick to their true self, even if they may experience rejection and shame?',
+      'Who is more likely to put themselves out there?',
       'Who is less offended by criticism'
     ],
     themes: [THEMES.leadership]
@@ -168,8 +170,7 @@ const defaults = [
   {
     id: 'Patience',
     comparisons: [
-      'Who is more patient?',
-      'Who is less likely to have road rage?'
+      'Who is more patient?'
     ]
   },
   {
@@ -197,7 +198,7 @@ const defaults = [
     id: 'Reliability',
     comparisons: [
       'Who is a more reliable person?',
-      'Who is more likely to keep their promises?'
+      'Who keeps their promises more often?'
     ]
   },
   {
@@ -210,7 +211,7 @@ const defaults = [
   {
     id: 'Empathy',
     comparisons: [
-      'Who would be more likely to understand your point of view?',
+      'Who is more able to see from your point of view?',
       'Who is more empathetic towards your point of view?'
     ],
     themes: [THEMES.likeability, THEMES.leadership]
@@ -219,7 +220,7 @@ const defaults = [
     id: 'Conscientiousness',
     comparisons: [
       'Who has a higher standard for themselves and their work?',
-      'Who is more organized and neat rather than disordered and messy?',
+      'Who is more organized and neat?',
       'Who is more self disciplined?'
     ],
     themes: [THEMES.leadership]
