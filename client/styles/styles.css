@@ -415,8 +415,16 @@ div.card .card-content .card-header {
   font-weight: bold;
   background-color: #37097C;
 }
+.trait-notification .notification-text {
+  font-size: 12px;
+}
 .trait-notification .close {
-  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 25px;
+  text-align: center;
 }
 .profile-picture-container,
 .profile-overview {
