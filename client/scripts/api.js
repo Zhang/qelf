@@ -24,8 +24,8 @@
       getCurrentUser: function() {
         return HttpHelper.get('account/current');
       },
-      completeWalkthrough: function(id) {
-        return HttpHelper.post('account/_walkthrough', { id: id });
+      setViewed: function(id, component) {
+        return HttpHelper.post('account/viewed', { id: id, component: component });
       },
     };
   });

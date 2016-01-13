@@ -1,6 +1,13 @@
 'use strict';
 
 const Joi = require('joi');
+const _ = require('lodash');
+
+const viewComponents = ['traitNote', 'dragText', 'walkthrough'];
+const components = _.reduce(viewComponents, function(total, val) {
+  total[val] = Joi.boolean().required();
+  return total;
+}, {});
 const AccountSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
@@ -10,7 +17,7 @@ const AccountSchema = Joi.object().keys({
   friends: Joi.array().items(Joi.string().description('facebookId of other account objects')).required(),
   traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
   profilePicture: Joi.string().required().description('profile picture url'),
-  walkthroughComplete: Joi.boolean().required()
+  viewed: Joi.object().keys(components).required()
 });
 
 const VoteSchema = Joi.object().keys({
@@ -61,5 +68,6 @@ module.exports = {
   feedback: FeedbackSchema,
   trait: TraitSchema,
   traitTemplate: TraitTemplateSchema,
-  vote: VoteSchema
+  vote: VoteSchema,
+  viewComponents: viewComponents
 };

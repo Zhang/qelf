@@ -21,7 +21,7 @@
 
   module.controller('Walkthrough', function(AccountAPI, $rootScope, $state, STATE, $scope, CurrentUser) {
     $scope.complete = function() {
-      AccountAPI.completeWalkthrough(CurrentUser.id).then(function resolve() {
+      AccountAPI.setViewed(CurrentUser.id, 'walkthrough').then(function resolve() {
         $state.go(STATE.voting);
       }, function reject(err) {
         console.log(err);

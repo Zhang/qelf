@@ -23,7 +23,6 @@
       top: null,
       isEmpty: null
     };
-    var hasVoted = false;
 
     function _getCards() {
       VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
@@ -44,7 +43,6 @@
 
     return {
       getNextCard: function() {
-        hasVoted = true;
         if (!_.isEmpty(deck.fullDeck)) {
           deck.display.push(deck.fullDeck.shift());
         }
@@ -63,14 +61,11 @@
         if (isOutOfCards()) {
           _getCards();
         }
-      },
-      hasVoted: function() {
-        return hasVoted;
       }
     };
   });
 
-  module.controller('Voting', function($scope, CardDeckManager, $window) {
+  module.controller('Voting', function($scope, CardDeckManager, $window, AccountAPI, $rootScope) {
     CardDeckManager.getCardsIfEmpty();
     $scope.cardDeck = CardDeckManager.deck;
 
@@ -84,7 +79,7 @@
       }
     };
 
-    $scope.onDrag = function(direction, score, opacityLevel) {
+    $scope.onDrag = function(direction, score) {
       if (!leftOverlay || !rightOverlay) {
         leftOverlay = $('.card').find('.contestant-overlay.left').first();
         rightOverlay = $('.card').find('.contestant-overlay.right').first();
@@ -105,7 +100,12 @@
     $scope.vote = function(result) {
       leftOverlay = null;
       rightOverlay = null;
-      $scope.stalled = false;
+
+      if (!$rootScope.user.viewed.dragText) {
+        $rootScope.user.viewed.dragText = true;
+        AccountAPI.setViewed($rootScope.user.id, 'dragText');
+      }
+
       $scope.$broadcast('vote:' + result, $scope.cardDeck.top, $scope.cardDeck.top.displayScore);
       CardDeckManager.getNextCard();
     };
@@ -118,8 +118,6 @@
     $scope.share = function() {
       $window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };
-
-    $scope.stalled = !CardDeckManager.hasVoted();
   });
 
   module.directive('voteSlider', function(transformUtils, $timeout) {
@@ -169,16 +167,15 @@
               }
             }
 
-            var opacityLevel = Math.abs(e.gesture.deltaX) > this.threshold ? 1 : Math.abs(e.gesture.deltaX) / this.threshold;
+            //var opacityLevel = Math.abs(e.gesture.deltaX) > this.threshold ? 1 : Math.abs(e.gesture.deltaX) / this.threshold;
             var score = Math.abs(e.gesture.deltaX) > this.threshold ? Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)) : 0;
             var leftOrRight = e.gesture.deltaX > 0 ? 'right' : 'left';
-            if (opacityLevel && leftOrRight) {
+            //if (score && leftOrRight) {
               $scope.dragFn({
                 direction: leftOrRight,
-                score: score,
-                opacityLevel: opacityLevel
+                score: score
               });
-            }
+            //}
 
             transformUtils.translate3d(this.el, this.x, this.startY);
           },

@@ -19,11 +19,10 @@ const THEMES = {
 
 const defaults = [
   {
-    id: 'Kindness', //Ethical, pleasant, and concerned about others (Wikipedia)
+    id: 'Kindness',
     comparisons: [
       'Who is a more kind person?',
-      'Who is a more ethical person?',
-      'Who is more pleasant to spend time around?',
+      'Who do you enjoy spending time with more?',
       'Who is more concerned about the well being of others?'
     ]
   },
@@ -92,7 +91,7 @@ const defaults = [
   {
     id: 'Loving to Learn',
     comparisons: [
-      //'Who is more curiouslikely to value new opinions over ?',
+      'Who is a more curious person?',
       'Who looks for new things to learn?'
     ],
     themes: [THEMES.happiness]
@@ -126,8 +125,7 @@ const defaults = [
   {
     id: 'Gratitude',
     comparisons: [
-      'Who shows their gratitude most frequently',
-      ''
+      'Who shows their gratitude more frequently'
     ],
     themes: [THEMES.happiness]
   },
@@ -155,7 +153,7 @@ const defaults = [
   {
     id: 'Social Boldness',
     comparisons: [
-      'Who is less effected by shame or rejection in social situations?',
+      'Who is more likely to stick to their true self, even if they may experience rejection and shame?',
       'Who is less offended by criticism'
     ],
     themes: [THEMES.leadership]
@@ -191,7 +189,7 @@ const defaults = [
   {
     id: 'Fun',
     comparisons: [
-      'Who do you think is more fun to hang out with?',
+      'Who is more fun to hang out with?',
       'Who is more fun?'
     ]
   },

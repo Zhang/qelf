@@ -4,7 +4,7 @@ const app = require('koa')();
 const router = require('koa-router')();
 
 router.post('/', require('./create'));
-router.post('/_walkthrough', require('./_walkthrough'));
+router.post('/viewed', require('./viewed'));
 router.get('/current', require('./current'));
 router.get('/:id', require('./get'));
 

@@ -74,25 +74,35 @@ describe('/account', function() {
     });
   });
 
-  describe('POST /_walkthrough', function() {
-    it('should set walkthrough to complete', function(done) {
+  describe('POST /viewed', function() {
+    it('should set viewed elements', function(done) {
       request
-      .post('/account/_walkthrough')
+      .post('/account/viewed')
       .send({
-        id: testUser.id
+        id: testUser.id,
+        component: 'walkthrough'
       })
       .expect(200)
       .end(function(err) {
         if (err) throw err;
         co(function* () {
           const acct = yield accountModel.get(testUser.id);
-          expect(acct.walkthroughComplete).to.be(true);
+          expect(acct.viewed.walkthrough).to.be(true);
           done();
         }).catch(function(e) {
           console.error(e);
           throw e;
         });
       });
+    });
+    it('should 400 when attempting to set non existant component', function(done) {
+      request
+      .post('/account/viewed')
+      .send({
+        id: testUser.id,
+        component: 'made up'
+      })
+      .expect(400, done);
     });
   });
 });

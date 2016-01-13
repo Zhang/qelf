@@ -26,7 +26,7 @@
     };
   });
 
-  module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals, Mixpanel, TopScore) {
+  module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals, Mixpanel, TopScore, AccountAPI) {
     Mixpanel.track('Viewed Profile', {id: $rootScope.user.id});
     function sortByTopTraits(traits) {
       return _.sortBy(traits, function(trait) {
@@ -34,6 +34,11 @@
         return -1 * trait.score;
       });
     }
+
+    $scope.toggleNotification = function() {
+      $rootScope.user.viewed.traitNote = true;
+      AccountAPI.setViewed($rootScope.user.id, 'traitNote');
+    };
 
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
       var traitsWithScores = (function addDefaultPropsToTraits() {

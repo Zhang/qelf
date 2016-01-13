@@ -21,9 +21,11 @@ const incrementTraitByTemplateId = function* (fbId, templateId, increment, vote)
   yield traitModel.incrementTrait(trait.id, increment, vote);
 };
 
-const completeWalkthrough = function* completeWalkthrough(id) {
+const setComponentViewed = function* setComponentViewed(id, component) {
+  var update = {};
+  update['viewed.' + component] = true;
   try {
-    yield modelCRUD.updateById(id, {walkthroughComplete: true});
+    yield modelCRUD.updateById(id, update);
   } catch (e) {
     console.error('error completing walkthrough', e);
     throw e;
@@ -63,7 +65,7 @@ module.exports = {
   incrementTraitByTemplateId: incrementTraitByTemplateId,
   getProfile: getProfile,
   addAcctToFriends: addAcctToFriends,
-  completeWalkthrough: completeWalkthrough,
+  setComponentViewed : setComponentViewed,
   //FOR TESTING ONLY
   clear: function* () {
     yield collection.remove({});

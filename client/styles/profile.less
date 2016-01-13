@@ -1,5 +1,6 @@
 //Profile page css
 @profile-overview-width: 57%;
+@vertical-padding: 5px;
 .profile-overview-container {
   width: 100%;
   height: 25%;
@@ -10,7 +11,19 @@
     padding-right: 5px;
   }
 }
-
+.trait-notification {
+  .flex-left();
+  .rounded-borders();
+  height: 30px;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  background-color: @primary-color;
+  .close {
+    margin-left: 20px;
+  }
+}
 .profile-picture-container, .profile-overview {
   display: inline-block;
   height: 100%;

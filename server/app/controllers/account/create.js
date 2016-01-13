@@ -29,7 +29,11 @@ const create = function* create() {
     yield [
       accountModel.addAcctToFriends(facebookId, acctOpts.friends),
       accountModel.add({
-        walkthroughComplete: false,
+        viewed: {
+          walkthrough: false,
+          dragText: false,
+          traitNote: false
+        },
         facebookId: facebookId,
         traits: _.map(acctOpts.defaultTraits, 'id'),
         friends: _.map(acctOpts.friends, 'id'),

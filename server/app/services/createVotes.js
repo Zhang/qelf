@@ -63,7 +63,7 @@ module.exports = function* (facebookId) {
         const contestants = shuffleContestants(friendFBid2, friendFBid1);
         return voteModel.newVote(
           facebookId,
-          template.comparisons[Math.floor(Math.random() * (template.comparisons.length - 1))],
+          template.comparisons[Math.floor(Math.random() * template.comparisons.length)],
           contestants,
           template.id
         );

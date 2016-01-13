@@ -42,7 +42,7 @@ div.login-container {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-overflow-scrolling: touch;
-  background-color: #642C8C;
+  background-color: #37097C;
   overflow: hidden;
   height: 100%;
 }
@@ -177,7 +177,7 @@ div.frame-container .view-container {
 div.navbar-container {
   height: 50px;
   background-color: white;
-  border-bottom: 2px solid #642C8C;
+  border-bottom: 2px solid #37097C;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,12 +204,12 @@ div.navbar-container .go-back-btn {
   display: inline-block;
 }
 div.navbar-container .go-back {
-  color: #642C8C;
+  color: #37097C;
 }
 div.navbar-container .title {
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
   font-size: 35px;
-  color: #642C8C;
+  color: #37097C;
   font-weight: bold;
   margin-left: 10px;
 }
@@ -219,7 +219,7 @@ div.navbar-container .navigation {
   justify-content: center;
   height: 100%;
   padding: 0;
-  color: #642C8C;
+  color: #37097C;
 }
 div.navbar-container .ion-chevron-right {
   display: inline-block;
@@ -242,7 +242,7 @@ div.navbar-container .ion-chevron-right {
   justify-content: center;
 }
 .nav .icon {
-  fill: #642C8C;
+  fill: #37097C;
   height: 50%;
   width: 100%;
 }
@@ -331,7 +331,7 @@ div.card .card-content .card-main .contestant-overlay {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: #642C8C;
+  background-color: #37097C;
   height: calc(180px + 2 * 2px);
   position: absolute;
   display: none;
@@ -381,7 +381,7 @@ div.card .card-content .card-comment {
   display: block;
   width: 50%;
   margin: 0 auto;
-  border: 1px solid #642C8C;
+  border: 1px solid #37097C;
 }
 div.card .card-content .card-header {
   display: flex;
@@ -397,11 +397,26 @@ div.card .card-content .card-header {
   width: 100%;
   height: 25%;
   padding-bottom: 10px;
-  border-bottom: 1px solid #642C8C;
+  border-bottom: 1px solid #37097C;
 }
 .profile-overview-container .settings {
   float: right;
   padding-right: 5px;
+}
+.trait-notification {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 3px;
+  height: 30px;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  background-color: #37097C;
+}
+.trait-notification .close {
+  margin-left: 20px;
 }
 .profile-picture-container,
 .profile-overview {
@@ -435,7 +450,7 @@ div.card .card-content .card-header {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-  border-bottom: 1px solid #642C8C;
+  border-bottom: 1px solid #37097C;
   text-transform: capitalize;
   height: 25px;
 }
@@ -490,7 +505,7 @@ div.card .card-content .card-header {
   position: absolute;
   height: 100%;
   left: 0;
-  background-color: #642C8C;
+  background-color: #37097C;
   z-index: 5;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -548,14 +563,14 @@ div.card .card-content .card-header {
   height: calc(13vh - 5px * 2);
   width: calc(13vh - 5px * 2);
   border-radius: calc(13vh - 5px * 2);
-  background-color: #642C8C;
+  background-color: #37097C;
   display: inline-block;
   box-shadow: 0 4px 6px -2px #382C2C;
 }
 .invite-friends-btn {
   border-radius: 3px;
   margin: 0 auto;
-  background-color: #642C8C;
+  background-color: #37097C;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -584,7 +599,7 @@ div.card .card-content .card-header {
   position: relative;
   width: 100%;
   height: 25%;
-  background-color: #642C8C;
+  background-color: #37097C;
   color: white;
   font-size: 20px;
 }
@@ -664,7 +679,7 @@ div.card .card-content .card-header {
   resize: none;
   padding: 15px;
   height: 100%;
-  border: 1px solid #642C8C;
+  border: 1px solid #37097C;
 }
 .feedback-container .feedback-comments {
   display: flex;
@@ -678,7 +693,7 @@ div.card .card-content .card-header {
 .feedback-container .feedback-submit-button {
   border-radius: 3px;
   margin: 0 auto;
-  background-color: #642C8C;
+  background-color: #37097C;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -727,7 +742,7 @@ div.card .card-content .card-header {
 }
 .popup-container .email-input {
   border-radius: 3px;
-  border: 1px solid #642C8C;
+  border: 1px solid #37097C;
   color: #221122;
   margin: 0 auto;
   display: block;
@@ -756,7 +771,7 @@ div.card .card-content .card-header {
   border-radius: 3px;
   font-size: 16px;
   padding: 7px 5px;
-  background-color: #642C8C;
+  background-color: #37097C;
   width: 30%;
   margin: 0 auto;
   text-align: center;
