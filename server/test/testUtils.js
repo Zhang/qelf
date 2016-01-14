@@ -40,7 +40,9 @@ module.exports = {
       yield voteModel.clear();
       yield completedVotesModel.clear();
       cb();
-    }).catch(function(err) { console.log(err); });
+    }).catch(function(err) {
+      cb(err);
+    });
   },
   createTestUser: function* (_facebookId, accessToken, opts) {
     const facebookId = _facebookId || 'test';

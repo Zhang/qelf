@@ -78,7 +78,7 @@ describe('/vote', function() {
         })
         .expect(200)
         .end(function(err) {
-          if (err) throw err;
+          if (err) return cb(err);
           co(function* () {
             const winningTrait = yield traitModel.get(trait1.id);
             const losingTrait = yield traitModel.get(trait2.id);
@@ -105,7 +105,7 @@ describe('/vote', function() {
         .get('/vote/' + mockUser.facebookId)
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err;
+          if (err) return cb(err);
           const votes = res.body;
           expect(votes).to.have.length(1);
           expect(votes[0].contestants).to.have.length(2);
@@ -118,7 +118,7 @@ describe('/vote', function() {
         .get('/vote/' + mockUser.facebookId)
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err;
+          if (err) return cb(err);
           const votes = res.body;
           _.each(votes[0].contestants, function(acct) {
             const validation = Joi.validate(acct, accountSchema);

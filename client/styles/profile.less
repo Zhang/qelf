@@ -1,11 +1,11 @@
-//Profile page css
-@profile-overview-width: 57%;
+@profile-overview-width: 65%;
 @vertical-padding: 5px;
 .profile-overview-container {
-  width: 100%;
-  height: 25%;
-  padding-bottom: @subview-container-margin;
-  border-bottom: 1px solid @secondary-color;
+  .width-minus-box(@padding: @subview-container-margin);
+  height: 20%;
+  padding: @subview-container-margin;
+  border: 1px solid @secondary-color;
+  .rounded-borders();
 }
 .trait-notification {
   //padding done in a janky way to ensure .close hitbox is large enough
@@ -18,12 +18,12 @@
   background-color: @primary-color;
   .notification-text {
     font-size: @font-smaller;
-    padding: 10px 0px 10px 15px;
+    padding: 10px 0px 10px 10px;
   }
   .close {
     .flex-center();
     font-weight: bold;
-    padding: 10px 15px;
+    padding: 10px;
     text-align: center;
   }
 }
@@ -41,25 +41,23 @@
 }
 
 .profile-overview {
-  .width-minus-box(@base-width: @profile-overview-width);
+  .width-minus-box(@base-width: @profile-overview-width, @padding: 4px);
   @profile-name-height: 25px;
-  margin-left: 1px;
-
+  padding: 4px;
   .name, .overview {
-    .flex-center();
-    text-align: center;
+    //.flex-left();
   }
   .name {
     .ellipsis-overflow();
     font-weight: bold;
-    border-bottom: 1px solid @secondary-color;
     text-transform: capitalize;
     height: @profile-name-height;
+    text-align: left;
   }
   .overview {
-    @overview-padding-height: 5px;
-    height: calc(100% ~"-" @profile-name-height ~"-" 2 ~"*" @overview-padding-height ~"-" 2px);
-    padding: @overview-padding-height;
+    height: calc(100% ~"-" @profile-name-height ~"-" 2 ~"*" @vertical-padding ~"-" 2px);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .selector-container {
@@ -115,7 +113,7 @@
   }
 
   .trait-title, .ion-chevron-right {
-    padding: 0 15px;
+    padding: 0 10px;
     z-index: @z-index-top;
   }
   .trait-title {

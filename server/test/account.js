@@ -32,7 +32,7 @@ describe('/account', function() {
       });
   });
 
-  describe('POST /account', function() {
+  describe('POST /', function() {
     it('should create a new account', function(done) {
       expect(testUser).to.be.ok();
       done();
@@ -45,6 +45,7 @@ describe('/account', function() {
         done();
       }).catch(function(err) {
         console.log(err);
+        done(err);
       });
     });
     it('should 500 when missing required fields', function(done) {
@@ -60,16 +61,20 @@ describe('/account', function() {
   //     done();
   //   });
   // });
-  describe('GET /id', function() {
+  describe('GET /{id}', function() {
     it('should get an account', function(done) {
       request
       .get('/account/' + testUser.id)
       .expect(200)
       .end(function(err, res) {
-        if (err) throw err;
-        const acct = res.body;
-        expect(acct.id).to.be(testUser.id);
-        done();
+        if (err) done(err);
+        try {
+          const acct = res.body;
+          expect(acct.id).to.be(testUser.id);
+          done();
+        } catch(e) {
+          done(e);
+        }
       });
     });
   });
@@ -84,14 +89,14 @@ describe('/account', function() {
       })
       .expect(200)
       .end(function(err) {
-        if (err) throw err;
+        if (err) return done(err);
         co(function* () {
           const acct = yield accountModel.get(testUser.id);
           expect(acct.viewed.walkthrough).to.be(true);
           done();
         }).catch(function(e) {
           console.error(e);
-          throw e;
+          done(e);
         });
       });
     });

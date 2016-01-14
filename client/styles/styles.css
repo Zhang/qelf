@@ -409,10 +409,11 @@ div.card .card-content .card-header {
   border-bottom: 1px solid #d3d6ee;
 }
 .profile-overview-container {
-  width: 100%;
-  height: 25%;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #d3d6ee;
+  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
+  height: 20%;
+  padding: 10px;
+  border: 1px solid #d3d6ee;
+  border-radius: 3px;
 }
 .trait-notification {
   display: flex;
@@ -427,14 +428,14 @@ div.card .card-content .card-header {
 }
 .trait-notification .notification-text {
   font-size: 12px;
-  padding: 10px 0px 10px 15px;
+  padding: 10px 0px 10px 10px;
 }
 .trait-notification .close {
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  padding: 10px 15px;
+  padding: 10px;
   text-align: center;
 }
 .profile-picture-container,
@@ -444,7 +445,7 @@ div.card .card-content .card-header {
   vertical-align: top;
 }
 .profile-picture-container {
-  width: calc(100% - 57% - 3px);
+  width: calc(100% - 65% - 3px);
 }
 .profile-picture-container .profile-picture {
   width: 100%;
@@ -455,28 +456,22 @@ div.card .card-content .card-header {
   border-radius: 3px;
 }
 .profile-overview {
-  width: calc(57% - 2 * 1px - 2 * 0px - 2 * 0px);
-  margin-left: 1px;
-}
-.profile-overview .name,
-.profile-overview .overview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  width: calc(65% - 2 * 1px - 2 * 0px - 2 * 4px);
+  padding: 4px;
 }
 .profile-overview .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-  border-bottom: 1px solid #d3d6ee;
   text-transform: capitalize;
   height: 25px;
+  text-align: left;
 }
 .profile-overview .overview {
   height: calc(100% - 25px - 2 * 5px - 2px);
-  padding: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .selector-container {
   padding: 10px 0;
@@ -532,7 +527,7 @@ div.card .card-content .card-header {
 }
 .trait-container .trait-title,
 .trait-container .ion-chevron-right {
-  padding: 0 15px;
+  padding: 0 10px;
   z-index: 10;
 }
 .trait-container .trait-title {

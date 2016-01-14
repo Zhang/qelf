@@ -31,7 +31,7 @@ describe('/trait', function() {
         .get('/trait/query/' + MOCK_USER.facebookId)
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err;
+          if (err) return cb(err);
           var traits = res.body;
           expect(_.map(traits, 'id')[0]).to.be(MOCK_USER.traits[0]);
           expect(traits).to.have.length(MOCK_USER.traits.length);
@@ -52,6 +52,7 @@ describe('/trait', function() {
         done();
       }).catch(function(err) {
         console.error(err);
+        done(err);
       });
     });
 
@@ -60,14 +61,14 @@ describe('/trait', function() {
         .get('/trait/' + testTrait.id)
         .expect(200)
         .end(function(err, res) {
-          if (err) throw err;
+          if (err) return done(err);
           const trait = res.body;
           expect(trait.total).to.have.length(1);
 
           const validation = Joi.validate(_.first(trait.total), voteSchema);
           if (validation.error) {
-            throw validation.error;
-          };
+            return done(validation.error);
+          }
 
           expect(trait).to.have.key('template');
           done();

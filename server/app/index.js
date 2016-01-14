@@ -21,7 +21,9 @@ app.use(cors({
 }));
 app.use(logger());
 authentication.initialize(app);
-
+app.on('error', function(err) {
+  console.error(err);
+});
 /**
  * Routes.
  */

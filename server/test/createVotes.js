@@ -41,6 +41,7 @@ describe('createVotes', function() {
       done();
     }).catch(function(err) {
       if (err) return console.log(err);
+      done(err);
     });
   });
 });

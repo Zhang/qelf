@@ -47,7 +47,8 @@ const defaults = [
     id: 'Intuitiveness',
     comparisons: [
       'Who has more intuition?',
-      'Who is more likely to rely on their gut instinct?'
+      'Who is more likely to rely on their gut instinct?',
+      'Who is more likely to focus on the big picture?'
     ],
     themes: [THEMES.leadership]
   },
@@ -163,8 +164,7 @@ const defaults = [
   {
     id: 'Inspiration',
     comparisons: [
-      'Who is more inspiring?',
-      'Who'
+      'Who is more inspiring?'
     ]
   },
   {

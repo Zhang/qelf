@@ -20,6 +20,7 @@ describe('Trait Importing', function() {
       done();
     }).catch(function(e) {
       console.error('error adding traits', e);
+      done(e);
     });
   });
 });
