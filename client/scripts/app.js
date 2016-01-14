@@ -31,7 +31,7 @@
 
   module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE) {
     $ionicPlatform.ready(function() {
-      if (window.cordova && window.cordova.plugins.Keyboard) {
+      if (_.get(window, 'cordova.plugins.Keyboard')) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
       }
