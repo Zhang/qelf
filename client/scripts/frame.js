@@ -69,7 +69,8 @@
               });
             }
           }
-        ]
+        ],
+        title: 'Menu'
       };
       Modals.open(null, opts);
     };

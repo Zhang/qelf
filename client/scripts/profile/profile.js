@@ -136,7 +136,7 @@
         };
       });
       opts.title = 'View By Theme';
-      Modals.open(null, opts);
+      Modals.open(Modals.TYPES.sublist, opts);
     };
 
     $('#profile-picture').css('background-image', 'url(' + $rootScope.user.profilePicture + ')');

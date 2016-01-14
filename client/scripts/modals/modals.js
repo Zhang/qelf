@@ -7,11 +7,13 @@
     var TYPES = {
       email: 'email',
       generic: 'generic',
-      alert: 'alert'
+      alert: 'alert',
+      sublist: 'sublist'
     };
     var genericTemplate;
     var emailTemplate;
     var alertTemplate;
+    var sublistTemplate;
     $.get('scripts/modals/genericModal.html', function(_template) {
       genericTemplate = _template;
     });
@@ -21,9 +23,12 @@
     $.get('scripts/modals/alert.html', function(_template) {
       alertTemplate = _template;
     });
+    $.get('scripts/modals/sublistModal.html', function(_template) {
+      sublistTemplate = _template;
+    });
     function getModalYPlacement(itemLength) {
-      if (itemLength < 3) return '40%';
-      if (itemLength < 6) return '25%';
+      if (itemLength < 3) return '30%';
+      if (itemLength < 6) return '20%';
       return '15%';
     }
 
@@ -60,6 +65,8 @@
           openTemplate(emailTemplate, opts);
         } else if (type === TYPES.alert) {
           openTemplate(alertTemplate, opts);
+        } else if (type === TYPES.sublist) {
+          openTemplate(sublistTemplate, opts);
         } else {
           openTemplate(genericTemplate, opts);
         }

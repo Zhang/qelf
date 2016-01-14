@@ -719,7 +719,9 @@ div.card .card-content .card-header {
   top: 25%;
 }
 .popup-container .popup-text {
-  padding: 10px;
+  padding: 20px;
+  padding-top: 0px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -728,20 +730,36 @@ div.card .card-content .card-header {
 .popup-container .popup-title {
   text-align: center;
   font-weight: bold;
-  padding: 10px 10px 0 10px;
+  padding: 20px;
+  font-size: 20px;
 }
+.popup-container .popup-list-container .popup-sublist-item,
 .popup-container .popup-list-container .popup-list-item {
+  color: #3E18BD;
+}
+.popup-container .popup-list-container .popup-sublist-item:first-child,
+.popup-container .popup-list-container .popup-list-item:first-child {
+  border-top: 1px solid #B9B7B7;
+  border-bottom: 1px solid #B9B7B7;
+}
+.popup-container .popup-list-container .popup-sublist-item:not(:first-child),
+.popup-container .popup-list-container .popup-list-item:not(:first-child) {
+  border-bottom: 1px solid #B9B7B7;
+}
+.popup-container .popup-list-container .popup-sublist-item {
   padding: 10px;
 }
-.popup-container .popup-list-container .popup-list-item:first-child {
-  padding-top: 20px;
+.popup-container .popup-list-container .popup-sublist-item .main-text {
+  font-size: 16px;
 }
-.popup-container .popup-list-container .popup-list-item:last-child {
-  padding-bottom: 20px;
-}
-.popup-container .popup-list-container .popup-list-item .subtitle {
+.popup-container .popup-list-container .popup-sublist-item .subtitle {
   font-size: 12px;
   font-weight: bold;
+  color: #221122;
+}
+.popup-container .popup-list-container .popup-list-item {
+  font-size: 16px;
+  padding: 20px;
 }
 .popup-container .email-input {
   border-radius: 3px;

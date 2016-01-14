@@ -11,28 +11,44 @@
   right: 0;
   top: 25%;
   .popup-text {
-    padding: 10px;
+    padding: 20px;
+    padding-top: 0px;
+    font-size: @font-large;
     .flex-center();
     text-align: center;
   }
   .popup-title {
     text-align: center;
     font-weight: bold;
-    padding: 10px 10px 0 10px;
+    padding: 20px;
+    font-size: @font-larger;
   }
   .popup-list-container {
-    .popup-list-item {
-      padding: 10px;
+    .popup-sublist-item, .popup-list-item {
+      color: @primary-color;
       &:first-child {
-        padding-top: 20px;
+        border-top: 1px solid @border-gray;
+        border-bottom: 1px solid @border-gray;
       }
-      &:last-child {
-        padding-bottom: 20px;
+      &:not(:first-child) {
+        border-bottom: 1px solid @border-gray;
+      }
+    }
+
+    .popup-sublist-item {
+      padding: 10px;
+      .main-text {
+        font-size: @font-large;
       }
       .subtitle {
         font-size: @font-smaller;
         font-weight: bold;
+        color: @primary-font-color
       }
+    }
+    .popup-list-item {
+      font-size: @font-large;
+      padding: 20px;
     }
   }
   .email-input {

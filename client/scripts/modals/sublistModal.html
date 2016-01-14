@@ -1,0 +1,9 @@
+<div class="popup-container">
+  <div class="popup-title" ng-if="title">{{::title}}</div>
+  <div class="popup-list-container">
+    <div class="popup-sublist-item" ng-repeat="item in items" ng-click="item.action(); closePopup()">
+      <div class="main-text">{{::item.title}}</div>
+      <div class="subtitle" ng-if="item.subtitle">{{::item.subtitle}}</div>
+    </div>
+  </div>
+</div>
