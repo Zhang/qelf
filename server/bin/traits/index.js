@@ -93,7 +93,7 @@ const defaults = [
     themes: [THEMES.leadership]
   },
   {
-    id: 'Love of :earning',
+    id: 'Love of Learning',
     comparisons: [
       'Who is a more curious person?',
       'Who is more likely to try out new things?',
