@@ -39,13 +39,11 @@ module.exports = function* (facebookId) {
   const templates = values[1];
   const completedVotes = _.get(values[2], 'complete');
   const completedVoteMap = getCompletedMapByFriend(completedVotes);
-
   if (_.isEmpty(templates)) {
     throw new Error('missing default traits, please run addTraits');
   }
 
   if (account.friends.length < 2) {
-    console.log('Not enough friends');
     return [];
   }
 

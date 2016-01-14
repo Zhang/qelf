@@ -10,52 +10,51 @@ const traits = require('./traits');
 const DEFAULT_TRAITS = _.map(traits.defaultTraits, function(trait) {
   return traitModel.newTrait(trait.id, trait.themes);
 });
-const users = ['mock_facebookId1', 'mock_facebookId2', 'mock_facebookId3', 'mock_facebookId4'];
 const co = require('co');
 const config = require('../app/config');
 
-if (config.isProd) {
-  console.error(new Error('Cannot init dev on prod instance'));
-  process.exit(1);
-}
-function getAllExcept(user) {
+// if (config.isProd) {
+//   console.error(new Error('Cannot init dev on prod instance'));
+//   process.exit(1);
+// }
+
+function getAllExcept(user, users) {
   return _.filter(users, function(u) {
     return u !== user;
   });
 }
-const user1 = {
-  facebookId: users[0],
-  name: 'Scott Zhang',
-  accessToken: 'mock_accessToken1',
-  friends: getAllExcept(users[0]),
-  profilePicture: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/12108274_10101564644192315_7334749882900604967_n.jpg?oh=e0fee8c71ce074b2ba8180193ae610bb&oe=56E3A4FB'
-};
 
-const user2 = {
-  facebookId: users[1],
-  name: 'Zach Pomerantz',
-  accessToken: 'mock_accessToken2',
-  friends: getAllExcept(users[1]),
-  profilePicture: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/1622790_2249316349597_120305514_n.jpg?oh=54347afaf810a3c18b31d52ad752d647&oe=56D65332'
-};
+function generateUsers(numberOf) {
+  const fbIds = _.map(_.range(numberOf), function(id) {
+    return 'test_user' + id;
+  });
+  const pictures = [
+    'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/12108274_10101564644192315_7334749882900604967_n.jpg?oh=e0fee8c71ce074b2ba8180193ae610bb&oe=56E3A4FB',
+    'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/1622790_2249316349597_120305514_n.jpg?oh=54347afaf810a3c18b31d52ad752d647&oe=56D65332',
+    'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11222815_10101966010266737_978063582363883619_n.jpg?oh=1200337f37288c66fe78026ac4734257&oe=571A381D',
+    'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/11389991_10153380756994173_3936534420190887871_n.jpg?oh=7414a2a09cb545c3c07d2f361474af7d&oe=56D91526',
+    'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xat1/v/t1.0-9/12529_10151552078710900_2080378340_n.jpg?oh=087cc9e9ffa6810824095c3ee3c1ccc5&oe=570302E8',
+    'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/972142_10200295770226069_1232403663_n.jpg?oh=516b046d06a2e44f5383092a11e48099&oe=56FE52F3',
+    'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/11836765_10204935766497656_1528125275422002239_n.jpg?oh=a500419616c8bceea2d19c0d44afe017&oe=56FCD1FC'
+  ];
+  return _.map(fbIds, function(id, index, collection) {
+    const userPicture = pictures[Math.floor(Math.random() * pictures.length)];
+    return {
+      facebookId: id,
+      name: 'test user ' + index,
+      accessToken: 'mock_access_' + index,
+      friends: getAllExcept(id, collection),
+      profilePicture: userPicture,
+      viewed: {
+        walkthrough: false,
+        dragText: false,
+        traitNote: false
+      }
+    };
+  });
+}
 
-const user3 = {
-  facebookId: users[2],
-  name: 'Adam D Richman',
-  accessToken: 'mock_accessToken3',
-  friends: getAllExcept(users[2]),
-  profilePicture: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/11389991_10153380756994173_3936534420190887871_n.jpg?oh=7414a2a09cb545c3c07d2f361474af7d&oe=56D91526'
-};
-
-const user4 = {
-  facebookId: users[3],
-  name: 'Sandra Picton Hollis',
-  accessToken: 'mock_accessToken4',
-  friends: getAllExcept(users[3]),
-  profilePicture: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11222815_10101966010266737_978063582363883619_n.jpg?oh=1200337f37288c66fe78026ac4734257&oe=571A381D'
-};
-
-var mockUsers = [user1, user2, user3, user4];
+var mockUsers = generateUsers(10);
 function addAcct(acct) {
   co(function* () {
     try {
@@ -73,11 +72,6 @@ function addAcct(acct) {
 db.driver.dropDatabase();
 for (var i = 0; i < mockUsers.length; i++) {
   try {
-    mockUsers[i].viewed = {
-      walkthrough: false,
-      dragText: false,
-      traitNote: false
-    };
     addAcct(mockUsers[i]);
   } catch (err) {
     console.error(err);

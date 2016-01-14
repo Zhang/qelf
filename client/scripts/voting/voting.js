@@ -117,7 +117,7 @@
     //   setInterval(function() {
     //     $scope.cardDeck.top.displayScore = Math.ceil(Math.random() * 100);
     //     $scope.vote('left');
-    //   }, 100);
+    //   }, 200);
     // })();
     $scope.share = function() {
       $window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');

@@ -75,13 +75,16 @@ module.exports = function(collectionName, collection, schema) {
       const opts = _.pick(params, optKeys);
       const filter = _.omit(params, optKeys);
 
-      const q = collection.find(filter);
-
+      let limiter = {};
       if (opts.limit) {
-        q.limit(opts.limit);
+        limiter.limit = opts.limit;
       }
 
-      return q;
+      if (opts.sort) {
+        limiter[opts.sort] = '1';
+      }
+
+      return collection.find(filter, params);
     }
   };
 };
