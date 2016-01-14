@@ -297,7 +297,7 @@ div.card {
   width: calc(100% - 1px * 2);
   background-color: white;
   position: absolute;
-  border: 1px solid #B9B7B7;
+  border: 1px solid #d3d6ee;
   border-radius: 3px;
 }
 div.card .card-content {
@@ -470,7 +470,7 @@ div.card .card-content .card-header {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-  border-bottom: 1px solid #3E18BD;
+  border-bottom: 1px solid #d3d6ee;
   text-transform: capitalize;
   height: 25px;
 }
@@ -491,7 +491,7 @@ div.card .card-content .card-header {
   border-radius: 3px;
   width: calc(100% - 2 * 1px - 2 * 0px - 2 * 0px);
   height: 30px;
-  border: 1px solid #B9B7B7;
+  border: 1px solid #221122;
 }
 .profile-selector .select-icon {
   padding: 0 10px;
