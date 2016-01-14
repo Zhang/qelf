@@ -83,7 +83,7 @@ div.card {
         background-color: @secondary-color;
         height: calc(@contestant-picture-height ~"+" 2 ~"*" @contestant-padding + 50px);
         position: absolute;
-        // display: none;
+        display: none;
         color: @primary-font-color;
 
         .vote-meter {
@@ -92,12 +92,20 @@ div.card {
           height: 100%;
           width: 100%;
           text-align: center;
+          .separate-from-flex {
+            width: 100%;
+          }
           .meter-score {
             margin: 10px 0;
             color: @primary-color;
             font-weight: bold;
             display: block;
             font-size: @font-icon-size;
+          }
+          .overflow-protection {
+            width: 80%;
+            .ellipsis-overflow();
+            margin: 0 auto;
           }
         }
       }

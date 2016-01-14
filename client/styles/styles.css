@@ -336,6 +336,7 @@ div.card .card-content .card-main .contestant-overlay {
   background-color: #d3d6ee;
   height: calc(180px + 2 * 2px + 50px);
   position: absolute;
+  display: none;
   color: #221122;
 }
 div.card .card-content .card-main .contestant-overlay .vote-meter {
@@ -347,12 +348,22 @@ div.card .card-content .card-main .contestant-overlay .vote-meter {
   width: 100%;
   text-align: center;
 }
+div.card .card-content .card-main .contestant-overlay .vote-meter .separate-from-flex {
+  width: 100%;
+}
 div.card .card-content .card-main .contestant-overlay .vote-meter .meter-score {
   margin: 10px 0;
   color: #3E18BD;
   font-weight: bold;
   display: block;
   font-size: 35px;
+}
+div.card .card-content .card-main .contestant-overlay .vote-meter .overflow-protection {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
 }
 div.card .card-content .card-main .contestant-description {
   display: flex;
