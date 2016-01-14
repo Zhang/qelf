@@ -4,9 +4,9 @@
       <div id="profile-picture" class="profile-picture"></div>
     </div>
     <div class="profile-overview">
-      <div class="name">{{user.name}}</div>
+      <div class="name">{{::user.name}}</div>
       <div class="overview">
-        {{overviewSentence}}
+        {{::overviewSentence}}
       </div>
     </div>
   </div>
@@ -29,6 +29,6 @@
     <div class="close" ng-click="toggleNotification()">X</div>
   </div>
   <div ng-if="traits" class="traits-container">
-    <trait-card ng-repeat="trait in traits" ng-if="trait.display" trait="trait"></trait-card>
+    <trait-card ng-repeat="trait in traits" ng-if="trait.display" trait="::trait"></trait-card>
   </div>
 </div>

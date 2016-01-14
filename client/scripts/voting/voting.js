@@ -79,6 +79,9 @@
       }
     };
 
+    var digestDebounced = _.debounce(function() {
+      $scope.$digest();
+    }, 15);
     $scope.onDrag = function(direction, score) {
       if (!leftOverlay || !rightOverlay) {
         leftOverlay = $('.card').find('.contestant-overlay.left').first();
@@ -88,9 +91,10 @@
       var selectedOverlay = direction === 'left' ? leftOverlay : rightOverlay;
       var notSelectedOverlay = direction === 'left' ? rightOverlay : leftOverlay;
       notSelectedOverlay.fadeOut(100);
+
       if (score) {
         $scope.cardDeck.top.displayScore = Math.ceil(score * 100);
-        $scope.$digest();
+        digestDebounced();
         selectedOverlay.fadeIn(200);
       } else {
         selectedOverlay.fadeOut(100);
