@@ -333,7 +333,7 @@ div.card .card-content .card-main .contestant-picture {
   height: 180px;
 }
 div.card .card-content .card-main .contestant-overlay {
-  background-color: #ddccee;
+  background-color: #d3d6ee;
   height: calc(180px + 2 * 2px + 50px);
   position: absolute;
   display: none;
@@ -406,7 +406,7 @@ div.card .card-content .card-header {
   padding: 0 15px;
   font-size: 14px;
   font-weight: bold;
-  border-bottom: 1px solid #ddccee;
+  border-bottom: 1px solid #d3d6ee;
 }
 .profile-overview-container {
   width: 100%;
@@ -511,7 +511,7 @@ div.card .card-content .card-header {
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  background-color: #ddccee;
+  background-color: #d3d6ee;
   height: 50px;
   position: relative;
   width: 100%;
@@ -561,7 +561,7 @@ div.card .card-content .card-header {
 .selection-holder {
   margin-top: 3%;
   height: 13vh;
-  background-color: #ddccee;
+  background-color: #d3d6ee;
   border-radius: 13vh;
   position: relative;
   width: 100%;
@@ -664,7 +664,7 @@ div.card .card-content .card-header {
   height: 10%;
   margin-top: 10px;
   color: #221122;
-  background-color: #ddccee;
+  background-color: #d3d6ee;
   font-size: 16px;
 }
 .trait-details-container .trait-comments-container {
@@ -707,7 +707,7 @@ div.card .card-content .card-header {
   justify-content: center;
   border-radius: 3px;
   height: 100px;
-  background-color: #ddccee;
+  background-color: #d3d6ee;
   padding: 15px;
 }
 .feedback-container .feedback-submit-button {
