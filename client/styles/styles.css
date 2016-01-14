@@ -463,6 +463,9 @@ div.card .card-content .card-header {
   text-align: left;
 }
 .profile-overview .overview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: calc(100% - 25px - 2 * 5px - 2px);
   overflow: hidden;
   text-overflow: ellipsis;

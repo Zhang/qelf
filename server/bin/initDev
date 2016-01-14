@@ -12,6 +12,12 @@ const DEFAULT_TRAITS = _.map(traits.defaultTraits, function(trait) {
 });
 const users = ['mock_facebookId1', 'mock_facebookId2', 'mock_facebookId3', 'mock_facebookId4'];
 const co = require('co');
+const config = require('../app/config');
+
+if (config.isProd) {
+  console.error(new Error('Cannot init dev on prod instance'));
+  process.exit(1);
+}
 function getAllExcept(user) {
   return _.filter(users, function(u) {
     return u !== user;

@@ -44,9 +44,6 @@
   .width-minus-box(@base-width: @profile-overview-width, @padding: 4px);
   @profile-name-height: 25px;
   padding: 4px;
-  .name, .overview {
-    //.flex-left();
-  }
   .name {
     .ellipsis-overflow();
     font-weight: bold;
@@ -55,6 +52,7 @@
     text-align: left;
   }
   .overview {
+    .flex-center();
     height: calc(100% ~"-" @profile-name-height ~"-" 2 ~"*" @vertical-padding ~"-" 2px);
     overflow: hidden;
     text-overflow: ellipsis;
