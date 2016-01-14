@@ -65,7 +65,8 @@
               swipeableCard.transitionOut(dir);
             };
           }
-
+          $scope.firstNameLeft = $scope.vote.contestants[0].name.split(' ')[0];
+          $scope.firstNameRight = $scope.vote.contestants[1].name.split(' ')[0];
           $scope.$on('vote:left', voteSubmit(-1));
           $scope.$on('vote:right', voteSubmit(1));
         };

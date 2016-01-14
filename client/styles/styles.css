@@ -336,36 +336,19 @@ div.card .card-content .card-main .contestant-overlay {
   background-color: #d3d6ee;
   height: calc(180px + 2 * 2px + 50px);
   position: absolute;
-  display: none;
   color: #221122;
-}
-div.card .card-content .card-main .contestant-overlay .vote-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  padding: 10px;
-  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
-  text-align: center;
-  height: 60px;
-}
-div.card .card-content .card-main .contestant-overlay .vote-text .vote-text-title .name {
-  font-size: 20px;
-  font-weight: bold;
-  color: #3E18BD;
 }
 div.card .card-content .card-main .contestant-overlay .vote-meter {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  height: calc(100% - 60px - 20px);
+  height: 100%;
   width: 100%;
-}
-div.card .card-content .card-main .contestant-overlay .vote-meter .meter-text {
   text-align: center;
 }
-div.card .card-content .card-main .contestant-overlay .vote-meter .meter-text .meter-score {
+div.card .card-content .card-main .contestant-overlay .vote-meter .meter-score {
+  margin: 10px 0;
   color: #3E18BD;
   font-weight: bold;
   display: block;

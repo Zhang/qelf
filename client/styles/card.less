@@ -83,38 +83,21 @@ div.card {
         background-color: @secondary-color;
         height: calc(@contestant-picture-height ~"+" 2 ~"*" @contestant-padding + 50px);
         position: absolute;
-        display: none;
+        // display: none;
         color: @primary-font-color;
 
-        .vote-text {
-          @vote-padding: 10px;
-          .flex-center();
-          font-size: @font-standard;
-          padding: @vote-padding;
-          .width-minus-box(@padding: @vote-padding);
-          text-align: center;
-          height: 60px;
-          .vote-text-title {
-            .name {
-              font-size: @font-xlarge;
-              font-weight: bold;
-              color: @primary-color;
-            }
-          }
-        }
         .vote-meter {
           .flex-center();
           font-size: @font-standard;
-          height: calc(100% - 60px - 20px);
+          height: 100%;
           width: 100%;
-          .meter-text {
-            text-align: center;
-            .meter-score {
-              color: @primary-color;
-              font-weight: bold;
-              display: block;
-              font-size: @font-icon-size;
-            }
+          text-align: center;
+          .meter-score {
+            margin: 10px 0;
+            color: @primary-color;
+            font-weight: bold;
+            display: block;
+            font-size: @font-icon-size;
           }
         }
       }
