@@ -5,18 +5,22 @@
       <div class="card-candidates">
         <span class="contestant-parent-container contestant-width">
           <div class="contestant-overlay left contestant-width">
-            <div class="vote-text">Vote {{vote.contestants[0].name}}</div>
+            <div class="vote-text"><div class="vote-text-title">Vote <div class="name">{{vote.contestants[0].name}}</div></div></div>
             <div class="vote-meter left">
-              I'm {{vote.displayScore}}% sure!
+              <div class="meter-text">
+                I'm <div class="meter-score">{{vote.displayScore}}%</div> sure!
+              </div>
             </div>
           </div>
           <contestant contestant="vote.contestants[0]"></contestant>
         </span
         ><span class="contestant-parent-container contestant-width">
           <div class="contestant-overlay right contestant-width">
-            <div class="vote-text">Vote {{vote.contestants[1].name}}</div>
+            <div class="vote-text"><div class="vote-text-title">Vote <div class="name">{{vote.contestants[1].name}}</div></div></div>
             <div class="vote-meter right">
-              I'm {{vote.displayScore}}% sure!
+              <div class="meter-text">
+                I'm <div class="meter-score">{{vote.displayScore}}%</div> sure!
+              </div>
             </div>
           </div>
           <contestant contestant="vote.contestants[1]"></contestant>

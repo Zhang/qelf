@@ -1,5 +1,6 @@
 'use strict';
 
+const db = require('../app/db');
 const accountModel = require('../app/models/account');
 const traitModel = require('../app/models/trait');
 const completedVotesModel = require('../app/models/completedVotes');
@@ -25,7 +26,7 @@ const user1 = {
 
 const user2 = {
   facebookId: users[1],
-  name: 'Bob Marley',
+  name: 'Zach Pomerantz',
   accessToken: 'mock_accessToken2',
   friends: getAllExcept(users[1]),
   profilePicture: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/1622790_2249316349597_120305514_n.jpg?oh=54347afaf810a3c18b31d52ad752d647&oe=56D65332'
@@ -33,7 +34,7 @@ const user2 = {
 
 const user3 = {
   facebookId: users[2],
-  name: 'Joan Boardow',
+  name: 'Adam D Richman',
   accessToken: 'mock_accessToken3',
   friends: getAllExcept(users[2]),
   profilePicture: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/11389991_10153380756994173_3936534420190887871_n.jpg?oh=7414a2a09cb545c3c07d2f361474af7d&oe=56D91526'
@@ -41,7 +42,7 @@ const user3 = {
 
 const user4 = {
   facebookId: users[3],
-  name: 'Alexa Ranking in The Sky With Diamon',
+  name: 'Sandra Picton Hollis',
   accessToken: 'mock_accessToken4',
   friends: getAllExcept(users[3]),
   profilePicture: 'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11222815_10101966010266737_978063582363883619_n.jpg?oh=1200337f37288c66fe78026ac4734257&oe=571A381D'
@@ -60,6 +61,8 @@ function addAcct(acct) {
     }
   });
 }
+
+db.driver.dropDatabase();
 for (var i = 0; i < mockUsers.length; i++) {
   try {
     mockUsers[i].viewed = {
