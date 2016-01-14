@@ -1,5 +1,6 @@
 'use strict';
 
+//CURRENTLY UNUSED
 (function() {
   var module = angular.module('walkthrough', []);
 

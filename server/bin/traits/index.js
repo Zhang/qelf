@@ -111,7 +111,7 @@ const defaults = [
     id: 'Honesty',
     comparisons: [
       'Who is a more honest person?',
-      'Who is more likely to return excess change given to them by a cashier'
+      'Who is more likely to return excess change given to them by a cashier' //HMM
     ],
     themes: [THEMES.likeability, THEMES.leadership, THEMES.friend]
   },
@@ -228,7 +228,7 @@ const defaults = [
   {
     id: 'Determination',
     comparisons: [
-      'Who is a more determined person',
+      'Who is a more determined person?',
       'Who pushes themselves harder to succeed?'
     ]
   },

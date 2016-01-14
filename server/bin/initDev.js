@@ -1,5 +1,6 @@
 'use strict';
 
+const db = require('../app/db');
 const accountModel = require('../app/models/account');
 const traitModel = require('../app/models/trait');
 const completedVotesModel = require('../app/models/completedVotes');
@@ -60,6 +61,8 @@ function addAcct(acct) {
     }
   });
 }
+
+db.driver.dropDatabase();
 for (var i = 0; i < mockUsers.length; i++) {
   try {
     mockUsers[i].viewed = {

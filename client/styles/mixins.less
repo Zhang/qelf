@@ -110,3 +110,10 @@
 .width-minus-box(@base-width: 100%, @margin: 0px, @padding: 0px, @border: 1px) {
   width: calc(@base-width ~"-" 2 ~"*" @border ~"-" 2 ~"*" @margin ~"-" 2 ~"*" @padding);
 }
+
+.apply-gradient(@start-color: @primary-color, @end-color: @gradient-to, @end-location: 75%) {
+  background: @start-color; /* Old browsers */
+  background: -moz-linear-gradient(top, @start-color 0%, @end-color @end-location); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, @start-color 0%, @end-color @end-location); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, @start-color 0%, @end-color @end-location); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}

@@ -13,6 +13,7 @@
     'modals',
     'states',
     'api',
+    'noConnection',
     'walkthrough',
     'login',
     'frame',
@@ -22,10 +23,9 @@
     'trait'
   ]);
 
-  module.config(function($compileProvider, $httpProvider, $urlRouterProvider, $ionicConfigProvider) {
+  module.config(function($compileProvider, $httpProvider, $ionicConfigProvider) {
     $httpProvider.defaults.withCredentials = true;
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-    $urlRouterProvider.otherwise('/voting');
     $ionicConfigProvider.scrolling.jsScrolling(false);
   });
 
@@ -36,18 +36,19 @@
         cordova.plugins.Keyboard.disableScroll(true);
       }
 
-      if(window.Connection) {
-        if (navigator.connection.type === Connection.NONE) {
-          $timeout(function() {
-            //$state.go(STATE.notConnected)
-          });
-        }
+      if (window.Connection && navigator.connection.type === Connection.NONE) {
+        $timeout(function() {
+          $state.go(STATE.notConnected);
+        });
+      } else {
+        $state.go(STATE.voting);
       }
     });
 
     $rootScope.isIOS = ionic.Platform.isIOS();
     $rootScope.isAndroid = ionic.Platform.isAndroid();
     $rootScope.isWeb = !$rootScope.isIOS && !$rootScope.isAndroid;
+    $rootScope.isConnected = false;
   });
 
   module.service('Mixpanel', function() {

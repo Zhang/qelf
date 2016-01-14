@@ -6,27 +6,23 @@
   height: 25%;
   padding-bottom: @subview-container-margin;
   border-bottom: 1px solid @primary-color;
-  .settings {
-    float: right;
-    padding-right: 5px;
-  }
 }
 .trait-notification {
+  //padding done in a janky way to ensure .close hitbox is large enough
   .flex-left();
   .rounded-borders();
-  height: 30px;
   color: white;
-  padding: 10px 15px;
   margin-bottom: 5px;
   font-weight: bold;
   background-color: @primary-color;
   .notification-text {
     font-size: @font-smaller;
+    padding: 10px 0px 10px 15px;
   }
   .close {
     .flex-center();
-    height: 100%;
-    width: 35px;
+    font-weight: bold;
+    padding: 10px 15px;
     text-align: center;
   }
 }
@@ -46,6 +42,7 @@
 .profile-overview {
   .width-minus-box(@base-width: @profile-overview-width);
   @profile-name-height: 25px;
+  margin-left: 1px;
 
   .name, .overview {
     .flex-center();

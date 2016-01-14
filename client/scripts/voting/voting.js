@@ -167,15 +167,12 @@
               }
             }
 
-            //var opacityLevel = Math.abs(e.gesture.deltaX) > this.threshold ? 1 : Math.abs(e.gesture.deltaX) / this.threshold;
             var score = Math.abs(e.gesture.deltaX) > this.threshold ? Math.min(1, (Math.abs(this.x - this.startX) - this.threshold) / (this.voteThreshold - this.threshold)) : 0;
             var leftOrRight = e.gesture.deltaX > 0 ? 'right' : 'left';
-            //if (score && leftOrRight) {
-              $scope.dragFn({
-                direction: leftOrRight,
-                score: score
-              });
-            //}
+            $scope.dragFn({
+              direction: leftOrRight,
+              score: score
+            });
 
             transformUtils.translate3d(this.el, this.x, this.startY);
           },

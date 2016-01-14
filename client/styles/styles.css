@@ -42,7 +42,14 @@ div.login-container {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-overflow-scrolling: touch;
-  background-color: #37097C;
+  background: #3E18BD;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #3E18BD 0%, #7162BB 75%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #3E18BD 0%, #7162BB 75%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #3E18BD 0%, #7162BB 75%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   overflow: hidden;
   height: 100%;
 }
@@ -54,7 +61,7 @@ h2.title {
   color: white;
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
   text-align: center;
-  font-size: 42px;
+  font-size: 50px;
   margin: 0;
 }
 .login-with-fb {
@@ -138,7 +145,7 @@ a.login-tag {
 .sub-title {
   text-align: center;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
 }
 body {
@@ -177,7 +184,7 @@ div.frame-container .view-container {
 div.navbar-container {
   height: 50px;
   background-color: white;
-  border-bottom: 2px solid #37097C;
+  border-bottom: 2px solid #3E18BD;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,12 +211,12 @@ div.navbar-container .go-back-btn {
   display: inline-block;
 }
 div.navbar-container .go-back {
-  color: #37097C;
+  color: #3E18BD;
 }
 div.navbar-container .title {
   font-family: 'header-font', 'Helvetica', 'Arial', 'sans-serif';
   font-size: 35px;
-  color: #37097C;
+  color: #3E18BD;
   font-weight: bold;
   margin-left: 10px;
 }
@@ -219,7 +226,7 @@ div.navbar-container .navigation {
   justify-content: center;
   height: 100%;
   padding: 0;
-  color: #37097C;
+  color: #3E18BD;
 }
 div.navbar-container .ion-chevron-right {
   display: inline-block;
@@ -242,7 +249,7 @@ div.navbar-container .ion-chevron-right {
   justify-content: center;
 }
 .nav .icon {
-  fill: #37097C;
+  fill: #3E18BD;
   height: 50%;
   width: 100%;
 }
@@ -287,7 +294,6 @@ div.votes .card:nth-child(3) {
   z-index: 0;
 }
 div.card {
-  height: 100%;
   width: calc(100% - 1px * 2);
   background-color: white;
   position: absolute;
@@ -327,34 +333,43 @@ div.card .card-content .card-main .contestant-picture {
   height: 180px;
 }
 div.card .card-content .card-main .contestant-overlay {
-  flex-direction: column;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  background-color: #37097C;
-  height: calc(180px + 2 * 2px);
+  background-color: #ddccee;
+  height: calc(180px + 2 * 2px + 50px);
   position: absolute;
   display: none;
-  color: white;
+  color: #221122;
 }
 div.card .card-content .card-main .contestant-overlay .vote-text {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px;
-  font-weight: bold;
   width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
   text-align: center;
-  height: 50px;
+  height: 60px;
+}
+div.card .card-content .card-main .contestant-overlay .vote-text .vote-text-title .name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3E18BD;
 }
 div.card .card-content .card-main .contestant-overlay .vote-meter {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  flex-grow: 2;
+  font-size: 14px;
+  height: calc(100% - 60px - 20px);
   width: 100%;
+}
+div.card .card-content .card-main .contestant-overlay .vote-meter .meter-text {
+  text-align: center;
+}
+div.card .card-content .card-main .contestant-overlay .vote-meter .meter-text .meter-score {
+  color: #3E18BD;
+  font-weight: bold;
+  display: block;
+  font-size: 35px;
 }
 div.card .card-content .card-main .contestant-description {
   display: flex;
@@ -381,7 +396,7 @@ div.card .card-content .card-comment {
   display: block;
   width: 50%;
   margin: 0 auto;
-  border: 1px solid #37097C;
+  border: 1px solid #3E18BD;
 }
 div.card .card-content .card-header {
   display: flex;
@@ -397,33 +412,28 @@ div.card .card-content .card-header {
   width: 100%;
   height: 25%;
   padding-bottom: 10px;
-  border-bottom: 1px solid #37097C;
-}
-.profile-overview-container .settings {
-  float: right;
-  padding-right: 5px;
+  border-bottom: 1px solid #3E18BD;
 }
 .trait-notification {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   border-radius: 3px;
-  height: 30px;
   color: white;
-  padding: 10px 15px;
   margin-bottom: 5px;
   font-weight: bold;
-  background-color: #37097C;
+  background-color: #3E18BD;
 }
 .trait-notification .notification-text {
   font-size: 12px;
+  padding: 10px 0px 10px 15px;
 }
 .trait-notification .close {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 35px;
+  font-weight: bold;
+  padding: 10px 15px;
   text-align: center;
 }
 .profile-picture-container,
@@ -445,6 +455,7 @@ div.card .card-content .card-header {
 }
 .profile-overview {
   width: calc(57% - 2 * 1px - 2 * 0px - 2 * 0px);
+  margin-left: 1px;
 }
 .profile-overview .name,
 .profile-overview .overview {
@@ -458,7 +469,7 @@ div.card .card-content .card-header {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-  border-bottom: 1px solid #37097C;
+  border-bottom: 1px solid #3E18BD;
   text-transform: capitalize;
   height: 25px;
 }
@@ -513,7 +524,7 @@ div.card .card-content .card-header {
   position: absolute;
   height: 100%;
   left: 0;
-  background-color: #37097C;
+  background-color: #3E18BD;
   z-index: 5;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -571,14 +582,14 @@ div.card .card-content .card-header {
   height: calc(13vh - 5px * 2);
   width: calc(13vh - 5px * 2);
   border-radius: calc(13vh - 5px * 2);
-  background-color: #37097C;
+  background-color: #3E18BD;
   display: inline-block;
   box-shadow: 0 4px 6px -2px #382C2C;
 }
 .invite-friends-btn {
   border-radius: 3px;
   margin: 0 auto;
-  background-color: #37097C;
+  background-color: #3E18BD;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -607,7 +618,7 @@ div.card .card-content .card-header {
   position: relative;
   width: 100%;
   height: 25%;
-  background-color: #37097C;
+  background-color: #3E18BD;
   color: white;
   font-size: 20px;
 }
@@ -687,7 +698,7 @@ div.card .card-content .card-header {
   resize: none;
   padding: 15px;
   height: 100%;
-  border: 1px solid #37097C;
+  border: 1px solid #3E18BD;
 }
 .feedback-container .feedback-comments {
   display: flex;
@@ -701,7 +712,7 @@ div.card .card-content .card-header {
 .feedback-container .feedback-submit-button {
   border-radius: 3px;
   margin: 0 auto;
-  background-color: #37097C;
+  background-color: #3E18BD;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -750,7 +761,7 @@ div.card .card-content .card-header {
 }
 .popup-container .email-input {
   border-radius: 3px;
-  border: 1px solid #37097C;
+  border: 1px solid #3E18BD;
   color: #221122;
   margin: 0 auto;
   display: block;
@@ -779,12 +790,37 @@ div.card .card-content .card-header {
   border-radius: 3px;
   font-size: 16px;
   padding: 7px 5px;
-  background-color: #37097C;
+  background-color: #3E18BD;
   width: 30%;
   margin: 0 auto;
   text-align: center;
   color: white;
   font-weight: bold;
+}
+.no-connection-container {
+  background: #3E18BD;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #3E18BD 0%, #7162BB 75%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #3E18BD 0%, #7162BB 75%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #3E18BD 0%, #7162BB 75%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 100%;
+}
+.no-connection-container .empty-state-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.no-connection-container .empty-state-subtitle {
+  font-size: 16px;
 }
 @font-face {
   font-family: 'header-font';

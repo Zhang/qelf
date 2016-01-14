@@ -42,7 +42,7 @@ div.votes {
 }
 
 div.card {
-  height: 100%;
+  //height: 100%;
   width: @card-width;
   background-color: white;
   position: absolute;
@@ -81,28 +81,42 @@ div.card {
         height: @contestant-picture-height;
       }
       .contestant-overlay {
-        .flex-column();
-        background-color: @primary-color;
-        height: calc(@contestant-picture-height ~"+" 2 ~"*" @contestant-padding);
+        background-color: @secondary-color;
+        height: calc(@contestant-picture-height ~"+" 2 ~"*" @contestant-padding + 50px);
         position: absolute;
         display: none;
-        color: white;
+        color: @primary-font-color;
 
         .vote-text {
           @vote-padding: 10px;
           .flex-center();
-          font-size: @font-large;
+          font-size: @font-standard;
           padding: @vote-padding;
-          font-weight: bold;
           .width-minus-box(@padding: @vote-padding);
           text-align: center;
-          height: 50px;
+          height: 60px;
+          .vote-text-title {
+            .name {
+              font-size: @font-xlarge;
+              font-weight: bold;
+              color: @primary-color;
+            }
+          }
         }
         .vote-meter {
           .flex-center();
-          font-size: @font-xlarge;
-          flex-grow: 2;
+          font-size: @font-standard;
+          height: calc(100% - 60px - 20px);
           width: 100%;
+          .meter-text {
+            text-align: center;
+            .meter-score {
+              color: @primary-color;
+              font-weight: bold;
+              display: block;
+              font-size: @font-icon-size;
+            }
+          }
         }
       }
       .contestant-description {
