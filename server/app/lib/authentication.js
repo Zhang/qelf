@@ -9,13 +9,25 @@ const FacebookStrategy = require('passport-facebook-token');
 const co = require('co');
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  if (user && user.id) {
+    done(null, user.id);
+  } else {
+    throw new Error('Missing user or user id');
+  }
 });
 
 passport.deserializeUser(function (id, done) {
   co(function* () {
-    const user = yield accountModel.get(id);
-    done(null, user);
+    try {
+      const user = yield accountModel.get(id);
+      if (user) {
+        done(null, user);
+      } else {
+        done(new Error('No user'));
+      }
+    } catch(e) {
+      done(e);
+    }
   });
 });
 
@@ -25,7 +37,7 @@ passport.use(new FacebookStrategy({
 }, function (accessToken, refreshToken, profile, done) {
   co(function* () {
     let account = yield accountModel.getByFacebookId(profile.id);
-    if (!account)  {
+    if (!account) {
       console.log('No such account: ', profile);
       return done(null, false);
     }

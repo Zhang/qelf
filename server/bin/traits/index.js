@@ -86,16 +86,18 @@ const defaults = [
   {
     id: 'Dominance',
     comparisons: [
-      'Who has a more dominant personality?'
+      'Who has a more dominant personality?',
+      'Who is more business like?',
+      'Who is more competitive?'
     ],
     themes: [THEMES.leadership]
   },
   {
-    id: 'Loving to Learn',
+    id: 'Love of :earning',
     comparisons: [
       'Who is a more curious person?',
       'Who is more likely to try out new things?',
-      'Who likes to learn more?' //Hmm
+      'Who likes to read more?'
     ],
     themes: [THEMES.happiness]
   },
@@ -120,6 +122,7 @@ const defaults = [
     id: 'Loyalty',
     comparisons: [
       'Who is a more loyal friend?',
+      'Who is more likely to give you an honest opinion, even if it might hurt your feelings?',
       'During tough times, who\'s more likely to be there to support you?'
     ],
     themes: [THEMES.likeability]
@@ -127,7 +130,8 @@ const defaults = [
   {
     id: 'Gratitude',
     comparisons: [
-      'Who is more grateful for things that happen?',
+      'Who is more thankful for things in their life?',
+      'Who shows their gratitude more often?',
       'Who shows more gratitude for the things you do?'
     ],
     themes: [THEMES.happiness]
@@ -135,7 +139,9 @@ const defaults = [
   {
     id: 'Happiness',
     comparisons: [
-      'Who is a happier person?'
+      'Who is a happier person?',
+      'Who laughs more?',
+      'Who is more energetic'
     ],
     themes: [THEMES.happiness]
   },
@@ -170,7 +176,8 @@ const defaults = [
   {
     id: 'Patience',
     comparisons: [
-      'Who is more patient?'
+      'Who is more patient?',
+      'Who is less frantic?'
     ]
   },
   {
@@ -212,7 +219,9 @@ const defaults = [
     id: 'Empathy',
     comparisons: [
       'Who is more able to see from your point of view?',
-      'Who is more empathetic towards your point of view?'
+      'Who is more empathetic towards your point of view?',
+      'Who is less likely to litter?', //Ehhhh
+      'Who is more likely to give money to a homeless person?'
     ],
     themes: [THEMES.likeability, THEMES.leadership]
   },
@@ -236,14 +245,17 @@ const defaults = [
     id: 'Adaptability',
     comparisons: [
       'If time travelled to the 1800\'s, who do you think would adapt the most quickly?',
-      'If woken up in a foreign country, who would be most likely to make it home unscathed?'
+      'Who is a more receptive towards new experiences?',
+      'Who is a more adaptable person?'
     ]
   },
   {
     id: 'Supportive',
     comparisons: [
       'Who is a more supportive friend?',
-      'Who are you more likely to turn to during hard times?'
+      'If you are sick, who is more likely to help you with your daily chores?',
+      'Who do you feel more comfortable sharing your worries and fears with?',
+      'Who is more likely to invite you to hang out?'
     ],
     themes: [THEMES.friend]
   }

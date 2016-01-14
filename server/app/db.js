@@ -2,13 +2,10 @@
 
 const monk = require('monk');
 const semver = require('semver');
-const util = require('util');
 const q = require('q');
-const uuid = require('uuid');
-const co = require('co');
-function* validateMongoVersion(db) {
-  const EXPECTED_MONGO_VERSION = '3.0.x';
+const config = require('./config');
 
+function validateMongoVersion(db) {
   function promisifiedBuildInfo() {
     const deferred = q.defer();
     db.admin().buildInfo(
@@ -26,12 +23,9 @@ function* validateMongoVersion(db) {
 
   promisifiedBuildInfo().then(function(res) {
     const version = res.version;
-
-    if (!semver.satisfies(version, EXPECTED_MONGO_VERSION)) {
-          throw new Error(util.format(
-            'Mongo version is %s, but Votally requires version %s. Exiting...',
-            version, EXPECTED_MONGO_VERSION
-          ));
+    if (!semver.satisfies(version, config.mongoVersion)) {
+      console.error('WRONG MONGO VERSION: ' + version + ' - VERSION ' + config.mongoVersion + ' REQUIRE MONGO VERSION ');
+      process.exit(1);
     } else {
       return null;
     }
@@ -39,25 +33,18 @@ function* validateMongoVersion(db) {
 }
 
 module.exports = (function() {
-  const isTest = process.env.NODE_ENV === 'test';
-
-  var mongoUri = (function() {
-    return isTest ? 'localhost/qelf_test_' + uuid.v4() : (process.env.APP_HOST || 'localhost') + '/qelf';
-  })();
-  const db = monk(mongoUri, {
+  const db = monk(config.mongoURI, {
     w: 1,
     j: true,
     native_parser: true,
     poolSize: 25
   });
 
-  co(function* () {
-    yield validateMongoVersion(db.driver);
-  });
+  validateMongoVersion(db.driver);
 
-  if (isTest) {
+  if (config.isTest) {
     process.on('exit', function() {
-      db.driver.dropDatabase(mongoUri, function(err) {
+      db.driver.dropDatabase(config.mongoURI, function(err) {
         if (err) return console.log(err);
       });
     });

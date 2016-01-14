@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 
 const db = require('../app/db');
@@ -55,9 +56,11 @@ function addAcct(acct) {
       yield traits.addDefault();
       const acctValues = yield [traitModel.addBulk(DEFAULT_TRAITS), completedVotesModel.createForAcct(acct.facebookId)];
       acct.traits = _.map(acctValues[0], 'id');
+      console.log(acctValues);
       yield* accountModel.add(acct);
     } catch (e) {
       console.error('error adding account', e);
+      throw e;
     }
   });
 }
@@ -73,5 +76,6 @@ for (var i = 0; i < mockUsers.length; i++) {
     addAcct(mockUsers[i]);
   } catch (err) {
     console.error(err);
+    process.exit(1);
   }
 }

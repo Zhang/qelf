@@ -41,6 +41,7 @@ module.exports = {
       yield completedVotesModel.clear();
       cb();
     }).catch(function(err) {
+      console.error(err);
       cb(err);
     });
   },
