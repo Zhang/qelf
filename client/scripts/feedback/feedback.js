@@ -20,14 +20,23 @@
           onClose: function(modalScope) {
             FeedbackAPI.create($scope.feedbackText, modalScope.email).then(function() {
               $scope.feedbackText = '';
-              alert('Thanks for the feedback, an email has been directly sent to the team!');
+              Modals.open(Modals.TYPES.alert, {
+                text: 'Thanks for the feedback, an email with your feedback has been sent!',
+                title: 'Thanks!'
+              });
             }, function() {
-              alert('Something went wrong with sending your feedback. Feel free to email scottzhang235@gmail.com!');
+              Modals.open(Modals.TYPES.alert, {
+                text: 'Something went wrong with sending your feedback. Feel free to email scottzhang235@gmail.com!',
+                title: 'Oops!'
+              });
             });
           }
         });
       } else {
-        alert('Sorry, I don\'t understand what you\'re trying to say. It may help to write something');
+        Modals.open(Modals.TYPES.alert, {
+          text: 'Sorry, I don\'t understand what you\'re trying to say. It may help to write something!',
+          title: 'Oops!'
+        });
       }
     };
   });

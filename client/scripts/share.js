@@ -9,7 +9,8 @@
         if (window.cordova) {
           window.plugins.socialsharing.share('Hey, I\'m inviting you to use Qelf, an app that let\'s you learn who you are from other people\'s perspectives. Check it out at www.Qelf.co', 'Check out Qelf');
         } else {
-          alert('Sharing functionality is only present on mobile devices');
+          //Bug opening a modal from another modal
+          alert('Sharing is not available to web view');
         }
       }
     };

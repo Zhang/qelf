@@ -6,18 +6,21 @@
   app.service('Modals', function($compile, OverlayService, $rootScope) {
     var TYPES = {
       email: 'email',
-      generic: 'generic'
+      generic: 'generic',
+      alert: 'alert'
     };
     var genericTemplate;
     var emailTemplate;
-
+    var alertTemplate;
     $.get('scripts/modals/genericModal.html', function(_template) {
       genericTemplate = _template;
     });
     $.get('scripts/modals/emailSharing.html', function(_template) {
       emailTemplate = _template;
     });
-
+    $.get('scripts/modals/alert.html', function(_template) {
+      alertTemplate = _template;
+    });
     function getModalYPlacement(itemLength) {
       if (itemLength < 3) return '40%';
       if (itemLength < 6) return '25%';
@@ -44,7 +47,7 @@
       compiledTemplate.css('display', 'none');
       compiledTemplate.css('top', getModalYPlacement(_.size(_scope.items) || 0));
       $(compiledTemplate).addClass(_scope.customClass || '');
-      $('#frame').append(compiledTemplate);
+      $('body').append(compiledTemplate);
 
       $(compiledTemplate).fadeIn(FAST_FADE);
       overlay.open();
@@ -55,6 +58,8 @@
       open: function(type, opts) {
         if (type === TYPES.email) {
           openTemplate(emailTemplate, opts);
+        } else if (type === TYPES.alert) {
+          openTemplate(alertTemplate, opts);
         } else {
           openTemplate(genericTemplate, opts);
         }
