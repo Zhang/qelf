@@ -5,6 +5,9 @@
   -webkit-touch-callout: none;
   -webkit-overflow-scrolling: touch;
 }
+.clear-fix {
+  overflow: auto;
+}
 .ellipsis-overflow {
   white-space: nowrap;
   overflow: hidden;
@@ -307,13 +310,10 @@ div.card .card-content {
   color: #221122;
 }
 div.card .card-content .contestant-width {
-  width: calc(50% - 2 * 0px - 2 * 0px - 2 * 2px);
-}
-div.card .card-content .card-main {
-  margin: 10px 0;
+  width: calc(50% - 2 * 0px - 2 * 0px - 2 * 0px);
 }
 div.card .card-content .card-main .contestant-parent-container {
-  padding: 0 2px;
+  padding: 0;
   display: inline-block;
 }
 div.card .card-content .card-main .contestant-container {
@@ -321,20 +321,17 @@ div.card .card-content .card-main .contestant-container {
   overflow: hidden;
 }
 div.card .card-content .card-main .contestant-picture {
-  width: 100%;
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: calc(100% - 2 * 0px - 2 * 0px - 2 * 2px);
-  border-radius: 3px;
-  padding: 2px;
+  width: 100%;
   background-color: white;
-  height: 180px;
+  height: 200px;
 }
 div.card .card-content .card-main .contestant-overlay {
   background-color: #d3d6ee;
-  height: calc(180px + 2 * 2px + 50px);
+  height: calc(200px + 50px);
   position: absolute;
   display: none;
   color: #221122;
@@ -380,6 +377,7 @@ div.card .card-content .card-main .contestant-description .name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 12px;
 }
 div.card .card-content .card-comment {
   white-space: nowrap;
@@ -395,12 +393,12 @@ div.card .card-content .card-comment {
 div.card .card-content .card-header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  height: 100px;
-  padding: 0 15px;
-  font-size: 14px;
+  justify-content: center;
+  text-align: center;
+  height: 90px;
+  padding: 0px 15px;
+  font-size: 16px;
   font-weight: bold;
-  border-bottom: 1px solid #d3d6ee;
 }
 .profile-overview-container {
   width: calc(100% - 2 * 1px - 2 * 0px - 2 * 10px);
@@ -540,7 +538,7 @@ div.card .card-content .card-header {
 .selection-container {
   position: absolute;
   bottom: 0;
-  width: 32%;
+  width: 25%;
   height: calc(100% - 65% - 2 * 10px - 28px);
   flex-direction: column;
   display: flex;
@@ -548,7 +546,7 @@ div.card .card-content .card-header {
   justify-content: flex-start;
   align-items: center;
   justify-content: center;
-  margin: 0 calc(50% - 32% / 2 - 10px);
+  margin: 0 calc(50% - 25% / 2 - 10px);
 }
 .selection-holder {
   margin-top: 3%;
@@ -786,15 +784,16 @@ div.card .card-content .card-header {
   color: #221122;
 }
 .popup-container .popup-submit {
-  padding: 10px;
+  overflow: auto;
+  padding: 20px;
 }
 .popup-container .popup-submit .submit-btn {
   border-radius: 3px;
+  padding: 7px 10px;
+  display: inline-block;
   font-size: 16px;
-  padding: 7px 5px;
   background-color: #3E18BD;
-  width: 30%;
-  margin: 0 auto;
+  margin-left: 10px;
   text-align: center;
   color: white;
   font-weight: bold;

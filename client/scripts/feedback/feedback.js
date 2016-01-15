@@ -18,11 +18,10 @@
         //Ask for their email
         Modals.open(Modals.TYPES.email, {
           onClose: function(modalScope) {
-            FeedbackAPI.create($scope.feedbackText, modalScope.email).then(function() {
+            FeedbackAPI.create($scope.feedbackText, modalScope.email || '').then(function() {
               $scope.feedbackText = '';
               Modals.open(Modals.TYPES.alert, {
-                text: 'Thanks for the feedback, an email with your feedback has been sent!',
-                title: 'Thanks!'
+                title: 'Thanks for the feedback!'
               });
             }, function() {
               Modals.open(Modals.TYPES.alert, {

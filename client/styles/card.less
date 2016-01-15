@@ -54,16 +54,14 @@ div.card {
     box-shadow: 0 4px 2px -2px @border-gray;
     color: @primary-font-color;
 
-    @card-header-height: 100px;
-    @contestant-picture-height: 180px;
-    @contestant-padding: 2px;
+    @card-header-height: 90px;
+    @contestant-picture-height: 200px;
     .contestant-width {
-      .width-minus-box(@base-width: 50%, @padding: @contestant-padding, @border: 0px);
+      .width-minus-box(@base-width: 50%, @border: 0px);
     }
     .card-main {
-      margin: 10px 0;
       .contestant-parent-container {
-        padding: 0 @contestant-padding;
+        padding: 0;
         display: inline-block;
       }
       .contestant-container {
@@ -71,17 +69,14 @@ div.card {
         overflow: hidden;
       }
       .contestant-picture {
-        @picture-padding: 2px;
         .background-picture();
-        .width-minus-box(@padding: @picture-padding, @border: 0px);
-        border-radius: @round-border-radius;
-        padding: @picture-padding;
+        width: 100%;
         background-color: white;
         height: @contestant-picture-height;
       }
       .contestant-overlay {
         background-color: @secondary-color;
-        height: calc(@contestant-picture-height ~"+" 2 ~"*" @contestant-padding + 50px);
+        height: calc(@contestant-picture-height + 50px);
         position: absolute;
         display: none;
         color: @primary-font-color;
@@ -121,6 +116,7 @@ div.card {
         text-transform: capitalize;
         .name {
           .ellipsis-overflow();
+          font-size: @font-smaller;
         }
       }
     }
@@ -134,12 +130,12 @@ div.card {
       border: 1px solid @primary-color;
     }
     .card-header {
-      .flex-left();
+      .flex-center();
+      text-align: center;
       height: @card-header-height;
-      padding: 0 15px;
-      font-size: @font-standard;
+      padding: 0px 15px;
+      font-size: @font-large;
       font-weight: bold;
-      border-bottom: 1px solid @secondary-color;
     }
   }
 }
