@@ -49,19 +49,22 @@
         items: [
           {
             title: 'Leave Feedback',
-            action: function() {
+            action: function(e) {
+              e.preventDefault();
               $scope.lastState = $state.current.name;
               $state.go(STATE.feedback);
             }
           }, {
             title: 'Invite Friends',
-            action: function() {
+            action: function(e) {
+              e.preventDefault();
               ShareService.share();
             }
           },
           {
             title: 'Logout',
-            action: function() {
+            action: function(e) {
+              e.preventDefault();
               FBService.logout().then(function() {
                 SessionAPI.logout().then(function() {
                   $state.go(STATE.login);
