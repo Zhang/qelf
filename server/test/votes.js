@@ -98,6 +98,26 @@ describe('/vote', function() {
           });
         });
     });
+    it('completing the same vote twice should 500', function(cb) {
+      request
+        .post('/vote/' + testVote.id)
+        .send({
+          facebookId: mockUser.facebookId,
+          selected: id1,
+          score: 22
+        })
+        .expect(200)
+        .end(function() {
+          request
+            .post('/vote/' + testVote.id)
+            .send({
+              facebookId: mockUser.facebookId,
+              selected: id1,
+              score: 22
+            })
+            .expect(500, cb);
+        });
+    });
   });
   describe('GET /vote/:facebookId', function() {
     it('should return an array of incomplete votes', function(cb) {

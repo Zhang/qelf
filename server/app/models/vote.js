@@ -6,10 +6,22 @@ const VoteSchema = require('./schemas').vote;
 const modelCRUD = require('./concerns/modelCRUD')('vote', collection, VoteSchema);
 
 const submit = function* submit(id, selected, score) {
-  yield modelCRUD.updateById(id, {
-    selected: selected,
-    score: score
-  });
+  const vote = yield modelCRUD.get(id);
+  if (vote.selected || vote.score) {
+    throw new Error('Attempting to re-submit completed vote', vote);
+  } else {
+    const updated = yield collection.findAndModify({
+      query: {id: id},
+      update: {
+        $set: {
+          selected: selected,
+          score: score
+        }
+      },
+      new: true
+    });
+    return updated;
+  }
 };
 
 const newVote = function(fbId, comparison, contestants, traitTemplateId) {

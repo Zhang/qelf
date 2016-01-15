@@ -15,8 +15,7 @@ const submit = function* submit() {
   const score = body.score;
 
   try {
-    yield voteModel.submit(voteId, selected, score);
-    const vote = yield voteModel.get(voteId);
+    const vote = yield voteModel.submit(voteId, selected, score);
 
     yield [_.map(vote.contestants, function(fbId) {
       return accountModel.incrementTraitByTemplateId(fbId, vote.traitTemplateId, fbId === selected, vote);
@@ -24,7 +23,7 @@ const submit = function* submit() {
 
     this.status = 200;
   } catch(err) {
-    console.error(err);
+    console.error('Error submitting a vote', err);
     this.status = 500;
   }
 };

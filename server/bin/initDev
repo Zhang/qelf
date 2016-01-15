@@ -13,10 +13,10 @@ const DEFAULT_TRAITS = _.map(traits.defaultTraits, function(trait) {
 const co = require('co');
 const config = require('../app/config');
 
-// if (config.isProd) {
-//   console.error(new Error('Cannot init dev on prod instance'));
-//   process.exit(1);
-// }
+if (config.isProd) {
+  console.error(new Error('Cannot init dev on prod instance'));
+  process.exit(1);
+}
 
 function getAllExcept(user, users) {
   return _.filter(users, function(u) {
@@ -54,7 +54,7 @@ function generateUsers(numberOf) {
   });
 }
 
-var mockUsers = generateUsers(10);
+var mockUsers = generateUsers(4);
 function addAcct(acct) {
   co(function* () {
     try {

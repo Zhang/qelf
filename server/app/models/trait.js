@@ -4,7 +4,7 @@ const db = require('../db');
 const collection = db.get('trait');
 const _ = require('lodash');
 const TraitSchema = require('./schemas').trait;
-
+const co = require('co');
 const modelCRUD = require('./concerns/modelCRUD')('trait', collection, TraitSchema);
 const newTrait = function newTrait(templateId, themes) {
   return {
@@ -29,7 +29,11 @@ const getFromArrByTemplateId = function(traits, templateId) {
     templateId: templateId
   });
 };
-
+co(function* () {
+  var traits = yield modelCRUD.query({});
+  // console.log(traits);
+  console.log(_.sum(traits, 'count'));
+});
 module.exports = {
   get: modelCRUD.get,
   add: modelCRUD.create,
