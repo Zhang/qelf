@@ -308,7 +308,7 @@ div.voting-container {
   font-size: 212px;
 }
 div.votes {
-  height: 65vh;
+  height: 64vh;
   min-height: 350px;
   position: relative;
   margin: 0 auto;
@@ -361,7 +361,7 @@ div.card .card-content .card-main .contestant-picture {
 }
 div.card .card-content .card-main .contestant-overlay {
   background-color: #d3d6ee;
-  height: calc(43vh + 7px * 2 + 25px);
+  height: calc(43vh + 1.5vh * 2 + 4vh);
   position: absolute;
   display: none;
   color: #221122;
@@ -402,8 +402,8 @@ div.card .card-content .card-main .contestant-description {
   -webkit-justify-content: center;
   -webkit-align-items: center;
   display: -webkit-flex;
-  height: 25px;
-  padding: 7px;
+  height: 4vh;
+  padding: 1.5vh;
   overflow: hidden;
   font-size: 14px;
   font-weight: bold;
@@ -592,7 +592,7 @@ div.card .card-content .card-header {
   -webkit-align-items: flex-start;
   -webkit-flex-direction: column;
   display: -webkit-flex;
-  height: calc(100% - 65vh - 2 * 10px - 28px);
+  height: calc(100% - 64vh - 2 * 10px - 28px);
   align-items: center;
   justify-content: center;
   margin: 0 calc(50% - 35% / 2 - 10px);
