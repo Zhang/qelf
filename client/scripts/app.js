@@ -36,13 +36,13 @@
         cordova.plugins.Keyboard.disableScroll(true);
       }
 
-      // if (window.Connection && navigator.connection.type === Connection.NONE) {
-      //   $timeout(function() {
-      //     $state.go(STATE.notConnected);
-      //   });
-      // } else {
-      //   $state.go(STATE.voting);
-      // }
+      if (window.Connection && navigator.connection.type === Connection.NONE) {
+        $timeout(function() {
+          $state.go(STATE.notConnected);
+        });
+      } else {
+        $state.go(STATE.voting);
+      }
     });
 
     $rootScope.isIOS = ionic.Platform.isIOS();
