@@ -357,11 +357,11 @@ div.card .card-content .card-main .contestant-picture {
   background-position: 50% 50%;
   width: 100%;
   background-color: white;
-  height: 200px;
+  height: 45vh;
 }
 div.card .card-content .card-main .contestant-overlay {
   background-color: #d3d6ee;
-  height: calc(200px + 50px);
+  height: calc(45vh + 50px);
   position: absolute;
   display: none;
   color: #221122;
