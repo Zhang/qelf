@@ -81,7 +81,7 @@
 
     var digestDebounced = _.debounce(function() {
       $scope.$digest();
-    }, 15);
+    }, 10);
     $scope.onDrag = function(direction, score) {
       if (!leftOverlay || !rightOverlay) {
         leftOverlay = $('.card').find('.contestant-overlay.left').first();
@@ -147,8 +147,8 @@
             this.startX = (this.parentWidth / 2) - (this.width / 2);
             this.startY = 0;
 
-            this.threshold = (this.parentWidth / 3);
-            this.voteThreshold = (this.parentWidth / 2) + (this.width / 2);
+            this.threshold = (this.parentWidth /5);
+            this.voteThreshold = (this.parentWidth / 2); //+ (this.width / 2);
 
             this.bindEvents();
             transformUtils.translate3d(this.el, this.startX, this.startY);
