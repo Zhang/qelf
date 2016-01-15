@@ -77,7 +77,7 @@
   }
   .sort-text {
     .ellipsis-overflow();
-    flex-grow: 2;
+    .flex-grow(@growth: 2);
     padding: 0 10px;
   }
   &:not(:first-child) {
@@ -116,7 +116,7 @@
   }
   .trait-title {
     .ellipsis-overflow();
-    flex-grow: 1;
+    .flex-grow(@growth: 2);
     font-weight: bold;
     .trait-score {
       font-weight: 400;
