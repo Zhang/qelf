@@ -81,7 +81,7 @@
 
     var digestDebounced = _.debounce(function() {
       $scope.$digest();
-    }, 15);
+    }, 10);
     $scope.onDrag = function(direction, score) {
       if (!leftOverlay || !rightOverlay) {
         leftOverlay = $('.card').find('.contestant-overlay.left').first();

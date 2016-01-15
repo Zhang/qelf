@@ -113,7 +113,7 @@
 
     $scope.viewByTheme = function() {
       var opts = {};
-      var ALL_TRAITS = 'All Traits';
+      var ALL_TRAITS = 'All';
       var UNIQUE_THEMES = _.compact(_.uniq(_.flatten(_.map($scope.traits, 'themes'))));
       UNIQUE_THEMES.unshift(ALL_TRAITS)
       opts.items = _.map(UNIQUE_THEMES, function(theme) {
