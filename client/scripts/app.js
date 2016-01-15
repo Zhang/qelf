@@ -34,6 +34,9 @@
       if (_.get(window, 'cordova.plugins.Keyboard')) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
+        $rootScope.$on('$stateChangeSuccess', function() {
+          cordova.plugins.Keyboard.close();
+        });
       }
 
       if (window.Connection && navigator.connection.type === Connection.NONE) {
