@@ -26,6 +26,9 @@
         },
         "cordova-plugin-ios-longpress-fix": {
             "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
         }
     },
     "dependent_plugins": {}

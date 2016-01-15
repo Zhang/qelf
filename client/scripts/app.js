@@ -31,12 +31,9 @@
 
   module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE) {
     $ionicPlatform.ready(function() {
-      if (_.get(window, 'cordova.plugins.Keyboard')) {
+      if (_.get(cordova, 'plugins.Keyboard')) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-        $rootScope.$on('$stateChangeSuccess', function() {
-          cordova.plugins.Keyboard.close();
-        });
       }
 
       if (window.Connection && navigator.connection.type === Connection.NONE) {
@@ -56,5 +53,8 @@
 
   module.service('Mixpanel', function() {
     return window.mixpanel;
+  });
+  module.service('Keyboard', function() {
+    return _.get(cordova, 'plugins.Keyboard');
   });
 })();

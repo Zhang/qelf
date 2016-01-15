@@ -65,6 +65,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#997799" />
+    <preference name="StatusBarBackgroundColor" value="#3E18BD" />
     <preference name="DisallowOverscroll" value="true" />
+    <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
 </widget>
