@@ -28,20 +28,26 @@
     });
   });
 
-  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, Modals, ShareService) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, Modals, ShareService, $timeout, Keyboard) {
     $scope.isSelected = function(state) {
       return $state.current.name === STATE[state];
     };
 
     $scope.goTo = function(state) {
-      if (STATE[state]) {
-        $state.go(STATE[state]);
-      } else if (state === 'lastState') {
-        $state.go($scope.lastState || STATE.profile);
-        $scope.lastState = '';
-      } else {
-        console.log('invalid state: ', state);
+      if (Keyboard) {
+        Keyboard.close();
       }
+      //Necessary to wait because keyboard may not be out of viewport
+      $timeout(function() {
+        if (STATE[state]) {
+          $state.go(STATE[state]);
+        } else if (state === 'lastState') {
+          $state.go($scope.lastState || STATE.profile);
+          $scope.lastState = '';
+        } else {
+          console.log('invalid state: ', state);
+        }
+      })
     };
 
     $scope.openPopup = function() {
