@@ -636,6 +636,25 @@ div.card .card-content .card-header {
   margin: 10px auto;
   padding: 20px;
 }
+.empty-qelfin {
+  height: 30vh;
+  width: 38vh;
+  margin: 0 auto;
+}
+.empty-qelfin .empty-qelf-svg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-image: url('/assets/empty-state.svg');
+  height: 94%;
+  width: 94%;
+  margin: 3% auto;
+}
+.empty-state-text {
+  margin-top: 10vh;
+}
 .placeholder-blinker,
 .blinker-text {
   height: 15px;

@@ -31,7 +31,7 @@
 
   module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE) {
     $ionicPlatform.ready(function() {
-      if (_.get(cordova, 'plugins.Keyboard')) {
+      if (_.get(window, 'cordova.plugins.Keyboard')) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
       }
@@ -55,6 +55,6 @@
     return window.mixpanel;
   });
   module.service('Keyboard', function() {
-    return _.get(cordova, 'plugins.Keyboard');
+    return _.get(window, 'cordova.plugins.Keyboard');
   });
 })();
