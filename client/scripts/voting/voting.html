@@ -1,18 +1,18 @@
 <div class="subview-container voting-container">
   <div class="votes">
-    <div class="empty-state" ng-if="cardDeck.isEmpty">
-      <div class="icon-set">
-        <i class="empty-icon ion-android-happy"></i>
+    <div class="empty-state" ng-if="!cardDeck.isEmpty">
+      <div class="empty-qelfin">
+        <i class="empty-qelf-svg"></i>
       </div>
       <div class="empty-state-text">
         <div>You don't have any friends to vote on, try to invite 6-9 friends for a good mix of votes!</div>
         <div class="invite-friends-btn" ng-click="share()">Invite Friends!</div>
       </div>
     </div>
-    <card ng-if="!cardDeck.isEmpty" vote="vote" ng-repeat="vote in cardDeck.display"></card>
+    <card ng-if="cardDeck.isEmpty" vote="vote" ng-repeat="vote in cardDeck.display"></card>
   </div>
-  <div ng-if="!cardDeck.isEmpty" class="selection-container">
-    <div ng-if="!$root.user.viewed.dragText">
+  <div ng-if="cardDeck.isEmpty" class="selection-container">
+    <div ng-if="!$root.user.viewed.dragText && !cardDeck.isEmpty">
       <div class="blinker-text"><-- Drag to Vote --></div>
     </div>
     <div ng-if="$root.user.viewed.dragText">
