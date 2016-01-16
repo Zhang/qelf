@@ -34,7 +34,7 @@
     };
 
     $scope.goTo = function(state) {
-      if (Keyboard) {
+      if (Keyboard && Keyboard.close) {
         Keyboard.close();
       }
       //Necessary to wait because keyboard may not be out of viewport
@@ -47,7 +47,7 @@
         } else {
           console.log('invalid state: ', state);
         }
-      })
+      });
     };
 
     $scope.openPopup = function() {
