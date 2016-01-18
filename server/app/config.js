@@ -14,5 +14,5 @@ module.exports = {
   isTest: isTest,
   isProd: isProd,
   mongoURI: mongoURI,
-  mongoVersion: '3.0.x'
+  mongoVersion: '3.x.x'
 };
