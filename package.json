@@ -23,10 +23,16 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-x-socialsharing",
+    {
+      "id": "phonegap-facebook-plugin",
+      "locator": "/Users/moxi/Desktop/phonegap-facebook-plugin"
+    }
   ],
   "cordovaPlatforms": [
-    "android"
+    "android",
+    "ios"
   ],
   "dependencies": {
     "cordova": "~5.4.1",

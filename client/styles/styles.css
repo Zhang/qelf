@@ -569,7 +569,7 @@ div.card .card-content .card-header {
   position: absolute;
   height: 100%;
   left: 0;
-  background-color: #3E18BD;
+  background-color: #7658DA;
   z-index: 5;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -647,7 +647,8 @@ div.card .card-content .card-header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  background-image: url('/assets/empty-state.svg');
+  background-image: url('../assets/empty-state.svg');
+  background-size: contain;
   height: 94%;
   width: 94%;
   margin: 3% auto;
@@ -756,6 +757,12 @@ div.card .card-content .card-header {
 .feedback-container {
   color: #221122;
   position: relative;
+}
+.feedback-container .feedback-email .email-text {
+  margin-top: 10px;
+  border: 1px solid #3E18BD;
+  padding: 15px;
+  width: calc(100% - 2 * 1px - 2 * 0px - 2 * 15px);
 }
 .feedback-container .feedback-text {
   margin-top: 10px;

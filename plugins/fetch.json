@@ -47,6 +47,14 @@
         "is_top_level": true,
         "variables": {}
     },
+    "cordova-plugin-x-socialsharing": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-x-socialsharing"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "phonegap-facebook-plugin": {
         "source": {
             "type": "local",
@@ -57,29 +65,5 @@
             "APP_ID": "201708533509741",
             "APP_NAME": "qelf"
         }
-    },
-    "cordova-plugin-x-socialsharing": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-x-socialsharing"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-network-information": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-network-information"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-ios-longpress-fix": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-ios-longpress-fix"
-        },
-        "is_top_level": true,
-        "variables": {}
     }
 }

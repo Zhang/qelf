@@ -7,36 +7,30 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "phonegap-facebook-plugin": {
-            "APP_ID": "409640992567240",
-            "APP_NAME": "Sheen",
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.Qelf.qelf"
         },
-        "cordova-plugin-ios-longpress-fix": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "201708533509741",
+            "APP_NAME": "qelf",
             "PACKAGE_NAME": "com.Qelf.qelf"
         }
     },
