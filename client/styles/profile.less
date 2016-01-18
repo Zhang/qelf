@@ -116,6 +116,8 @@
   }
   .trait-title {
     .ellipsis-overflow();
+    //Mobile safari not respecting zindex with overflow hidden in this case
+    overflow: visible;
     .flex-grow(@growth: 2);
     font-weight: bold;
     .trait-score {

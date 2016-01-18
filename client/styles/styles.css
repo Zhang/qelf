@@ -583,6 +583,7 @@ div.card .card-content .card-header {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  overflow: visible;
   flex-grow: 2;
   -webkit-flex-grow: 2;
   font-weight: bold;

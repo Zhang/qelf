@@ -7,7 +7,7 @@
     return {
       share: function() {
         if (window.cordova) {
-          window.plugins.socialsharing.share('Hey, I\'m inviting you to use Qelf, an app that let\'s you learn who you are from other people\'s perspectives. Check it out at www.Qelf.co', 'Check out Qelf');
+          window.plugins.socialsharing.share('I\'m inviting you to use Qelf - an app that lets you see yourself other people\'s perspectives and answer questions like: \'What can I do to be better leader?\'. Check it out at http://www.Qelf.co', 'Check out Qelf');
         } else {
           //Bug opening a modal from another modal
           alert('Sharing is not available to web view');
