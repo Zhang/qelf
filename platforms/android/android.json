@@ -13,6 +13,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
@@ -21,11 +25,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
                         },
                         {
@@ -51,34 +55,18 @@
                         {
                             "xml": "<access origin=\"https://*.akamaihd.net\" />",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            },
-            "res/values/facebookconnect.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<string name=\"fb_app_id\">409640992567240</string>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<string name=\"fb_app_name\">Sheen</string>",
-                            "count": 1
                         }
                     ]
                 }
             },
             "AndroidManifest.xml": {
                 "parents": {
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        }
+                    ],
                     "application": [
                         {
                             "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationId\" android:value=\"@string/fb_app_id\" />",
@@ -88,15 +76,18 @@
                             "xml": "<activity android:label=\"@string/fb_app_name\" android:name=\"com.facebook.LoginActivity\" android:theme=\"@android:style/Theme.Translucent.NoTitleBar\" />",
                             "count": 1
                         }
-                    ],
-                    "/manifest": [],
+                    ]
+                }
+            },
+            "res/values/facebookconnect.xml": {
+                "parents": {
                     "/*": [
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "xml": "<string name=\"fb_app_id\">201708533509741</string>",
                             "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "xml": "<string name=\"fb_app_name\">qelf</string>",
                             "count": 1
                         }
                     ]
@@ -105,36 +96,30 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "phonegap-facebook-plugin": {
-            "APP_ID": "409640992567240",
-            "APP_NAME": "Sheen",
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.example.Votely"
-        },
-        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.Qelf.qelf"
         },
-        "cordova-plugin-ios-longpress-fix": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.Qelf.qelf"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "201708533509741",
+            "APP_NAME": "qelf",
             "PACKAGE_NAME": "com.Qelf.qelf"
         }
     },
@@ -147,6 +132,12 @@
             "clobbers": [
                 "device"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+            "id": "cordova-plugin-whitelist.whitelist",
+            "pluginId": "cordova-plugin-whitelist",
+            "runs": true
         },
         {
             "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
@@ -165,12 +156,6 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-            "id": "cordova-plugin-whitelist.whitelist",
-            "pluginId": "cordova-plugin-whitelist",
-            "runs": true
-        },
-        {
             "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
             "id": "ionic-plugin-keyboard.keyboard",
             "pluginId": "ionic-plugin-keyboard",
@@ -178,14 +163,6 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
-        },
-        {
-            "file": "plugins/phonegap-facebook-plugin/facebookConnectPlugin.js",
-            "id": "phonegap-facebook-plugin.FacebookConnectPlugin",
-            "pluginId": "phonegap-facebook-plugin",
-            "clobbers": [
-                "facebookConnectPlugin"
-            ]
         },
         {
             "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
@@ -196,33 +173,22 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-network-information/www/network.js",
-            "id": "cordova-plugin-network-information.network",
-            "pluginId": "cordova-plugin-network-information",
+            "file": "plugins/phonegap-facebook-plugin/facebookConnectPlugin.js",
+            "id": "phonegap-facebook-plugin.FacebookConnectPlugin",
+            "pluginId": "phonegap-facebook-plugin",
             "clobbers": [
-                "navigator.connection",
-                "navigator.network.connection"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-            "id": "cordova-plugin-network-information.Connection",
-            "pluginId": "cordova-plugin-network-information",
-            "clobbers": [
-                "Connection"
+                "facebookConnectPlugin"
             ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-console": "1.0.2",
         "cordova-plugin-device": "1.1.0",
+        "cordova-plugin-console": "1.0.2",
+        "cordova-plugin-whitelist": "1.2.0",
         "cordova-plugin-splashscreen": "3.0.0",
         "cordova-plugin-statusbar": "2.0.0",
-        "cordova-plugin-whitelist": "1.2.0",
         "ionic-plugin-keyboard": "1.0.8",
-        "phonegap-facebook-plugin": "0.12.0",
-        "cordova-plugin-x-socialsharing": "5.0.8",
-        "cordova-plugin-network-information": "1.1.0",
-        "cordova-plugin-ios-longpress-fix": "1.1.0"
+        "cordova-plugin-x-socialsharing": "5.0.9",
+        "phonegap-facebook-plugin": "0.12.0"
     }
 }

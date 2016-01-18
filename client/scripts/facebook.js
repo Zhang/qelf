@@ -7,6 +7,7 @@
   module.factory('FBService', function($q) {
     // If we're on a mobile platform use facebookConnectPlugin, otherwise dont
     if (window.cordova) {
+      if (!facebookConnectPlugin) alert('Missing facebookConnectPlugin');
       return {
         login: function() {
           var deferred = $q.defer();
