@@ -218,9 +218,8 @@ const defaults = [
   {
     id: 'Empathy',
     comparisons: [
+      'Who is a more empathetic person?',
       'Who is more able to see from your point of view?',
-      'Who is more empathetic towards your point of view?',
-      'Who is less likely to litter?', //Ehhhh
       'Who is more likely to give money to a homeless person?'
     ],
     themes: [THEMES.likeability, THEMES.leadership]
@@ -258,6 +257,20 @@ const defaults = [
       'Who is more likely to invite you to hang out?'
     ],
     themes: [THEMES.friend]
+  },
+  {
+    id: 'Humorous',
+    comparisons: [
+      'Who is funnier?',
+      'Who tells better jokes?'
+    ]
+  },
+  {
+    id: 'Creativity',
+    comparisons: [
+      'Who is more creative?',
+      'Who is better at solving riddles?'
+    ]
   }
 ];
 

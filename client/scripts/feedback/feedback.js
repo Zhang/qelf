@@ -15,20 +15,16 @@
   module.controller('Feedback', function($scope, FeedbackAPI, Modals) {
     $scope.submit = function() {
       if ($scope.feedbackText) {
-        Modals.open(Modals.TYPES.email, {
-          onClose: function(modalScope) {
-            FeedbackAPI.create($scope.feedbackText, modalScope.email || '').then(function() {
-              $scope.feedbackText = '';
-              Modals.open(Modals.TYPES.alert, {
-                title: 'Thanks for the feedback!'
-              });
-            }, function() {
-              Modals.open(Modals.TYPES.alert, {
-                text: 'Something went wrong with sending your feedback. Feel free to email scottzhang235@gmail.com!',
-                title: 'Oops!'
-              });
-            });
-          }
+        FeedbackAPI.create($scope.feedbackText, $scope.email || '').then(function() {
+          $scope.feedbackText = '';
+          Modals.open(Modals.TYPES.alert, {
+            title: 'Thanks for the feedback!'
+          });
+        }, function() {
+          Modals.open(Modals.TYPES.alert, {
+            text: 'Something went wrong with sending your feedback. Feel free to email scottzhang235@gmail.com!',
+            title: 'Oops!'
+          });
         });
       } else {
         Modals.open(Modals.TYPES.alert, {
