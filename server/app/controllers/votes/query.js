@@ -11,6 +11,7 @@ const query = function* query() {
   const votes = yield voteModel.query({voterId: facebookId, selected: null});
   //const truncatedList = _.shuffle(votes).slice(0, 50);
   const denormalizedVotes = yield denormalizeVotes(votes);
+
   this.body = _.shuffle(denormalizedVotes);
   this.status = 200;
 };

@@ -10,10 +10,16 @@ module.exports = function* (votes) {
   });
 
   return (function composeVotes() {
-    return _.map(votes, function(vote) {
+    return _.compact(_.map(votes, function(vote) {
       const contestantIds = vote.contestants;
-      vote.contestants = [_.find(contestants, {facebookId: contestantIds[0]}), _.find(contestants, {facebookId: contestantIds[1]})];
+      const contestant1 = _.find(contestants, {facebookId: contestantIds[0]});
+      const contestant2 = _.find(contestants, {facebookId: contestantIds[1]});
+      if (!contestant1 || !contestant2) {
+        console.error('Refusing to denormalize vote: ', vote.id, ' because of missing contestant');
+        return null;
+      }
+      vote.contestants = [contestant1, contestant2];
       return vote;
-    });
+    }));
   })();
 };
