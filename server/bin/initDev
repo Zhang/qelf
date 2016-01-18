@@ -13,10 +13,10 @@ const DEFAULT_TRAITS = _.map(traits.defaultTraits, function(trait) {
 const co = require('co');
 const config = require('../app/config');
 
-if (config.isProd) {
-  console.error(new Error('Cannot init dev on prod instance'));
-  process.exit(1);
-}
+// if (config.isProd) {
+//   console.error(new Error('Cannot init dev on prod instance'));
+//   process.exit(1);
+// }
 
 function getAllExcept(user, users) {
   return _.filter(users, function(u) {
@@ -34,11 +34,11 @@ function generateUsers(numberOf) {
     'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/11222815_10101966010266737_978063582363883619_n.jpg?oh=1200337f37288c66fe78026ac4734257&oe=571A381D',
     'https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/11389991_10153380756994173_3936534420190887871_n.jpg?oh=7414a2a09cb545c3c07d2f361474af7d&oe=56D91526',
     'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xat1/v/t1.0-9/12529_10151552078710900_2080378340_n.jpg?oh=087cc9e9ffa6810824095c3ee3c1ccc5&oe=570302E8',
-    'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/972142_10200295770226069_1232403663_n.jpg?oh=516b046d06a2e44f5383092a11e48099&oe=56FE52F3',
-    'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/11836765_10204935766497656_1528125275422002239_n.jpg?oh=a500419616c8bceea2d19c0d44afe017&oe=56FCD1FC'
+    // 'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xtf1/v/t1.0-9/972142_10200295770226069_1232403663_n.jpg?oh=516b046d06a2e44f5383092a11e48099&oe=56FE52F3',
+    // 'https://scontent-lax3-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/11836765_10204935766497656_1528125275422002239_n.jpg?oh=a500419616c8bceea2d19c0d44afe017&oe=56FCD1FC'
   ];
   return _.map(fbIds, function(id, index, collection) {
-    const userPicture = pictures[Math.floor(Math.random() * pictures.length)];
+    const userPicture = pictures[index]; //Math.floor(Math.random() * pictures.length)];
     return {
       facebookId: id,
       name: 'test user ' + index,
@@ -54,7 +54,7 @@ function generateUsers(numberOf) {
   });
 }
 
-var mockUsers = generateUsers(4);
+var mockUsers = generateUsers(5);
 function addAcct(acct) {
   co(function* () {
     try {

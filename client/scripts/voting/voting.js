@@ -113,12 +113,12 @@
       $scope.$broadcast('vote:' + result, $scope.cardDeck.top, $scope.cardDeck.top.displayScore);
       CardDeckManager.getNextCard();
     };
-    // (function autovoteall() {
-    //   setInterval(function() {
-    //     $scope.cardDeck.top.displayScore = Math.ceil(Math.random() * 100);
-    //     $scope.vote('left');
-    //   }, 400);
-    // })();
+    (function autovoteall() {
+      setInterval(function() {
+        $scope.cardDeck.top.displayScore = Math.ceil(Math.random() * 100);
+        $scope.vote('left');
+      }, 50);
+    })();
     $scope.share = function() {
       $window.plugins.socialsharing.share('Invite some people to aggregate self', 'You\'re invitied');
     };
