@@ -117,7 +117,7 @@
     //   setInterval(function() {
     //     $scope.cardDeck.top.displayScore = Math.ceil(Math.random() * 100);
     //     $scope.vote('left');
-    //   }, 50);
+    //   }, 250);
     // })();
     $scope.share = function() {
       ShareService.share();

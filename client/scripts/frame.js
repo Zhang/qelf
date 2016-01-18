@@ -18,11 +18,16 @@
       controller: 'Frame',
       resolve: {
         CurrentUser: function(AccountAPI, $rootScope, $state) {
-          return AccountAPI.getCurrentUser().then(function resolve(res) {
+          return AccountAPI.get('7e56a6b0-9db3-40a8-8c58-d5ee012b8ea4').then(function resolve(res) {
             $rootScope.user = res.data;
           }, function reject() {
             $state.go(STATE.login);
           });
+          // return AccountAPI.getCurrentUser().then(function resolve(res) {
+          //   $rootScope.user = res.data;
+          // }, function reject() {
+          //   $state.go(STATE.login);
+          // });
         }
       }
     });
