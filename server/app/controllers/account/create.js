@@ -8,7 +8,7 @@ const accountModel = require('../../models/account');
 const authentication = require('../../lib/authentication');
 const traitModel = require('../../models/trait');
 const completedVotesModel = require('../../models/completedVotes');
-const traits = require('../../../bin/traits');
+const traits = require('../../../scripts/traits');
 const _ = require('lodash');
 const logger = require('../../logger');
 
