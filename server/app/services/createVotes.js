@@ -33,6 +33,7 @@ function shuffleContestants(id1, id2) {
   return Math.random() > 0.5 ? [id1, id2] : [id2, id1];
 }
 
+//Currently assumes that all traits are applied to each user, so queries all trait templates
 module.exports = function* (facebookId) {
   const values = yield [accountModel.getByFacebookId(facebookId), traitTemplateModel.query({}), completedVotesModel.getByFacebookId(facebookId)];
   const account = values[0];

@@ -3,6 +3,7 @@
 const createVotes = require('../app/services/createVotes');
 const voteModel = require('../app/models/vote');
 const traitTemplateModel = require('../app/models/traitTemplate');
+const traits = require('../scripts/traits');
 const co = require('co');
 const expect = require('expect.js');
 const testUtils = require('./testUtils');
@@ -46,5 +47,14 @@ describe('createVotes', function() {
 
     const TOTAL_POSSIBLE_VOTES = ((MOCK_USER.friends.length * ( MOCK_USER.friends.length - 1 )) / 2 );
     expect(votes).to.have.length(TOTAL_POSSIBLE_VOTES);
+  }));
+
+  it('should create an appropriate amount of votes', co.wrap(function* () {
+    yield traits.addDefault();
+    const templates = yield traitTemplateModel.query({});
+    yield createVotes(MOCK_USER.facebookId);
+    const votes = yield voteModel.query({});
+    const maxVotes = ((MOCK_USER.friends.length * ( MOCK_USER.friends.length - 1 )) / 2) * templates.length;
+    expect(maxVotes).to.equal(votes.length);
   }));
 });
