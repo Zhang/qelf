@@ -201,7 +201,7 @@ module.exports = function (grunt) {
           reporter: 'spec',
           clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
         },
-        src: ['server/test/**/*.js']
+        src: ['server/test/testHarness.js', 'server/test/**/*.js']
       }
     }
   });
