@@ -48,7 +48,7 @@ module.exports = function* (facebookId) {
   }
 
   const TOTAL_POSSIBLE_VOTES = ((account.friends.length * ( account.friends.length - 1 )) / 2 ) * (templates.length);
-  if (completedVotes.length === TOTAL_POSSIBLE_VOTES) {
+  if (completedVotes.length >= TOTAL_POSSIBLE_VOTES) {
     //don't need to create any more votes;
     return [];
   }
