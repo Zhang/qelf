@@ -3,12 +3,13 @@
 const Joi = require('joi');
 const uuid = require('uuid');
 const _ = require('lodash');
+const logger = require('../../logger');
 
 function validate(obj, schema, collectionName) {
   const validity = Joi.validate(obj, schema);
   if (validity.error) {
-    console.log('Invalid ' + collectionName + ' object: ', JSON.stringify(obj));
-    console.log('Error: ', validity.error);
+    logger.error('Invalid ' + collectionName + ' object: ', JSON.stringify(obj));
+    logger.error('Error: ', validity.error);
     throw validity.error;
   }
 }
@@ -34,7 +35,8 @@ module.exports = function(collectionName, collection, schema) {
         yield collection.insert(toAddWithIds);
         return toAddWithIds;
       } catch (err) {
-        console.error('error attempting to bulk insert ' + collectionName + ':', err);
+        logger.error(err);
+        throw err;
       }
     },
     create: function* create(toAdd) {
@@ -51,7 +53,7 @@ module.exports = function(collectionName, collection, schema) {
         yield collection.insert(toAdd);
         return toAdd;
       } catch (err) {
-        console.error('error attempting to create ' + collectionName + ':', err);
+        logger.error('error attempting to create ' + collectionName + ':', err);
         throw err;
       }
     },

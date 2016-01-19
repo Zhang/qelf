@@ -4,6 +4,7 @@ const monk = require('monk');
 const semver = require('semver');
 const q = require('q');
 const config = require('./config');
+const log = require('./logger');
 
 function validateMongoVersion(db) {
   function promisifiedBuildInfo() {
@@ -14,7 +15,7 @@ function validateMongoVersion(db) {
         deferred.resolve(res);
       },
       function(err) {
-        console.error('error checking mongo version', err);
+        log.error('error checking mongo version', err);
         deferred.reject(err);
       }
     );
@@ -24,7 +25,7 @@ function validateMongoVersion(db) {
   promisifiedBuildInfo().then(function(res) {
     const version = res.version;
     if (!semver.satisfies(version, config.mongoVersion)) {
-      console.error('WRONG MONGO VERSION: ' + version + ' - VERSION ' + config.mongoVersion + ' REQUIRE MONGO VERSION ');
+      log.error('WRONG MONGO VERSION: ' + version + ' - VERSION ' + config.mongoVersion + ' REQUIRE MONGO VERSION ');
       process.exit(1);
     } else {
       return null;
@@ -45,7 +46,7 @@ module.exports = (function() {
   if (config.isTest) {
     process.on('exit', function() {
       db.driver.dropDatabase(config.mongoURI, function(err) {
-        if (err) return console.log(err);
+        if (err) return log.error(err);
       });
     });
   }

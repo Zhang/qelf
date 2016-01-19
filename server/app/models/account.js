@@ -5,6 +5,7 @@ const collection = db.get('account');
 const facebook = require('../lib/facebook');
 const traitModel = require('./trait');
 const AccountSchema = require('./schemas').account;
+const logger = require('../logger');
 
 const modelCRUD = require('./concerns/modelCRUD')('account', collection, AccountSchema);
 const getByFacebookId = function getByFacebookId(facebookId) {
@@ -27,7 +28,7 @@ const setComponentViewed = function* setComponentViewed(id, component) {
   try {
     yield modelCRUD.updateById(id, update);
   } catch (e) {
-    console.error('error completing walkthrough', e);
+    logger.error('error completing walkthrough', e);
     throw e;
   }
 };

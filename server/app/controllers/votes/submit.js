@@ -3,6 +3,7 @@
 const voteModel = require('../../models/vote');
 const accountModel = require('../../models/account');
 const _ = require('lodash');
+const logger = require('../../logger');
 
 //Submitting a vote :
 //Updates the vote obj to have a selected field
@@ -23,7 +24,7 @@ const submit = function* submit() {
 
     this.status = 200;
   } catch(err) {
-    console.error('Error submitting a vote', err);
+    logger.error('Error submitting a vote', err);
     this.status = 500;
   }
 };

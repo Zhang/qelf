@@ -3,6 +3,7 @@
 const accountModel = require('../../models/account');
 const viewComponents = require('../../models/schemas').viewComponents;
 const _ = require('lodash');
+const logger = require('../../logger');
 
 const current = function* current() {
   const body = this.request.body;
@@ -13,7 +14,7 @@ const current = function* current() {
       yield accountModel.setComponentViewed(acctId, component);
       this.body = 200;
     } catch(e) {
-      console.error(e);
+      logger.error(e);
       this.body = e.message;
       this.status = 500;
     }

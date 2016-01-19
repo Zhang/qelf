@@ -8,8 +8,8 @@ const _ = require('lodash');
 const query = function* query() {
   const facebookId = this.params.facebookId;
   yield createVotes(facebookId);
+
   const votes = yield voteModel.query({voterId: facebookId, selected: null});
-  //const truncatedList = _.shuffle(votes).slice(0, 50);
   const denormalizedVotes = yield denormalizeVotes(votes);
 
   this.body = _.shuffle(denormalizedVotes);

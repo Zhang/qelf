@@ -10,6 +10,7 @@ const traitModel = require('../../models/trait');
 const completedVotesModel = require('../../models/completedVotes');
 const traits = require('../../../bin/traits');
 const _ = require('lodash');
+const logger = require('../../logger');
 
 const create = function* create() {
   const body = this.request.body;
@@ -47,7 +48,7 @@ const create = function* create() {
   } catch (err) {
     this.body = err.message;
     this.status = 500;
-    console.error(err);
+    logger.error(err);
   }
 };
 

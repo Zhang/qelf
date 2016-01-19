@@ -2,6 +2,7 @@
 
 const accountModel = require('../models/account');
 const _ = require('lodash');
+const logger = require('../logger');
 
 module.exports = function* (votes) {
   const contestantIds = _.uniq(_.flatten(_.map(votes, 'contestants')));
@@ -15,7 +16,7 @@ module.exports = function* (votes) {
       const contestant1 = _.find(contestants, {facebookId: contestantIds[0]});
       const contestant2 = _.find(contestants, {facebookId: contestantIds[1]});
       if (!contestant1 || !contestant2) {
-        console.error('Refusing to denormalize vote: ', vote.id, ' because of missing contestant');
+        logger.warn('Refusing to denormalize vote: ', vote.id, ' because of missing contestant');
         return null;
       }
       vote.contestants = [contestant1, contestant2];

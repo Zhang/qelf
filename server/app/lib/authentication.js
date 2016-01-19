@@ -7,6 +7,7 @@ const passport = require('koa-passport');
 const accountModel = require('../models/account');
 const FacebookStrategy = require('passport-facebook-token');
 const co = require('co');
+const logger = require('../logger');
 
 passport.serializeUser(function(user, done) {
   if (user && user.id) {
@@ -38,7 +39,7 @@ passport.use(new FacebookStrategy({
   co(function* () {
     let account = yield accountModel.getByFacebookId(profile.id);
     if (!account) {
-      console.log('No such account: ', profile);
+      logger.warn('No such account: ', profile);
       return done(null, false);
     }
     if (account.accessToken !== accessToken) {
@@ -82,7 +83,7 @@ module.exports = {
     return passport.authenticate('facebook-token', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {
-        console.error('Authentication error: ', info);
+        logger.error('Authentication error: ', info);
         self.status = 403;
       } else {
         self.status = 200;

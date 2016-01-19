@@ -9,6 +9,7 @@
   "dependencies": {
     "async": "^1.5.0",
     "aws-sdk": "2.1.49",
+    "bunyan": "^1.5.1",
     "co": "4.6.0",
     "joi": "6.6.1",
     "kcors": "1.0.1",

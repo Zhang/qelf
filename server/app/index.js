@@ -1,13 +1,13 @@
 'use strict';
 
+const log = require('./logger');
 const bodyParser = require('koa-bodyparser');
 const koa = require('koa');
 const route = require('koa-route');
 const mount = require('koa-mount');
-const logger = require('koa-logger');
+const devLogger = require('koa-logger');
 const cors = require('kcors');
 const authentication = require('./lib/authentication');
-
 const app = koa();
 
 /**
@@ -19,10 +19,10 @@ app.use(bodyParser({
 app.use(cors({
   credentials: true
 }));
-app.use(logger());
+app.use(devLogger());
 authentication.initialize(app);
 app.on('error', function(err) {
-  console.error(err);
+  log.error(err);
 });
 /**
  * Routes.

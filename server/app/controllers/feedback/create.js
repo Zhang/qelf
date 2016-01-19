@@ -6,9 +6,10 @@
 
 const feedbackModel = require('../../models/feedback');
 const nodemailer = require('nodemailer');
+const logger = require('../../logger');
 
 if (!process.env.SUPPORT_EMAIL || !process.env.SUPPORT_PASSWORD) {
-  console.error('MISSING SUPPORT_EMAIL AND SUPPORT_PASSWORD, FEEDBACK WILL NOT SEND EMAILS');
+  logger.error('MISSING SUPPORT_EMAIL AND SUPPORT_PASSWORD, FEEDBACK WILL NOT SEND EMAILS');
 }
 
 const transporter = nodemailer.createTransport({
@@ -46,13 +47,13 @@ const create = function* create() {
         subject: 'I GOTZ APP FEEDBACK',
         text: text + ' EMAIL: ' + email + ' USER OBJECT: ' + JSON.stringify(account)
       }, function() {
-        console.log('node email cb arguments: ', arguments);
+        logger.info('node email cb arguments: ', arguments);
       });
     }
 
     this.status = 200;
   } catch (e) {
-    console.error('error sending feedback', e);
+    logger.error('error sending feedback', e);
     this.status = 500;
   }
 };
