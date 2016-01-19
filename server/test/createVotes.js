@@ -35,4 +35,16 @@ describe('createVotes', function() {
     expect(votes).to.be.an('array');
     expect(votes).to.have.length(TOTAL_POSSIBLE_VOTES);
   }));
+
+  it('should stop adding votes after max has been reached', co.wrap(function* () {
+    const TEMPLATE_ID = traitTemplate.id;
+    yield createVotes(MOCK_USER.facebookId);
+    yield createVotes(MOCK_USER.facebookId);
+    const votes = yield voteModel.query({
+      traitTemplateId: TEMPLATE_ID
+    });
+
+    const TOTAL_POSSIBLE_VOTES = ((MOCK_USER.friends.length * ( MOCK_USER.friends.length - 1 )) / 2 );
+    expect(votes).to.have.length(TOTAL_POSSIBLE_VOTES);
+  }));
 });
