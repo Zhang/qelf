@@ -1,7 +1,7 @@
 <div id="frame" class="frame-container">
   <div class="navbar-container">
     <div class="title-container">
-      <h2 ng-if="!isStandardView" class="title">Qelf <span class="beta-heading">alpha</span></h2>
+      <h2 ng-if="!isStandardView" ng-click="goTo('profile')" class="title">Qelf <span class="beta-heading">alpha</span></h2>
       <div ng-if="isStandardView" class="go-back" ng-click="goTo('lastState')"><div class="go-back-btn ion-chevron-left"></div>Go Back</div>
     </div>
     <div class="navigation" ng-class"{
