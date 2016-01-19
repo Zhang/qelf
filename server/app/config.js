@@ -14,5 +14,7 @@ module.exports = {
   isTest: isTest,
   isProd: isProd,
   mongoURI: mongoURI,
-  mongoVersion: '3.x.x'
+  mongoVersion: '3.x.x',
+  facebookClientId: '201708533509741',
+  facebookClientSecret: '2815fd63ddaf3161387ec1ef760b66a7'
 };

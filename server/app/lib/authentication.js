@@ -7,6 +7,7 @@ const passport = require('koa-passport');
 const accountModel = require('../models/account');
 const FacebookStrategy = require('passport-facebook-token');
 const co = require('co');
+const config = require('../config');
 const logger = require('../logger');
 
 passport.serializeUser(function(user, done) {
@@ -33,8 +34,8 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(new FacebookStrategy({
-  clientID: '201708533509741', //FACEBOOK_APP_ID
-  clientSecret: '2815fd63ddaf3161387ec1ef760b66a7', //FACEBOOK_APP_SECRET
+  clientID: config.facebookClientId,
+  clientSecret: config.facebookClientSecret
 }, function (accessToken, refreshToken, profile, done) {
   co(function* () {
     let account = yield accountModel.getByFacebookId(profile.id);

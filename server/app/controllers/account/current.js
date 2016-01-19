@@ -6,7 +6,6 @@ const _ = require('lodash');
 const current = function* current() {
   const userId = _.get(this.session, 'passport.user');
   const acct = yield accountModel.get(userId);
-  //const acct = yield accountModel.getByFacebookId('test_user1');
 
   if (!acct) {
     this.status = 403;
