@@ -9,6 +9,7 @@ const testUtils = require('./testUtils');
 const completedVotesModel = require('../app/models/completedVotes');
 const co = require('co');
 const accountModel = require('../app/models/account');
+const _ = require('lodash');
 
 describe('/account', function() {
   beforeEach(testUtils.clearAll);
@@ -103,5 +104,23 @@ describe('/account', function() {
       })
       .expect(400, done);
     });
+
+    it('should add friends', co.wrap(function* () {
+      const fb1 = 'test1';
+      const fb2 = 'test2';
+      const fb3 = 'test3';
+
+      yield [testUtils.createTestUser(fb1), testUtils.createTestUser(fb2), testUtils.createTestUser(fb3)];
+      yield accountModel.addAcctToFriends(fb3, [fb1, fb2]);
+
+      const friends = yield accountModel.query({
+        facebookId: { $in: [fb1, fb2] }
+      });
+
+      const friendOfFriends = _.map(friends, 'friends');
+      _.each(friendOfFriends, function(friendList) {
+        expect(friendList).to.contain(fb3);
+      });
+    }));
   });
 });

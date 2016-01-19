@@ -49,8 +49,9 @@ const add = function* add(toAdd) {
 
 const addAcctToFriends = function(fbId, friends) {
   return collection.update(
-    { friends: { $in: friends } },
-    { $push: { friends: fbId } }
+    { facebookId: { $in: friends } },
+    { $push: { friends: fbId } },
+    { multi: true }
   );
 };
 
