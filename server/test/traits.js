@@ -17,13 +17,10 @@ describe('/trait', function() {
   let request;
   let MOCK_USER;
 
-  beforeEach(function(done) {
-    co(function* () {
+  beforeEach(co.wrap(function* () {
       request = agent(http.createServer(app.callback()));
       MOCK_USER = yield testUtils.createTestUser();
-      done();
-    });
-  });
+  }));
 
   describe('GET /query', function() {
     it('should get traits by user', function(done) {
@@ -43,18 +40,12 @@ describe('/trait', function() {
   describe('GET /get', function() {
     //Add vote
     let testTrait;
-    beforeEach(function(done) {
-      co(function* () {
-        const vote = yield voteModel.add(voteModel.newVote('testId', 'is this a test?', ['1', '2'], 'test'));
-        testTrait = yield testUtils.createTrait('test', {
-          total: [vote.id]
-        });
-        done();
-      }).catch(function(err) {
-        console.error(err);
-        done(err);
+    beforeEach(co.wrap(function* () {
+      const vote = yield voteModel.add(voteModel.newVote('testId', 'is this a test?', ['1', '2'], 'test'));
+      testTrait = yield testUtils.createTrait('test', {
+        total: [vote.id]
       });
-    });
+    }));
 
     it('should get denormalized traits by id', function(done) {
       request

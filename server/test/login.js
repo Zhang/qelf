@@ -16,12 +16,9 @@ describe('/login', function() {
     request = agent(http.createServer(app.callback()));
   });
 
-  beforeEach(function(done) {
-    co(function* () {
-      MOCK_USER = yield testUtils.createTestUser();
-      done();
-    });
-  });
+  beforeEach(co.wrap(function* () {
+    MOCK_USER = yield testUtils.createTestUser();
+  }));
 
   describe('POST /login', function() {
     var facebookId = uuid.v4();

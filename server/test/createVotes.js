@@ -17,31 +17,22 @@ describe('createVotes', function() {
     themes: []
   };
 
-  beforeEach(function(cb) {
-    co(function* () {
-      yield traitTemplateModel.addOrUpdate(traitTemplate);
-      MOCK_USER = yield testUtils.createTestUser(null, null, {
-        friends: ['1', '2', '3', '4']
-      });
-      cb();
+  beforeEach(co.wrap(function* () {
+    yield traitTemplateModel.addOrUpdate(traitTemplate);
+    MOCK_USER = yield testUtils.createTestUser(null, null, {
+      friends: ['1', '2', '3', '4']
     });
-  });
+  }));
 
-  it('should add votes', function(done) {
+  it('should add votes', co.wrap(function* () {
     const TEMPLATE_ID = traitTemplate.id;
-    co(function* () {
-      yield createVotes(MOCK_USER.facebookId);
-      const votes = yield voteModel.query({
-        traitTemplateId: TEMPLATE_ID
-      });
-
-      const TOTAL_POSSIBLE_VOTES = ((MOCK_USER.friends.length * ( MOCK_USER.friends.length - 1 )) / 2 );
-      expect(votes).to.be.an('array');
-      expect(votes).to.have.length(TOTAL_POSSIBLE_VOTES);
-      done();
-    }).catch(function(err) {
-      if (err) return console.log(err);
-      done(err);
+    yield createVotes(MOCK_USER.facebookId);
+    const votes = yield voteModel.query({
+      traitTemplateId: TEMPLATE_ID
     });
-  });
+
+    const TOTAL_POSSIBLE_VOTES = ((MOCK_USER.friends.length * ( MOCK_USER.friends.length - 1 )) / 2 );
+    expect(votes).to.be.an('array');
+    expect(votes).to.have.length(TOTAL_POSSIBLE_VOTES);
+  }));
 });

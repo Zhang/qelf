@@ -37,17 +37,11 @@ describe('/account', function() {
       expect(testUser).to.be.ok();
       done();
     });
-    it('should create a completed votes collection for given user', function(done) {
-      co(function* () {
-        const completedVotes = yield completedVotesModel.getByFacebookId(testUser.facebookId);
-        expect(completedVotes).to.be.ok();
-        expect(completedVotes.complete).to.be.an('array');
-        done();
-      }).catch(function(err) {
-        console.log(err);
-        done(err);
-      });
-    });
+    it('should create a completed votes collection for given user', co.wrap(function* () {
+      const completedVotes = yield completedVotesModel.getByFacebookId(testUser.facebookId);
+      expect(completedVotes).to.be.ok();
+      expect(completedVotes.complete).to.be.an('array');
+    }));
     it('should 500 when missing required fields', function(done) {
       request
         .post('/account')
