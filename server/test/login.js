@@ -1,18 +1,11 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-
 const agent = require('supertest').agent;
 const app = require('./mockApp');
 const http = require('http');
 const uuid = require('uuid');
 const testUtils = require('./testUtils');
 const co = require('co');
-/**
- * Tests.
- */
 
 describe('/login', function() {
   beforeEach(testUtils.clearAll);

@@ -42,14 +42,5 @@ module.exports = (function() {
   });
 
   validateMongoVersion(db.driver);
-
-  if (config.isTest) {
-    process.on('exit', function() {
-      db.driver.dropDatabase(config.mongoURI, function(err) {
-        if (err) return log.error(err);
-      });
-    });
-  }
-
   return db;
 })();
