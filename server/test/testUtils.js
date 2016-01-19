@@ -32,19 +32,13 @@ const traitTemplateModel = require('../app/models/traitTemplate');
 const co = require('co');
 
 module.exports = {
-  clearAll: function(cb) {
-    co(function* () {
-      yield accountModel.clear();
-      yield traitModel.clear();
-      yield traitTemplateModel.clear();
-      yield voteModel.clear();
-      yield completedVotesModel.clear();
-      cb();
-    }).catch(function(err) {
-      console.error(err);
-      cb(err);
-    });
-  },
+  clearAll: co.wrap(function* () {
+    yield accountModel.clear();
+    yield traitModel.clear();
+    yield traitTemplateModel.clear();
+    yield voteModel.clear();
+    yield completedVotesModel.clear();
+  }),
   createTestUser: function* (_facebookId, accessToken, opts) {
     const facebookId = _facebookId || 'test';
     yield createAccount.call({
