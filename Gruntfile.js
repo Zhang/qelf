@@ -10,7 +10,7 @@ module.exports = function (grunt) {
   const ionicClientPath = 'bower_components/ionic-platform-web-client/dist/ionic.io.bundle.js';
 
   const ioConfigSettings = (function getIoConfigSettings() {
-    const ioconfig = fs.readFileSync('.io-config.json', 'utf8').slice(0, -1);
+    const ioconfig = fs.readFileSync('.io-config.json', 'utf8');
     const start = '"IONIC_SETTINGS_STRING_START";var settings =';
     const end =  '; return { get: function(setting) { if (settings[setting]) { return settings[setting]; } return null; } };"IONIC_SETTINGS_STRING_END"';
     return start + ioconfig + end;
@@ -225,7 +225,7 @@ module.exports = function (grunt) {
           ]
         },
         files: [
-          {expand: true, flatten: true, src: [ionicClientPath], dest: 'www/'}
+          {expand: true, flatten: true, src: [ionicClientPath], dest: 'www/bower_components/ionic-platform-web-client/dist'}
         ]
       }
     }
@@ -244,7 +244,7 @@ module.exports = function (grunt) {
     'less:build',
     'htmlbuild:dist',
     'newer:copy:app',
-    'newer:copy:bower',
+    'copy:bower',
     'newer:copy:assets'
   ]);
 
