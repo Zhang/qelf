@@ -87,7 +87,6 @@ const defaults = [
     id: 'Dominance',
     comparisons: [
       'Who has a more dominant personality?',
-      'Who is more business like?',
       'Who is more competitive?'
     ],
     themes: [THEMES.leadership]
