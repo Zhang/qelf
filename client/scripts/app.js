@@ -30,7 +30,16 @@
   });
 
   module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE) {
+    var io = ionic.io();
     $ionicPlatform.ready(function() {
+      var push = new Ionic.Push({
+        "debug": true
+      });
+
+      push.register(function(token) {
+        console.log("Device token:",token.token);
+      });
+
       if (_.get(window, 'cordova.plugins.Keyboard')) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);

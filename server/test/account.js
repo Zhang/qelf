@@ -62,7 +62,7 @@ describe('/account', function() {
       .get('/account/' + testUser.id)
       .expect(200)
       .end(function(err, res) {
-        if (err) done(err);
+        if (err) return done(err);
         try {
           const acct = res.body;
           expect(acct.id).to.be(testUser.id);

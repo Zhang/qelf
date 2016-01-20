@@ -27,8 +27,9 @@ const create = function* create() {
       profile: accountModel.getProfile(facebookId, accessToken),
       completedVotes: completedVotesModel.createForAcct(facebookId)
     };
+    const friendIds = _.map(acctOpts.friends, 'id');
     yield [
-      accountModel.addAcctToFriends(facebookId, acctOpts.friends),
+      accountModel.addAcctToFriends(facebookId, friendIds),
       accountModel.add({
         viewed: {
           walkthrough: false,
@@ -37,7 +38,7 @@ const create = function* create() {
         },
         facebookId: facebookId,
         traits: _.map(acctOpts.defaultTraits, 'id'),
-        friends: _.map(acctOpts.friends, 'id'),
+        friends: friendIds,
         accessToken: accessToken,
         profilePicture: acctOpts.picture,
         name: acctOpts.profile.name
