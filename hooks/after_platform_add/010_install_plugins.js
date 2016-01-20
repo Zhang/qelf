@@ -27,3 +27,9 @@ packageJSON.cordovaPlugins.forEach(function (plugin) {
     sys.puts(stdout);
   });
 });
+
+exec('cordova -d plugin add' + __dirname + '/../../ext/phonegap-facebook-plugin' + '--variable APP_ID="201708533509741" --variable APP_NAME="qelf"',
+  function (error, stdout, stderr) {
+    sys.puts(error, stdout, stderr);
+  }
+);

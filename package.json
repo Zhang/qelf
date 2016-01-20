@@ -27,8 +27,9 @@
     "cordova-plugin-x-socialsharing",
     {
       "id": "phonegap-facebook-plugin",
-      "locator": "/Users/moxi/Desktop/phonegap-facebook-plugin"
-    }
+      "locator": "./ext/phonegap-facebook-plugin/"
+    },
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
     "android",

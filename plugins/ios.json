@@ -8,30 +8,33 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.Qelf.qelf"
+            "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.Qelf.qelf"
+            "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.Qelf.qelf"
+            "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.Qelf.qelf"
+            "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.Qelf.qelf"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.Qelf.qelf"
+            "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.Qelf.qelf"
+            "PACKAGE_NAME": "com.qelf.qelf"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.qelf.qelf"
         },
         "phonegap-facebook-plugin": {
             "APP_ID": "201708533509741",
             "APP_NAME": "qelf",
-            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+            "PACKAGE_NAME": "com.qelf.qelf"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.qelf.qelf"
         }
     },
     "dependent_plugins": {}
