@@ -3,10 +3,18 @@
 //10.0.2.2 is an ip reserved by android emulator to connect to local servers
 const IS_ANDROID = process.env.IS_ANDROID;
 const LOCAL_HOST_ADDRESS = IS_ANDROID ? 'http://10.0.2.2:3000/' : 'http://127.0.0.1:3000/';
+const fs = require('fs');
 
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
+  const ionicClientPath = 'bower_components/ionic-platform-web-client/dist/ionic.io.bundle.js';
 
+  const ioConfigSettings = (function getIoConfigSettings() {
+    const ioconfig = fs.readFileSync('.io-config.json', 'utf8').slice(0, -1);
+    const start = '"IONIC_SETTINGS_STRING_START";var settings =';
+    const end =  '; return { get: function(setting) { if (settings[setting]) { return settings[setting]; } return null; } };"IONIC_SETTINGS_STRING_END"';
+    return start + ioconfig + end;
+  })();
   // Define the configuration for all the tasks
   grunt.initConfig({
     bowerPath: 'bower_components',
@@ -132,7 +140,7 @@ module.exports = function (grunt) {
               '<%= bowerPath %>/lodash/lodash.min.js',
               '<%= bowerPath %>/javascript-detect-element-resize/jquery.resize.js',
               '<%= bowerPath %>/ngCordova/dist/ng-cordova.min.js',
-              '<%= bowerPath %>/ionic-platform-web-client/dist/ionic.io.bundle.min.js'
+              ionicClientPath
             ]
           },
           styles: {
@@ -163,11 +171,11 @@ module.exports = function (grunt) {
         dest: '<%= yeoman.dist %>/',
         src: '**/*.{css,js,html}'
       },
-      bower: {
+      bowerPreConfig: {
         expand: true,
         cwd: '<%= bowerPath %>',
         dest: '<%= yeoman.dist %>/bower_components',
-        src: '**/*.{js,html,css}'
+        src: '**/*.{js,json,html,css}'
       }
     },
 
@@ -204,6 +212,22 @@ module.exports = function (grunt) {
         },
         src: ['server/test/testHarness.js', 'server/test/**/*.js']
       }
+    },
+
+    replace: {
+      configIo: {
+        options: {
+          patterns: [
+            {
+              match: /\"IONIC_SETTINGS_STRING_START\"[\s\S]*\"IONIC_SETTINGS_STRING_END\";/g,
+              replacement: ioConfigSettings
+            }
+          ]
+        },
+        files: [
+          {expand: true, flatten: true, src: [ionicClientPath], dest: 'www/'}
+        ]
+      }
     }
   });
 
@@ -224,6 +248,7 @@ module.exports = function (grunt) {
     'newer:copy:assets'
   ]);
 
+  grunt.registerTask('copy:bower', ['copy:bowerPreConfig', 'replace:configIo']);
 
   grunt.registerTask('compress', [
     'ngconstant:production',

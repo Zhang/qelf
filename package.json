@@ -57,6 +57,7 @@
     "grunt-mocha-test": "0.12.7",
     "grunt-newer": "1.1.1",
     "grunt-ng-constant": "1.1.0",
+    "grunt-replace": "^0.11.0",
     "jshint-stylish": "2.1.0",
     "load-grunt-tasks": "3.3.0",
     "mocha": "2.3.4"
