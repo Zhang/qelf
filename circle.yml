@@ -5,6 +5,7 @@ machine:
   node:
     version:
       3.3.0
-  dependencies:
-    pre:
-      - npm install -g grunt grunt-cli
+
+dependencies:
+  pre:
+    - npm install -g grunt grunt-cli
