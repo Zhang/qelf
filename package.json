@@ -5,7 +5,8 @@
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/bin/server"
+    "start": "nodemon server/bin/server",
+    "postinstall": "cd server && npm install"
   },
   "repository": {
     "type": "git",
