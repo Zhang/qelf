@@ -16,6 +16,7 @@ const THEMES = {
 //  2. Together, fully encompass the given trait
 //  3. Concise
 //  4. Has to be easy to answer ('Who is more inspiring' vs 'Who inspires you to be a better person?')
+//  Measurable through 'things everyone does'
 
 const defaults = [
   {
@@ -23,7 +24,8 @@ const defaults = [
     comparisons: [
       'Who is a more kind person?',
       'Who do you enjoy spending time with more?',
-      'Who is more concerned about others?'
+      'Who is more concerned about others?',
+      'Who is more likely to volunteer their time?'
     ],
     themes: [THEMES.likeability]
   },
@@ -57,7 +59,8 @@ const defaults = [
     id: 'Charisma',
     comparisons: [
       'Who is a more charismatic person?',
-      'Who would you rather be president?'
+      'Who would you rather be president?',
+      'Who would make a better manager?'
     ],
     themes: [THEMES.leadership]
   },
@@ -92,7 +95,8 @@ const defaults = [
     id: 'Dominance',
     comparisons: [
       'Who has a more dominant personality?',
-      'Who is more competitive?'
+      'Who is more competitive?',
+      'Who is likely to turn a competition into a game?'
     ],
     themes: [THEMES.leadership]
   },
@@ -101,7 +105,8 @@ const defaults = [
     comparisons: [
       'Who is a more curious person?',
       'Who is more likely to try out new things?',
-      'Who likes to read more?'
+      'Who likes to read more?',
+      'Who is more likely to step out of their comfort zone to learn something new?'
     ],
     themes: [THEMES.happiness]
   },
@@ -110,7 +115,7 @@ const defaults = [
     comparisons: [
       'Who is a more sincere person?',
       'Who is less likely to talk about you behind your back?',
-      'Who is more likely to tell you how they really feel rather than hold it in?' //HMMM
+      'Who is more likely to tell you how they really feel rather than hold it in?', //HMMM
     ],
     themes: [THEMES.likeability]
   },
@@ -118,7 +123,9 @@ const defaults = [
     id: 'Honesty',
     comparisons: [
       'Who is a more honest person?',
-      'Who is more likely to return excess change given to them by a cashier' //HMM
+      'Who is less likely to pirate music?',
+      'Who is more likely to return excess change given to them by a cashier', //HMM
+      'Who is less likely to cheat on a test?'
     ],
     themes: [THEMES.likeability, THEMES.leadership, THEMES.friend]
   },
@@ -192,7 +199,8 @@ const defaults = [
   {
     id: 'Likeability',
     comparisons: [
-      'Who do you like more?'
+      'Who do you like more?',
+      'Who is liked by more people?'
     ],
     themes: [THEMES.likeability]
   },
@@ -210,21 +218,24 @@ const defaults = [
       'Who is more fun to hang out with?',
       'Who likes travelling more?',
       'Who is more likely to forego chores over having fun?',
-      'Who is more likely to look for fun things to do?'
+      'Who is more likely to look for fun things to do?',
+      'Who is more likely to go to a rave?'
     ]
   },
   {
     id: 'Reliability', //As a friend, as a citizen
     comparisons: [
       'Who is a more reliable person?',
-      'Who keeps their promises more often?'
+      'Who keeps their promises more often?',
+      'Who is more on time?'
     ]
   },
   {
     id: 'Integrity',
     comparisons: [
       'Who is more true to their word?',
-      'Who has a stronger moral compass?'
+      'Who has a stronger moral compass?',
+      'Morally, who would make a better cop?'
     ]
   },
   {
@@ -232,7 +243,8 @@ const defaults = [
     comparisons: [
       'Who is a more empathetic person?',
       'Who is more able to see from your point of view?',
-      'Who is more likely to give money to a homeless person?'
+      'Who is more likely to give money to a homeless person?',
+      'Who is more likely to volunteer?'
     ],
     themes: [THEMES.likeability, THEMES.leadership]
   },
@@ -242,7 +254,9 @@ const defaults = [
       'Who has a higher standard for themselves and their work?',
       'Who is more organized and neat?',
       'Who is more self disciplined?',
-      'Who is more meticulous?'
+      'Who is more meticulous?',
+      'Who is more deliberate in their actions?',
+      'Who uses their time more efficiently?'
     ],
     themes: [THEMES.leadership]
   },
@@ -251,9 +265,8 @@ const defaults = [
     comparisons: [
       'Who is a more determined person?',
       'Who pushes themselves harder to succeed?',
-      'Who would be more likely to finish Navy Seal Training?',
       'Who do you think has the mental determination to train for a marathon?',
-
+      'Who is more likely to stick all the way through a 60 day workout program'
     ]
   },
   {
@@ -278,7 +291,10 @@ const defaults = [
     id: 'Humorous',
     comparisons: [
       'Who is funnier?',
-      'Who tells better jokes?'
+      'Who tells better jokes?',
+      'Who would be a better prankster?',
+      'Who tells funnier stories?',
+      'Who is more likely to have been the class clown?'
     ]
   },
   {
@@ -286,8 +302,10 @@ const defaults = [
     comparisons: [
       'Who is more creative?',
       'Who is better at solving riddles?',
-      'Who is more likely to solve a rubix cube?',
-      'Who is a better artist?'
+      'Who is more likely to be able to solve a rubix cube?',
+      'Who is a better artist?',
+      'Who are you more likely to have an original conversation with (less likely to talk about the weather, traffic, etc)?',
+      'Who works for a more creative company?'
     ]
   }
 ];
