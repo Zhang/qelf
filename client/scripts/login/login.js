@@ -30,10 +30,9 @@
         // if the user doesn't have an id, you'll need to give it one.
         if (!user.id) {
           user.id = res.data.id;
-          user.facebookId = res.data.facebookId;
+          user.save();
         }
 
-        user.save();
         $state.go(STATE.voting);
       }, function reject() {
         Modals.open(Modals.TYPES.alert, {

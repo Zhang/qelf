@@ -31,15 +31,16 @@ const defaults = [
     id: 'Thoughtfulness',
     comparisons: [
       'Who is a more thoughtful person?',
-      'Who is more likely to remember your birthday?',
-      'Who is more concerned about your well being?' //Hmm
+      'Who is more likely to remember your birthday?'
     ]
   },
   {
     id: 'Enthusiasm',
     comparisons: [
       'Who is a more enthusiastic person?',
-      'Who is more energetic?'
+      'Who is more energetic?',
+      'Who is more likely to get you hyped about their ideas?',
+      'Who do you feel more energetic around'
     ],
     themes: [THEMES.leadership]
   },
@@ -56,7 +57,7 @@ const defaults = [
     id: 'Charisma',
     comparisons: [
       'Who is a more charismatic person?',
-      //'Who do you think ?'
+      'Who would you rather be president?'
     ],
     themes: [THEMES.leadership]
   },
@@ -72,7 +73,9 @@ const defaults = [
     id: 'Self Assurance',
     comparisons: [
       'Who is more confident?',
-      'Who is more confident in their own decisions?'
+      'Who is more confident in their own decisions?',
+      'Who is better at saying no to what they don\'t want?',
+      //'Who would rather ?'
     ],
     themes: [THEMES.leadership]
   },
@@ -80,7 +83,9 @@ const defaults = [
     id: 'Positivity',
     comparisons: [
       'Who has a more positive attitude?',
-      'Who is more likely to make the best out of a bad situation?'
+      'Who is more likely to make the best out of a bad situation?',
+      'Who smiles more?',
+      'Who is more likely to give out compliments?'
     ]
   },
   {
@@ -140,7 +145,10 @@ const defaults = [
     comparisons: [
       'Who is a happier person?',
       'Who laughs more?',
-      'Who is more energetic'
+      'Who is more energetic',
+      'Who is more satisfied with their work?',
+      'Who is more fulfilled with their hobbies?',
+      'Who has a good sense of humor?'
     ],
     themes: [THEMES.happiness]
   },
@@ -148,13 +156,15 @@ const defaults = [
     id: 'Calmness',
     comparisons: [
       'Who is more calm?',
-      'Who is more likely to keep their cool in a stressful situation?'
+      'Who is more likely to keep their cool in a stressful situation?',
+      'Who does the term \'cool as a cucumber\' apply to more?'
     ]
   },
   {
     id: 'Trustworthiness',
     comparisons: [
-      'Who do you trust more?'
+      'Who do you trust more?',
+      'Who would you trust borrowing your car'
     ],
     themes: [THEMES.likeability, THEMES.leadership, THEMES.friend]
   },
@@ -191,17 +201,20 @@ const defaults = [
     comparisons: [
       'Who is more accepting of others?',
       'Who are you more comfortable being yourself around?',
+      'Who do you feel more comfortable sharing your failures with?',
     ]
   },
   {
-    id: 'Fun',
+    id: 'Fun Loving',
     comparisons: [
       'Who is more fun to hang out with?',
-      'Who is more fun?'
+      'Who likes travelling more?',
+      'Who is more likely to forego chores over having fun?',
+      'Who is more likely to look for fun things to do?'
     ]
   },
   {
-    id: 'Reliability',
+    id: 'Reliability', //As a friend, as a citizen
     comparisons: [
       'Who is a more reliable person?',
       'Who keeps their promises more often?'
@@ -228,7 +241,8 @@ const defaults = [
     comparisons: [
       'Who has a higher standard for themselves and their work?',
       'Who is more organized and neat?',
-      'Who is more self disciplined?'
+      'Who is more self disciplined?',
+      'Who is more meticulous?'
     ],
     themes: [THEMES.leadership]
   },
@@ -236,7 +250,10 @@ const defaults = [
     id: 'Determination',
     comparisons: [
       'Who is a more determined person?',
-      'Who pushes themselves harder to succeed?'
+      'Who pushes themselves harder to succeed?',
+      'Who would be more likely to finish Navy Seal Training?',
+      'Who do you think has the mental determination to train for a marathon?',
+
     ]
   },
   {
@@ -268,7 +285,9 @@ const defaults = [
     id: 'Creativity',
     comparisons: [
       'Who is more creative?',
-      'Who is better at solving riddles?'
+      'Who is better at solving riddles?',
+      'Who is more likely to solve a rubix cube?',
+      'Who is a better artist?'
     ]
   }
 ];
@@ -276,6 +295,7 @@ const defaults = [
 module.exports = {
   defaultTraits: defaults,
   addDefault: function* () {
+    yield traitTemplateModel.clear();
     yield _.map(defaults, function(trait) {
       if (!trait.themes) {
         trait.themes = [];
