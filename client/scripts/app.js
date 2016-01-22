@@ -29,7 +29,7 @@
     $ionicConfigProvider.scrolling.jsScrolling(false);
   });
 
-  module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE, $ionicPush) {
+  module.run(function($ionicPlatform, $rootScope, $state, $timeout, STATE) {
     var io = Ionic.io();
     $ionicPlatform.ready(function() {
       var push = new Ionic.Push({

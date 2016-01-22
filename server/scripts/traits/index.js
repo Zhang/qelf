@@ -25,7 +25,7 @@ const defaults = [
       'Who is a more kind person?',
       'Who do you enjoy spending time with more?',
       'Who is more concerned about others?',
-      'Who is more likely to volunteer their time?'
+      'Who is more likely to volunteer their time?',
     ],
     themes: [THEMES.likeability]
   },
@@ -33,7 +33,9 @@ const defaults = [
     id: 'Thoughtfulness',
     comparisons: [
       'Who is a more thoughtful person?',
-      'Who is more likely to remember your birthday?'
+      'Who is more likely to remember your birthday?',
+      'Who is more likely to buy their mom a gift for mothers day',
+      'Who thinks more about how other people will feel before acting?'
     ]
   },
   {
@@ -42,16 +44,17 @@ const defaults = [
       'Who is a more enthusiastic person?',
       'Who is more energetic?',
       'Who is more likely to get you hyped about their ideas?',
-      'Who do you feel more energetic around'
+      'Who do you feel more energetic around?',
+      'Who gets more pumped?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Intuitiveness',
     comparisons: [
-      'Who has more intuition?',
-      'Who is more likely to rely on their gut instinct?',
-      'Who is more likely to focus on the big picture?'
+      'Who has a really good gut instinct?',
+      'Who tends to follow their gut instinct?',
+      'When working on a project, who is more likely to focus on the big picture rather than the small details?'
     ],
     themes: [THEMES.leadership]
   },
@@ -68,7 +71,9 @@ const defaults = [
     id: 'Emotional Stability',
     comparisons: [
       'Who is a more emotionally stable person?',
-      'Who is more even-tempered?'
+      'Who is more even-tempered?',
+      'Who has fewer mood swings?',
+      'Who is less likely to experience road rage?'
     ],
     themes: [THEMES.leadership]
   },
@@ -77,8 +82,7 @@ const defaults = [
     comparisons: [
       'Who is more confident?',
       'Who is more confident in their own decisions?',
-      'Who is better at saying no to what they don\'t want?',
-      //'Who would rather ?'
+      'Who is better at saying no to what they don\'t want?'
     ],
     themes: [THEMES.leadership]
   },
@@ -96,7 +100,8 @@ const defaults = [
     comparisons: [
       'Who has a more dominant personality?',
       'Who is more competitive?',
-      'Who is likely to turn a competition into a game?'
+      'Who is likely to turn a competition into a game?',
+      'Who are people more likely to listen to?'
     ],
     themes: [THEMES.leadership]
   },
@@ -106,7 +111,8 @@ const defaults = [
       'Who is a more curious person?',
       'Who is more likely to try out new things?',
       'Who likes to read more?',
-      'Who is more likely to step out of their comfort zone to learn something new?'
+      'Who is more likely to step out of their comfort zone to learn something new?',
+      'Who is more excited about solving problems?'
     ],
     themes: [THEMES.happiness]
   },
@@ -115,7 +121,8 @@ const defaults = [
     comparisons: [
       'Who is a more sincere person?',
       'Who is less likely to talk about you behind your back?',
-      'Who is more likely to tell you how they really feel rather than hold it in?', //HMMM
+      'Who is more likely to tell you how they really feel rather than hold it in?',
+      'Who is best described with the statement \'They walk the walk and talk the talk\'?'
     ],
     themes: [THEMES.likeability]
   },
@@ -171,7 +178,8 @@ const defaults = [
     id: 'Trustworthiness',
     comparisons: [
       'Who do you trust more?',
-      'Who would you trust borrowing your car'
+      'Who would you trust borrowing your car?',
+      'Who are you more comfortable sharing a secret with?'
     ],
     themes: [THEMES.likeability, THEMES.leadership, THEMES.friend]
   },
@@ -179,28 +187,33 @@ const defaults = [
     id: 'Social Boldness',
     comparisons: [
       'Who is more likely to put themselves out there?',
-      'Who is less offended by criticism'
+      'Who are you more comfortable offering constructive criticism towards?',
+      'Who tends to feel less ashamed of their actions?',
+      'Who is more comfortable around strangers?'
     ],
     themes: [THEMES.leadership]
   },
   {
     id: 'Inspiration',
     comparisons: [
-      'Who is more inspiring?'
+      'Who is more inspiring?',
+      'Who do you think more highly of?'
     ]
   },
   {
     id: 'Patience',
     comparisons: [
       'Who is more patient?',
-      'Who is less frantic?'
+      'Who is less frantic?',
+      'Who is more likley to wait it out at thier'
     ]
   },
   {
     id: 'Likeability',
     comparisons: [
       'Who do you like more?',
-      'Who is liked by more people?'
+      'Who is liked by more people?',
+      'If you were hosting a dinner party, who would you rather invite?'
     ],
     themes: [THEMES.likeability]
   },
@@ -217,7 +230,7 @@ const defaults = [
     comparisons: [
       'Who is more fun to hang out with?',
       'Who likes travelling more?',
-      'Who is more likely to forego chores over having fun?',
+      'Who is more likely to forego chores to have fun?',
       'Who is more likely to look for fun things to do?',
       'Who is more likely to go to a rave?'
     ]
@@ -244,7 +257,8 @@ const defaults = [
       'Who is a more empathetic person?',
       'Who is more able to see from your point of view?',
       'Who is more likely to give money to a homeless person?',
-      'Who is more likely to volunteer?'
+      'Who is more likely to volunteer?',
+      'If you\'re having a tough day, who would you rather share your problems with?'
     ],
     themes: [THEMES.likeability, THEMES.leadership]
   },
@@ -263,10 +277,10 @@ const defaults = [
   {
     id: 'Determination',
     comparisons: [
-      'Who is a more determined person?',
       'Who pushes themselves harder to succeed?',
       'Who do you think has the mental determination to train for a marathon?',
-      'Who is more likely to stick all the way through a 60 day workout program'
+      'Who is more likely to stick all the way through a 60 day workout program',
+      'Who generally acheives the goals they set for themselves?'
     ]
   },
   {
@@ -274,7 +288,8 @@ const defaults = [
     comparisons: [
       'If time travelled to the 1800\'s, who do you think would adapt the most quickly?',
       'Who is a more receptive towards new experiences?',
-      'Who is a more adaptable person?'
+      'Who is a more adaptable person?',
+      'Who tends to fit in with most groups of people?'
     ]
   },
   {
@@ -305,7 +320,7 @@ const defaults = [
       'Who is more likely to be able to solve a rubix cube?',
       'Who is a better artist?',
       'Who are you more likely to have an original conversation with (less likely to talk about the weather, traffic, etc)?',
-      'Who works for a more creative company?'
+      'Who works for a more creative company?',
     ]
   }
 ];
