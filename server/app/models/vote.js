@@ -2,7 +2,7 @@
 
 const db = require('../db');
 const collection = db.get('vote');
-collection.createIndex({ voterId: 1, selected: -1 }, { background: true });
+db.driver.collection('vote').createIndex({ voterId: 1, selected: -1 }, { background: true });
 
 const VoteSchema = require('./schemas').vote;
 const modelCRUD = require('./concerns/modelCRUD')('vote', collection, VoteSchema);
