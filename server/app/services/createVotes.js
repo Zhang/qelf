@@ -39,7 +39,6 @@ module.exports = function* (facebookId) {
   const account = values[0];
   const templates = values[1];
   const completedVotes = _.get(values[2], 'complete');
-  const completedVoteMap = getCompletedMapByFriend(completedVotes);
   if (_.isEmpty(templates)) {
     throw new Error('missing default traits, please run addTraits');
   }
@@ -54,6 +53,7 @@ module.exports = function* (facebookId) {
     return [];
   }
 
+  const completedVoteMap = getCompletedMapByFriend(completedVotes);
   const votes = _.reduce(account.friends, function(total, friendFBid1, key, coll) {
     const unmatchedFBIds = coll.slice(key + 1);
     const newVotes = _.map(unmatchedFBIds, function(friendFBid2) {
