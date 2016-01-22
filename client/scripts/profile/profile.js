@@ -26,7 +26,9 @@
     };
   });
 
-  module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals, Mixpanel, TopScore, AccountAPI) {
+  module.controller('Profile', function($scope, TraitAPI, $rootScope, Modals, Mixpanel, TopScore, AccountAPI, OverlayService) {
+    var overlay = new OverlayService()
+    overlay.openSpinner();
     Mixpanel.track('Viewed Profile', {id: $rootScope.user.id});
     function sortByTopTraits(traits) {
       return _.sortBy(traits, function(trait) {
@@ -41,6 +43,7 @@
     };
 
     TraitAPI.getForUser($rootScope.user.facebookId).then(function(res) {
+      overlay.close();
       var traitsWithScores = (function addDefaultPropsToTraits() {
         return _.map(res.data, function(trait) {
           trait.score = trait.total.length ? (trait.count / trait.total.length) : 0;
@@ -68,6 +71,8 @@
           return 'Your top traits are: ' + _.map(topTraits, 'templateId').join(', ') + ', and ' + lastEl.templateId + '!';
         }
       })();
+    }, function reject() {
+      overlay.close();
     });
 
     $scope.sortBy = function() {

@@ -16,7 +16,8 @@
     });
   });
 
-  module.service('CardDeckManager', function($timeout, VoteAPI, $rootScope) {
+  module.service('CardDeckManager', function($timeout, VoteAPI, $rootScope, OverlayService) {
+    var overlay = new OverlayService();
     var deck = {
       display: [],
       fullDeck: [],
@@ -25,8 +26,12 @@
     };
 
     function _getCards() {
+      overlay.openSpinner();
       VoteAPI.getForUser($rootScope.user.facebookId).then(function(res) {
         initialize(res.data);
+        overlay.close();
+      }, function reject() {
+        overlay.close()
       });
     }
 

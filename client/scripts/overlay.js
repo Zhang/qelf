@@ -5,11 +5,17 @@
 
   app.service('OverlayService', function() {
       return function(opts) {
+        opts = opts || {};
         var overlay = $('#modal-overlay');
+        var spinner = $('#spinner-container');
+        var fadeSpeed = opts.fadeSpeed || 300;
 
         function close() {
-          overlay.fadeOut(opts.fadeSpeed || 300);
+          _.each([overlay, spinner], function(el) {
+            el.fadeOut(fadeSpeed);
+          });
         }
+
         var clickFn = close;
         if (opts.onClick) {
           clickFn = function() {
@@ -18,15 +24,28 @@
           };
         }
 
+        function fadeInElements(elements) {
+          _.each(elements, function(el) {
+            el.fadeIn(fadeSpeed);
+          })
+        }
+
+        this.openSpinner = function() {
+          opts.blockCloseOnClick = true;
+          fadeInElements([overlay, spinner]);
+        }
         this.open = function() {
-          overlay.fadeIn(opts.fadeSpeed || 300);
+          fadeInElements([overlay]);
         };
         this.close = function() {
           close();
           overlay.off('click', clickFn);
         };
 
-        overlay.on('click', clickFn);
+        overlay.on('click', function() {
+          if (opts.blockCloseOnClick) return;
+          clickFn();
+        });
       };
   });
 })();
