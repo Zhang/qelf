@@ -35,7 +35,9 @@ const defaults = [
       'Who is a more thoughtful person?',
       'Who is more likely to remember your birthday?',
       'Who is more likely to buy their mom a gift for mothers day',
-      'Who thinks more about how other people will feel before acting?'
+      'Who thinks more about how other people will feel before acting?',
+      'Who\'s more likely to buy you a small gift because it reminded them of you?',
+      'Who is more likely to send thank you cards?'
     ]
   },
   {
@@ -54,7 +56,8 @@ const defaults = [
     comparisons: [
       'Who has a really good gut instinct?',
       'Who tends to follow their gut instinct?',
-      'When working on a project, who is more likely to focus on the big picture rather than the small details?'
+      'When working on a project, who is more likely to focus on the big picture over small details?',
+      'Who is more likely to describe things in a figurative rather than a literal way?'
     ],
     themes: [THEMES.leadership]
   },
@@ -63,7 +66,9 @@ const defaults = [
     comparisons: [
       'Who is a more charismatic person?',
       'Who would you rather be president?',
-      'Who would make a better manager?'
+      'Who would make a better manager?',
+      'Who is more interesting to listen to?',
+      'Who would be a better salesman?'
     ],
     themes: [THEMES.leadership]
   },
@@ -73,7 +78,8 @@ const defaults = [
       'Who is a more emotionally stable person?',
       'Who is more even-tempered?',
       'Who has fewer mood swings?',
-      'Who is less likely to experience road rage?'
+      'Who is less likely to experience road rage?',
+      'Who gets less stressed?'
     ],
     themes: [THEMES.leadership]
   },
@@ -82,7 +88,9 @@ const defaults = [
     comparisons: [
       'Who is more confident?',
       'Who is more confident in their own decisions?',
-      'Who is better at saying no to what they don\'t want?'
+      'Who is better at saying no to what they don\'t want?',
+      'Who is more confident in their ability?',
+      'Who believes in themselves?'
     ],
     themes: [THEMES.leadership]
   },
@@ -92,7 +100,8 @@ const defaults = [
       'Who has a more positive attitude?',
       'Who is more likely to make the best out of a bad situation?',
       'Who smiles more?',
-      'Who is more likely to give out compliments?'
+      'Who is more likely to give out compliments?',
+      'Who complains less?'
     ]
   },
   {
@@ -101,7 +110,8 @@ const defaults = [
       'Who has a more dominant personality?',
       'Who is more competitive?',
       'Who is likely to turn a game into a competition?',
-      'Who are people more likely to listen to?'
+      'Who are people more likely to listen to?',
+      'Who is more vocal about their opinions?'
     ],
     themes: [THEMES.leadership]
   },
@@ -122,7 +132,8 @@ const defaults = [
       'Who is a more sincere person?',
       'Who is less likely to talk about you behind your back?',
       'Who is more likely to tell you how they really feel rather than hold it in?',
-      'Who is best described with the statement \'They walk the walk and talk the talk\'?'
+      'Who is best described with the statement \'They walk the walk and talk the talk\'?',
+      'Who is more likely to choose passion over pay?'
     ],
     themes: [THEMES.likeability]
   },
@@ -132,7 +143,8 @@ const defaults = [
       'Who is a more honest person?',
       'Who is less likely to pirate music?',
       'Who is more likely to return excess change given to them by a cashier', //HMM
-      'Who is less likely to cheat on a test?'
+      'Who is less likely to cheat on a test?',
+      'Who is more likely to speak the truth even if it goes against the grain?'
     ],
     themes: [THEMES.likeability, THEMES.leadership, THEMES.friend]
   },
