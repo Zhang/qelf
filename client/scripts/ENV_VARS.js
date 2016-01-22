@@ -2,6 +2,6 @@
 
  angular.module('ENV_VARS', [])
 
-.constant('ENV', {name:'development',apiEndpoint:'http://127.0.0.1:3000/'})
+.constant('ENV', {name:'production',apiEndpoint:'http://54.153.37.234:8080/'})
 
 ;

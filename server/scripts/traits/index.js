@@ -197,7 +197,8 @@ const defaults = [
     id: 'Inspiration',
     comparisons: [
       'Who is more inspiring?',
-      'Who do you think more highly of?'
+      'Who do you think more highly of?',
+      'Who would make a better role model?'
     ]
   },
   {
@@ -205,7 +206,7 @@ const defaults = [
     comparisons: [
       'Who is more patient?',
       'Who is less frantic?',
-      'Who is more likley to wait it out at thier'
+      'Who is less impulsive?'
     ]
   },
   {
@@ -240,7 +241,9 @@ const defaults = [
     comparisons: [
       'Who is a more reliable person?',
       'Who keeps their promises more often?',
-      'Who is more on time?'
+      'Who is generally more on time for events?',
+      'Who is less likely to flake on an arrangement?',
+      'Who do you think is more relied at their work?'
     ]
   },
   {
@@ -248,7 +251,8 @@ const defaults = [
     comparisons: [
       'Who is more true to their word?',
       'Who has a stronger moral compass?',
-      'Morally, who would make a better cop?'
+      'Morally, who would make a better cop?',
+      'Who seems to always keep their word?'
     ]
   },
   {
