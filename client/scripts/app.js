@@ -37,7 +37,6 @@
       });
 
       push.register(function(token) {
-        console.log('wtf');
         console.log('Device token:', token.token);
       });
 

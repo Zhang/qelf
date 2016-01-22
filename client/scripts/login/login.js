@@ -33,6 +33,24 @@
           user.facebookId = res.data.facebookId;
         }
 
+        var push = new Ionic.Push({
+          "debug": true,
+          onNotification: function(notification) {
+            alert(notification)
+          },
+          pluginConfig: {
+            ios: {
+              badge: true,
+              sound: true
+            }
+          }
+        });
+
+        push.register(function(token) {
+          user.addPushToken(token);
+          user.save()
+        });
+
         user.save();
         $state.go(STATE.voting);
       }, function reject() {
