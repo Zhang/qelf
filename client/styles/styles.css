@@ -511,7 +511,7 @@ div.card .card-content .card-header {
   -webkit-justify-content: center;
   -webkit-align-items: center;
   display: -webkit-flex;
-  height: calc(100% - 25px - 2 * 5px - 2px);
+  height: calc(100% - 25px - 2 * 3px - 2px);
   overflow: hidden;
   text-overflow: ellipsis;
 }

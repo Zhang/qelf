@@ -1,0 +1,17 @@
+## Customize the test machine
+machine:
+
+  # Version of node to use
+  node:
+    version:
+      3.3.0
+
+dependencies:
+  cache_directories:
+    - mongodb-linux-x86_64-ubuntu1204-3.2.0
+  pre:
+    - npm install -g grunt grunt-cli
+    - if [[ ! -d mongodb-linux-x86_64-ubuntu1204-3.2.0 ]]; then wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.2.0.tgz && tar xvzf mongodb-linux-x86_64-ubuntu1204-3.2.0.tgz; fi
+    - sudo stop mongodb
+    - sudo cp mongodb-linux-x86_64-ubuntu1204-3.2.0/bin/* /usr/bin
+    - sudo start mongodb
