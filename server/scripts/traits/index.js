@@ -100,7 +100,7 @@ const defaults = [
     comparisons: [
       'Who has a more dominant personality?',
       'Who is more competitive?',
-      'Who is likely to turn a competition into a game?',
+      'Who is likely to turn a game into a competition?',
       'Who are people more likely to listen to?'
     ],
     themes: [THEMES.leadership]
