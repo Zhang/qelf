@@ -60,30 +60,34 @@ describe('createVotes', function() {
     expect(maxVotes).to.equal(votes.length);
   }));
 
-  it('should not duplicate votes', co.wrap(function* () {
+  it('should not duplicate contestant pairs with trait template', co.wrap(function* () {
     yield traits.addDefault();
-    const templates = yield traitTemplateModel.query({});
+    yield traitTemplateModel.query({});
     yield createVotes(MOCK_USER.facebookId);
+    //Add new friends
     const newFriends = MOCK_USER.friends.concat(['test1', 'test2']);
-    accountModel.update(MOCK_USER.id, {friends: newFriends});
+    yield accountModel.updateById(MOCK_USER.id, {friends: newFriends});
+    //Create more votes
     yield createVotes(MOCK_USER.facebookId);
     const votes = yield voteModel.query({});
-    const groupedVotes = _.groupBy(votes, function(vote) {
+    const votesByTraitTemplateIds = _.groupBy(votes, function(vote) {
       return vote.traitTemplateId;
     });
     let repeats = 0;
-    _.each(groupedVotes, function(val) {
+    //Ensure no trait template has the same pairing of contestant ids
+    _.each(votesByTraitTemplateIds, function(votes) {
       const votePairs = [];
-      _.each(val, function(vote) {
+      _.each(votes, function(vote) {
         _.each(votePairs, function(pairing) {
-          const isRepeat = _.contains(pairing, vote.contestants[0]) && _.contains(pairing, vote.contestants[1]);
-          if (isRepeat) {
+          const containsARepeat = _.contains(pairing, vote.contestants[0]) && _.contains(pairing, vote.contestants[1]);
+          if (containsARepeat) {
             repeats += 1;
           }
         });
         votePairs.push(vote.contestants);
       });
     });
+
     expect(repeats).to.be(0);
   }));
 });
