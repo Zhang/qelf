@@ -188,7 +188,7 @@ const defaults = [
     comparisons: [
       'Who is more likely to put themselves out there?',
       'Who are you more comfortable offering constructive criticism towards?',
-      'Who tends to feel less ashamed of their actions?',
+      'Who would be less ashamed if they made a public mistake?',
       'Who is more comfortable around strangers?'
     ],
     themes: [THEMES.leadership]
