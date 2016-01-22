@@ -21,7 +21,7 @@ module.exports = function* (votes) {
       }
 
       function getBasicInfo(contestant) {
-        _.pick(contestant, ['id', 'facebookId', 'profilePicture', 'name']);
+        return _.pick(contestant, ['id', 'facebookId', 'profilePicture', 'name']);
       }
       vote.contestants = [getBasicInfo(contestant1), getBasicInfo(contestant2)];
       return vote;

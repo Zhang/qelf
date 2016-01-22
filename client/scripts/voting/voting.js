@@ -31,7 +31,7 @@
         initialize(res.data);
         overlay.close();
       }, function reject() {
-        overlay.close()
+        overlay.close();
       });
     }
 
