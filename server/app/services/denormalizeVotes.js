@@ -19,7 +19,11 @@ module.exports = function* (votes) {
         logger.warn('Refusing to denormalize vote: ', vote.id, ' because of missing contestant');
         return null;
       }
-      vote.contestants = [contestant1, contestant2];
+
+      function getBasicInfo(contestant) {
+        _.pick(contestant, ['id', 'facebookId', 'profilePicture', 'name']);
+      }
+      vote.contestants = [getBasicInfo(contestant1), getBasicInfo(contestant2)];
       return vote;
     }));
   })();
