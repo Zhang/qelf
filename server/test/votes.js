@@ -127,7 +127,7 @@ describe('/vote', function() {
           cb();
         });
     });
-    it('returned votes should be denomalized', function(cb) {
+    it('returned votes should be denomalized, minimally', function(cb) {
       request
         .get('/vote/' + mockUser.facebookId)
         .expect(200)
@@ -135,8 +135,7 @@ describe('/vote', function() {
           if (err) return cb(err);
           const votes = res.body;
           _.each(votes[0].contestants, function(acct) {
-            const validation = Joi.validate(acct, accountSchema);
-            expect(!validation.error).to.be.ok();
+            expect(acct).to.have.keys(['name', 'profilePicture', 'id', 'facebookId']);
           });
           cb();
         });
