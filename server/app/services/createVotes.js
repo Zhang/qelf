@@ -18,6 +18,7 @@ const _ = require('lodash');
 //    }
 //  }
 // }
+
 function getCompletedMapByFriend(completedVotes) {
   return _.reduce(completedVotes, function(total, vote) {
     return _.set(total, vote.traitTemplateId + '.' + vote.contestants[0] + '.' + vote.contestants[1], true);

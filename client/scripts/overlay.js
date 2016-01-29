@@ -27,13 +27,13 @@
         function fadeInElements(elements) {
           _.each(elements, function(el) {
             el.fadeIn(fadeSpeed);
-          })
+          });
         }
 
         this.openSpinner = function() {
           opts.blockCloseOnClick = true;
           fadeInElements([overlay, spinner]);
-        }
+        };
         this.open = function() {
           fadeInElements([overlay]);
         };

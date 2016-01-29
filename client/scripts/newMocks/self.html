@@ -1,0 +1,38 @@
+<div class="subview-container self-container">
+  <div class="self-current-overview">
+    <div class="scroll">
+      <div class="caret-left"></div>
+    </div>
+    <div class="self-current-habit">
+      <div class="routine-title">Be more disciplined when building Qelf</div>
+      <div class="routine-sub-title">
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="caret-right"></div>
+    </div>
+  </div>
+    <div class="routine-metrics bottom-border">
+    <div class="routine-metric"><span class="bold-number">19</span> Successful Actions Taken</div>
+    <div class="routine-metric"><span class="bold-number">25</span> Days Remaining</div>
+    <div class="routine-metric"><span class="bold-number">5</span> Day Streak</div>
+  </div>
+  <div class="tabs">
+    <div class="self-setting selected">Daily Habits</div>
+    <div class="self-setting">Charts</div>
+    <div class="self-setting">Settings</div>
+  </div>
+  <div class="basic-container self-habits">
+    <div class="section-header">
+      <div class="section-label">4 Habits Remaining Today</div>
+    </div>
+    <div ng-repeat="habit in habits" class="habit-container self">
+      <div class="ion-android-more-vertical"></div>
+      <div class="habit-text">
+        {{habit.text}}
+      </div>
+      <div>{{habit.percent}}%</div>
+    </div>
+  </div>
+  <div class="add-circle">+</div>
+</div>

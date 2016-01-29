@@ -12,6 +12,9 @@
     feedback: 'frame.feedback',
     trait: 'frame.trait',
     walkthrough: 'walkthrough',
-    notConnected: 'notConnected'
+    notConnected: 'notConnected',
+    routines: 'frame.routines',
+    routine: 'frame.routine',
+    self: 'frame.self'
   });
 })();

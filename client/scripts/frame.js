@@ -24,11 +24,11 @@
           // }, function reject() {
           //   $state.go(STATE.login);
           // });
-          return AccountAPI.getCurrentUser().then(function resolve(res) {
-            $rootScope.user = res.data;
-          }, function reject() {
-            $state.go(STATE.login);
-          });
+          // return AccountAPI.getCurrentUser().then(function resolve(res) {
+          //   $rootScope.user = res.data;
+          // }, function reject() {
+          //   $state.go(STATE.login);
+          // });
         }
       }
     });
@@ -89,9 +89,9 @@
       };
       Modals.open(null, opts);
     };
-
+    $scope.isStandardView = false;
     $scope.$on('$stateChangeSuccess', function(e, currentState) {
-      $scope.isStandardView = currentState.name === STATE.trait || currentState.name === STATE.feedback;
+      $scope.isStandardView = false; //currentState.name === STATE.trait || currentState.name === STATE.feedback;
     });
   });
 })();

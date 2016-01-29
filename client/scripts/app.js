@@ -20,7 +20,10 @@
     'voting',
     'profile',
     'feedback',
-    'trait'
+    'trait',
+    'routines',
+    'routine',
+    'self'
   ]);
 
   module.config(function($compileProvider, $httpProvider, $ionicConfigProvider) {
@@ -50,7 +53,7 @@
           $state.go(STATE.notConnected);
         });
       } else {
-        $state.go(STATE.voting);
+        $state.go(STATE.self);
       }
     });
 
