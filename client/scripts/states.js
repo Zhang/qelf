@@ -15,6 +15,12 @@
     notConnected: 'notConnected',
     routines: 'frame.routines',
     routine: 'frame.routine',
-    self: 'frame.self'
+    self: 'frame.self',
+    discussions: 'frame.discussions',
+    discussion: 'frame.discussion',
+    tracking: 'frame.tracking',
+    reporting: 'frame.reporting',
+    rating: 'frame.rating',
+    stroop: 'frame.stroop'
   });
 })();

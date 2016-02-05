@@ -1,0 +1,19 @@
+<div class="discussion subview-container">
+  <div class="page-title full-width">
+    <div class="routine-title">Discussions</div>
+    <div class="button-container pull-right">
+      <div class="create-button">+ Create</div>
+    </div>
+  </div>
+  <div class="list-container routines full-width">
+    <div class="routine-card" ng-repeat="routine in routines">
+      <div class="routine-social-metrics">
+        <div class="icon-with-stat"><i class="icon icon-star"></i><div class="stat">{{routine.stars}}</div></div>
+      </div>
+      <div class="routine-description">
+        <div class="card-title">{{routine.title}}</div>
+        <div class="routine-metrics">{{routine.author}}</div>
+      </div>
+    </div>
+  </div>
+</div>

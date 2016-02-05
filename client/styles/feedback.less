@@ -15,13 +15,8 @@
     height: 150px;
   }
   .feedback-text-area {
-    @feedback-padding: 15px;
-    .rounded-borders();
-    .width-minus-box(@padding: @feedback-padding);
-    resize: none;
-    padding: @feedback-padding;
     height: 100%;
-    border: 1px solid @primary-color;
+    .text-area();
   }
   .feedback-comments {
     .flex-center();

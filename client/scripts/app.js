@@ -23,7 +23,8 @@
     'trait',
     'routines',
     'routine',
-    'self'
+    'self',
+    'new'
   ]);
 
   module.config(function($compileProvider, $httpProvider, $ionicConfigProvider) {
@@ -53,7 +54,7 @@
           $state.go(STATE.notConnected);
         });
       } else {
-        $state.go(STATE.self);
+        $state.go(STATE.stroop);
       }
     });
 

@@ -1,0 +1,17 @@
+<div class="rating subview-container">
+  <div ng-if="submit" class="full-height flex-center">
+    <div class="font-xlarge" ng-click="backToRating()">Go Back</div>
+    <div class="font-xlarge" ng-click="submitRatings()">Submit</div>
+  </div>
+  <div ng-if="!submit" class="full-height flex-column">
+    <div class="page-title full-width">
+      <div class="routine-title">{{metric.question}}</div>
+    </div>
+    <div class="rating full-width grow">
+      <i ng-repeat="score in scores" ng-click="rate(score.value)" class="horizontal-space-small icon {{score.icon}}"></i>
+    </div>
+    <div class="centered">
+      <div ng-repeat="m in metrics" class="dot {{m.text === metric.text ? 'active' : ''}}"></div>
+    </div>
+  </div>
+</div>

@@ -93,7 +93,10 @@
   flex-grow: @growth;
   -webkit-flex-grow: @growth;
 }
-
+.set-flex(@flex: 1) {
+  flex: @flex;
+  -webkit-flex: @flex;
+}
 .rounded-borders {
   border-radius: @round-border-radius;
 }
@@ -136,9 +139,16 @@
   position: absolute;
   bottom: 0;
 }
-
 .width-minus-box(@base-width: 100%, @margin: 0px, @padding: 0px, @border: 1px) {
   width: calc(@base-width ~"-" 2 ~"*" @border ~"-" 2 ~"*" @margin ~"-" 2 ~"*" @padding);
+}
+
+.text-area(@padding: 15px) {
+  .rounded-borders();
+  .width-minus-box(@padding: @padding);
+  resize: none;
+  padding: @padding;
+  border: 1px solid @primary-color;
 }
 
 .apply-gradient(@start-color: @primary-color, @end-color: @gradient-to, @end-location: 75%) {
