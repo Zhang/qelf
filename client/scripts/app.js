@@ -6,7 +6,6 @@
     'ngCookies',
     'ui.router',
     'ENV_VARS',
-    'facebook',
     'share',
     'enterSubmit',
     'overlay',
@@ -14,17 +13,12 @@
     'states',
     'api',
     'noConnection',
-    'walkthrough',
     'login',
     'frame',
-    'voting',
     'profile',
     'feedback',
-    'trait',
-    'routines',
-    'routine',
-    'self',
-    'new'
+    'trackers',
+    'experiments'
   ]);
 
   module.config(function($compileProvider, $httpProvider, $ionicConfigProvider) {
@@ -54,7 +48,7 @@
           $state.go(STATE.notConnected);
         });
       } else {
-        $state.go(STATE.stroop);
+        $state.go(STATE.experiments);
       }
     });
 

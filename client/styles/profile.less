@@ -125,3 +125,48 @@
     }
   }
 }
+.measure {
+  background-color: @primary-color;
+  color: white;
+  padding: 10px;
+  font-size: @font-large;
+  margin: 10px 0;
+  .width-minus-box(@padding: 10px);
+  .rounded-borders();
+}
+
+.experiment-metric {
+  flex: 1;
+  .flex-center();
+  .rounded-borders();
+  text-align: center;
+  font-size: @font-standard;
+  margin: 0 4px;
+  padding: 10px 5px;
+  &.light-gray {
+    background-color: #DADADA;
+  }
+}
+
+.experiment-metrics {
+  .flex-left();
+  width: 100%;
+  .routine-metric {
+    background-color: @secondary-color;
+    font-size: 12px;
+    height: 35px;
+  }
+}
+.tracking-card {
+  .rounded-borders();
+  padding: 0 10px;
+}
+.changed-width {
+  @tracking-horizontal-margin: 6px;
+  margin: 0 @tracking-horizontal-margin;
+  .width-minus-box(@margin: @tracking-horizontal-margin);
+}
+
+.padding-top-subview {
+  padding-top: @subview-container-margin
+}

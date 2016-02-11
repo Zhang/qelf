@@ -1,0 +1,16 @@
+<div class="flex-column full-width grow">
+  <div class="full-width flex-center grow" ng-if="started && !currentStroop">
+    Stroop test complete
+  </div>
+  <div class="full-width flex-center grow" ng-if="!started">
+    Test will begin shortly
+  </div>
+  <div ng-if="started && currentStroop" class="flex-center full-width grow">
+    <div ng-if="showTime" class="font-xlarge">{{reactionSpeed}} ms</div>
+    <div ng-if="currentStroop && !showTime" class="font-stroop {{currentStroop.color}}">{{currentStroop.text}}</div>
+  </div>
+  <div ng-if="currentStroop" class="counter full-width flex-center">
+    <div class="grow text-center font-xlarge stroop-button" ng-click="!showTime && submit('Red')">R</div>
+    <div class="grow text-center font-xlarge stroop-button" ng-click="!showTime && submit('Purple')">P</div>
+  </div>
+</div>

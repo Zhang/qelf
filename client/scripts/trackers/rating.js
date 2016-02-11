@@ -7,7 +7,7 @@
     $stateProvider
     .state(STATE.rating, {
       url: '/rating',
-      templateUrl: 'scripts/mocks2/rating.html',
+      templateUrl: 'scripts/trackers/rating.html',
       controller: 'Rating'
     });
   });

@@ -1,0 +1,14 @@
+<div class="flex-column full-width grow">
+  <div class="full-width flex-center count-header">
+    {{text}}
+  </div>
+  <div class="grow full-width flex-center">
+    <div class="font-large">
+      <input type="number" ng-model="count">
+      <span>
+        {{label}}
+      </span>
+    </div>
+  </div>
+  <div class="bottom-btn full-width" ng-click="submit()">Submit</div>
+</div>

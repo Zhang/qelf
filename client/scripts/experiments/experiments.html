@@ -1,0 +1,13 @@
+<div class="discussion subview-container flex-column">
+  <div class="page-title full-width">
+    <div class="font-xlarge">What do you want to learn about yourself?</div>
+  </div>
+  <div class="list-container experiments full-width grow">
+    <div class="experiment-card" ng-class="{'selected-card': experiment.selected}" ng-click="selectExperiment(experiment)" ng-repeat="experiment in experiments">
+      <div class="experiment-description">
+        <div class="card-title">{{experiment.title}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-btn full-width" ng-class="{'disabled-btn': !selected.length}" ng-click="saveSelection()">Save Selection</div>
+</div>

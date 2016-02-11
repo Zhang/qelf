@@ -1,0 +1,20 @@
+.experiments {
+  padding-top: 10px;
+  .flex-grow(1);
+  .experiment-card {
+    .flex-left();
+    .rounded-borders();
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: @secondary-color;
+    .experiment-description {
+      margin-left: 10px;
+    }
+    .card-title {
+      font-size: @font-large;
+    }
+    &.selected-card {
+      background-color: @primary-color;
+    }
+  }
+}

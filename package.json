@@ -1,6 +1,6 @@
 {
   "name": "Qelf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
@@ -26,10 +26,6 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-x-socialsharing",
-    {
-      "id": "phonegap-facebook-plugin",
-      "locator": "./ext/phonegap-facebook-plugin/"
-    },
     "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
@@ -37,7 +33,7 @@
     "ios"
   ],
   "dependencies": {
-    "cordova": "~5.4.1",
+    "cordova": "5.4.1",
     "cordova-common": "1.0.0",
     "grunt": "0.4.5",
     "ionic": "1.7.12",
@@ -58,7 +54,7 @@
     "grunt-mocha-test": "0.12.7",
     "grunt-newer": "1.1.1",
     "grunt-ng-constant": "1.1.0",
-    "grunt-replace": "^0.11.0",
+    "grunt-replace": "0.11.0",
     "jshint-stylish": "2.1.0",
     "load-grunt-tasks": "3.3.0",
     "mocha": "2.3.4"

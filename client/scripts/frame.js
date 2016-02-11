@@ -34,7 +34,7 @@
     });
   });
 
-  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, FBService, Modals, ShareService, $timeout, Keyboard) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, Modals, ShareService, $timeout, Keyboard) {
     $scope.isSelected = function(state) {
       return $state.current.name === STATE[state];
     };
@@ -77,11 +77,6 @@
             title: 'Logout',
             action: function(e) {
               e.preventDefault();
-              FBService.logout().then(function() {
-                SessionAPI.logout().then(function() {
-                  $state.go(STATE.login);
-                });
-              });
             }
           }
         ],
@@ -91,7 +86,7 @@
     };
     $scope.isStandardView = false;
     $scope.$on('$stateChangeSuccess', function(e, currentState) {
-      $scope.isStandardView = false; //currentState.name === STATE.trait || currentState.name === STATE.feedback;
+      $scope.isStandardView = currentState.name === STATE.trackers || currentState.name === STATE.feedback;
     });
   });
 })();

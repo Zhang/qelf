@@ -1,34 +1,31 @@
-<div class="subview-container profile-container">
-  <div class="profile-overview-container">
-    <div class="profile-picture-container">
-      <div id="profile-picture" class="profile-picture"></div>
+<div class="subview-container flex-column">
+  <div class="grow full-width">
+    <div class="page-title full-width">
+      <div class="font-xlarge">{{experiment.text}}</div>
     </div>
-    <div class="profile-overview">
-      <div class="name">{{::user.name}}</div>
-      <div class="overview">
-        {{::overviewSentence}}
+    <div class="text-center flex-center full-width bottom-border">
+      <div class="experiment-metrics">
+        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.dataPoints}}</span> Data Points Tracked</div>
+        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.minimumDatapoints - experiment.dataPoints}}</span> Data Points Remaining</div>
       </div>
     </div>
-  </div>
-  <div class="selectors-container">
-    <div class="selector-container">
-      <div class="profile-selector" ng-click="sortBy()">
-        <div class="sort-text">{{sortByText || 'Sort By'}}</div>
-        <div class="select-icon ion-ios-arrow-down">
+    <div class="tracking full-width">
+      <div class="tracking-card flex-column">
+        <div class="changed-width">
+          <div class="full-width">
+            <div>Average Accuracy</div><div>90%</div>
+            <div>Average Reaction Time</div><div>300ms</div>
+          </div>
+          <div class="flex-left">
+            <span class="grow">View by: <strong>{{experiment.ranking.text}}</strong></span>
+          </div>
+          <div class="measure flex-left" ng-repeat="variable in variables"><div class="grow">{{variable.text}}</div><div>{{variable.score}}</div></div>
         </div>
       </div>
-      <div class="profile-selector" ng-click="viewByTheme()">
-        <div class="sort-text">{{viewTheme || 'View by Theme'}}</div>
-        <div class="select-icon ion-ios-arrow-down">
-        </div>
-      </div>
     </div>
   </div>
-  <div ng-if="!$root.user.viewed.traitNote" class="trait-notification">
-    <div class="notification-text">4 votes are required for each trait to provide accurate scores. Invite Friends for more votes!</div>
-    <div class="close" ng-click="toggleNotification()">X</div>
-  </div>
-  <div ng-if="traits" class="traits-container">
-    <trait-card ng-repeat="trait in traits" ng-if="trait.display" trait="::trait"></trait-card>
+  <div class="bottom-btn full-width" ng-click="measure()">Measure</div>
+  <div class="padding-top-subview centered">
+    <div ng-repeat="e in experiments" class="dot {{e.text === experiment.text ? 'active' : ''}}"></div>
   </div>
 </div>
