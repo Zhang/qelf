@@ -6,32 +6,28 @@
   module.config(function($stateProvider, STATE) {
     $stateProvider
     .state(STATE.profile, {
-      url: '/profile',
+      url: '/profile/:current',
       templateUrl: 'scripts/profile/profile.html',
-      controller: 'Profile'
+      controller: 'Profile',
+      resolve: {
+        Experiments: function(ExperimentsAPI) {
+          return ExperimentsAPI.get();
+        }
+      }
     });
   });
 
-  module.controller('Profile', function($scope, StroopResults, $state, STATE) {
+  module.controller('Profile', function($scope, StroopResults, $state, STATE, $stateParams, Experiments) {
     $scope.measure = function() {
-      $state.go(STATE.trackers);
+      $state.go(STATE.trackers, {id: $scope.experiment.id});
     };
-    $scope.experiments = [{
-      text: 'What is the best music for me to work to?',
-      dataPoints: 4,
-      minimumDatapoints: 10,
-      ranking: {
-        text: 'Best Music To Work With',
-        sort: function(variable) {
-          return variable.score;
-        }
-      }
-    }, {
-      text: 'When guinea pigs ruled',
-      dataPoints: 0,
-      minimumDatapoints: 0
-    }];
-    $scope.experiment = $scope.experiments[0];
+
+    $scope.experiments = Experiments;
+    $scope.experiment = _.find($scope.experiments, {id: $stateParams.current}) || $scope.experiments[0];
+    console.log($scope.experiment.results);
+    $scope.viewExperiment = function(e) {
+      $scope.experiment = _.find($scope.experiments, {id: e.id});
+    };
 
     $scope.overall = {
       accuracy: StroopResults.getAverageAccuracy(),

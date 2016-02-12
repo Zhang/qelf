@@ -70,4 +70,84 @@
       }
     };
   });
+  module.service('ExperimentsAPI', function() {
+    var experiments = [{
+      id: 'music',
+      text: 'What is the best music for me to work to?',
+      dataPoints: 4,
+      minimumDatapoints: 10,
+      ranking: {
+        text: 'Best Music To Work With',
+        sort: function(variable) {
+          return variable.score;
+        }
+      },
+      results: [],
+      trackers: [{
+        text: 'instruction',
+        instructions: 'These are the instructions you shall follow, and these are the things you must do.'
+      }, {
+        text: 'instruction',
+        instructions: 'To do the stroop, you have to do these things.'
+      }, {
+        text: 'stroop'
+      }]
+    }, {
+      id: 'wake',
+      text: 'Waking up vs productivity?',
+      dataPoints: 4,
+      minimumDatapoints: 10,
+      ranking: {
+        text: 'Best Music To Work With',
+        sort: function(variable) {
+          return variable.score;
+        }
+      },
+      results: [],
+      trackers: [{
+        text: 'time',
+        countOf: 'When did you wake up?',
+        label: ''
+      }, {
+        text: 'count',
+        countOf: 'How many pomodoros did you do today?',
+        label: 'pomodoros'
+      }]
+    }, {
+      id: 'food',
+      text: 'Time eaten vs focus?',
+      dataPoints: 4,
+      minimumDatapoints: 10,
+      ranking: {
+        text: 'Best Music To Work With',
+        sort: function(variable) {
+          return variable.score;
+        }
+      },
+      results: [],
+      trackers: [{
+        text: 'count',
+        countOf: 'How many hours has it been since you\'ve eaten a meal?',
+        label: 'hour since last meal'
+      }, {
+        text: 'instruction',
+        instructions: 'You have to do this focus test now'
+      }, {
+        text: 'stroop'
+      }]
+    }];
+
+    return {
+      getExperiment: function(id) {
+        return _.find(experiments, {id: id});
+      },
+      submit: function(id, res) {
+        var exp = _.find(experiments, {id: id});
+        exp.results.push(res);
+      },
+      get: function() {
+        return experiments;
+      }
+    };
+  });
 })();

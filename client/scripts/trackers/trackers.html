@@ -1,4 +1,6 @@
 <div class="rating subview-container flex-column">
   <stroop ng-if="current.text === 'stroop'" on-complete="next(results)"></stroop>
-  <count ng-if="current.text === 'count'" on-complete="next(results)"></count>
+  <count ng-if="current.text === 'count'" label="current.label" count-of="current.countOf" on-complete="next(results)"></count>
+  <time ng-if="current.text === 'time'" label="current.label" count-of="current.timeOf" on-complete="next(results)"></time>
+  <instruction ng-if="current.text === 'instruction'" instructions="current.instructions" on-complete="next()"></instruction>
 </div>

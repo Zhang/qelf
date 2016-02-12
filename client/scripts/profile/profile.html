@@ -26,6 +26,6 @@
   </div>
   <div class="bottom-btn full-width" ng-click="measure()">Measure</div>
   <div class="padding-top-subview centered">
-    <div ng-repeat="e in experiments" class="dot {{e.text === experiment.text ? 'active' : ''}}"></div>
+    <div ng-repeat="e in experiments" ng-click="viewExperiment(e)" class="dot {{e.text === experiment.text ? 'active' : ''}}"></div>
   </div>
 </div>

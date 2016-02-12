@@ -4,8 +4,6 @@
   var module = angular.module('count', []);
 
   module.controller('Count', function($scope) {
-    $scope.label = 'hours ago';
-    $scope.text = 'When was the last time you ate';
     $scope.count = 0;
     $scope.submit = function() {
       $scope.onComplete({results: $scope.count});
@@ -15,7 +13,9 @@
     return {
       replace: true,
       scope: {
-        onComplete: '&'
+        onComplete: '&',
+        countOf: '=',
+        label: '='
       },
       restrict: 'E',
       templateUrl: 'scripts/trackers/count.html',
