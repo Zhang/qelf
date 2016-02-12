@@ -4,10 +4,9 @@ const session = require('koa-session-store');
 const mongoStore = require('koa-session-mongo');
 const db = require('../db');
 const passport = require('koa-passport');
-const accountModel = require('../models/account');
-const FacebookStrategy = require('passport-facebook-token');
+const userModel = require('../models/user');
+const LocalStrategy = require('passport-local');
 const co = require('co');
-const config = require('../config');
 const logger = require('../logger');
 
 passport.serializeUser(function(user, done) {
@@ -21,7 +20,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function (id, done) {
   co(function* () {
     try {
-      const user = yield accountModel.get(id);
+      const user = yield userModel.get(id);
       if (user) {
         done(null, user);
       } else {
@@ -33,24 +32,22 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-passport.use(new FacebookStrategy({
-  clientID: config.facebookClientId,
-  clientSecret: config.facebookClientSecret
-}, function (accessToken, refreshToken, profile, done) {
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+}, function (email, password, done) {
   co(function* () {
-    let account = yield accountModel.getByFacebookId(profile.id);
-    if (!account) {
-      logger.warn('No such account: ', profile);
+    let user = yield userModel.getByEmail(email);
+    if (!user) {
+      logger.warn('No such account: ', email);
       return done(null, false);
     }
-    if (account.accessToken !== accessToken) {
-      yield accountModel.updateById(account.id, {
-        accessToken: accessToken
-      });
-      account = yield accountModel.getByFacebookId(profile.id);
-    }
 
-    done(null, account);
+    if (user.password === password) {
+      done(null, user);
+    } else {
+      done(null, false);
+    }
   });
 }));
 

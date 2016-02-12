@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 
-const traits = require('./traits');
+const experiments = require('./experiments');
 const co = require('co');
 
 function addDefaults() {
   co(function* () {
-    yield traits.addDefault();
+    yield experiments.addDefault();
   });
 }
 

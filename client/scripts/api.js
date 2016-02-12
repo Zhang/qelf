@@ -70,6 +70,14 @@
       }
     };
   });
+  module.service('ExperimentTemplatesAPI', function(HttpHelper) {
+    return {
+      get: function() {
+        return HttpHelper.get('experimentTemplates/');
+      }
+    };
+  });
+
   module.service('ExperimentsAPI', function() {
     function getUnqiueVariants(results) {
       return _.uniq(_.filter(results, function(res) {

@@ -1,10 +1,11 @@
 'use strict';
 
 const db = require('../db');
-const collection = db.get('feedback');
-const FeedbackSchema = require('./schemas').feedback;
+const COLL = 'feedback';
+const collection = db.get(COLL);
+const FeedbackSchema = require('./schemas')[COLL];
 
-const modelCRUD = require('./concerns/modelCRUD')('account', collection, FeedbackSchema);
+const modelCRUD = require('./concerns/modelCRUD')(COLL, collection, FeedbackSchema);
 
 module.exports = {
   add: modelCRUD.create

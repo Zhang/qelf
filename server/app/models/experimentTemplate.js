@@ -1,10 +1,11 @@
 'use strict';
 
+const COLL = 'experimentTemplate';
 const db = require('../db');
-const collection = db.get('traitTemplate');
-const TraitTemplateSchema = require('./schemas').traitTemplate;
+const collection = db.get(COLL);
+const ExperimentTemplateSchema = require('./schemas')[COLL];
 
-const modelCRUD = require('./concerns/modelCRUD')('traitTemplate', collection, TraitTemplateSchema);
+const modelCRUD = require('./concerns/modelCRUD')(COLL, collection, ExperimentTemplateSchema);
 
 module.exports = {
   addOrUpdate: modelCRUD.addOrUpdate,

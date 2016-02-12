@@ -1,41 +1,13 @@
 'use strict';
 
 const Joi = require('joi');
-const _ = require('lodash');
+const TYPES = require('./measureTypes').types;
 
-const viewComponents = ['traitNote', 'dragText', 'walkthrough'];
-const components = _.reduce(viewComponents, function(total, val) {
-  total[val] = Joi.boolean().required();
-  return total;
-}, {});
-const AccountSchema = Joi.object().keys({
+const UserSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  name: Joi.string().required(),
-  facebookId: Joi.string().required(),
-  accessToken: Joi.string().required(),
-  friends: Joi.array().items(Joi.string().description('facebookId of other account objects')).required(),
-  traits: Joi.array().items(Joi.string()).required().description('Array of strings that correspond to the id of trait objects'),
-  profilePicture: Joi.string().required().description('profile picture url'),
-  viewed: Joi.object().keys(components).required()
-});
-
-const VoteSchema = Joi.object().keys({
-  _id: Joi.string(),
-  id: Joi.string().required(),
-  traitTemplateId: Joi.string().required(),
-  contestants: Joi.array(Joi.string().description('facebookId of contestant').required()).required(),
-  comparison: Joi.string().required(),
-  selected: Joi.string().required().allow(null),
-  voterId: Joi.string().required(),
-  score: Joi.number().required().allow(null).description('Score between 0 - 100, representing % confidence of voter on their selection')
-});
-
-const CompletedVotesSchema = Joi.object().keys({
-  _id: Joi.string(),
-  id: Joi.string().required(),
-  complete: Joi.array().items(VoteSchema).required().description('an array of vote objects'),
-  facebookId: Joi.string().required()
+  email: Joi.string().required(),
+  password: Joi.string().required(),
 });
 
 const FeedbackSchema = Joi.object().keys({
@@ -46,28 +18,39 @@ const FeedbackSchema = Joi.object().keys({
   email: Joi.string().required().allow('')
 });
 
-const TraitSchema = Joi.object().keys({
+const ExperimentTemplateSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  templateId: Joi.string().required(),
-  themes: Joi.array().required().items(Joi.string()).description('An array of themes that the trait fits into'),
-  count: Joi.number().required(),
-  total: Joi.array().required().items(Joi.string()).description('An array of vote ids corresponding to completed votes')
+  text: Joi.text().required().description('The title of the experiment'),
+  procedure: Joi.array().required().items(Joi.string()).description('An array of measure ids')
 });
 
-const TraitTemplateSchema = Joi.object().keys({
+const ExperimentSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  comparisons: Joi.array().required().items(Joi.string().required()),
-  themes: Joi.array().required()
+  results: Joi.array().required().items(Joi.string()).description('An array of result ids'),
+  templateId: Joi.string().required().description('The id of the experiment template this experiment stems from'),
+  userId: Joi.string().required()
+});
+
+const MeasureSchema = Joi.object().keys({
+  _id: Joi.string(),
+  id: Joi.string().required(),
+  measured: Joi.object().keys({
+    type: Joi.string().required().valid(TYPES),
+    value: Joi.any().required()
+  }),
+  outcome: Joi.object().keys({
+    type: Joi.string().required().valid(TYPES),
+    value: Joi.any().required()
+  }),
+  time: Joi.date().timestamp()
 });
 
 module.exports = {
-  account: AccountSchema,
-  completedVotes: CompletedVotesSchema,
+  experimentTemplate: ExperimentTemplateSchema,
+  user: UserSchema,
+  experiment: ExperimentSchema,
   feedback: FeedbackSchema,
-  trait: TraitSchema,
-  traitTemplate: TraitTemplateSchema,
-  vote: VoteSchema,
-  viewComponents: viewComponents
+  measure: MeasureSchema
 };
