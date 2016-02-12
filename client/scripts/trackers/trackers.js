@@ -38,11 +38,16 @@
   });
 
   module.controller('Trackers', function($scope, $state, STATE, Experiment, $stateParams, ExperimentsAPI, CurrentResults) {
-    var trackers = Experiment.trackers;
+    var trackers = _.clone(Experiment.trackers);
     $scope.current = trackers.shift();
 
     $scope.next = function(res) {
-      CurrentResults.add(res);
+      var result = {
+        value: res
+      };
+      result.variant = $scope.current.variant;
+      result.id = $scope.current.id;
+      CurrentResults.add(result);
       $scope.current = trackers.shift();
 
       if(!$scope.current) {
@@ -51,7 +56,7 @@
       }
     };
     $scope.$on('$stateChangeStart', function() {
-      console.log(CurrentResults.clear());
+      CurrentResults.clear();
     });
   });
 })();

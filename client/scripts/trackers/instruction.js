@@ -3,13 +3,18 @@
 (function() {
   var module = angular.module('instruction', []);
 
-  module.controller('Instruction', function() {});
+  module.controller('Instruction', function($scope) {
+    $scope.submit = function() {
+      $scope.onComplete({results: $scope.presetValue});
+    };
+  });
   module.directive('instruction', function() {
     return {
       replace: true,
       scope: {
         onComplete: '&',
-        instructions: '='
+        instructions: '=',
+        presetValue: '=?'
       },
       restrict: 'E',
       templateUrl: 'scripts/trackers/instruction.html',

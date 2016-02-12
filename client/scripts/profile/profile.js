@@ -24,27 +24,11 @@
 
     $scope.experiments = Experiments;
     $scope.experiment = _.find($scope.experiments, {id: $stateParams.current}) || $scope.experiments[0];
-    console.log($scope.experiment.results);
+
     $scope.viewExperiment = function(e) {
       $scope.experiment = _.find($scope.experiments, {id: e.id});
     };
 
-    $scope.overall = {
-      accuracy: StroopResults.getAverageAccuracy(),
-      reactionTime: StroopResults.getAverageReactionTime()
-    };
-    $scope.variables = [{
-      text: 'Rap',
-      score: 0.7
-    }, {
-      text: 'Electronic',
-      score: 0.5
-    }, {
-      text: 'Classical',
-      score: 0.65
-    }, {
-      text: 'Rock',
-      score: 0.3
-    }];
+    $scope.variables = $scope.experiment.ranking.getScores($scope.experiment.results);
   });
 })();

@@ -71,6 +71,30 @@
     };
   });
   module.service('ExperimentsAPI', function() {
+    function getUnqiueVariants(results) {
+      return _.uniq(_.filter(results, function(res) {
+        return !!res.variant;
+      }), function(res) {
+        return res.value;
+      });
+    }
+    function getScores(variants, results, scoreCalc) {
+      return _.map(variants, function(variable) {
+        var pertinentResults = _.filter(results, function(res) {
+          console.log(_.find(res, {value: variable.value}));
+          return !!_.find(res, {value: variable.value});
+        });
+
+        var resultValues = _.filter(_.flatten(pertinentResults), function(res) {
+          return res.id === variable.variant;
+        });
+
+        return {
+          text: variable.value,
+          score: scoreCalc(resultValues)
+        };
+      });
+    }
     var experiments = [{
       id: 'music',
       text: 'What is the best music for me to work to?',
@@ -78,18 +102,26 @@
       minimumDatapoints: 10,
       ranking: {
         text: 'Best Music To Work With',
-        sort: function(variable) {
-          return variable.score;
+        getScores: function(results) {
+          if (!results) return [];
+          var flatResults = _.flatten(results);
+          var variants = getUnqiueVariants(flatResults);
+          return getScores(variants, results, function(resultValues) {
+            return Math.floor(_.sum(resultValues, 'value.reactionTime') / resultValues.length);
+          });
         }
       },
       results: [],
       trackers: [{
         text: 'instruction',
-        instructions: 'These are the instructions you shall follow, and these are the things you must do.'
+        instructions: 'These are the instructions you shall follow, and these are the things you must do. first put on rap song',
+        presetValue: 'rap',
+        variant: 'stroop1'
       }, {
         text: 'instruction',
-        instructions: 'To do the stroop, you have to do these things.'
+        instructions: 'To do the stroop, you have to do these things.',
       }, {
+        id: 'stroop1',
         text: 'stroop'
       }]
     }, {
@@ -98,17 +130,24 @@
       dataPoints: 4,
       minimumDatapoints: 10,
       ranking: {
-        text: 'Best Music To Work With',
-        sort: function(variable) {
-          return variable.score;
+        text: 'Best time to wake up',
+        getScores: function(results) {
+          if (!results) return [];
+          var flatResults = _.flatten(results);
+          var variants = getUnqiueVariants(flatResults);
+          return getScores(variants, results, function(resultValues) {
+            return _.sum(resultValues, 'value') / resultValues.length;
+          });
         }
       },
       results: [],
       trackers: [{
         text: 'time',
         countOf: 'When did you wake up?',
-        label: ''
+        label: '',
+        variant: 'count1'
       }, {
+        id: 'count1',
         text: 'count',
         countOf: 'How many pomodoros did you do today?',
         label: 'pomodoros'
@@ -119,20 +158,27 @@
       dataPoints: 4,
       minimumDatapoints: 10,
       ranking: {
-        text: 'Best Music To Work With',
-        sort: function(variable) {
-          return variable.score;
+        text: 'Most focused hour',
+        getScores: function(results) {
+          if (!results) return [];
+          var flatResults = _.flatten(results);
+          var variants = getUnqiueVariants(flatResults);
+          return getScores(variants, results, function(resultValues) {
+            return Math.floor(_.sum(resultValues, 'value.reactionTime') / resultValues.length);
+          });
         }
       },
       results: [],
       trackers: [{
         text: 'count',
         countOf: 'How many hours has it been since you\'ve eaten a meal?',
-        label: 'hour since last meal'
+        label: 'hour since last meal',
+        variant: 'stroop1'
       }, {
         text: 'instruction',
         instructions: 'You have to do this focus test now'
       }, {
+        id: 'stroop1',
         text: 'stroop'
       }]
     }];
