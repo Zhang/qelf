@@ -28,10 +28,11 @@ app.on('error', function(err) {
  * Routes.
  */
 app.use(mount('/login', require('./login')));
-app.use(mount('/account', require('./controllers/account')));
-app.use(mount('/trait', require('./controllers/trait')));
+app.use(mount('/user', require('./controllers/user')));
+app.use(mount('/experiment', require('./controllers/experiment')));
+app.use(mount('/experimentTemplate', require('./controllers/experimentTemplate')));
 app.use(mount('/feedback', require('./controllers/feedback')));
-app.use(mount('/vote', require('./controllers/votes')));
+
 app.use(route.post('/logout', function *() {
   this.session = null;
   this.body = null;

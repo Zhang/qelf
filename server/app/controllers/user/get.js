@@ -1,18 +1,19 @@
 'use strict';
 
-const accountModel = require('../../models/account');
+const userModel = require('../../models/user');
 /**
  * Find a photo by ID.
  */
 const find = function* find() {
   const id = this.params.id;
-  const account = yield accountModel.get(id);
-  if (!account) {
+  const user = yield userModel.get(id);
+
+  if (!user) {
     this.status = 404;
     return;
   }
 
-  this.body = account;
+  this.body = user;
   this.status = 200;
 };
 

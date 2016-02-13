@@ -7,7 +7,7 @@ const ExperimentTemplateSchema = require('./schemas')[COLL];
 const modelCRUD = require('./concerns/modelCRUD')(COLL, collection, ExperimentTemplateSchema);
 const logger = require('../logger');
 
-const typeValidation = require('schemas/measureTypes').validate;
+const typeValidation = require('./schemas/measureTypes').validate;
 const add = function* (measure) {
   const measuredValidity = typeValidation(measure.measured.type, measure.measured.value);
   const outcomeValidity = typeValidation(measure.outcome.type, measure.outcome.value);

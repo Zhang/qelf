@@ -1,6 +1,6 @@
 'use strict';
 
-const experimentTemplateModel = require('../models/traitTemplate');
+const experimentTemplateModel = require('../models/experimentTemplate');
 const _ = require('lodash');
 
 module.exports = function* (experiments) {

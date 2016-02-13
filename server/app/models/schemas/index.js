@@ -21,8 +21,8 @@ const FeedbackSchema = Joi.object().keys({
 const ExperimentTemplateSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  text: Joi.text().required().description('The title of the experiment'),
-  procedure: Joi.array().required().items(Joi.string()).description('An array of measure ids')
+  text: Joi.string().required().description('The title of the experiment'),
+  procedure: Joi.array().required().description('An array of measure ids')
 });
 
 const ExperimentSchema = Joi.object().keys({
@@ -44,7 +44,7 @@ const MeasureSchema = Joi.object().keys({
     type: Joi.string().required().valid(TYPES),
     value: Joi.any().required()
   }),
-  time: Joi.date().timestamp()
+  time: Joi.date().required()
 });
 
 module.exports = {
