@@ -140,9 +140,10 @@
   .flex-center();
   .rounded-borders();
   text-align: center;
-  font-size: @font-standard;
+  font-size: @font-smaller;
   margin: 0 4px;
-  padding: 10px 5px;
+  padding: 5px;
+  height: 25px;
   &.light-gray {
     background-color: #DADADA;
   }
@@ -159,14 +160,12 @@
 }
 .tracking-card {
   .rounded-borders();
-  padding: 0 10px;
-}
-.changed-width {
-  @tracking-horizontal-margin: 6px;
-  margin: 0 @tracking-horizontal-margin;
-  .width-minus-box(@margin: @tracking-horizontal-margin);
 }
 
 .padding-top-subview {
   padding-top: @subview-container-margin
+}
+
+.variable-container {
+  margin-top: 10px;
 }

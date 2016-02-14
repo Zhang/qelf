@@ -1,7 +1,7 @@
 <div class="rating subview-container flex-column">
   <stroop ng-if="current.type === 'stroop'" on-complete="next(results)"></stroop>
-  <count ng-if="current.type === 'count'" label="current.label" count-of="current.countOf" on-complete="next(results)"></count>
-  <time ng-if="current.type === 'time'" label="current.label" count-of="current.timeOf" on-complete="next(results)"></time>
+  <count ng-if="current.type === 'count'" label="current.label" text="current.text" on-complete="next(results)"></count>
+  <time ng-if="current.type === 'time'" label="current.label" text="current.text" on-complete="next(results)"></time>
   <instruction ng-if="current.type === 'instruction'" text="current.text" preset-value="current.presetValue" on-complete="next(results)"></instruction>
   <multiple ng-if="current.type === 'multiple'" text="current.text" choices="current.choices" on-complete="next(results)"></multiple>
 </div>

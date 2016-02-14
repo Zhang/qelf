@@ -1,14 +1,9 @@
 <div class="flex-column full-width grow">
   <div class="full-width flex-center count-header">
-    {{timeOf}}
+    {{text}}
   </div>
   <div class="grow full-width flex-center">
-    <div class="font-large">
-      <input type="time" placeholder="HH:mm:ss" ng-model="time">
-      <span>
-        {{label}}
-      </span>
-    </div>
+    <clockpicker ng-model="time"></clockpicker>
   </div>
   <div class="bottom-btn full-width" ng-click="submit()">Submit</div>
 </div>

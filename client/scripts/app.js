@@ -48,7 +48,7 @@
           $state.go(STATE.notConnected);
         });
       } else {
-        $state.go(STATE.experiments);
+        $state.go(STATE.profile);
       }
     });
 

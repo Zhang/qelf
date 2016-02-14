@@ -56,7 +56,7 @@
     };
   });
 
-  module.controller('Trackers', function($scope, $state, STATE, Experiment, $stateParams, ExperimentsAPI, CurrentResults) {
+  module.controller('Trackers', function($scope, $state, STATE, Experiment, $stateParams, ExperimentsAPI, CurrentResults, Modals) {
     var resultManager = new CurrentResults();
     var trackers = _.clone(Experiment.template.procedure);
     $scope.current = trackers.shift();
@@ -77,7 +77,12 @@
       if(!$scope.current) {
         resultManager.setTime();
         ExperimentsAPI.submit(Experiment.id, resultManager.get());
-        $state.go(STATE.profile, {current: $stateParams.id});
+        Modals.open(Modals.TYPES.alert, {
+          title: 'Measurement Complete',
+          onClose: function() {
+            $state.go(STATE.profile, {current: $stateParams.id});
+          }
+        });
       }
     };
   });

@@ -14,7 +14,7 @@
       replace: true,
       scope: {
         onComplete: '&',
-        countOf: '=',
+        text: '=',
         label: '='
       },
       restrict: 'E',

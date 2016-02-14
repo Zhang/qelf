@@ -1,7 +1,7 @@
 <div class="subview-container flex-column">
   <div class="grow full-width">
     <div class="page-title full-width">
-      <div class="font-xlarge">{{experiment.template.text}}</div>
+      <div class="font-large">{{experiment.template.text}}</div>
     </div>
     <div class="text-center flex-center full-width bottom-border">
       <div class="experiment-metrics">
@@ -11,17 +11,24 @@
     </div>
     <div class="tracking full-width">
       <div class="tracking-card flex-column">
-        <div class="changed-width">
+        <div ng-if="!results.outcomes.length" class="full-width">
+          <div class="text-center flex-center full-width padding-top-subview">
+            No Results
+          </div>
+
+        </div>
+        <div ng-if="!!results.outcomes.length" class="full-width">
           <div class="text-center flex-center full-width padding-top-subview">
             <div class="experiment-metrics">
               <div ng-repeat="summary in results.summary" class="experiment-metric light-gray"><span class="bold-number">{{summary.value}}</span> {{summary.label}}</div>
             </div>
           </div>
-
-          <div class="flex-left">
-            <span class="grow">View by: <strong>{{experiment.ranking.text}}</strong></span>
+          <div class="full-width variable-container">
+            <div class="flex-left">
+              <span class="grow">Sort by: <strong ng-click="sortBy()">{{key.text}}</strong></span>
+            </div>
+            <div class="measure flex-left" ng-repeat="variable in results.outcomes"><div class="grow">{{variable.text}}</div><div>{{variable.score[key.value]}}</div></div>
           </div>
-          <div class="measure flex-left" ng-repeat="variable in results.outcomes"><div class="grow">{{variable.text}}</div><div>{{variable.score}}</div></div>
         </div>
       </div>
     </div>

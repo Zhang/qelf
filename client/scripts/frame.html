@@ -2,7 +2,6 @@
   <div class="navbar-container">
     <div class="title-container">
       <h2 ng-if="!isStandardView" ng-click="goTo('profile')" class="title">Qelf <span class="beta-heading">beta</span></h2>
-      <div ng-if="isStandardView" class="go-back" ng-click="goTo('lastState')"><div class="go-back-btn ion-chevron-left"></div>Go Back</div>
     </div>
     <div class="navigation" ng-class"{
         ios: $root.isIOS,
@@ -28,6 +27,7 @@
         </svg>
       </div>
       <div ng-if="!isStandardView" class="nav settings ion-navicon" ng-click="openPopup()"></div>
+      <div ng-if="isStandardView" class="go-back" ng-click="goTo('lastState')">Cancel</div>
     </div>
   </div>
   <div class="view-container" ui-view></div>
