@@ -22,7 +22,7 @@ module.exports = function* (experiment) {
       },
       {
         label: 'Average Reaction Time',
-        value: Math.floor(_.sum(results, 'outcome.value.reactionTime') / results.length)
+        value: Math.floor(_.sum(results, 'outcome.value.reactionTime') / results.length) + ' ms'
       }];
     } else {
       return [
@@ -34,11 +34,11 @@ module.exports = function* (experiment) {
   }
   const allKeys = {
     stroop: [{
-      text: 'Reaction Time',
+      text: 'Reaction Time in ms',
       value: 'reactionTime'
     },
     {
-      text: 'Accuracy',
+      text: 'Accuracy in %',
       value: 'accuracy'
     }]
   };
@@ -62,8 +62,8 @@ module.exports = function* (experiment) {
         return {
           text: formattedKey,
           score: {
-            reactionTime: Math.floor(_.sum(pertinentMeasures, 'outcome.value.reactionTime') / pertinentMeasures.length) + ' ms',
-            accuracy: Math.floor(_.sum(pertinentMeasures, 'outcome.value.correct') / _.sum(pertinentMeasures, 'outcome.value.total') * 100) + '%'
+            reactionTime: Math.floor(_.sum(pertinentMeasures, 'outcome.value.reactionTime') / pertinentMeasures.length),
+            accuracy: Math.floor(_.sum(pertinentMeasures, 'outcome.value.correct') / _.sum(pertinentMeasures, 'outcome.value.total') * 100)
           }
         };
       } else if (type === 'time') {

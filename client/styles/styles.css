@@ -980,6 +980,9 @@ input {
   border-radius: 3px;
   text-align: center;
 }
+.overflow-protector {
+  overflow-y: scroll;
+}
 .text-center {
   text-align: center;
 }

@@ -17,6 +17,12 @@
       ExperimentsAPI.getResults($scope.experiment.id).then(function(res) {
         $scope.results = res.data;
         $scope.key = _.get($scope.results, 'outcomeKeys[0]');
+        sortResultsBy($scope.key);
+      });
+    }
+    function sortResultsBy(key) {
+      $scope.results.outcomes = _.sortBy($scope.results.outcomes, function(outcome) {
+        return -outcome.score[key.value];
       });
     }
     $scope.sortBy = function() {
@@ -27,6 +33,7 @@
             title: outcome.text,
             action: function(e, item) {
               $scope.key = _.find($scope.results.outcomeKeys, {text: item.title});
+              sortResultsBy($scope.key);
             }
           };
         })
@@ -37,7 +44,7 @@
       var experiments = _.filter(res.data, 'active');
       $scope.experiments = experiments;
       $scope.experiment = _.find($scope.experiments, {id: $stateParams.current}) || $scope.experiments[0];
-      $scope.stateParams.current = $scope.experiment.id;
+      $stateParams.current = $scope.experiment.id;
       getResults();
     });
 

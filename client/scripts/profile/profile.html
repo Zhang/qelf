@@ -6,7 +6,7 @@
     <div class="text-center flex-center full-width bottom-border">
       <div class="experiment-metrics">
         <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.results.length}}</span> Data Points Tracked</div>
-        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.template.minimumResults - experiment.results.length}}</span> Data Points Remaining</div>
+        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.template.minimumResults - experiment.results.length > 0 ? experiment.template.minimumResults - experiment.results.length : 0}}</span> Data Points Remaining</div>
       </div>
     </div>
     <div class="tracking full-width">
@@ -27,7 +27,11 @@
             <div class="flex-left">
               <span class="grow">Sort by: <strong ng-click="sortBy()">{{key.text}}</strong></span>
             </div>
-            <div class="measure flex-left" ng-repeat="variable in results.outcomes"><div class="grow">{{variable.text}}</div><div>{{variable.score[key.value]}}</div></div>
+            <div class="overflow-protector">
+              <div class="measure flex-left" ng-repeat="variable in results.outcomes">
+                <div class="grow">{{variable.text}}</div><div>{{variable.score[key.value]}}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
