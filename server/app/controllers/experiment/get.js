@@ -11,7 +11,7 @@ const get = function* get() {
     return;
   }
 
-  const denormalizedExperiment = yield denormalizeExperiments([experiment]);
+  const denormalizedExperiment = yield denormalizeExperiments(null, [experiment]);
   this.body = denormalizedExperiment[0];
   this.status = 200;
 };

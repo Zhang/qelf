@@ -3,9 +3,9 @@
     <div class="font-xlarge">What do you want to learn about yourself?</div>
   </div>
   <div class="list-container experiments full-width grow">
-    <div class="experiment-card" ng-class="{'selected-card': experiment.selected}" ng-click="selectExperiment(experiment)" ng-repeat="experiment in experiments">
+    <div class="experiment-card" ng-class="{'selected-card': isSelected(experiment)}" ng-click="selectExperiment(experiment)" ng-repeat="experiment in experiments">
       <div class="experiment-description">
-        <div class="card-title">{{experiment.title}}</div>
+        <div class="card-title">{{experiment.text}}</div>
       </div>
     </div>
   </div>

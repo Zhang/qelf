@@ -7,10 +7,11 @@ const ExperimentSchema = require('./schemas')[COLL];
 const modelCRUD = require('./concerns/modelCRUD')(COLL, collection, ExperimentSchema);
 const experimentTemplateModel = require('./experimentTemplate');
 const measureModel = require('./measure');
+
 const submit = function* (id, res) {
   const measure = yield measureModel.add(res);
 
-  yield collection.update({id: id}, {results: {$push: measure.id}});
+  yield collection.update({id: id}, {$push: {results: measure.id}});
 };
 
 const makeExperimentForUser = function* addExperiment(userId, templateId) {
@@ -21,7 +22,8 @@ const makeExperimentForUser = function* addExperiment(userId, templateId) {
       userId: userId,
       templateId: templateId
     };
-    yield modelCRUD.create(newExperiment);
+    const experiment = yield modelCRUD.create(newExperiment);
+    return experiment;
   } else {
     throw new Error('attempting to create an experiment without a template. TemplateId of: ', templateId);
   }

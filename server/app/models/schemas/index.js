@@ -8,6 +8,10 @@ const UserSchema = Joi.object().keys({
   id: Joi.string().required(),
   email: Joi.string().required(),
   password: Joi.string().required(),
+  experiments: Joi.array().required().items(Joi.object().keys({
+    id: Joi.string().required(),
+    active: Joi.boolean().required()
+  })).description('An array of experiment metadata')
 });
 
 const FeedbackSchema = Joi.object().keys({
@@ -22,7 +26,8 @@ const ExperimentTemplateSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
   text: Joi.string().required().description('The title of the experiment'),
-  procedure: Joi.array().required().description('An array of measure ids')
+  procedure: Joi.array().required().description('An array of measure ids'),
+  minimumResults: Joi.number().required()
 });
 
 const ExperimentSchema = Joi.object().keys({

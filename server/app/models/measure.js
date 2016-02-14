@@ -24,6 +24,7 @@ const add = function* (measure) {
 
 module.exports = {
   add: add,
+  query: modelCRUD.query,
   //FOR TESTING ONLY
   clear: function* () {
     yield collection.remove({});

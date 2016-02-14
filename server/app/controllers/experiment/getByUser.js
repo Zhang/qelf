@@ -1,17 +1,16 @@
 'use strict';
 
 const experimentModel = require('../../models/experiment');
+const userModel = require('../../models/user');
 const denormalizeExperiments = require('../../services/denormalizeExperiments');
 
 const get = function* get() {
-  const userId = this.params.userId;
+  const userId = this.params.id;
   const experiments = yield experimentModel.query({userId: userId});
-  if (!experiments) {
-    this.status = 404;
-    return;
-  }
+  const user = yield userModel.get(this.params.id);
 
-  const denormalizedExperiments = yield denormalizeExperiments(experiments);
+  const denormalizedExperiments = yield denormalizeExperiments(user, experiments);
+
   this.body = denormalizedExperiments;
   this.status = 200;
 };

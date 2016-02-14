@@ -1,31 +1,33 @@
 <div class="subview-container flex-column">
   <div class="grow full-width">
     <div class="page-title full-width">
-      <div class="font-xlarge">{{experiment.text}}</div>
+      <div class="font-xlarge">{{experiment.template.text}}</div>
     </div>
     <div class="text-center flex-center full-width bottom-border">
       <div class="experiment-metrics">
-        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.dataPoints}}</span> Data Points Tracked</div>
-        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.minimumDatapoints - experiment.dataPoints}}</span> Data Points Remaining</div>
+        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.results.length}}</span> Data Points Tracked</div>
+        <div class="experiment-metric light-gray"><span class="bold-number">{{experiment.template.minimumResults - experiment.results.length}}</span> Data Points Remaining</div>
       </div>
     </div>
     <div class="tracking full-width">
       <div class="tracking-card flex-column">
         <div class="changed-width">
-          <div class="full-width">
-            <div>Average Accuracy</div><div>90%</div>
-            <div>Average Reaction Time</div><div>300ms</div>
+          <div class="text-center flex-center full-width padding-top-subview">
+            <div class="experiment-metrics">
+              <div ng-repeat="summary in results.summary" class="experiment-metric light-gray"><span class="bold-number">{{summary.value}}</span> {{summary.label}}</div>
+            </div>
           </div>
+
           <div class="flex-left">
             <span class="grow">View by: <strong>{{experiment.ranking.text}}</strong></span>
           </div>
-          <div class="measure flex-left" ng-repeat="variable in variables"><div class="grow">{{variable.text}}</div><div>{{variable.score}}</div></div>
+          <div class="measure flex-left" ng-repeat="variable in results.outcomes"><div class="grow">{{variable.text}}</div><div>{{variable.score}}</div></div>
         </div>
       </div>
     </div>
   </div>
   <div class="bottom-btn full-width" ng-click="measure()">Measure</div>
   <div class="padding-top-subview centered">
-    <div ng-repeat="e in experiments" ng-click="viewExperiment(e)" class="dot {{e.text === experiment.text ? 'active' : ''}}"></div>
+    <div ng-repeat="e in experiments" ng-click="viewExperiment(e)" class="dot {{e.id === experiment.id ? 'active' : ''}}"></div>
   </div>
 </div>

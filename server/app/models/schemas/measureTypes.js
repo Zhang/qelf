@@ -7,7 +7,8 @@ const TYPES = {
   stroop: Joi.object().required(),
   count: Joi.number().required(),
   ratings: Joi.number().required(),
-  time: Joi.date().required()
+  time: Joi.date().required(),
+  multiple: Joi.string().required()
 };
 
 module.exports = {

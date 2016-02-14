@@ -78,7 +78,7 @@ module.exports = {
   },
   login: function () {
     const self = this;
-    return passport.authenticate('facebook-token', function* (err, user, info) {
+    return passport.authenticate('local', function* (err, user, info) {
       if (err) throw err;
       if (user === false) {
         logger.error('Authentication error: ', info);

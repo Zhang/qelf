@@ -9,7 +9,8 @@ const create = function* create() {
   try {
     yield userModel.add({
       email: body.email,
-      password: body.password
+      password: body.password,
+      experiments: []
     });
 
     yield authentication.login.call(this);
@@ -19,9 +20,5 @@ const create = function* create() {
     logger.error(err);
   }
 };
-
-/**
- * Exports.
- */
 
 module.exports = create;

@@ -7,7 +7,6 @@ const _ = require('lodash');
 const experiments = require('./experiments');
 const co = require('co');
 const config = require('../app/config');
-const experimentModel = require('../app/models/experiment');
 
 if (config.isProd) {
   console.error(new Error('Cannot init dev on prod instance'));
@@ -22,7 +21,8 @@ function generateUsers(numberOf) {
   return _.map(emails, function(email, index) {
     return {
       email: email,
-      password: 'test' + index
+      password: 'test' + index,
+      experiments: []
     };
   });
 }
@@ -34,7 +34,7 @@ function addAcct(acct) {
       yield experiments.addDefault();
       const user = yield* userModel.add(acct);
       yield _.map(experiments.defaultExperimentIds, function(id) {
-        return experimentModel.makeExperimentForUser(user.id, id);
+        return userModel.addExperiment(user.id, id);
       });
     } catch (e) {
       console.error('error adding account', e);

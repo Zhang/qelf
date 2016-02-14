@@ -3,9 +3,16 @@
 const db = require('../db');
 const COLL = 'user';
 const collection = db.get(COLL);
-const AccountSchema = require('./schemas')[COLL];
+const UserSchema = require('./schemas')[COLL];
+const _ = require('lodash');
 
-const modelCRUD = require('./concerns/modelCRUD')(COLL, collection, AccountSchema);
+const modelCRUD = require('./concerns/modelCRUD')(COLL, collection, UserSchema);
+const experimentModel = require('./experiment');
+
+const getByEmail = function* getByEmail(email) {
+  const user = yield collection.findOne({email: email});
+  return user;
+};
 
 const add = function* add(toAdd) {
   const existingUser = yield collection.findOne({
@@ -21,10 +28,35 @@ const add = function* add(toAdd) {
   return added;
 };
 
+const updateExperiments = function* (userId, templateIds) {
+  const user = yield modelCRUD.get(userId);
+  const newExperiments = _.filter(templateIds, function(id) {
+    return !!_.find(user.experiments, {id: id});
+  });
+  const addedExperiments = yield _.map(newExperiments, function(id) {
+    return experimentModel.makeExperimentForUser(userId, id);
+  });
+
+  const updatedExperiments = _.map(user.experiments, function(ex) {
+    ex.active = _.contains(templateIds, ex.templateId);
+    return ex;
+  }).concat(_.map(addedExperiments, function(ex) {
+    return {
+      id: ex.id,
+      active: true,
+      templateId: ex.templateId
+    };
+  }));
+
+  yield modelCRUD.updateById(userId, {experiments: updatedExperiments});
+};
+
 module.exports = {
   add: add,
   get: modelCRUD.get,
   query: modelCRUD.query,
+  getByEmail: getByEmail,
+  updateExperiments: updateExperiments,
   updateById: modelCRUD.updateById,
   update: modelCRUD.update,
   //FOR TESTING ONLY

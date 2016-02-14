@@ -1,17 +1,17 @@
 'use strict';
 
-const accountModel = require('../../models/account');
+const userModel = require('../../models/user');
 const _ = require('lodash');
 
 const current = function* current() {
-  const userId = _.get(this.session, 'passport.user');
-  const acct = yield accountModel.get(userId);
-
-  if (!acct) {
+  // const userId = _.get(this.session, 'passport.user');
+  // const acct = yield userModel.get(userId);
+  const user = yield userModel.getByEmail('test_user1@gmail.com');
+  if (!user) {
     this.status = 403;
   } else {
     this.status = 200;
-    this.body = acct;
+    this.body = user;
   }
 };
 

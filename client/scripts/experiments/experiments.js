@@ -8,32 +8,37 @@
     .state(STATE.experiments, {
       url: '/experiments',
       templateUrl: 'scripts/experiments/experiments.html',
-      controller: 'Experiments'
+      controller: 'Experiments',
+      resolve: {
+        Experiments: function(ExperimentTemplatesAPI) {
+          return ExperimentTemplatesAPI.get().then(function(res) {
+            return res.data;
+          });
+        }
+      }
     });
   });
 
-  module.controller('Experiments', function($scope, $state, STATE) {
-    $scope.selected = [];
-    $scope.experiments = [{
-      title: 'Habits that brought me from an average student to a 4.0 student last semester',
-    },
-    {
-      title: '9 Rules I Learned About Getting Old',
-    },
-    {
-      title: 'PeaceH\'s Guide to Becoming Disciplined',
-    },
-    {
-      title: 'First Steps, How to Wake Up Early, How to Study for School and Getting Rid of Internet Addiction',
-    }];
+module.controller('Experiments', function($scope, $state, STATE, Experiments, ExperimentsAPI, $rootScope, AccountAPI) {
+    ExperimentsAPI.getForUser($rootScope.user.id).then(function(res) {
+      $scope.selected = _.map(_.filter(res.data, 'active'), 'template');
+    });
+
+    $scope.experiments = Experiments;
+    $scope.isSelected = function(ex) {
+      return !!_.find($scope.selected, { id: ex.id });
+    };
+
     $scope.selectExperiment = function(ex) {
-      ex.selected = !ex.selected;
-      if (_.remove($scope.selected, {title: ex.title}).length !== 0) return;
+      if (_.remove($scope.selected, {id: ex.id}).length !== 0) return;
       $scope.selected.push(ex);
     };
+
     $scope.saveSelection = function() {
       if (!$scope.selected.length) return;
-      $state.go(STATE.profile);
+      AccountAPI.updateExperiments($rootScope.user.id, _.map($scope.selected, 'id')).then(function() {
+        $state.go(STATE.profile);
+      });
     };
   });
 })();

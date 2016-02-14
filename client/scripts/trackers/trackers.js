@@ -5,7 +5,8 @@
     'stroop',
     'count',
     'instruction',
-    'time'
+    'time',
+    'multiple'
   ]);
 
   module.config(function($stateProvider, STATE) {
@@ -16,47 +17,68 @@
       controller: 'Trackers',
       resolve: {
         Experiment: function(ExperimentsAPI, $stateParams) {
-          return ExperimentsAPI.getExperiment($stateParams.id);
+          return ExperimentsAPI.getExperiment($stateParams.id).then(function(res) {
+            return res.data;
+          });
         }
       }
     });
   });
 
   module.service('CurrentResults', function() {
-    var results = [];
-    return {
-      add: function(res) {
-        results.push(res);
-      },
-      clear: function() {
+    return function() {
+      var results = {
+        measured: {},
+        outcome: {}
+      };
+
+      this.addMeasure = function(res) {
+        results.measured = {
+          value: res.value,
+          type: res.type
+        };
+      };
+      this.addOutcome = function(res) {
+        results.outcome = {
+          value: res.value,
+          type: res.type
+        };
+      };
+      this.setTime = function() {
+        results.time = new Date();
+      };
+      this.clear = function() {
         results = [];
-      },
-      get: function() {
+      };
+      this.get = function() {
         return results;
-      }
+      };
     };
   });
 
   module.controller('Trackers', function($scope, $state, STATE, Experiment, $stateParams, ExperimentsAPI, CurrentResults) {
-    var trackers = _.clone(Experiment.trackers);
+    var resultManager = new CurrentResults();
+    var trackers = _.clone(Experiment.template.procedure);
     $scope.current = trackers.shift();
 
     $scope.next = function(res) {
       var result = {
-        value: res
+        value: res,
+        type: $scope.current.type
       };
-      result.variant = $scope.current.variant;
-      result.id = $scope.current.id;
-      CurrentResults.add(result);
-      $scope.current = trackers.shift();
 
+      if ($scope.current.measured) {
+        resultManager.addMeasure(result);
+      } else if ($scope.current.outcome) {
+        resultManager.addOutcome(result);
+      }
+
+      $scope.current = trackers.shift();
       if(!$scope.current) {
-        ExperimentsAPI.submit(Experiment.id, CurrentResults.get());
+        resultManager.setTime();
+        ExperimentsAPI.submit(Experiment.id, resultManager.get());
         $state.go(STATE.profile, {current: $stateParams.id});
       }
     };
-    $scope.$on('$stateChangeStart', function() {
-      CurrentResults.clear();
-    });
   });
 })();

@@ -25,7 +25,7 @@
 
     var stroopBeginTime = null;
     var completedStroops = [];
-    $scope.stroops = _.map(_.range(0, 20), function() {
+    $scope.stroops = _.map(_.range(0, 5), function() {
       return {
         color: _.sample(colors),
         text: _.sample(colors),

@@ -13,7 +13,7 @@
       replace: true,
       scope: {
         onComplete: '&',
-        instructions: '=',
+        text: '=',
         presetValue: '=?'
       },
       restrict: 'E',
