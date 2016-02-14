@@ -933,8 +933,6 @@ input {
   -webkit-justify-content: center;
   -webkit-align-items: center;
   display: -webkit-flex;
-  position: relative;
-  height: 8%;
   padding-bottom: 10px;
   text-align: center;
 }

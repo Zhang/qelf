@@ -32,10 +32,12 @@
         })
       });
     };
+
     ExperimentsAPI.getForUser($rootScope.user.id).then(function(res) {
       var experiments = _.filter(res.data, 'active');
       $scope.experiments = experiments;
       $scope.experiment = _.find($scope.experiments, {id: $stateParams.current}) || $scope.experiments[0];
+      $scope.stateParams.current = $scope.experiment.id;
       getResults();
     });
 
@@ -43,11 +45,20 @@
       $state.go(STATE.trackers, {id: $scope.experiment.id});
     };
 
-
     $scope.viewExperiment = function(e) {
       $scope.experiment = _.find($scope.experiments, {id: e.id});
       getResults();
     };
-
+    $scope.nextExperiment = function(direction) {
+      var currentIndex = _.indexOf($scope.experiments, $scope.experiment);
+      if (currentIndex === 0 && direction === 'right') {
+        $scope.experiment = $scope.experiments[$scope.experiments.length - 1];
+      } else if (currentIndex === $scope.experiments.length - 1 && direction === 'left') {
+        $scope.experiment = $scope.experiments[0];
+      } else {
+        $scope.experiment = $scope.experiments[direction === 'left' ? currentIndex + 1 : currentIndex - 1];
+      }
+      getResults();
+    };
   });
 })();
