@@ -31,7 +31,7 @@ const add = function* add(toAdd) {
 const updateExperiments = function* (userId, templateIds) {
   const user = yield modelCRUD.get(userId);
   const newExperiments = _.filter(templateIds, function(id) {
-    return !!_.find(user.experiments, {id: id});
+    return !_.find(user.experiments, {templateId: id});
   });
   const addedExperiments = yield _.map(newExperiments, function(id) {
     return experimentModel.makeExperimentForUser(userId, id);

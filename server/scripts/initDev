@@ -8,10 +8,10 @@ const experiments = require('./experiments');
 const co = require('co');
 const config = require('../app/config');
 
-if (config.isProd) {
-  console.error(new Error('Cannot init dev on prod instance'));
-  process.exit(1);
-}
+// if (config.isProd) {
+//   console.error(new Error('Cannot init dev on prod instance'));
+//   process.exit(1);
+// }
 
 function generateUsers(numberOf) {
   const emails = _.map(_.range(numberOf), function(id) {

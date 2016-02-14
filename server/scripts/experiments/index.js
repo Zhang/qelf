@@ -11,7 +11,7 @@ const defaults = [
     procedure: [
       {
         type: 'count',
-        countOf: 'How many hours has it been since you\'ve eaten a meal?',
+        text: 'How many hours has it been since you\'ve eaten a meal?',
         label: 'hour since last meal',
         measured: true
       }, {
@@ -30,12 +30,12 @@ const defaults = [
     procedure: [
       {
         type: 'time',
-        countOf: 'When did you wake up?',
+        text: 'When did you wake up?',
         measured: true
       }, {
         outcome: true,
         type: 'count',
-        countOf: 'How many pomodoros did you do today?',
+        text: 'How many pomodoros did you do today?',
         label: 'pomodoros'
       }
     ]

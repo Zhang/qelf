@@ -25,6 +25,7 @@
     "koa-session-mongo": "1.0.1",
     "koa-session-store": "1.1.1",
     "lodash": "3.10.1",
+    "moment": "^2.11.2",
     "mongodb": "1.4.39",
     "monk": "1.0.1",
     "nodemailer": "1.11.0",

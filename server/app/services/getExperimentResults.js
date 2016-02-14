@@ -2,10 +2,11 @@
 
 const _ = require('lodash');
 const measureModel = require('../models/measure');
-
+const moment = require('moment');
 module.exports = function* (experiment) {
   const results = yield measureModel.query({id: {$in: experiment.results}});
   const keys = _.unique(_.map(results, 'measured.value'));
+  const measuredType = _.get(_.first(results), 'measured.type');
   const type = _.get(_.first(results), 'outcome.type');
 
   function getSummary() {
@@ -31,23 +32,53 @@ module.exports = function* (experiment) {
       }];
     }
   }
-
+  const allKeys = {
+    stroop: [{
+      text: 'Reaction Time',
+      value: 'reactionTime'
+    },
+    {
+      text: 'Accuracy',
+      value: 'accuracy'
+    }]
+  };
+  const outcomeKeys = allKeys[type] || [{
+    text: 'Average Count',
+    value: 'count'
+  }];
+        console.log(type);
   return {
+    outcomeKeys: outcomeKeys,
     summary: getSummary(),
     outcomes: _.map(keys, function(key) {
       const pertinentMeasures = _.filter(results, function(res) {
         return res.measured.value === key;
       });
-
+      const formattedKey = (function() {
+        if (measuredType === 'time') return moment(key).format('h:mm a');
+        return key;
+      })();
       if (type === 'stroop') {
         return {
-          text: key,
-          score: Math.floor(_.sum(pertinentMeasures, 'outcome.value.reactionTime') / pertinentMeasures.length)
+          text: formattedKey,
+          score: {
+            reactionTime: Math.floor(_.sum(pertinentMeasures, 'outcome.value.reactionTime') / pertinentMeasures.length) + ' ms',
+            accuracy: Math.floor(_.sum(pertinentMeasures, 'outcome.value.correct') / _.sum(pertinentMeasures, 'outcome.value.total') * 100) + '%'
+          }
+        };
+      } else if (type === 'time') {
+        return {
+          text: moment(formattedKey).format('h:mm a'),
+          score: {
+            count: Math.floor(_.sum(pertinentMeasures, 'outcome.value') / pertinentMeasures.length)
+          }
         };
       } else {
         return {
-          text: key,
-          score: Math.floor(_.sum(pertinentMeasures, 'outcome.value') / pertinentMeasures.length)
+          text: formattedKey,
+          score: {
+            count: Math.floor(_.sum(pertinentMeasures, 'outcome.value') / pertinentMeasures.length)
+          }
         };
       }
     })
