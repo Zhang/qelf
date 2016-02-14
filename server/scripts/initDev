@@ -33,9 +33,7 @@ function addAcct(acct) {
     try {
       yield experiments.addDefault();
       const user = yield* userModel.add(acct);
-      yield _.map(experiments.defaultExperimentIds, function(id) {
-        return userModel.addExperiment(user.id, id);
-      });
+      yield userModel.updateExperiments(user.id, experiments.defaultExperimentIds);
     } catch (e) {
       console.error('error adding account', e);
       throw e;
