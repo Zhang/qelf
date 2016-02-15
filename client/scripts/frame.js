@@ -83,9 +83,9 @@
       Modals.open(null, opts);
     };
     $scope.isStandardView = false;
-    // $scope.$on('$stateChangeStart', function(e, toState) {
-    //   if (_.contains(toState.name, 'frame.')) Spinner.open();
-    // });
+    $scope.$on('$stateChangeStart', function(e, toState) {
+      if (_.contains(toState.name, 'frame.')) Spinner.open();
+    });
     $scope.$on('$stateChangeSuccess', function(e, currentState) {
       $scope.isStandardView = currentState.name === STATE.trackers || currentState.name === STATE.feedback;
     });

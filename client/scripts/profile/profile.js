@@ -19,8 +19,8 @@
         $scope.results = res.data;
         $scope.key = _.get($scope.results, 'outcomeKeys[0]');
         sortResultsBy($scope.key);
+        Spinner.close();
       });
-      Spinner.close();
     }
 
     function sortResultsBy(key) {
@@ -57,11 +57,7 @@
     };
 
     $scope.viewExperiment = function(e) {
-      // $ionicNativeTransitions.stateGo(STATE.profile, {current: e.id}, {
-      //   type: 'slide',
-      //   direction: 'right',
-      //   duration: 1500
-      // });
+      Spinner.open();
       $scope.experiment = _.find($scope.experiments, {id: e.id});
       getResults();
     };

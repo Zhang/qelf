@@ -28,15 +28,14 @@
 
   module.service('CurrentResults', function() {
     return function() {
-      var results = {
-        measured: {},
-        outcome: {}
-      };
+      var results = [];
 
-      this.addMeasure = function(res) {
+      this.addMeasure = function(res, experimentId) {
         results.measured = {
           value: res.value,
-          type: res.type
+          type: res.type,
+          time: new Date(),
+          experimentId: experimentId
         };
       };
       this.addOutcome = function(res) {
@@ -45,12 +44,9 @@
           type: res.type
         };
       };
-      this.setTime = function() {
-        results.time = new Date();
-      };
       this.clear = function() {
         results = [];
-      };
+      },
       this.get = function() {
         return results;
       };
@@ -67,16 +63,12 @@
         value: res,
         type: $scope.current.type
       };
-
-      if ($scope.current.measured) {
-        resultManager.addMeasure(result);
-      } else if ($scope.current.outcome) {
-        resultManager.addOutcome(result);
+      if ($scope.current.type !== 'instruction') {
+        resultManager.addMeasure(result, $scope.current.id);
       }
 
       $scope.current = trackers.shift();
       if(!$scope.current) {
-        resultManager.setTime();
         ExperimentsAPI.submit(Experiment.id, resultManager.get());
         Modals.open(Modals.TYPES.alert, {
           title: 'Measurement Complete',
@@ -86,6 +78,10 @@
           }
         });
       }
+
+      $scope.$on('$stateChangeSuccess', function() {
+        resultManager.clear();
+      })
     };
   });
 })();

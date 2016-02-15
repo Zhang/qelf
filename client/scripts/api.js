@@ -84,7 +84,7 @@
         return HttpHelper.get('experiment/' + encodeURIComponent(id));
       },
       submit: function(id, res) {
-        return HttpHelper.post('experiment/submit/' + encodeURIComponent(id), res);
+        return HttpHelper.post('experiment/submit/' + encodeURIComponent(id), {results: res});
       },
       getForUser: function(userId) {
         return HttpHelper.get('experiment/user/' + encodeURIComponent(userId));

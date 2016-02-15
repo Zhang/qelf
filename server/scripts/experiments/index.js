@@ -17,11 +17,9 @@ const defaults = [
       {
         type: 'count',
         text: 'How many hours has it been since you\'ve eaten a meal?',
-        label: 'hour since last meal',
-        measured: true
+        label: 'hours since last meal'
       },
       pomodoroInstruction, {
-        outcome: true,
         type: 'stroop'
       }
     ]
@@ -40,10 +38,8 @@ const defaults = [
           '3 - 6 Months',
           '6 Months +'
         ],
-        text: 'For the last friend you made, how long had you known them before becoming friends?',
-        measured: true
+        text: 'For the last friend you made, how long had you known them before becoming friends?'
       }, {
-        outcome: true,
         type: 'count',
         text: 'How many times had you talked to this person before becoming friends?',
         label: 'conversations'
@@ -58,10 +54,8 @@ const defaults = [
     procedure: [
       {
         type: 'time',
-        text: 'When did you wake up today?',
-        measured: true
+        text: 'When did you wake up today?'
       }, {
-        outcome: true,
         type: 'count',
         text: 'How many pomodoros did you do today?',
         label: 'pomodoros'
@@ -80,13 +74,11 @@ const defaults = [
           'Familiar Song',
           'Unfamiliar Song'
         ],
-        text: 'I am listening to a(n) ...',
-        measured: true
+        text: 'I am listening to a(n) ...'
       },
       pomodoroInstruction,
       {
-        outcome: true,
-        type: 'stroop',
+        type: 'stroop'
       }
     ]
   }

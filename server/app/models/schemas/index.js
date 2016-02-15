@@ -42,14 +42,9 @@ const ExperimentSchema = Joi.object().keys({
 const MeasureSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  measured: Joi.object().keys({
-    type: Joi.string().required().valid(TYPES),
-    value: Joi.any().required()
-  }),
-  outcome: Joi.object().keys({
-    type: Joi.string().required().valid(TYPES),
-    value: Joi.any().required()
-  }),
+  type: Joi.string().required().valid(TYPES),
+  value: Joi.any().required(),
+  experimentId: Joi.string().required(),
   time: Joi.date().required()
 });
 

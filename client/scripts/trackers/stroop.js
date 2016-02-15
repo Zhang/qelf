@@ -25,7 +25,7 @@
 
     var stroopBeginTime = null;
     var completedStroops = [];
-    $scope.stroops = _.map(_.range(0, 5), function() {
+    $scope.stroops = _.map(_.range(0, 15), function() {
       return {
         color: _.sample(colors),
         text: _.sample(colors),
@@ -65,7 +65,7 @@
             avgCongruentReactionTime: Math.floor(_.sum(congruentStroops, 'reactionTime') / congruentStroops.length),
             avgIncongruentReactionTime: Math.floor(_.sum(incongruentStroops, 'reactionTime') / incongruentStroops.length)
           };
-          console.log($scope.stroopResults.reactionTime, $scope.stroopResults.avgCongruentReactionTime, $scope.stroopResults.avgIncongruentReactionTime, $scope.stroopResults.correct);
+
           StroopResults.add($scope.stroopResults);
           $scope.onComplete({
             results: $scope.stroopResults

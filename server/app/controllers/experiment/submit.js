@@ -4,8 +4,8 @@ const experimentModel = require('../../models/experiment');
 
 const submit = function* submit() {
   const id = this.params.id;
-  const results = this.request.body;
-  yield experimentModel.submit(id, results);
+  const res = this.request.body;
+  yield experimentModel.submit(id, res.results);
 
   this.status = 200;
 };

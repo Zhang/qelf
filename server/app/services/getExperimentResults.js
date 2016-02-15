@@ -4,7 +4,8 @@ const _ = require('lodash');
 const measureModel = require('../models/measure');
 const moment = require('moment');
 module.exports = function* (experiment) {
-  const results = yield measureModel.query({id: {$in: experiment.results}});
+  const results = yield measureModel.query({experimentId: {$in: experiment.id}});
+  console.log(results);
   const keys = _.unique(_.map(results, 'measured.value'));
   const measuredType = _.get(_.first(results), 'measured.type');
   const outcomeType = _.get(_.first(results), 'outcome.type');

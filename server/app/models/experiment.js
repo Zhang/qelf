@@ -8,10 +8,8 @@ const modelCRUD = require('./concerns/modelCRUD')(COLL, collection, ExperimentSc
 const experimentTemplateModel = require('./experimentTemplate');
 const measureModel = require('./measure');
 
-const submit = function* (id, res) {
-  const measure = yield measureModel.add(res);
-
-  yield collection.update({id: id}, {$push: {results: measure.id}});
+const submit = function* (id, results) {
+  const measure = yield measureModel.bulkAdd(results);
 };
 
 const makeExperimentForUser = function* addExperiment(userId, templateId) {
