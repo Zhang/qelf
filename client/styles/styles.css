@@ -206,6 +206,7 @@ a.login-tag {
   color: white;
   border-bottom: 1px solid white;
   margin-bottom: 5px;
+  border-radius: 0;
 }
 body {
   transform: translate3d(0%, 0px, 0px);

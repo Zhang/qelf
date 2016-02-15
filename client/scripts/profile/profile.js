@@ -57,7 +57,12 @@
     };
 
     $scope.viewExperiment = function(e) {
-      $scope.experiment = _.find($scope.experiments, {id: e.id});
+      $ionicNativeTransitions.stateGo(STATE.profile, {current: e.id}, {
+        type: 'slide',
+        direction: 'right',
+        duration: 500
+      });
+      //$scope.experiment = _.find($scope.experiments, {id: e.id});
       getResults();
     };
     $scope.nextExperiment = function(direction) {

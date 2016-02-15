@@ -1,8 +1,8 @@
 {
-    "cordova-plugin-device": {
+    "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device"
+            "id": "cordova-plugin-whitelist"
         },
         "is_top_level": true,
         "variables": {}
@@ -15,22 +15,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-splashscreen": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-splashscreen"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-statusbar": {
         "source": {
             "type": "registry",
@@ -39,10 +23,10 @@
         "is_top_level": true,
         "variables": {}
     },
-    "ionic-plugin-keyboard": {
+    "cordova-plugin-device": {
         "source": {
             "type": "registry",
-            "id": "ionic-plugin-keyboard"
+            "id": "cordova-plugin-device"
         },
         "is_top_level": true,
         "variables": {}
@@ -55,16 +39,21 @@
         "is_top_level": true,
         "variables": {}
     },
-    "phonegap-facebook-plugin": {
+    "cordova-plugin-splashscreen": {
         "source": {
-            "type": "local",
-            "path": "ext/phonegap-facebook-plugin"
+            "type": "registry",
+            "id": "cordova-plugin-splashscreen"
         },
         "is_top_level": true,
-        "variables": {
-            "APP_ID": "201708533509741",
-            "APP_NAME": "qelf"
-        }
+        "variables": {}
+    },
+    "ionic-plugin-keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "ionic-plugin-keyboard"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
     "phonegap-plugin-push": {
         "source": {
@@ -81,6 +70,34 @@
             "subdir": "."
         },
         "is_top_level": true,
+        "variables": {}
+    },
+    "com.telerik.plugins.nativepagetransitions": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions",
+            "subdir": ".",
+            "ref": "0.5.5"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.telerik.plugins.wkwebview": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-wkwebview"
+        },
+        "is_top_level": true,
+        "variables": {
+            "WKWEBVIEW_SERVER_PORT": "12344"
+        }
+    },
+    "cordova-plugin-webserver": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-webserver"
+        },
+        "is_top_level": false,
         "variables": {}
     }
 }

@@ -26,7 +26,12 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-x-socialsharing",
-    "phonegap-plugin-push"
+    "phonegap-plugin-push",
+    {
+      "locator": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.5.5",
+      "id": "com.telerik.plugins.nativepagetransitions"
+    },
+    "cordova-plugin-wkwebview"
   ],
   "cordovaPlatforms": [
     "android",

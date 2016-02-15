@@ -9,11 +9,11 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "xml": "<feature name=\"NativePageTransitions\"><param name=\"android-package\" value=\"com.telerik.plugins.nativepagetransitions.NativePageTransitions\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
                         },
                         {
@@ -25,7 +25,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
@@ -33,27 +33,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"android-package\" value=\"org.apache.cordova.facebook.ConnectPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://m.facebook.com\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://graph.facebook.com\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://api.facebook.com\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://*.fbcdn.net\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<access origin=\"https://*.akamaihd.net\" />",
+                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
@@ -68,16 +48,6 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 1
-                        }
-                    ],
-                    "application": [
-                        {
-                            "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationId\" android:value=\"@string/fb_app_id\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<activity android:label=\"@string/fb_app_name\" android:name=\"com.facebook.LoginActivity\" android:theme=\"@android:style/Theme.Translucent.NoTitleBar\" />",
                             "count": 1
                         }
                     ],
@@ -134,31 +104,20 @@
                         }
                     ]
                 }
-            },
-            "res/values/facebookconnect.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<string name=\"fb_app_id\">201708533509741</string>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<string name=\"fb_app_name\">qelf</string>",
-                            "count": 1
-                        }
-                    ]
-                }
             }
         }
     },
     "installed_plugins": {
-        "cordova-plugin-device": {
+        "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.qelf.qelf"
+        },
+        "cordova-plugin-restrict-keyboard": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-splashscreen": {
@@ -167,26 +126,33 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "phonegap-facebook-plugin": {
-            "APP_ID": "201708533509741",
-            "APP_NAME": "qelf",
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "cordova-plugin-restrict-keyboard": {
+        "com.telerik.plugins.wkwebview": {
+            "WKWEBVIEW_SERVER_PORT": "12344",
             "PACKAGE_NAME": "com.qelf.qelf"
         }
     },
     "dependent_plugins": {},
     "modules": [
+        {
+            "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+            "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+            "pluginId": "com.telerik.plugins.nativepagetransitions",
+            "clobbers": [
+                "window.plugins.nativepagetransitions"
+            ]
+        },
         {
             "file": "plugins/cordova-plugin-device/www/device.js",
             "id": "cordova-plugin-device.device",
@@ -194,12 +160,6 @@
             "clobbers": [
                 "device"
             ]
-        },
-        {
-            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-            "id": "cordova-plugin-whitelist.whitelist",
-            "pluginId": "cordova-plugin-whitelist",
-            "runs": true
         },
         {
             "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
@@ -218,12 +178,9 @@
             ]
         },
         {
-            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-            "id": "ionic-plugin-keyboard.keyboard",
-            "pluginId": "ionic-plugin-keyboard",
-            "clobbers": [
-                "cordova.plugins.Keyboard"
-            ],
+            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+            "id": "cordova-plugin-whitelist.whitelist",
+            "pluginId": "cordova-plugin-whitelist",
             "runs": true
         },
         {
@@ -235,12 +192,13 @@
             ]
         },
         {
-            "file": "plugins/phonegap-facebook-plugin/facebookConnectPlugin.js",
-            "id": "phonegap-facebook-plugin.FacebookConnectPlugin",
-            "pluginId": "phonegap-facebook-plugin",
+            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+            "id": "ionic-plugin-keyboard.keyboard",
+            "pluginId": "ionic-plugin-keyboard",
             "clobbers": [
-                "facebookConnectPlugin"
-            ]
+                "cordova.plugins.Keyboard"
+            ],
+            "runs": true
         },
         {
             "file": "plugins/phonegap-plugin-push/www/push.js",
@@ -252,15 +210,16 @@
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-device": "1.1.1",
+        "com.telerik.plugins.nativepagetransitions": "0.5.5",
         "cordova-plugin-console": "1.0.2",
+        "cordova-plugin-device": "1.1.1",
+        "cordova-plugin-restrict-keyboard": "1.0",
+        "cordova-plugin-splashscreen": "3.2.0",
+        "cordova-plugin-statusbar": "2.1.1",
         "cordova-plugin-whitelist": "1.2.1",
-        "cordova-plugin-splashscreen": "3.1.0",
-        "cordova-plugin-statusbar": "2.1.0",
+        "cordova-plugin-x-socialsharing": "5.0.10",
         "ionic-plugin-keyboard": "1.0.8",
-        "cordova-plugin-x-socialsharing": "5.0.9",
-        "phonegap-facebook-plugin": "0.12.0",
         "phonegap-plugin-push": "1.5.3",
-        "cordova-plugin-restrict-keyboard": "1.0"
+        "com.telerik.plugins.wkwebview": "0.6.9"
     }
 }

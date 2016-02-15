@@ -7,13 +7,16 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-device": {
+        "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.qelf.qelf"
+        },
+        "cordova-plugin-restrict-keyboard": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-splashscreen": {
@@ -22,21 +25,20 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "phonegap-facebook-plugin": {
-            "APP_ID": "201708533509741",
-            "APP_NAME": "qelf",
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.qelf.qelf"
         },
-        "cordova-plugin-restrict-keyboard": {
+        "com.telerik.plugins.wkwebview": {
+            "WKWEBVIEW_SERVER_PORT": "12344",
             "PACKAGE_NAME": "com.qelf.qelf"
         }
     },
