@@ -139,6 +139,7 @@ module.exports = function (grunt) {
               '<%= bowerPath %>/angular-cookies/angular-cookies.min.js',
               '<%= bowerPath %>/lodash/lodash.min.js',
               '<%= bowerPath %>/javascript-detect-element-resize/jquery.resize.js',
+              '<%= bowerPath %>/ionic-native-transitions/dist/ionic-native-transitions.min.js',
               '<%= bowerPath %>/ngCordova/dist/ng-cordova.min.js',
               ionicClientPath
             ]
