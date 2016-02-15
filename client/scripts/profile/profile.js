@@ -13,7 +13,7 @@
     });
   });
 
-  module.controller('Profile', function($scope, StroopResults, $state, STATE, $stateParams, ExperimentsAPI, $rootScope, Modals, Spinner, $ionicNativeTransitions) {
+  module.controller('Profile', function($scope, StroopResults, $state, STATE, $stateParams, ExperimentsAPI, $rootScope, Modals, Spinner) {
     function getResults() {
       ExperimentsAPI.getResults($scope.experiment.id).then(function(res) {
         $scope.results = res.data;
@@ -57,12 +57,12 @@
     };
 
     $scope.viewExperiment = function(e) {
-      $ionicNativeTransitions.stateGo(STATE.profile, {current: e.id}, {
-        type: 'slide',
-        direction: 'right',
-        duration: 1500
-      });
-      //$scope.experiment = _.find($scope.experiments, {id: e.id});
+      // $ionicNativeTransitions.stateGo(STATE.profile, {current: e.id}, {
+      //   type: 'slide',
+      //   direction: 'right',
+      //   duration: 1500
+      // });
+      $scope.experiment = _.find($scope.experiments, {id: e.id});
       getResults();
     };
     $scope.nextExperiment = function(direction) {

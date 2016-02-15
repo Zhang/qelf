@@ -19,7 +19,7 @@
     'feedback',
     'trackers',
     'experiments',
-    'ionic-native-transitions'
+    // 'ionic-native-transitions'
   ]);
 
   module.config(function($compileProvider, $httpProvider, $ionicConfigProvider) {
