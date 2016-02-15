@@ -180,6 +180,9 @@
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.qelf.qelf"
+        },
+        "cordova-plugin-restrict-keyboard": {
+            "PACKAGE_NAME": "com.qelf.qelf"
         }
     },
     "dependent_plugins": {},
@@ -257,6 +260,7 @@
         "ionic-plugin-keyboard": "1.0.8",
         "cordova-plugin-x-socialsharing": "5.0.9",
         "phonegap-facebook-plugin": "0.12.0",
-        "phonegap-plugin-push": "1.5.3"
+        "phonegap-plugin-push": "1.5.3",
+        "cordova-plugin-restrict-keyboard": "1.0"
     }
 }

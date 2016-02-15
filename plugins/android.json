@@ -35,6 +35,9 @@
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.qelf.qelf"
+        },
+        "cordova-plugin-restrict-keyboard": {
+            "PACKAGE_NAME": "com.qelf.qelf"
         }
     },
     "dependent_plugins": {}

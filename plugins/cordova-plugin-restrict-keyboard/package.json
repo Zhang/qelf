@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-restrict-keyboard",
+  "version": "1.0.0",
+  "description": "Cordova plugin for stopping custom keyboards from being used.",
+  "cordova": {
+    "id": "cordova-plugin-restrict-keyboard",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kurtisf/cordova-plugin-restrict-keyboard"
+  },
+  "keywords": [
+    "cordova",
+    "keyboard",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "MIT"
+}
