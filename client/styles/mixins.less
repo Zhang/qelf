@@ -10,17 +10,21 @@
 }
 
 .placeholder-color(@color: @primary-font-color) {
-  ::-webkit-input-placeholder {
-    color: @color;
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+      color: @color;
   }
-  :-moz-placeholder { /* Firefox 18- */
-    color: @color;
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color: @color;
+     opacity:  1;
   }
-  ::-moz-placeholder {  /* Firefox 19+ */
-    color: @color;
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color: @color;
+     opacity:  1;
   }
-
-  :-ms-input-placeholder {
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color: @color;
+  }
+  :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
     color: @color;
   }
 }

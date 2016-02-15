@@ -4,9 +4,9 @@ const userModel = require('../../models/user');
 const _ = require('lodash');
 
 const current = function* current() {
-  // const userId = _.get(this.session, 'passport.user');
-  // const acct = yield userModel.get(userId);
-  const user = yield userModel.getByEmail('test_user1@gmail.com');
+  const userId = _.get(this.session, 'passport.user');
+  const user = yield userModel.get(userId);
+
   if (!user) {
     this.status = 403;
   } else {

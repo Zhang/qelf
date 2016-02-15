@@ -8,7 +8,7 @@ div.login-container {
 
 div.list.landing {
   position: relative;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 h2.title {
@@ -54,7 +54,7 @@ button.login {
 
 .button-group.bottom {
   .bottom();
-  input, button.login {
+  button.login {
     width: 100%;
     border: none;
     font-size: @font-standard;
@@ -101,4 +101,18 @@ a.login-tag {
   color: white;
   font-size: @font-large;
   font-weight: bold;
+}
+.login-inputs {
+  @input-color: white;
+  .placeholder-color(@color: @input-color);
+  text-align: center;
+  margin-top: 50px;
+  .login-input {
+    background-color: transparent;
+    width: 80%;
+    height: 30px;
+    color: white;
+    border-bottom: 1px solid @input-color;
+    margin-bottom: 5px;
+  }
 }

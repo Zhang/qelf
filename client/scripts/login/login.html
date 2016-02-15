@@ -5,11 +5,11 @@
       <div class="sub-title">Discover your persona</div>
     </div>
   </div>
+  <div class="login-inputs">
+    <input class="login-input" type="text" placeholder="email" ng-model="email">
+    <input class="login-input" type="password" placeholder="password" ng-model="password">
+  </div>
   <div class="button-group bottom">
-    <div>
-      <input type="text" ng-model="email">
-      <input type="password" ng-model="password">
-    </div>
     <div class="login-input-container">
       <div class="login-with-fb" ng-if="!isSignup" ng-click="login()"><div class="login-text">Submit</div></div>
       <div class="login-with-fb" ng-if="isSignup" ng-click="signup()"><div class="login-text">Submit</div></div>

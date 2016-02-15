@@ -78,7 +78,7 @@ div.login-container {
 }
 div.list.landing {
   position: relative;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 h2.title {
   color: white;
@@ -132,13 +132,11 @@ button.login {
   position: absolute;
   bottom: 0;
 }
-.button-group.bottom input,
 .button-group.bottom button.login {
   width: 100%;
   border: none;
   font-size: 14px;
 }
-.button-group.bottom input:focus,
 .button-group.bottom button.login:focus {
   outline: none;
 }
@@ -174,6 +172,40 @@ a.login-tag {
   color: white;
   font-size: 16px;
   font-weight: bold;
+}
+.login-inputs {
+  text-align: center;
+  margin-top: 50px;
+}
+.login-inputs ::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: white;
+}
+.login-inputs :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: white;
+  opacity: 1;
+}
+.login-inputs ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: white;
+  opacity: 1;
+}
+.login-inputs :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+.login-inputs :placeholder-shown {
+  /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color: white;
+}
+.login-inputs .login-input {
+  background-color: transparent;
+  width: 80%;
+  height: 30px;
+  color: white;
+  border-bottom: 1px solid white;
+  margin-bottom: 5px;
 }
 body {
   transform: translate3d(0%, 0px, 0px);
@@ -644,17 +676,25 @@ div.navbar-container .ion-chevron-right {
   width: 80%;
 }
 .popup-container .email-input ::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
   color: #221122;
 }
 .popup-container .email-input :-moz-placeholder {
-  /* Firefox 18- */
+  /* Mozilla Firefox 4 to 18 */
   color: #221122;
+  opacity: 1;
 }
 .popup-container .email-input ::-moz-placeholder {
-  /* Firefox 19+ */
+  /* Mozilla Firefox 19+ */
   color: #221122;
+  opacity: 1;
 }
 .popup-container .email-input :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #221122;
+}
+.popup-container .email-input :placeholder-shown {
+  /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
   color: #221122;
 }
 .popup-container .popup-submit {
@@ -1034,4 +1074,8 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
   /* <-- Apparently some margin are still there even though it's hidden */
+}
+textarea:focus,
+input:focus {
+  outline: none;
 }

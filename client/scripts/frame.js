@@ -72,6 +72,9 @@
             title: 'Logout',
             action: function(e) {
               e.preventDefault();
+              SessionAPI.logout().then(function() {
+                $state.go(STATE.login);
+              });
             }
           }
         ],

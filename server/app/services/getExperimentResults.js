@@ -7,7 +7,7 @@ module.exports = function* (experiment) {
   const results = yield measureModel.query({id: {$in: experiment.results}});
   const keys = _.unique(_.map(results, 'measured.value'));
   const measuredType = _.get(_.first(results), 'measured.type');
-  const type = _.get(_.first(results), 'outcome.type');
+  const outcomeType = _.get(_.first(results), 'outcome.type');
 
   function getSummary() {
     if (!results.length) {
@@ -15,7 +15,7 @@ module.exports = function* (experiment) {
         label: 'No current measurements'
       }];
     }
-    if (type === 'stroop') {
+    if (outcomeType === 'stroop') {
       return [{
         label: 'Average Accuracy',
         value: Math.floor(_.sum(results, 'outcome.value.correct') / _.sum(results, 'outcome.value.total') * 100) + '%'
@@ -42,11 +42,11 @@ module.exports = function* (experiment) {
       value: 'accuracy'
     }]
   };
-  const outcomeKeys = allKeys[type] || [{
+  const outcomeKeys = allKeys[outcomeType] || [{
     text: 'Average Count',
     value: 'count'
   }];
-        console.log(type);
+
   return {
     outcomeKeys: outcomeKeys,
     summary: getSummary(),
@@ -58,7 +58,7 @@ module.exports = function* (experiment) {
         if (measuredType === 'time') return moment(key).format('h:mm a');
         return key;
       })();
-      if (type === 'stroop') {
+      if (outcomeType === 'stroop') {
         return {
           text: formattedKey,
           score: {
@@ -66,7 +66,7 @@ module.exports = function* (experiment) {
             accuracy: Math.floor(_.sum(pertinentMeasures, 'outcome.value.correct') / _.sum(pertinentMeasures, 'outcome.value.total') * 100)
           }
         };
-      } else if (type === 'time') {
+      } else if (outcomeType === 'time') {
         return {
           text: moment(formattedKey).format('h:mm a'),
           score: {
