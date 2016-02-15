@@ -3,21 +3,23 @@
 const _ = require('lodash');
 const experimentTemplateModel = require('../../app/models/experimentTemplate');
 
+const pomodoroInstruction = {
+  type: 'instruction',
+  text: 'Tap the button that corresponds to the COLOR of the word. R for red, P for purple, G for green'
+};
 const defaults = [
   {
     id: 'TimeEatenVsProductivity',
-    text: 'How does the hour at which I wake up effect my productivity?',
-    minimumResults: 10,
+    text: 'How is my focus effected by the last time I ate?',
+    minimumResults: 15,
     procedure: [
       {
         type: 'count',
         text: 'How many hours has it been since you\'ve eaten a meal?',
         label: 'hour since last meal',
         measured: true
-      }, {
-        type: 'instruction',
-        text: 'You have to do this focus test now'
-      }, {
+      },
+      pomodoroInstruction, {
         outcome: true,
         type: 'stroop'
       }
@@ -26,11 +28,11 @@ const defaults = [
   {
     id: 'WakingTimeVsProductivity',
     text: 'How does when I woke up effect my productivity?',
-    minimumResults: 10,
+    minimumResults: 20,
     procedure: [
       {
         type: 'time',
-        text: 'When did you wake up?',
+        text: 'When did you wake up today?',
         measured: true
       }, {
         outcome: true,
@@ -43,7 +45,7 @@ const defaults = [
   {
     id: 'MusicVsProductivity',
     text: 'Am I more focused when I listen to music I\'m familiar with?',
-    minimumResults: 10,
+    minimumResults: 15,
     procedure: [
       {
         type: 'multiple',
@@ -51,13 +53,11 @@ const defaults = [
           'Familiar Song',
           'Unfamiliar Song'
         ],
-        text: 'What are you listening to?',
+        text: 'I am listening to a(n) ...',
         measured: true
       },
+      pomodoroInstruction,
       {
-        type: 'instruction',
-        text: 'You have to do this focus test now'
-      }, {
         outcome: true,
         type: 'stroop',
       }
