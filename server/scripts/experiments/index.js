@@ -12,6 +12,7 @@ const defaults = [
     id: 'TimeEatenVsProductivity',
     text: 'How is my focus effected by the last time I ate?',
     minimumResults: 15,
+    resultUnits: ' hours since last meal',
     procedure: [
       {
         type: 'count',
@@ -26,9 +27,34 @@ const defaults = [
     ]
   },
   {
+    id: 'TimeToCloseFriend',
+    text: 'Number of conversations I have vs. friends I make',
+    minimumResults: 1,
+    resultUnits: ' time till friendship',
+    procedure: [
+      {
+        type: 'multiple',
+        choices: [
+          'Less than 1 month',
+          '1 - 3 Months',
+          '3 - 6 Months',
+          '6 Months +'
+        ],
+        text: 'For the last friend you made, how long had you known them before becoming friends?',
+        measured: true
+      }, {
+        outcome: true,
+        type: 'count',
+        text: 'How many times had you talked to this person before becoming friends?',
+        label: 'conversations'
+      }
+    ]
+  },
+  {
     id: 'WakingTimeVsProductivity',
     text: 'How does when I woke up effect my productivity?',
     minimumResults: 20,
+    resultUnits: null,
     procedure: [
       {
         type: 'time',
@@ -46,6 +72,7 @@ const defaults = [
     id: 'MusicVsProductivity',
     text: 'Am I more focused when I listen to music I\'m familiar with?',
     minimumResults: 15,
+    resultUnits: null,
     procedure: [
       {
         type: 'multiple',

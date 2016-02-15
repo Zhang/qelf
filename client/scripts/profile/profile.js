@@ -71,8 +71,6 @@
         $scope.viewExperiment($scope.experiments[$scope.experiments.length - 1]);
       } else if (currentIndex === $scope.experiments.length - 1 && direction === 'left') {
         $scope.viewExperiment($scope.experiments[0]);
-
-        //$scope.experiment = $scope.experiments[0];
       } else {
         $scope.viewExperiment($scope.experiments[direction === 'left' ? currentIndex + 1 : currentIndex - 1]);
       }

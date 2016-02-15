@@ -80,6 +80,7 @@
         ExperimentsAPI.submit(Experiment.id, resultManager.get());
         Modals.open(Modals.TYPES.alert, {
           title: 'Measurement Complete',
+          top: '45%',
           onClose: function() {
             $state.go(STATE.profile, {current: $stateParams.id});
           }

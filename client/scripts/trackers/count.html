@@ -2,12 +2,12 @@
   <div class="full-width flex-center count-header">
     {{text}}
   </div>
-  <div class="grow full-width flex-center">
-    <div class="font-large">
-      <input type="number" ng-model="count">
-      <span>
-        {{label}}
-      </span>
+  <div class="grow full-width flex-column-center">
+    <div class="move-up-margin">
+      <input class="count-input" type="number" max="999" min="0" ng-model="count">
+    </div>
+    <div class="count-label">
+      {{label}}
     </div>
   </div>
   <div class="bottom-btn full-width" ng-click="submit()">Submit</div>

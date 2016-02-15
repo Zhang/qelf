@@ -50,7 +50,7 @@
 
       var compiledTemplate = $compile(template)(_scope);
       compiledTemplate.css('display', 'none');
-      compiledTemplate.css('top', getModalYPlacement(_.size(_scope.items) || 0));
+      compiledTemplate.css('top', opts.top || getModalYPlacement(_.size(_scope.items) || 0));
       $(compiledTemplate).addClass(_scope.customClass || '');
       $('body').append(compiledTemplate);
 
