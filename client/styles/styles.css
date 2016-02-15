@@ -776,6 +776,20 @@ div.navbar-container .ion-chevron-right {
 input {
   border: none;
 }
+.count-label,
+.count-input {
+  color: #221122;
+}
+.count-label {
+  font-size: 24px;
+}
+.move-up-margin {
+  margin-top: -70px;
+}
+.count-input {
+  text-align: center;
+  font-size: 65px;
+}
 .count-header {
   padding: 10px 0;
   font-size: 20px;
