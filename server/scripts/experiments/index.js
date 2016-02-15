@@ -12,6 +12,7 @@ const defaults = [
     id: 'TimeEatenVsProductivity',
     text: 'How is my focus effected by the last time I ate?',
     minimumResults: 15,
+    resultUnits: ' hours since last meal',
     procedure: [
       {
         type: 'count',
@@ -29,6 +30,7 @@ const defaults = [
     id: 'TimeToCloseFriend',
     text: 'Number of conversations I have vs. friends I make',
     minimumResults: 1,
+    resultUnits: ' time till friendship',
     procedure: [
       {
         type: 'multiple',
@@ -52,6 +54,7 @@ const defaults = [
     id: 'WakingTimeVsProductivity',
     text: 'How does when I woke up effect my productivity?',
     minimumResults: 20,
+    resultUnits: null,
     procedure: [
       {
         type: 'time',
@@ -69,6 +72,7 @@ const defaults = [
     id: 'MusicVsProductivity',
     text: 'Am I more focused when I listen to music I\'m familiar with?',
     minimumResults: 15,
+    resultUnits: null,
     procedure: [
       {
         type: 'multiple',

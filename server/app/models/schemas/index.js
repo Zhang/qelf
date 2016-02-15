@@ -27,13 +27,14 @@ const ExperimentTemplateSchema = Joi.object().keys({
   id: Joi.string().required(),
   text: Joi.string().required().description('The title of the experiment'),
   procedure: Joi.array().required().description('An array of measure ids'),
-  minimumResults: Joi.number().required()
+  minimumResults: Joi.number().required(),
+  resultUnits: Joi.string().required().allow(null)
 });
 
 const ExperimentSchema = Joi.object().keys({
   _id: Joi.string(),
   id: Joi.string().required(),
-  results: Joi.array().required().items(Joi.string()).description('An array of result ids'),
+  results: Joi.array().required().items(Joi.string()).description('An array of measure ids'),
   templateId: Joi.string().required().description('The id of the experiment template this experiment stems from'),
   userId: Joi.string().required()
 });

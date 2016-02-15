@@ -55,8 +55,8 @@ module.exports = function* (experiment) {
         return res.measured.value === key;
       });
       const formattedKey = (function() {
-        if (measuredType === 'time') return moment(key).format('h:mm a');
-        return key;
+        const formatted = measuredType === 'time' ? moment(key).format('h:mm a') : key;
+        return formatted + (experiment.template.resultUnits ? ' ' + experiment.template.resultUnits : '');
       })();
       if (outcomeType === 'stroop') {
         return {
