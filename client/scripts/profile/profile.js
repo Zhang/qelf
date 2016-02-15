@@ -8,23 +8,27 @@
     .state(STATE.profile, {
       url: '/profile/:current',
       templateUrl: 'scripts/profile/profile.html',
-      controller: 'Profile'
+      controller: 'Profile',
+      cache: false
     });
   });
 
-  module.controller('Profile', function($scope, StroopResults, $state, STATE, $stateParams, ExperimentsAPI, $rootScope, Modals) {
+  module.controller('Profile', function($scope, StroopResults, $state, STATE, $stateParams, ExperimentsAPI, $rootScope, Modals, Spinner) {
     function getResults() {
       ExperimentsAPI.getResults($scope.experiment.id).then(function(res) {
         $scope.results = res.data;
         $scope.key = _.get($scope.results, 'outcomeKeys[0]');
         sortResultsBy($scope.key);
       });
+      Spinner.close();
     }
+
     function sortResultsBy(key) {
       $scope.results.outcomes = _.sortBy($scope.results.outcomes, function(outcome) {
         return -outcome.score[key.value];
       });
     }
+
     $scope.sortBy = function() {
       Modals.open(Modals.TYPES.generic, {
         title: 'Sort By',

@@ -935,6 +935,7 @@ input {
 }
 .experiments .experiment-card.selected-card {
   background-color: #3E18BD;
+  color: white;
 }
 .icon {
   display: block;

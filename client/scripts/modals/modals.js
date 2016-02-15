@@ -2,7 +2,7 @@
 
 (function() {
   var app = angular.module('modals', []);
-  //todo - open (opts) should be the signiture - remove passing scope
+
   app.service('Modals', function($compile, OverlayService, $rootScope) {
     var TYPES = {
       email: 'email',

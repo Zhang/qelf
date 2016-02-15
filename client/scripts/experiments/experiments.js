@@ -19,8 +19,9 @@
     });
   });
 
-module.controller('Experiments', function($scope, $state, STATE, Experiments, ExperimentsAPI, $rootScope, AccountAPI) {
+module.controller('Experiments', function($scope, $state, STATE, Experiments, ExperimentsAPI, $rootScope, AccountAPI, Spinner) {
     ExperimentsAPI.getForUser($rootScope.user.id).then(function(res) {
+      Spinner.close();
       $scope.selected = _.map(_.filter(res.data, 'active'), 'template');
     });
 

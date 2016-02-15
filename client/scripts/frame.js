@@ -29,7 +29,7 @@
     });
   });
 
-  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, Modals, ShareService, $timeout, Keyboard) {
+  module.controller('Frame', function($scope, $rootScope, $state, STATE, SessionAPI, Modals, ShareService, $timeout, Keyboard, Spinner) {
     $scope.isSelected = function(state) {
       return $state.current.name === STATE[state];
     };
@@ -83,6 +83,9 @@
       Modals.open(null, opts);
     };
     $scope.isStandardView = false;
+    $scope.$on('$stateChangeStart', function(e, toState) {
+      if (_.contains(toState.name, 'frame.')) Spinner.open();
+    });
     $scope.$on('$stateChangeSuccess', function(e, currentState) {
       $scope.isStandardView = currentState.name === STATE.trackers || currentState.name === STATE.feedback;
     });

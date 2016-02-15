@@ -16,8 +16,9 @@
       templateUrl: 'scripts/trackers/trackers.html',
       controller: 'Trackers',
       resolve: {
-        Experiment: function(ExperimentsAPI, $stateParams) {
+        Experiment: function(ExperimentsAPI, $stateParams, Spinner) {
           return ExperimentsAPI.getExperiment($stateParams.id).then(function(res) {
+            Spinner.close();
             return res.data;
           });
         }
