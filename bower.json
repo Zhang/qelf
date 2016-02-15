@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "angular-cookies": "1.4.8",
+    "ionic-native-transitions": "shprink/ionic-native-transitions#~1.0.0-rc9",
     "jquery": "2.1.4",
     "lodash": "3.10.1"
   }

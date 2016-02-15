@@ -13,7 +13,7 @@
     });
   });
 
-  module.controller('Profile', function($scope, StroopResults, $state, STATE, $stateParams, ExperimentsAPI, $rootScope, Modals, Spinner) {
+  module.controller('Profile', function($scope, StroopResults, $state, STATE, $stateParams, ExperimentsAPI, $rootScope, Modals, Spinner, $ionicNativeTransitions) {
     function getResults() {
       ExperimentsAPI.getResults($scope.experiment.id).then(function(res) {
         $scope.results = res.data;
@@ -60,7 +60,7 @@
       $ionicNativeTransitions.stateGo(STATE.profile, {current: e.id}, {
         type: 'slide',
         direction: 'right',
-        duration: 500
+        duration: 1500
       });
       //$scope.experiment = _.find($scope.experiments, {id: e.id});
       getResults();
@@ -68,13 +68,14 @@
     $scope.nextExperiment = function(direction) {
       var currentIndex = _.indexOf($scope.experiments, $scope.experiment);
       if (currentIndex === 0 && direction === 'right') {
-        $scope.experiment = $scope.experiments[$scope.experiments.length - 1];
+        $scope.viewExperiment($scope.experiments[$scope.experiments.length - 1]);
       } else if (currentIndex === $scope.experiments.length - 1 && direction === 'left') {
-        $scope.experiment = $scope.experiments[0];
+        $scope.viewExperiment($scope.experiments[0]);
+
+        //$scope.experiment = $scope.experiments[0];
       } else {
-        $scope.experiment = $scope.experiments[direction === 'left' ? currentIndex + 1 : currentIndex - 1];
+        $scope.viewExperiment($scope.experiments[direction === 'left' ? currentIndex + 1 : currentIndex - 1]);
       }
-      getResults();
     };
   });
 })();
