@@ -1,5 +1,4 @@
 'use strict';
-
 //10.0.2.2 is an ip reserved by android emulator to connect to local servers
 const IS_ANDROID = process.env.IS_ANDROID;
 const LOCAL_HOST_ADDRESS = IS_ANDROID ? 'http://10.0.2.2:3000/' : 'http://127.0.0.1:3000/';
